@@ -4,17 +4,21 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.effect.ColorInput;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import javax.swing.*;
+
+import static javafx.scene.paint.Color.RED;
 
 /**
  * @author - John Schmidt
@@ -34,13 +38,41 @@ public class TapPane  extends Application {
     public void start(Stage stage) throws Exception {
         VBox vbox = new VBox(5);
 
+
+
+        Label  labelTaskleiste = new Label("LabelTaskleiste");
+        labelTaskleiste.setStyle("-fx-background-color: blue;");
+        //JPanel jpanel1 = new JPanel();//Instead of a JPanel set to BoderLayout, use BorderPane
+        BorderPane bpanel = new BorderPane();
+        //Instead of a JPanel set to GridLayout, use GridPane
+        Pane maxpane = new Pane();
+        maxpane.setStyle("-fx-background-color: black;");
+       // maxpane.setBackground(RED);
+        Label lirgendwas = new Label("lirgendwas");
+        lirgendwas.setStyle("-fx-background-color: red;");
+        //bpanel.getChildren().add(lirgendwas);
+
+        Label fuckLabel = new Label("Fucklabel im FuckPanel von Fuckyou");
+        Pane fuckyou = new Pane(fuckLabel);
+
         Button btn = new Button("1");
         Button btn2 = new Button("2");
 
         final Pane cardsPane = new StackPane();
         final Group card1 = new Group(new Text(25, 25, "Card 1"));
         final Group card2 = new Group(new Text(25, 25, "Card 2"));
-        final Group card3 = new Group(new Text(30, 25, "Card 2"));
+        //card2.setStyle("-fx-background-color: blue;");
+
+        final Group card3 = new Group(new Text(30, 30, "Card 3"));
+
+        ColorInput ci = new ColorInput(card2.getLayoutX(),
+                card2.getLayoutY(),
+                card2.getLayoutBounds().getWidth(),
+                card2.getLayoutBounds().getHeight(),
+                Color.RED);
+        card2.setEffect(ci);
+
+
 
         btn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
@@ -56,8 +88,8 @@ public class TapPane  extends Application {
             }
         });
 
-        vbox.getChildren().addAll(btn, btn2, cardsPane);
-        stage.setScene(new Scene(vbox));
+        vbox.getChildren().addAll(btn, btn2, cardsPane,labelTaskleiste,  bpanel,fuckyou,maxpane,lirgendwas);
+        stage.setScene(new Scene(new ScrollPane(vbox)));//mit scrollpane drin (youtube)
         stage.setWidth(200);
         stage.setHeight(200);
         stage.show();
