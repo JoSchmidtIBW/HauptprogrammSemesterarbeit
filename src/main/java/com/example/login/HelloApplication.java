@@ -82,7 +82,8 @@ public void start(Stage primaryStage) {
     btn.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent e) {
-            actiontarget.setFill(Color.FIREBRICK);
+            //actiontarget.setFill(Color.FIREBRICK);
+            actiontarget.setFill(Color.GREEN);
             //actiontarget.setText("Sign in button pressed");
             actiontarget.setText("Ausgabe: "+userTextField.getText());//hier kommt resultat von masse und Länge.
         }
