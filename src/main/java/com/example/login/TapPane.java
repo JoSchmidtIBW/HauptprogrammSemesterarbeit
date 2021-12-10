@@ -93,7 +93,8 @@ public class TapPane  extends Application {
         });
 
         //hauptOberflaechenPaneTskleiste..add(new TaskLeiste(anzeigePanel, cardLayout));
-        hauptOberflaechenPaneTskleiste(new TaskLeiste(anzeigePanel, cardLayout));
+        //hauptOberflaechenPaneTskleiste(new TaskLeiste(hauptOberflaechenPaneTskleiste, cardLayout));
+        hauptOberflaechenPaneTskleiste(new TaskLeiste(hauptOberflaechenPaneTskleiste));
 
         vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas);
         //final Scene scene = new Scene(root, 800, 400, Color.BEIGE);
