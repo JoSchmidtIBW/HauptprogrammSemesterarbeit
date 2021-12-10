@@ -54,6 +54,7 @@ public class TapPane  extends Application {
 
         Label fuckLabel = new Label("Fucklabel im FuckPanel von Fuckyou");
         Pane fuckyou = new Pane(fuckLabel);
+        Pane hauptOberflaechenPaneTskleiste = new Pane();
 
         Button btn = new Button("1");
         Button btn2 = new Button("2");
@@ -63,7 +64,7 @@ public class TapPane  extends Application {
         final Group card2 = new Group(new Text(25, 25, "Card 2"));
         //card2.setStyle("-fx-background-color: blue;");
 
-        final Group card3 = new Group(new Text(30, 30, "Card 3"));
+        //final Group card3 = new Group(new Text(30, 30, "Card 3"));
 
         ColorInput ci = new ColorInput(card2.getLayoutX(),
                 card2.getLayoutY(),
@@ -72,6 +73,9 @@ public class TapPane  extends Application {
                 Color.RED);
         card2.setEffect(ci);
 
+//        ColorInput ci = new ColorInput(
+//                Color.RED);
+//        card2.setEffect(Color.RED);
 
 
         btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -88,8 +92,14 @@ public class TapPane  extends Application {
             }
         });
 
-        vbox.getChildren().addAll(btn, btn2, cardsPane,labelTaskleiste,  bpanel,fuckyou,maxpane,lirgendwas);
-        stage.setScene(new Scene(new ScrollPane(vbox)));//mit scrollpane drin (youtube)
+        //hauptOberflaechenPaneTskleiste..add(new TaskLeiste(anzeigePanel, cardLayout));
+        hauptOberflaechenPaneTskleiste(new TaskLeiste(anzeigePanel, cardLayout));
+
+        vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas);
+        //final Scene scene = new Scene(root, 800, 400, Color.BEIGE);
+        final Scene scene = new Scene(new ScrollPane(vbox));
+        //stage.setScene(new Scene(new ScrollPane(vbox)));//mit scrollpane drin (youtube)
+        stage.setScene(scene);
         stage.setWidth(200);
         stage.setHeight(200);
         stage.show();
