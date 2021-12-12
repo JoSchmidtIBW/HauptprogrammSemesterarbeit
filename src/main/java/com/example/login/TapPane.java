@@ -1,21 +1,30 @@
 package com.example.login;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.ColorInput;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import javax.swing.*;
-
-import static javafx.scene.paint.Color.RED;
+import java.awt.*;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimerTask;
 
 /**
  * @author - John Schmidt
@@ -56,7 +65,7 @@ public class TapPane  extends Application {
         Button btn = new Button("1");
         Button btn2 = new Button("2");
 
-        final Pane cardsPane = new StackPane();
+        final Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
         final Group card1 = new Group(new Text(25, 25, "Card 1"));
         final Group card2 = new Group(new Text(25, 25, "Card 2"));
         //card2.setStyle("-fx-background-color: blue;");
@@ -85,7 +94,8 @@ public class TapPane  extends Application {
         btn2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
-                cardsPane.getChildren().add(card2);
+                //cardsPane.getChildren().add(card2);
+                cardsPane.getChildren().add(new GroupStack(cardsPane).macheGroup());
             }
         });
 
@@ -101,7 +111,7 @@ public class TapPane  extends Application {
         //hauptOberflaechePanel.add(new TaskLeiste(anzeigePanel, cardLayout));
         //hauptOberflaechenPaneTaskleiste(taskLeiste);
 
-        vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas,TaskPane.getPane());
+        vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas, TastLeistePane.getPane());
         //,TaskPane.getPane(vbox)
         //final Scene scene = new Scene(root, 800, 400, Color.BEIGE);
         final Scene scene = new Scene(new ScrollPane(vbox));
@@ -113,15 +123,63 @@ public class TapPane  extends Application {
     }
 }
 
-class TaskPane{
+class GroupStack{
+    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
+
+    public GroupStack(Pane cardsPane){
+        this.cardsPane=cardsPane;
+    }
+
+    public Group macheGroup(){
+        final Group card2 = new Group(new Text(25, 25, "Card 2"));
+        return card2;
+    }
+
+}
+
+
+class TastLeistePane {
+
+    private static String uhrzeitText;
+    //String uhrzeitText = "";
+    private static String datumText;
 
     //public static Node getPane;
     public static Pane getPane(){//es mue fucking statig siii
+//        final java.util.Timer clockTimer = new java.util.Timer(true);
+//        final java.text.SimpleDateFormat zeitFormat = new java.text.SimpleDateFormat("HH:mm:ss");
+//        final java.text.SimpleDateFormat datumFormat = new java.text.SimpleDateFormat("dd.MM.yyyy");
+//        final Label labelUhrzeit = new Label();
+//        final Label labelDatum = new Label();
+//        clockTimer.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                String uhrzeitText = zeitFormat.format(new Date());
+//                String datumText = datumFormat.format(new Date());
+//                System.out.println(uhrzeitText);
+////                uhrzeitText = zeitFormat.format(new Date());
+////                datumText = datumFormat.format(new Date());
+//                labelUhrzeit.setText(uhrzeitText);
+//                labelDatum.setText(datumText);
+//            }
+//        }, 0, 1000);
+
+        final Label clock = new Label();
+        final DateFormat format = DateFormat.getInstance();
+        final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                final Calendar cal = Calendar.getInstance();
+                clock.setText(format.format(cal.getTime()));
+            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
 
         HBox hbox = new HBox();
         Label lt = new Label("Mia");
         Label lt2 = new Label("Mia2222");
-        hbox.getChildren().addAll(lt,lt2);
+        hbox.getChildren().addAll(lt,lt2,clock);//labelDatum,labelUhrzeit);//);//
         //Pane pane = new Pane(lt,lt2);//funktioniert
         Pane pane = new Pane(hbox);
         //pane.getChildren().add(lt);
