@@ -116,7 +116,7 @@ public class TapPane  extends Application {
 class TaskPane{
 
     //public static Node getPane;
-    public static Pane getPane(){
+    public static Pane getPane(){//es mue fucking statig siii
 
         HBox hbox = new HBox();
         Label lt = new Label("Mia");
