@@ -1,5 +1,7 @@
 package GUI;
+//package Abteilungen;
 
+import Abteilungen.Abteilungen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -47,8 +49,9 @@ public class HauptGUIScene {
 
         bAbteilung.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
-//                cardsPane.getChildren().clear();
-//                cardsPane.getChildren().add(new Abteilungen(cardsPane).macheAbteilung());
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new Abteilungen(cardsPane).macheAbteilung());
+                //cardsPane.getChildren().add(new Abteilungen(cardsPane).macheAbteilung())
             }
         });
 //        bAbteilung.setOnAction(new EventHandler<ActionEvent>() {
@@ -61,7 +64,7 @@ public class HauptGUIScene {
         bAnleitung.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
-                //cardsPane.getChildren().add(card2Anleitung);
+                cardsPane.getChildren().add(card2Anleitung);
                 cardsPane.getChildren().add(new GroupStack2(cardsPane).macheGroup2());
             }
         });
