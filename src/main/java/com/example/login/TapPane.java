@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -19,12 +18,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.swing.*;
-import java.awt.*;
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.TimerTask;
 
 /**
  * @author - John Schmidt
@@ -111,7 +106,7 @@ public class TapPane  extends Application {
         //hauptOberflaechePanel.add(new TaskLeiste(anzeigePanel, cardLayout));
         //hauptOberflaechenPaneTaskleiste(taskLeiste);
 
-        vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas, TastLeistePane.getPane());
+        vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas, TastLeistePaneOriginal.getPane());
         //,TaskPane.getPane(vbox)
         //final Scene scene = new Scene(root, 800, 400, Color.BEIGE);
         final Scene scene = new Scene(new ScrollPane(vbox));
@@ -138,7 +133,7 @@ class GroupStack{
 }
 
 
-class TastLeistePane {
+class TastLeistePaneOriginal {
 
     private static String uhrzeitText;
     //String uhrzeitText = "";

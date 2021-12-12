@@ -1,20 +1,12 @@
-package com.example.login;/**
- * @author - John Schmidt
- * 06.12.2021, 23:49
- */
-
-import javafx.application.Application;
-import javafx.stage.Stage;
-
-import javax.swing.*;
+package com.example.login;
 import java.awt.*;
-
-public class MubeaFenster1 extends Application {
+/**
+ * @author - John Schmidt
+ * 07.12.2021, 00:42
+ */
+public class X02MubeaFenster2 {
 
     public static void main(String[] args) {
-        //launch(args);
-        //launch();
-        JFrame Fenster1 = new JFrame();
         // Erzeuge ein Fenster-Objekt
         Frame fenster = new Frame();
         // Setze den Titel des Fensters
@@ -24,13 +16,6 @@ public class MubeaFenster1 extends Application {
         // Stelle das Fenster dar
         fenster.setVisible(true);
     }
-
-    @Override
-    public void start(Stage primaryStage) {
-
-    }
-
-
 
 
 }

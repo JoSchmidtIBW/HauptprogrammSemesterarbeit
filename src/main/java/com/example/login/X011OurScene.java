@@ -17,7 +17,7 @@ class TestScene {
 
 }
 
-public class OurScene {
+class OurScene {
     Group root = new Group();
     Scene scene = new Scene(root, Color.GREEN);
     public OurScene(){

@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  * @author - John Schmidt
  * 07.12.2021, 23:01
  */
-public class FXDemoMain extends Application{//erbt von import, muss darum automatisch start methode haben
+public class X06FXDemoMain extends Application{//erbt von import, muss darum automatisch start methode haben
     public static void main(String[] args) {
         System.out.println("HelloWorld");
         launch();//lauch //anzeigen Fenster

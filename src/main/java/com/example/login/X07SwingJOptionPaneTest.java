@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
  * @author - John Schmidt
  * 07.12.2021, 22:41
  */
-public class JOptionPaneTest {
+public class X07SwingJOptionPaneTest {
     public static void main(String[] args) {
 
         String name1 = JOptionPane.showInputDialog("Gib den ersten Namen ein!");

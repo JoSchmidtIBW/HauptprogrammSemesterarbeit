@@ -1,11 +1,12 @@
 package com.example.login;
+
 import java.awt.*;
+
 /**
  * @author - John Schmidt
- * 07.12.2021, 00:42
+ * 07.12.2021, 00:48
  */
-public class MubeaFenster2 {
-
+public class X03MubeaFenster333 {
     public static void main(String[] args) {
         // Erzeuge ein Fenster-Objekt
         Frame fenster = new Frame();
@@ -16,6 +17,4 @@ public class MubeaFenster2 {
         // Stelle das Fenster dar
         fenster.setVisible(true);
     }
-
-
 }

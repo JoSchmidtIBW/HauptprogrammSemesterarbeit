@@ -5,10 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class App1 extends Application
+public class X013App1 extends Application
 {
 
     @Override
@@ -20,7 +19,7 @@ public class App1 extends Application
 
     public static void main(String[] args)
     {
-        Application.launch(App1.class, args);
+        Application.launch(X013App1.class, args);
     }
 }
 

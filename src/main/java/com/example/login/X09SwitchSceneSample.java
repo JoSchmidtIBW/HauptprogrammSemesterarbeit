@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class SwitchSceneSample extends Application {
+public class X09SwitchSceneSample extends Application {
     public static void main(String[] args) {
         launch(args);
     }

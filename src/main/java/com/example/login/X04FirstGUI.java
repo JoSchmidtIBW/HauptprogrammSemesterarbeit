@@ -21,7 +21,7 @@ import javafx.scene.paint.Color;
 
 import java.awt.*;
 
-public class FirstGUI extends Application {
+public class X04FirstGUI extends Application {
 
     Scene scene1, scene2;
 

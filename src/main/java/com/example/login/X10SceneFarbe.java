@@ -8,7 +8,7 @@ import javafx.application.Application;
         import javafx.scene.Group;
         import javafx.scene.paint.Color;
 
-public class SceneFarbe extends Application {
+public class X10SceneFarbe extends Application {
     private Stage stage;
     private Scene scene, scene2;
 

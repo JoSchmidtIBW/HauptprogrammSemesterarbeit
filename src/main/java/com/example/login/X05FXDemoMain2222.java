@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  * @author - John Schmidt
  * 09.12.2021, 23:13
  */
-public class FXDemoMain2222 extends Application {
+public class X05FXDemoMain2222 extends Application {
     public static void main(String[] args) {
     System.out.println("HelloWorld");
     launch();//lauch //anzeigen Fenster
