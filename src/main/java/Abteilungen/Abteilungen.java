@@ -39,9 +39,10 @@ public class Abteilungen {
         bZieherei.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
-                Label sinnlosZieherei = new Label("Zieherei");
-                cardsPane.getChildren().addAll(sinnlosZieherei);
-                // cardsPane.getChildren().add(new Zieherei(cardsPane).macheZieherei());
+               // Label sinnlosZieherei = new Label("Zieherei");
+                //cardsPane.getChildren().addAll(sinnlosZieherei);
+                cardsPane.getChildren().addAll(new Zieherei(cardsPane).macheZiherei());
+                //cardsPane.getChildren().add(new Zieherei(cardsPane).macheZieherei());
             }
         });
 

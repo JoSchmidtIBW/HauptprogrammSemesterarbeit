@@ -18,7 +18,8 @@ public class Login {
     //Scene scene1, scene2;//muss noch angeschaut werden
 
     public static Scene createLoginScene(Stage stage){
-        Label lLoginScene1= new Label("This is the first scene Login-Scene");
+        Label lLoginScene1= new Label("- Bin die Login-Scene -");
+
         Label lLoginBenutzername = new Label("Benutzername");
         TextField txfLoginBenutzername = new TextField();
         Button bLoginBenutzerNameOK = new Button("LoginBenutzerNameOK");

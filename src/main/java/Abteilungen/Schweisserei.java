@@ -48,7 +48,37 @@ public class Schweisserei {
             }
         });
 
-        layoutH.getChildren().addAll(bRS50,bRS65);
+        Button bRS25 = new Button("RS25");
+        bRS25.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                Label lRS25 = new Label("RS25 Label");
+                cardsPane.getChildren().add(lRS25);
+                //cardsPane.getChildren().add(new Rattunde2(cardsPane).macheRattunde2());
+            }
+        });
+
+        Button bRS30 = new Button("RS30");
+        bRS30.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                Label lRS30 = new Label("RS30 Label");
+                cardsPane.getChildren().add(lRS30);
+                //cardsPane.getChildren().add(new Rattunde2(cardsPane).macheRattunde2());
+            }
+        });
+
+        Button bSpaltAnlage = new Button("SpaltAnlage");
+        bSpaltAnlage.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                Label lSpaltAnlage = new Label("SpaltAnlage Label");
+                cardsPane.getChildren().add(lSpaltAnlage);
+                //cardsPane.getChildren().add(new Rattunde2(cardsPane).macheRattunde2());
+            }
+        });
+
+        layoutH.getChildren().addAll(bRS25,bRS30,bRS50,bRS65,bSpaltAnlage);
         cardSchweisserei.getChildren().addAll(layoutH);
         return cardSchweisserei;
     }

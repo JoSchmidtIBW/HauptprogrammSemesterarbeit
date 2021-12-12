@@ -21,23 +21,51 @@ public class Registrieren {
         //  HBox hbox = new HBox();
 
 
-        Label labelRegistrierenScene= new Label("This is the second scene Registrieren-Scene");
+        Label labelRegistrierenScene= new Label("- Registrieren- Scene -");
 
         Label lRegistrierenVorname = new Label("LRegistrierenVorname");
         TextField txfRegistrierenVorname = new TextField("Vorname Eingen:");
         Button bRegistrierenVornameOK = new Button("RegistrierenVornameOK");
+
+        Label lRegistrierenNachname = new Label("LRegistrierenNachname");
+        TextField txfRegistrierenNachname = new TextField("Nachname Eingen:");
+        Button bRegistrierenNachnameOK = new Button("RegistrierenNachnameOK");
+
+        Label lRegistrierenPassWortGegeben = new Label("LRegistrierenPassWortGegeben");
+        TextField txfRegistrierenPasswortGegeben = new TextField("PasswortGegeben Eingen:");
+        Button bRegistrierenPasswortGegebenOK = new Button("RegistrierenPasswortGegebenOK");
+
+        Label lRegistrierenPassWortNeu = new Label("LRegistrierenPassWortNeu");
+        TextField txfRegistrierenPasswortNeu = new TextField("PasswortNeu Eingen:");
+        Button bRegistrierenPasswortNeuOK = new Button("RegistrierenPasswortNeuOK");
+
+        Label lRegistrierenPasswortNeuWiederholen = new Label("LRegistrierePasswortNeuWiederholen");
+        TextField txfRegistrierenPasswortNeuWiederholen = new TextField("PasswortNeuWiederholen Eingen:");
+        Button bRegistrierenPasswortNeuWiederholenOK = new Button("RegistrierenPasswortNeuWiederholenOK");
+
 
         Button bRegistrierenZurueckLogin= new Button("Go to scene 1 - Zurück zum Login");
 
 
         bRegistrierenZurueckLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));//primaryStage
         VBox layoutVR= new VBox(1);
-        HBox layoutHR1 = new HBox(1);
+        HBox layoutHVorname1 = new HBox(1);
+        HBox layoutHNachname1 = new HBox(1);
+        HBox layoutPasswortGegeben = new HBox(1);
+        HBox layoutPasswortNeu = new HBox(1);
+        HBox layoutPasswortwiderholen = new HBox(1);
 
         Label lPWVergessen = new Label("Passwort vergessen?");
 
-        layoutHR1.getChildren().addAll(lRegistrierenVorname,txfRegistrierenVorname,bRegistrierenVornameOK);
-        layoutVR.getChildren().addAll(labelRegistrierenScene, layoutHR1,bRegistrierenZurueckLogin,lPWVergessen);
+        layoutHVorname1.getChildren().addAll(lRegistrierenVorname,txfRegistrierenVorname,bRegistrierenVornameOK);
+        layoutHNachname1.getChildren().addAll(lRegistrierenNachname,txfRegistrierenNachname,bRegistrierenNachnameOK);
+
+        layoutPasswortGegeben.getChildren().addAll(lRegistrierenPassWortGegeben,txfRegistrierenPasswortGegeben,bRegistrierenPasswortGegebenOK);
+        layoutPasswortNeu.getChildren().addAll(lRegistrierenPassWortNeu,txfRegistrierenPasswortNeu,bRegistrierenPasswortNeuOK);
+        layoutPasswortwiderholen.getChildren().addAll(lRegistrierenPasswortNeuWiederholen,txfRegistrierenPasswortNeuWiederholen,bRegistrierenPasswortNeuWiederholenOK);
+
+        layoutVR.getChildren().addAll(labelRegistrierenScene, layoutHVorname1,layoutHNachname1,
+                layoutPasswortGegeben,layoutPasswortNeu,layoutPasswortwiderholen,bRegistrierenZurueckLogin,lPWVergessen);
 
         //Scene sceneRegistrieren = new Scene(layoutVR);
         Scene sceneRegistrieren = new Scene(new ScrollPane(layoutVR),400,200);//hat scrollpane drin

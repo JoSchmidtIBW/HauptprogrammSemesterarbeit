@@ -1,7 +1,6 @@
 package Abteilungen;
 
-import Abteilungen.AnlagenAnarbeit.Rattunde1;
-import Abteilungen.AnlagenAnarbeit.Rattunde2;
+import Abteilungen.AnlagenAnarbeit.*;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -43,7 +42,48 @@ public class Anarbeit {
                 cardsPane.getChildren().add(new Rattunde2(cardsPane).macheRattunde2());
             }
         });
-        layoutH.getChildren().addAll(bRattunde1,bRattunde2);
+
+        Button bRattunde3 = new Button("Rattunde3");
+        bRattunde3.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new Rattunde3(cardsPane).macheRattunde3());
+            }
+        });
+
+        Button bRattunde4 = new Button("Rattunde4");
+        bRattunde4.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new Rattunde4(cardsPane).macheRattunde4());
+            }
+        });
+
+        Button bConni1 = new Button("Conni1");
+        bConni1.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new Conni1(cardsPane).macheConni1());
+            }
+        });
+
+        Button bTRT2 = new Button("TRT2");
+        bTRT2.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new TRT2(cardsPane).macheTRT2());
+            }
+        });
+
+        Button bTRT1 = new Button("TRT2");
+        bTRT1.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new TRT1(cardsPane).macheTRT1());
+            }
+        });
+
+        layoutH.getChildren().addAll(bRattunde1,bRattunde2,bRattunde3,bRattunde4,bConni1,bTRT2,bTRT1);
         cardAnarbeit.getChildren().addAll(layoutH);
         return cardAnarbeit;
     }

@@ -16,7 +16,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStageHauptfenster) throws Exception {
-        primaryStageHauptfenster.setTitle("My First JavaFX GUI - Mubea");
+        primaryStageHauptfenster.setTitle("Bin ein JavaFX GUI - Mubea(Noch keine Namen)");
         primaryStageHauptfenster.setScene(Login.createLoginScene(primaryStageHauptfenster));
         //primaryStageHauptfenster.setScene(Login.createLoginScene(new ScrollPane(primaryStageHauptfenster)));
         //primaryStageHauptfenster.setScene(new ScrollPane(Login.createLoginScene(primaryStageHauptfenster)));
