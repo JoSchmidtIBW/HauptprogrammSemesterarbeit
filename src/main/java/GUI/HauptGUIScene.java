@@ -28,6 +28,7 @@ public class HauptGUIScene {
         HBox layoutH1 = new HBox(1);
 
         Label lHauptGuin= new Label("Bin Label HauptGui");
+        Label lWerAngemeldet = new Label("Wer ist hier eigentlich angebeldet, das soll hier stehen");
 
 
         final Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
@@ -69,14 +70,14 @@ public class HauptGUIScene {
             }
         });
 
-        layoutH1.getChildren().addAll(lHauptGuin,bAbteilung,bAnleitung);
+        layoutH1.getChildren().addAll(bAbteilung,bAnleitung);
         HBox layoutH2 = new HBox(1);
         Button buttonHauptGUIzuruekLogin = new Button("zuruekLogin");
         buttonHauptGUIzuruekLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));
         layoutH2.getChildren().addAll(TaskLeistePane.getPane(),buttonHauptGUIzuruekLogin);
 
 
-        layoutV.getChildren().addAll(layoutH1, cardsPane,layoutH2);
+        layoutV.getChildren().addAll(lHauptGuin,lWerAngemeldet,layoutH1, cardsPane,layoutH2);
 
         Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),400,200);
         return hauptGuiScene;
