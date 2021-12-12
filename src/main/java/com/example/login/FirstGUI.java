@@ -1,5 +1,10 @@
 package com.example.login;
-
+import javafx.application.Application;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.Group;
+import javafx.scene.paint.Color;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -7,6 +12,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,26 +28,71 @@ public class FirstGUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        primaryStage.setTitle("My First JavaFX GUI");
+        primaryStage.setTitle("My First JavaFX GUI - Mubea");
 
 //Scene 1
-        Label label1= new Label("This is the first scene");
-       // label1.
+        Label lLoginScene1= new Label("This is the first scene Login-Scene");
+        Label lLoginBenutzername = new Label("Benutzername");
+        TextField txfLoginBenutzername = new TextField();
+        Button bLoginBenutzerNameOK = new Button("LoginBenutzerNameOK");
+
+        Label lLoginPasswort = new Label("Passwort:");
+        TextField txfLoginPasswort = new TextField();
+        Button bLoginPasswortOK = new Button("LoginPasswortOK");
+
+        Label lLoginRegistrieren = new Label("Registrieren");
+        Button bLoginRegistrieren = new Button("Go to Registrieren-Scene - OK");
         Button button1= new Button("Go to scene 2");
         button1.setOnAction(e -> primaryStage.setScene(scene2));
-        VBox layout1 = new VBox(20);
-        layout1.getChildren().addAll(label1, button1);
-        scene1= new Scene(layout1, 350, 250);
-        scene1.setFill(Color.YELLOW);
 
+        Button buttonRegistrierenKlasse = new Button("KlasseRegistrieren");
+//        buttonRegistrierenKlasse.setOnAction(event -> {
+//            Scene newSceneRegistrieren = new Registrieren();// ... commands which define the new scene.
+//                   // Stage stage = ((Node) event.getTarget()).getScene().getStage();
+//            // or alternatively, just:
+//             Stage stage =  buttonRegistrierenKlasse.getScene().getStage();
+//            stage.setScene(newSceneRegistrieren);
+//        });
+
+
+        VBox layoutV1 = new VBox(1);
+        HBox layoutHBenutzername = new HBox(1);
+        HBox layoutHPasswort = new HBox(1);
+
+        layoutHBenutzername.getChildren().addAll(lLoginBenutzername,txfLoginBenutzername,bLoginBenutzerNameOK);//muss addAll sein
+        layoutHPasswort.getChildren().addAll(lLoginPasswort,txfLoginPasswort,bLoginPasswortOK);
+
+        layoutV1.getChildren().addAll(lLoginScene1,layoutHBenutzername,layoutHPasswort,bLoginRegistrieren,button1,buttonRegistrierenKlasse);
+//        layoutV1.getChildren().addAll(lLoginScene1,lLoginBenutzername,txfLoginBenutzername,bLoginBenutzerNameOK,//txfLoginBenutzername,
+//                lLoginPasswort,txfLoginPasswort,bLoginPasswortOK,bLoginRegistrieren, button1);//txfLoginPasswort,
+
+        //scene1= new Scene(layoutV1, 350, 250);
+        //final Scene scene = new Scene(root, 800, 400, Color.BEIGE);
+        //scene1 = new Scene(layoutV1, 800, 400, Color.TOMATO);
+        //scene1.setStyle("-fx-background-color: #FFFFFF;");
+        //scene1.setFill(Color.YELLOW);
+        scene1 = new Scene(layoutV1, 800, 400);
+        //scene1.setFill(Color.YELLOWGREEN);
+
+        //-------------------------------------------------------------------------------------------
 //Scene 2
-        Label label2= new Label("This is the second scene");
-        Button button2= new Button("Go to scene 1");
-        button2.setOnAction(e -> primaryStage.setScene(scene1));
-        VBox layout2= new VBox(20);
-        layout2.getChildren().addAll(label2, button2);
-        scene2= new Scene(layout2,300,250);
-
+//        Label labelRegistrierenScene= new Label("This is the second scene Registrieren-Scene");
+//
+//        Label lRegistrierenVorname = new Label("LRegistrierenVorname");
+//        TextField txfRegistrierenVorname = new TextField("Vorname Eingen:");
+//        Button bRegistrierenVornameOK = new Button("RegistrierenVornameOK");
+//
+//        Button bRegistrierenZurueckLogin= new Button("Go to scene 1 - Zurück zum Login");
+//
+//
+//        bRegistrierenZurueckLogin.setOnAction(e -> primaryStage.setScene(scene1));
+//        VBox layoutVR= new VBox(1);
+//        HBox layoutHR1 = new HBox(1);
+//
+//        layoutHR1.getChildren().addAll(lRegistrierenVorname,txfRegistrierenVorname,bRegistrierenVornameOK);
+//        layoutVR.getChildren().addAll(labelRegistrierenScene, layoutHR1,bRegistrierenZurueckLogin);
+//        scene2= new Scene(layoutVR,300,250);// scene2= new Scene(layout2,300,250,Color.BISQUE);
+//        //scene2.setFill(Color.BISQUE);
 
         primaryStage.setScene(scene1);
         primaryStage.show();

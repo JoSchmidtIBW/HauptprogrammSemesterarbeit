@@ -8,10 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorInput;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -54,7 +51,7 @@ public class TapPane  extends Application {
 
         Label fuckLabel = new Label("Fucklabel im FuckPanel von Fuckyou");
         Pane fuckyou = new Pane(fuckLabel);
-        Pane hauptOberflaechenPaneTskleiste = new Pane();
+        Pane hauptOberflaechenPaneTaskleiste = new Pane();
 
         Button btn = new Button("1");
         Button btn2 = new Button("2");
@@ -94,9 +91,17 @@ public class TapPane  extends Application {
 
         //hauptOberflaechenPaneTskleiste..add(new TaskLeiste(anzeigePanel, cardLayout));
         //hauptOberflaechenPaneTskleiste(new TaskLeiste(hauptOberflaechenPaneTskleiste, cardLayout));
-        hauptOberflaechenPaneTskleiste(new TaskLeiste(hauptOberflaechenPaneTskleiste));
+        //hauptOberflaechenPaneTaskleiste(new TaskLeiste(hauptOberflaechenPaneTaskleiste));
+        //HBox hBox=new HBox();
+        TaskLeiste taskLeiste = new TaskLeiste();
+        Pane pt = new Pane();
+        //pt(taskLeiste);
+      //  pt.getChildren().add(taskLeiste);
+        //hauptOberflaechenPaneTaskleiste(new TaskLeiste());
+        //hauptOberflaechePanel.add(new TaskLeiste(anzeigePanel, cardLayout));
+        //hauptOberflaechenPaneTaskleiste(taskLeiste);
 
-        vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas);
+        vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas,pt);
         //final Scene scene = new Scene(root, 800, 400, Color.BEIGE);
         final Scene scene = new Scene(new ScrollPane(vbox));
         //stage.setScene(new Scene(new ScrollPane(vbox)));//mit scrollpane drin (youtube)
