@@ -32,12 +32,13 @@ public class Login {
         //button1.setOnAction(e -> primaryStage.setScene(scene2));
         button1.setOnAction(e -> stage.setScene(Registrieren.createRegistrierenScene(stage)));
 
-        Button buttonRegistrierenKlasse = new Button("KlasseRegistrieren");
-//        buttonRegistrierenKlasse.setOnAction(event -> {
+        Button buttonHauptGUI = new Button("Go to HauptGui wenn Login erfolgreich aus DB");
+        buttonHauptGUI.setOnAction(e -> stage.setScene(HauptGUIScene.createGetHauptScene(stage)));
+//        buttonHauptGUI.setOnAction(event -> {
 //            Scene newSceneRegistrieren = new Registrieren();// ... commands which define the new scene.
 //                   // Stage stage = ((Node) event.getTarget()).getScene().getStage();
 //            // or alternatively, just:
-//             Stage stage =  buttonRegistrierenKlasse.getScene().getStage();
+//             Stage stage =  buttonHauptGUI.getScene().getStage();
 //            stage.setScene(newSceneRegistrieren);
 //        });
      //   scene.setOnMouseClicked(e -> changeScene(scene2));
@@ -49,7 +50,7 @@ public class Login {
         layoutHBenutzername.getChildren().addAll(lLoginBenutzername,txfLoginBenutzername,bLoginBenutzerNameOK);//muss addAll sein
         layoutHPasswort.getChildren().addAll(lLoginPasswort,txfLoginPasswort,bLoginPasswortOK);
 
-        layoutV1.getChildren().addAll(lLoginScene1,layoutHBenutzername,layoutHPasswort,bLoginRegistrieren,button1,buttonRegistrierenKlasse);
+        layoutV1.getChildren().addAll(lLoginScene1,layoutHBenutzername,layoutHPasswort,bLoginRegistrieren,button1,buttonHauptGUI);
 
         //Scene sceneLogin = new Scene(layoutV1);//scene braucht ein Layout
         Scene sceneLogin = new Scene(new ScrollPane(layoutV1));//scene braucht ein Layout, hat scrollpane drin

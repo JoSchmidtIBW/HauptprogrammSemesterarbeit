@@ -29,7 +29,7 @@ import java.util.Calendar;
  * @author - John Schmidt
  * 09.12.2021, 23:40
  */
-public class TapPane  extends Application {
+public class X15TapPane extends Application {
     public static void main(String[] args) {
         System.out.println("HelloWorld");
         launch();//lauch //anzeigen Fenster

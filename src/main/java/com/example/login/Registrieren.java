@@ -33,8 +33,10 @@ public class Registrieren {
     VBox layoutVR= new VBox(1);
     HBox layoutHR1 = new HBox(1);
 
+    Label lPWVergessen = new Label("Passwort vergessen?");
+
         layoutHR1.getChildren().addAll(lRegistrierenVorname,txfRegistrierenVorname,bRegistrierenVornameOK);
-        layoutVR.getChildren().addAll(labelRegistrierenScene, layoutHR1,bRegistrierenZurueckLogin);
+        layoutVR.getChildren().addAll(labelRegistrierenScene, layoutHR1,bRegistrierenZurueckLogin,lPWVergessen);
 
         //Scene sceneRegistrieren = new Scene(layoutVR);
         Scene sceneRegistrieren = new Scene(new ScrollPane(layoutVR));//hat scrollpane drin
