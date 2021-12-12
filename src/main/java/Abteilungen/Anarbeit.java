@@ -1,5 +1,8 @@
 package Abteilungen;
 
+import Abteilungen.AnlagenAnarbeit.Rattunde1;
+import Abteilungen.AnlagenAnarbeit.Rattunde2;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -29,7 +32,7 @@ public class Anarbeit {
         bRattunde1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
-              //  cardsPane.getChildren().add(new Rattunde1(cardsPane).macheRattunde1());
+                cardsPane.getChildren().add(new Rattunde1(cardsPane).macheRattunde1());
             }
         });
 
@@ -37,7 +40,7 @@ public class Anarbeit {
         bRattunde2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
-               // cardsPane.getChildren().add(new Rattunde2(cardsPane).macheRattunde2());
+                cardsPane.getChildren().add(new Rattunde2(cardsPane).macheRattunde2());
             }
         });
         layoutH.getChildren().addAll(bRattunde1,bRattunde2);

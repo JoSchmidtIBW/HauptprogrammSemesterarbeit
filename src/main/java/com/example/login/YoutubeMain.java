@@ -22,7 +22,7 @@ public class YoutubeMain {
         String ausgabeGesamtString = "SELECT * FROM listlaender";
         dbk1.ausgebenGesamtDB(url1,user1,password1, ausgabeGesamtString);
 
-        String ausgabeNurEineSpalte = "largestcity";
+       // String ausgabeNurEineSpalte = "largestcity";
         //dbk1.ausgabeNurEineSpalteDB(url1,user1,password1,ausgabeNurEineSpalte);
 
 

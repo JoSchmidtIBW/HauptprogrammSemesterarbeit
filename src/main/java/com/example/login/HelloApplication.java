@@ -92,9 +92,9 @@ public void start(Stage primaryStage) {
     primaryStage.show();
 }
     public static void main(String[] args) {
-        launch();
-DBMethodenKlasse dbk1 = new DBMethodenKlasse();
 
+DBMethodenKlasse dbk1 = new DBMethodenKlasse();
+        //String url = "'jdbc:mysql://localhost:3306/mysql";
     String url1 = "jdbc:mariadb://localhost:3306/databaseliste";//name von "database liste"
     String user1 = "root";
     String password1 = "Mubea2020!";
@@ -111,5 +111,7 @@ DBMethodenKlasse dbk1 = new DBMethodenKlasse();
     String ausgabeNurEineSpalte = "largestcity";
     //dbk1.ausgabeNurEineSpalteDB(url1,user1,password1,ausgabeNurEineSpalte);
 
+
+        launch();
    }
 }
