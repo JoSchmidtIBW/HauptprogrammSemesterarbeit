@@ -51,7 +51,7 @@ public class TapPane  extends Application {
 
         Label fuckLabel = new Label("Fucklabel im FuckPanel von Fuckyou");
         Pane fuckyou = new Pane(fuckLabel);
-        Pane hauptOberflaechenPaneTaskleiste = new Pane();
+        //Pane hauptOberflaechenPaneTaskleiste = new Pane();
 
         Button btn = new Button("1");
         Button btn2 = new Button("2");
@@ -93,15 +93,16 @@ public class TapPane  extends Application {
         //hauptOberflaechenPaneTskleiste(new TaskLeiste(hauptOberflaechenPaneTskleiste, cardLayout));
         //hauptOberflaechenPaneTaskleiste(new TaskLeiste(hauptOberflaechenPaneTaskleiste));
         //HBox hBox=new HBox();
-        TaskLeiste taskLeiste = new TaskLeiste();
-        Pane pt = new Pane();
+//        TaskLeiste taskLeiste = new TaskLeiste();
+//        Pane pt = new Pane();
         //pt(taskLeiste);
       //  pt.getChildren().add(taskLeiste);
         //hauptOberflaechenPaneTaskleiste(new TaskLeiste());
         //hauptOberflaechePanel.add(new TaskLeiste(anzeigePanel, cardLayout));
         //hauptOberflaechenPaneTaskleiste(taskLeiste);
 
-        vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas,pt);
+        vbox.getChildren().addAll(fuckyou,btn, btn2, cardsPane,labelTaskleiste,  bpanel,maxpane,lirgendwas,TaskPane.getPane());
+        //,TaskPane.getPane(vbox)
         //final Scene scene = new Scene(root, 800, 400, Color.BEIGE);
         final Scene scene = new Scene(new ScrollPane(vbox));
         //stage.setScene(new Scene(new ScrollPane(vbox)));//mit scrollpane drin (youtube)
@@ -110,4 +111,32 @@ public class TapPane  extends Application {
         stage.setHeight(200);
         stage.show();
     }
+}
+
+class TaskPane{
+
+    //public static Node getPane;
+    public static Pane getPane(){
+
+        HBox hbox = new HBox();
+        Label lt = new Label("Mia");
+        Label lt2 = new Label("Mia2222");
+        hbox.getChildren().addAll(lt,lt2);
+        //Pane pane = new Pane(lt,lt2);//funktioniert
+        Pane pane = new Pane(hbox);
+        //pane.getChildren().add(lt);
+
+        return pane;
+    }
+//    public Pane getPane(VBox vox){
+//
+//
+//        Label lt = new Label("Mia");
+//        Pane pane = new Pane(lt);
+//       //pane.getChildren().add(lt);
+//
+//        return pane;
+//    }
+    //final Group card1 = new Group(new Text(25, 25, "Card 2"));
+
 }

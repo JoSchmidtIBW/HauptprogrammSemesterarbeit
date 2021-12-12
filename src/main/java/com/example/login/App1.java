@@ -5,16 +5,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class App1 extends Application
 {
 
     @Override
-    public void start(Stage primaryStage) throws Exception
+    public void start(Stage primaryStageHauptfenster) throws Exception
     {
-        primaryStage.setScene(SceneAFactory.createSceneA(primaryStage));
-        primaryStage.show();
+        primaryStageHauptfenster.setScene(SceneAFactory.createSceneA(primaryStageHauptfenster));
+        primaryStageHauptfenster.show();
     }
 
     public static void main(String[] args)
@@ -36,6 +37,7 @@ public class App1 extends Application
 
         hbox.getChildren().addAll(label1,button,lzusatz);
         Scene scene = new Scene(hbox);
+        //scene.setFill(Color.YELLOWGREEN);
 
         return scene;
         //return new Scene(new HBox(new Label("Scene A"), button));
