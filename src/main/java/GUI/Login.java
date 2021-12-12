@@ -29,8 +29,8 @@ public class Login {
         Button bLoginPasswortOK = new Button("LoginPasswortOK");
 
         Label lLoginRegistrieren = new Label("Registrieren");
-        Button bLoginRegistrieren = new Button("Go to Registrieren-Scene - OK");
-        Button button1= new Button("Go to scene 2");
+        Button bLoginRegistrieren = new Button("Passwort Vergessen - Hilfe kommt");
+        Button button1= new Button("Go to Registrieren- Scene");
         //button1.setOnAction(e -> primaryStage.setScene(scene2));
         button1.setOnAction(e -> stage.setScene(Registrieren.createRegistrierenScene(stage)));
 
