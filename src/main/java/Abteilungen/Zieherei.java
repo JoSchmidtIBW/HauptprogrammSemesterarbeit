@@ -77,8 +77,25 @@ public class Zieherei {
             }
         });
 
+        Button bGluehOfen2= new Button("GluehOfen2");
+        bGluehOfen2.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new GluehOfen2(cardsPane).macheGluehOfen2());
+                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
+            }
+        });
 
-        layoutH.getChildren().addAll(bAsmag,bInder,bBuelltmann,bNordSued,bSEMA1,bSEMA2);
+        Button bGluehOfen3= new Button("GluehOfen3");
+        bGluehOfen3.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new GluehOfen3(cardsPane).macheGluehOfen3());
+                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
+            }
+        });
+
+        layoutH.getChildren().addAll(bAsmag,bInder,bBuelltmann,bNordSued,bSEMA1,bSEMA2,bGluehOfen2,bGluehOfen3);
         cardZieherei.getChildren().addAll(layoutH);
         return cardZieherei;
     }
