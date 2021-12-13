@@ -3,6 +3,7 @@ package GUI;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -16,6 +17,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -51,22 +53,38 @@ public class TaskLeistePane {
 //            }
 //        }, 0, 1000);
 
-        final javafx.scene.control.Label clock = new javafx.scene.control.Label();
-        final DateFormat format = DateFormat.getInstance();
-        final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                final Calendar cal = Calendar.getInstance();
-                clock.setText(format.format(cal.getTime()));
+//        final javafx.scene.control.Label clock = new javafx.scene.control.Label();
+//        final DateFormat format = DateFormat.getInstance();
+//        final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                final Calendar cal = Calendar.getInstance();
+//                clock.setText(format.format(cal.getTime()));
+//            }
+//        }));
+//        timeline.setCycleCount(Animation.INDEFINITE);
+//        timeline.play();
+
+        Label main_clock_lb = new Label();
+        Thread timerThread = new Thread(() -> {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
+            while (true) {
+                try {
+                    Thread.sleep(1000); //1 second
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                final String time = simpleDateFormat.format(new Date());
+                Platform.runLater(() -> {
+                    main_clock_lb.setText(time);
+                });
             }
-        }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        });   timerThread.start();//start the thread and its ok
 
         HBox hbox = new HBox();
         javafx.scene.control.Label lt = new javafx.scene.control.Label("Bin ein Label");
         javafx.scene.control.Label lt2 = new Label("Taskleiste- Label");
-        hbox.getChildren().addAll(lt,lt2,clock);//labelDatum,labelUhrzeit);//);//
+        hbox.getChildren().addAll(lt,lt2,main_clock_lb);//labelDatum,labelUhrzeit);//);//
         //Pane pane = new Pane(lt,lt2);//funktioniert
         Pane pane = new Pane(hbox);
         //pane.getChildren().add(lt);
