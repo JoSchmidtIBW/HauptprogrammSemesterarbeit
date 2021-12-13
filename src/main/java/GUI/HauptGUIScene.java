@@ -29,7 +29,7 @@ public class HauptGUIScene {
 
         Label lHauptGuin= new Label("Bin Label HauptGui");
         Label lWerAngemeldet = new Label("Wer ist hier eigentlich angebeldet, das soll hier stehen");
-
+        Label lAbmelden = new Label("Wo kommt Benutzer ABMELDEN REIN???");
 
         final Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
         final Group card1 = new Group(new Text(25, 25, "Card 1"));
@@ -77,7 +77,7 @@ public class HauptGUIScene {
         layoutH2.getChildren().addAll(TaskLeistePane.getPane(),buttonHauptGUIzuruekLogin);
 
 
-        layoutV.getChildren().addAll(lHauptGuin,lWerAngemeldet,layoutH1, cardsPane,layoutH2);
+        layoutV.getChildren().addAll(lHauptGuin,lWerAngemeldet,lAbmelden,layoutH1, cardsPane,layoutH2);
 
         Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),400,200);
         return hauptGuiScene;
