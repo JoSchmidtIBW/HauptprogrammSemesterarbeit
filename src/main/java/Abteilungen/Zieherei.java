@@ -95,7 +95,34 @@ public class Zieherei {
             }
         });
 
-        layoutH.getChildren().addAll(bAsmag,bInder,bBuelltmann,bNordSued,bSEMA1,bSEMA2,bGluehOfen2,bGluehOfen3);
+        Button bAVS63= new Button("AVS63");
+        bAVS63.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new AVS63(cardsPane).macheAVS63());
+                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
+            }
+        });
+
+        Button bAVS100= new Button("AVS100");
+        bAVS100.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new AVS100(cardsPane).macheAVS100());
+                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
+            }
+        });
+
+        Button bAPM100= new Button("APM100");
+        bAPM100.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                cardsPane.getChildren().clear();
+                cardsPane.getChildren().add(new APM100(cardsPane).macheAPM100());
+                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
+            }
+        });
+
+        layoutH.getChildren().addAll(bAsmag,bInder,bBuelltmann,bNordSued,bSEMA1,bSEMA2,bGluehOfen2,bGluehOfen3,bAVS63,bAVS100,bAPM100);
         cardZieherei.getChildren().addAll(layoutH);
         return cardZieherei;
     }

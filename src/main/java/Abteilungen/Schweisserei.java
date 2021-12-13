@@ -1,7 +1,5 @@
 package Abteilungen;
 
-import Abteilungen.AnlagenAnarbeit.Rattunde1;
-import Abteilungen.AnlagenAnarbeit.Rattunde2;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
