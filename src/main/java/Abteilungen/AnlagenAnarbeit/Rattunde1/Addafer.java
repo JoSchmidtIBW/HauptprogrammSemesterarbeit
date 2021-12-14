@@ -25,6 +25,16 @@ public class Addafer {
 
     boolean istStoerMeldungButtonGedruecktWorden = false;//irgendwie wurde der halt so, weil in Button
 
+    static Boolean rotdb = false;
+
+    public static Boolean getRotdb() {
+        return rotdb;
+    }
+
+    public static void setRotdb(Boolean rotdb) {
+        Addafer.rotdb = rotdb;
+    }
+
     public Addafer(Pane cardsPane){
         this.cardsPane=cardsPane;
     }
@@ -39,20 +49,69 @@ public class Addafer {
 
         Label lBundlader = new Label("Bundlader");
 
+        //Todo, booleanWert von DB kommt, dann button rot oder grün
+        //Todo wenn grün, bei klick gelb, bei absetzen rot, und nicht mehr veränderbar
 
-        //ToggleButton bGurte = new ToggleButton("Gurte");
-        Button bGurte = new Button("Gurte");
-        bGurte.setStyle("-fx-background-color: green");
 
+        ToggleButton bGurte = new ToggleButton("Gurte");
+        //Button bGurte = new Button("Gurte");
+        if(rotdb==false) {
+            bGurte.setStyle("-fx-background-color: blue");
+        }else{
+            bGurte.setStyle("-fx-background-color: violet");
+        }
         //bGurte.setStyle("-fx-background-color: #ff0000; ");
         bGurte.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                // if(istStoerMeldungButtonGedruecktWorden=false){
-                    bGurte.setStyle("-fx-background-color: yellow");
+                  //  bGurte.setStyle("-fx-background-color: yellow");
                // }else{
 //                    bGurte.setStyle("-fx-background-color: red");
 //                }
 
+                if(bGurte.isSelected() && rotdb==false) {
+                    System.out.println("is selected");
+                    bGurte.setStyle("-fx-background-color: yellow");
+                }
+                else {
+                    System.out.println("is deselected");
+                    bGurte.setStyle("-fx-background-color: green");
+                }
+                if(bGurte.isSelected() && rotdb==true) {
+                    System.out.println("is selected");
+                    bGurte.setStyle("-fx-background-color: pink");
+                }
+                else  if(bGurte.isDisabled()&&rotdb==true){
+                    System.out.println("is deselected");
+                    bGurte.setStyle("-fx-background-color: orange");
+                }
+
+//                if(bGurte.isSelected() && rotdb==false) {
+//                    System.out.println("is selected");
+//                    bGurte.setStyle("-fx-background-color: yellow");
+//                }
+//                else if(bGurte.isDisabled() && rotdb==false) {
+//                    System.out.println("is deselected");
+//                    bGurte.setStyle("-fx-background-color: green");
+//                }
+
+//            }else if(bGurte.isSelected() && rotdb==true) {
+//                System.out.println("is deselected");
+//                bGurte.setStyle("-fx-background-color: red");
+//            }
+//                else if(bGurte.isSelected() && rotdb==true){
+//                    System.out.println("is deselected");
+//                    bGurte.setStyle("-fx-background-color: red");
+//                }else if(bGurte.isDisabled() && rotdb==false){
+//                    System.out.println("is deselected");
+//                bGurte.setStyle("-fx-background-color: darkred");
+//                }
+
+//                if(rotdb==false) {
+//                    bGurte.setStyle("-fx-background-color: yellow");
+//                }else{
+//                    bGurte.setStyle("-fx-background-color: darkred");
+//                }
             }
         });
 
@@ -158,7 +217,23 @@ public class Addafer {
                 //ToDo
                 //hier kommt eine ifschleife rein, damit button sofern gelb geklickt, rot wird,
                 //darf sich nicht mehr verändern, muss wie gesperrt sein
-                bGurte.setStyle("-fx-background-color: red");//darkred
+                setRotdb(true);//=true;
+                //bGurte.setStyle("-fx-background-color: red");//darkred
+                //bGurte.setDefaultButton(true);//ist es das vielleicht????????
+            }
+        });
+
+        Button bStoerMeldungAufheben = new Button("Stör-Meldung Aufheben");
+        bStoerMeldungAufheben.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        bStoerMeldungAufheben.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                //istStoerMeldungButtonGedruecktWorden =true;
+                //this.
+                //ToDo
+                //hier kommt eine ifschleife rein, damit button sofern gelb geklickt, rot wird,
+                //darf sich nicht mehr verändern, muss wie gesperrt sein
+                setRotdb(false);//=true;
+                //bGurte.setStyle("-fx-background-color: red");//darkred
                 //bGurte.setDefaultButton(true);//ist es das vielleicht????????
             }
         });
@@ -169,7 +244,7 @@ public class Addafer {
         layoutHMessstation.getChildren().addAll(lMessstation,bUSSensor,bLaser,bEinstellRollen,bLichtSchrankeM,bPumpeRueckFuehr,bSchutzTuereM);
         layoutHRollgang4.getChildren().addAll(lRollgang4,bPinchRolle3,bRollen4,bRohrAuswerfer,bSchrottGurte,bLichtSchranke2);
         layoutHWalkingBeam.getChildren().addAll(lWalkingBeam,bWalkingBeam,bDrehGreifer,bRadRat1);
-        layoutV.getChildren().addAll(layoutHBundlader,layoutHVereinzelung,layoutHRollgang1,layoutHMessstation,layoutHRollgang4,layoutHWalkingBeam,bZurueckRat1,bStoerMeldungAbsetzen);
+        layoutV.getChildren().addAll(layoutHBundlader,layoutHVereinzelung,layoutHRollgang1,layoutHMessstation,layoutHRollgang4,layoutHWalkingBeam,bZurueckRat1,bStoerMeldungAbsetzen,bStoerMeldungAufheben);
         cardAddafer.getChildren().addAll(layoutV);
         //ToDo ev ein retour button
         return cardAddafer;
