@@ -58,33 +58,75 @@ public class Addafer {
         if(rotdb==false) {
             bGurte.setStyle("-fx-background-color: blue");
         }else{
-            bGurte.setStyle("-fx-background-color: violet");
+            bGurte.setStyle("-fx-background-color: pink");
         }
         //bGurte.setStyle("-fx-background-color: #ff0000; ");
         bGurte.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
+                //ToDo ev normaler button und heraus finden, ob es isSelected gibt
+                if(rotdb==false){//grün
+                    System.out.println("bin erster");
+                    if(bGurte.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(rotdb==true){
+                            bGurte.setStyle("-fx-background-color: orange");
+                        }else {
+                            bGurte.setStyle("-fx-background-color: yellow");
+                        }
+                    }else{
+                        System.out.println("werde wieder grün");
+                        bGurte.setStyle("-fx-background-color: green");
+                    }
+                }else{
+                    System.out.println("bin in zweite");
+                    bGurte.setStyle("-fx-background-color: red");
+                    if(bGurte.isSelected()){
+                        System.out.println("ist selected zweite");
+                        bGurte.setStyle("-fx-background-color: orange");
+                    }else{
+                        System.out.println("muss irgend was sein");
+                        bGurte.setStyle("-fx-background-color: white");
+                    }
+                }
+
+
                // if(istStoerMeldungButtonGedruecktWorden=false){
                   //  bGurte.setStyle("-fx-background-color: yellow");
                // }else{
 //                    bGurte.setStyle("-fx-background-color: red");
 //                }
 
-                if(bGurte.isSelected() && rotdb==false) {
-                    System.out.println("is selected");
-                    bGurte.setStyle("-fx-background-color: yellow");
-                }
-                else {
-                    System.out.println("is deselected");
-                    bGurte.setStyle("-fx-background-color: green");
-                }
-                if(bGurte.isSelected() && rotdb==true) {
-                    System.out.println("is selected");
-                    bGurte.setStyle("-fx-background-color: pink");
-                }
-                else  if(bGurte.isDisabled()&&rotdb==true){
-                    System.out.println("is deselected");
-                    bGurte.setStyle("-fx-background-color: orange");
-                }
+//                if(bGurte.isSelected() && rotdb==false) {
+//                    System.out.println("is selected");
+//                    bGurte.setStyle("-fx-background-color: yellow");
+//                }
+//                if(bGurte.isSelected() && rotdb==true) {
+//                    System.out.println("is selected");
+//                    bGurte.setStyle("-fx-background-color: white");
+//                }
+
+//                else {
+//                    System.out.println("is deselected");
+//                    bGurte.setStyle("-fx-background-color: green");
+//                }
+//                if(bGurte.isSelected() && rotdb==true) {
+//                    System.out.println("is selected");
+//                    bGurte.setStyle("-fx-background-color: white");
+//                }
+
+
+//                else  if(bGurte.isDisabled()&&rotdb==false){
+//                    System.out.println("is deselected");
+//                    bGurte.setStyle("-fx-background-color: orange");
+//                }
+                //bGurte.setStyle("-fx-background-color: orange");
+//                else{
+//                    bGurte.setStyle("-fx-background-color: orange");
+//                }
+//                else  if(bGurte.isDisabled()&&rotdb==true){
+//                    System.out.println("is deselected");
+//                    bGurte.setStyle("-fx-background-color: orange");
+//                }
 
 //                if(bGurte.isSelected() && rotdb==false) {
 //                    System.out.println("is selected");
@@ -237,8 +279,25 @@ public class Addafer {
                 //bGurte.setDefaultButton(true);//ist es das vielleicht????????
             }
         });
+        ToggleButton bDB = new ToggleButton("Bin die DB \n Gurte setzen \nicht setzen");
+        bDB.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        bDB.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bDB.isSelected()){
+                    bDB.setStyle("-fx-background-color: red");
+                    setRotdb(true);
+                    System.out.println("bDB is selected");
+                }else{
+                    bDB.setStyle("-fx-background-color: green");
+                    setRotdb(false);
+                    System.out.println("bDB is deselected");
+                }
+                //bGurte.setStyle("-fx-background-color: red");//darkred
+                //bGurte.setDefaultButton(true);//ist es das vielleicht????????
+            }
+        });
 //LayoutZeugs----------------------------------------------------------------------------------------------------------------------
-        layoutHBundlader.getChildren().addAll(lBundlader,bGurte,bLichtSchranke1,bAnschlag,bSchutzZaun);
+        layoutHBundlader.getChildren().addAll(lBundlader,bGurte,bDB,bLichtSchranke1,bAnschlag,bSchutzZaun);
         layoutHVereinzelung.getChildren().addAll(lVereinzelung,bRollenSchraeg,bStopperBolzen1,bStopperBolzen123);
         layoutHRollgang1.getChildren().addAll(lRollgang1,bRollen1,bSchweissNahtErkennung,bPinchRolle12);
         layoutHMessstation.getChildren().addAll(lMessstation,bUSSensor,bLaser,bEinstellRollen,bLichtSchrankeM,bPumpeRueckFuehr,bSchutzTuereM);
