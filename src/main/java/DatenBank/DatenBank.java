@@ -7,10 +7,27 @@ import java.sql.*;
  * @author - John Schmidt
  * 25.11.2021, 22:21
  */
-public class DBMethodenKlasse {
+public class DatenBank {
 
-    public void schreibeDB(String url, String user, String password, String einfuegString) {
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+    public String getUrl1() {
+        return url1;
+    }
+
+    public String getUser1() {
+        return user1;
+    }
+
+    public String getPassword1() {
+        return password1;
+    }
+
+    private String url1 = "jdbc:mariadb://localhost:3306/databaseliste";//name von "database liste"         //MubeaListeDatabase
+    private String user1 = "root";
+    private String password1 = "Mubea2020!";
+
+
+    public void schreibeDB(String einfuegString) {//String url, String user, String password,
+        try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
             System.out.println("Erfolgreich mit Datenbank verbunden :) ");
             Statement statement = connection.createStatement();
             statement.executeQuery(einfuegString);//query
@@ -22,8 +39,8 @@ public class DBMethodenKlasse {
     }
 
 
-    public void ausgabeNurEineSpalteDB(String url, String user, String password, String ausgebeNurEineSpalteString) {
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+    public void ausgabeNurEineSpalteDB(String ausgebeNurEineSpalteString) {
+        try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
             System.out.println("Erfolgreich mit Datenbank verbunden :) ");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM listlaender");
@@ -43,8 +60,8 @@ public class DBMethodenKlasse {
     }
 
 
-    public void ausgebenGesamtDB(String url, String user, String password, String ausgebeGesamtString) {
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+    public void ausgebenGesamtDB(String ausgebeGesamtString) {
+        try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
             System.out.println("Erfolgreich mit Datenbank verbunden :) ");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(ausgebeGesamtString);

@@ -83,6 +83,7 @@ public class DBMethodenKlasse {
 
     }
 
+
 }
 
 //    public void zugriffDB(String url,String user,String password, String einfügString){
