@@ -3,7 +3,10 @@ package GUI;
 import DatenBank.DatenBank;
 import com.example.login.DBMethodenKlasse;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * @author - John Schmidt
@@ -47,5 +50,16 @@ public class Main extends Application {
         //primaryStageHauptfenster.setScene(new ScrollPane(Login.createLoginScene(primaryStageHauptfenster)));
         //stage.setScene(new Scene(new ScrollPane(vbox)));//mit scrollpane drin (youtube)
         primaryStageHauptfenster.show();
+
+    //Damit Fenster Programm auch schliesst
+    primaryStageHauptfenster.setOnCloseRequest(new EventHandler<WindowEvent>() {
+    @Override
+    public void handle(WindowEvent t) {
+        Platform.exit();
+        System.exit(0);
+    }
+    });
+
+
     }
 }

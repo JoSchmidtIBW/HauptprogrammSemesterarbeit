@@ -33,9 +33,10 @@ public class Login {
         Button button1= new Button("Go to Registrieren- Scene");
         //button1.setOnAction(e -> primaryStage.setScene(scene2));
         button1.setOnAction(e -> stage.setScene(Registrieren.createRegistrierenScene(stage)));
-
+        //todo button sprache anderst machen
         Button buttonHauptGUI = new Button("Go to HauptGui wenn Login erfolgreich aus DB");
-        buttonHauptGUI.setOnAction(e -> stage.setScene(HauptGUIScene.createGetHauptScene(stage)));
+       // buttonHauptGUI.setOnAction(e -> stage.setScene(HauptGUIScene.createGetHauptScene(stage)));
+        buttonHauptGUI.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
 //        buttonHauptGUI.setOnAction(event -> {
 //            Scene newSceneRegistrieren = new Registrieren();// ... commands which define the new scene.
 //                   // Stage stage = ((Node) event.getTarget()).getScene().getStage();

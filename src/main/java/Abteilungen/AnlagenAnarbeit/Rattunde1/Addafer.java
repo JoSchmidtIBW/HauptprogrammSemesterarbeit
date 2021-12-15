@@ -56,9 +56,9 @@ public class Addafer {
         ToggleButton bGurte = new ToggleButton("Gurte");
         //Button bGurte = new Button("Gurte");
         if(rotdb==false) {
-            bGurte.setStyle("-fx-background-color: blue");
+            bGurte.setStyle("-fx-background-color: green");//blue
         }else{
-            bGurte.setStyle("-fx-background-color: pink");
+            bGurte.setStyle("-fx-background-color: pink");//pink
         }
         //bGurte.setStyle("-fx-background-color: #ff0000; ");
         bGurte.setOnAction(new EventHandler<ActionEvent>() {
@@ -82,10 +82,10 @@ public class Addafer {
                     bGurte.setStyle("-fx-background-color: red");
                     if(bGurte.isSelected()){
                         System.out.println("ist selected zweite");
-                        bGurte.setStyle("-fx-background-color: orange");
+                        bGurte.setStyle("-fx-background-color: darkred");
                     }else{
                         System.out.println("muss irgend was sein");
-                        bGurte.setStyle("-fx-background-color: white");
+                        bGurte.setStyle("-fx-background-color: darkorange");
                     }
                 }
 
@@ -274,12 +274,14 @@ public class Addafer {
                 //ToDo
                 //hier kommt eine ifschleife rein, damit button sofern gelb geklickt, rot wird,
                 //darf sich nicht mehr verändern, muss wie gesperrt sein
-                setRotdb(false);//=true;
+                //setRotdb(false);//=true;
                 //bGurte.setStyle("-fx-background-color: red");//darkred
                 //bGurte.setDefaultButton(true);//ist es das vielleicht????????
+
             }
         });
         ToggleButton bDB = new ToggleButton("Bin die DB \n Gurte setzen \nicht setzen");
+        //Button bDB = new Button("Bin die DB \n Gurte setzen \nicht setzen");
         bDB.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
         bDB.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
@@ -287,10 +289,17 @@ public class Addafer {
                     bDB.setStyle("-fx-background-color: red");
                     setRotdb(true);
                     System.out.println("bDB is selected");
+                    //Todo du kannst schon eigene seite sich selber laden, aber bei einem toggel lädt dan nur die eine seite
+                    //todo besser zum dies testen, den toggelbutton nicht in das pane stecken, sondern ev. in die taskleiste
+                    //todo, wenn toggle nicht im gleichen pane, ev probleme weil dan db nicht weiss, von welcher anlage geschriebven wird
+//                    cardsPane.getChildren().clear();
+//                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
                 }else{
                     bDB.setStyle("-fx-background-color: green");
                     setRotdb(false);
                     System.out.println("bDB is deselected");
+                    cardsPane.getChildren().clear();
+                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
                 }
                 //bGurte.setStyle("-fx-background-color: red");//darkred
                 //bGurte.setDefaultButton(true);//ist es das vielleicht????????
