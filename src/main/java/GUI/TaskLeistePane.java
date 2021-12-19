@@ -7,7 +7,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -84,7 +87,39 @@ public class TaskLeistePane {
         HBox hbox = new HBox();
         javafx.scene.control.Label lt = new javafx.scene.control.Label("Bin ein Label");
         javafx.scene.control.Label lt2 = new Label("Taskleiste- Label");
-        hbox.getChildren().addAll(lt,lt2,main_clock_lb);//labelDatum,labelUhrzeit);//);//
+
+//        Button buttonHauptGUIzuruekLogin = new Button("zuruekLogin");
+//        buttonHauptGUIzuruekLogin.setOnAction(e -> {
+//
+//            stage.setScene(Login.createLoginScene(stage));
+//        });
+
+//labelLogo = new JLabel(new ImageIcon("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
+        //Image img = new Image("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG");
+//
+        //ImageView view = new ImageView(img);
+//        view.setFitHeight(80);
+//        view.setPreserveRatio(true);
+//        Image img = new Image(TaskLeistePane.class.getResourceAsStream("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
+//        ImageView view = new ImageView(img);
+        //Label lLogo = new Label();
+//        lLogo.setGraphic(new Image("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
+//        try {
+            ImageView myImageView = new ImageView("file:///D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG");
+            // Create a label that contains both an image and text.
+            Label lLogo = new Label("", myImageView);
+            //lLogo.setGraphic("", myImageView);
+//        }
+//catch (Exception ex){
+//    System.out.println("äääähmm Bild");
+//}
+        //Label lLogo = new Label("", myImageView);
+        //lLogo.setGraphic(view);
+        //lLogo.setGraphic(new ImageView(new Image(TaskLeistePane.class.getResourceAsStream("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"))));
+
+//        lLogo.setGraphic(view);
+
+        hbox.getChildren().addAll(lt,lt2,main_clock_lb,lLogo);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
         //Pane pane = new Pane(lt,lt2);//funktioniert
         Pane pane = new Pane(hbox);
         //pane.getChildren().add(lt);

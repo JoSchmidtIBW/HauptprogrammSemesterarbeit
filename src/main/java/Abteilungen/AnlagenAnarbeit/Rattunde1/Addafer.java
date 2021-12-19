@@ -1,5 +1,6 @@
 package Abteilungen.AnlagenAnarbeit.Rattunde1;
 
+import GUI.Sprache;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -53,7 +54,14 @@ public class Addafer {
         //Todo wenn grün, bei klick gelb, bei absetzen rot, und nicht mehr veränderbar
 
 
-        ToggleButton bGurte = new ToggleButton("Gurte");
+
+
+        //   0          1            2                  3             4
+        //Deutsch, Italienisch,SerboKroatisch,albanischmazedonisch,Türkisch
+        String[] sprachGurte =
+                {"Gurte", "cinghie","траке", "rripat", "kayışlar"};
+
+        ToggleButton bGurte = new ToggleButton(sprachGurte[Sprache.getSprachenZahl()]);//"Gurte"
         //Button bGurte = new Button("Gurte");
         if(rotdb==false) {
             bGurte.setStyle("-fx-background-color: green");//blue
@@ -264,6 +272,9 @@ public class Addafer {
                 //bGurte.setDefaultButton(true);//ist es das vielleicht????????
             }
         });
+
+
+
 
         Button bStoerMeldungAufheben = new Button("Stör-Meldung Aufheben");
         bStoerMeldungAufheben.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));

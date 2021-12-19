@@ -23,20 +23,40 @@ public class Main extends Application {
 //        String user1 = "root";
 //        String password1 = "Mubea2020!";
 
-        String einfuegString1 = "INSERT INTO listlaender" +
-                "(landgeo, officialname, capitalcity, largestcity, areakm, population, callingcode, iso, waehrung)" +
-                "VALUES  ('Malrrrta', 'VWWW', 'Irgend', 'jijin', '81', '8857', '+4dd3', 'AfffffT', 'Eo');";
+//        String einfuegString1 = "INSERT INTO listlaender" +
+//                "(landgeo, officialname, capitalcity, largestcity, areakm, population, callingcode, iso, waehrung)" +
+//                "VALUES  ('Malrrrta', 'VWWW', 'Irgend', 'jijin', '81', '8857', '+4dd3', 'AfffffT', 'Eo');";
+//
+//        //dbk1.schreibeDB(url1,user1,password1, einfuegString1);      //Immer wenn Play, kommt natürlich wieder eine dazu
+//        dbk1.schreibeDB(einfuegString1);
 
-        //dbk1.schreibeDB(url1,user1,password1, einfuegString1);      //Immer wenn Play, kommt natürlich wieder eine dazu
-        dbk1.schreibeDB(einfuegString1);
-
-        String ausgabeGesamtString = "SELECT * FROM listlaender";
+        String ausgabeGesamtString = "SELECT * FROM userMubea";
         dbk1.ausgebenGesamtDB(ausgabeGesamtString);
 
-        String ausgabeNurEineSpalte = "largestcity";
-        //dbk1.ausgabeNurEineSpalteDB(ausgabeNurEineSpalte);
+        String ausgabeNurEineSpalte = "Vorname";
+        dbk1.ausgabeNurEineSpalteDB(ausgabeNurEineSpalte);
+
+//        String LoginSucheVornameMitNameAusDB = "Hans";
+//       // dbk1.SucheVornameMitNameDB(LoginSucheVornameMitNameAusDB);
+//        String ausgabeSucheVornameMitNameDB = dbk1.SucheVornameMitNameDB(LoginSucheVornameMitNameAusDB);
+//        System.out.println("StringausgabeSucheVornameMitNameDB" + ausgabeSucheVornameMitNameDB);
+
+        String vornameLogin = "Hans";
+        //String ausgabeGesamtString2 = "SELECT * FROM userMubea WHERE Vorname = 'Hans'";
+        //String ausgabeGesamtString2 = "SELECT * FROM userMubea WHERE Vorname = '"+vornameLogin+"'";
+       // dbk1.ausgebenGesamtDBRetourString(ausgabeGesamtString2);
+
+        // String ausgabeGesamtString3 = "SELECT group_Concat(MA_Nummer , Vorname, Nachname , Passwort_User SEPARATOR '*') FROM userMubea WHERE Vorname = 'Hans'";
 
 
+
+        //String vornameLogin1 = "Hans";
+        //String ausgabeGesamtString2 = "SELECT * FROM userMubea WHERE Vorname = 'Hans'";
+        String ausgabeGesamtString22 = "SELECT * FROM userMubea WHERE Vorname = '"+vornameLogin+"'";
+        //dbk1.ausgebenGesamtDBRetourString(ausgabeGesamtString22);
+
+        String ausgabeSucheVornameMitNameDB = dbk1.ausgebenGesamtDBRetourString(ausgabeGesamtString22);
+        System.out.println("StringausgabeSucheVornameMitNameDB: " + ausgabeSucheVornameMitNameDB);
 //**********************************************************************************************************************
         launch();
 
