@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 
@@ -85,7 +86,9 @@ public class TaskLeistePane {
         });   timerThread.start();//start the thread and its ok
 
         HBox hbox = new HBox();
-        javafx.scene.control.Label lt = new javafx.scene.control.Label("Bin ein Label");
+        Label lTaskLeisteAngemeldetT = new javafx.scene.control.Label("Angemeldet: "+Login.getVorName()+" / " +
+                Login.getNachName());
+        lTaskLeisteAngemeldetT.setTextFill(Color.BLUE);
         javafx.scene.control.Label lt2 = new Label("Taskleiste- Label");
 
 //        Button buttonHauptGUIzuruekLogin = new Button("zuruekLogin");
@@ -119,7 +122,7 @@ public class TaskLeistePane {
 
 //        lLogo.setGraphic(view);
 
-        hbox.getChildren().addAll(lt,lt2,main_clock_lb,lLogo);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
+        hbox.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,main_clock_lb,lLogo);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
         //Pane pane = new Pane(lt,lt2);//funktioniert
         Pane pane = new Pane(hbox);
         //pane.getChildren().add(lt);
