@@ -140,7 +140,17 @@ public class TaskLeistePane {
         HBox hbox = new HBox();
         Label lTaskLeisteAngemeldetT = new javafx.scene.control.Label("Angemeldet: "+Login.getVorName()+" / " +
                 Login.getNachName());
-        lTaskLeisteAngemeldetT.setTextFill(Color.BLUE);
+
+        if(Login.getIstChef().equals("keinChef")){
+            lTaskLeisteAngemeldetT.setTextFill(Color.BLUE);
+        }else if(Login.getIstChef().equals("istChef")){
+            lTaskLeisteAngemeldetT.setTextFill(Color.DEEPPINK);//ist tatsächlich so in Firma, Unterhalt schreipt mit Pinkt zB. auf den Fahrtenschreiber
+        }else if(Login.getIstChef().equals("Admin")){
+            lTaskLeisteAngemeldetT.setTextFill(Color.RED);
+        }
+
+
+
         javafx.scene.control.Label lt2 = new Label("Taskleiste- Label");
 
 //        Button buttonHauptGUIzuruekLogin = new Button("zuruekLogin");

@@ -1,5 +1,6 @@
 package Abteilungen.AnlagenAnarbeit.Rattunde1;
 
+import Abteilungen.Anarbeit;
 import DatenBank.DatenBank;
 import GUI.Login;
 import GUI.Sprache;
@@ -28,6 +29,15 @@ public class Addafer {
     Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
 
     int zaehlerBundladerGurte = 0;
+    String einfuegKeinChefDb = "INSERT INTO stoerungMubea" +
+            "(Abteilung, Anlage,  "
+            + "VnameG, "
+            + "NnameG, DatumG, "
+            + "UhrzeitG ,ZSt, AnlageGruppe, Stoerung)" +
+            "VALUES  ('"+ Anarbeit.getNameAbteilungAnarbeit() +"', '"+Rattunde1.getNameAnlageRattunde1()+"', "
+            + "'" + Login.vorName+"',"
+            + "'" + Login.nachName+"', '" + TaskLeistePane.getDatumStr()
+            + "', '" + TaskLeistePane.getUhrzeitStr()+ "',";
 
     public int getZaehlerBundladerGurte() {
         return zaehlerBundladerGurte;
@@ -327,20 +337,20 @@ public class Addafer {
             public void handle(ActionEvent t) {
                 if(bGurte.isSelected()){
                     lZeigeStoerMeldung.setText("Gurte sind aktiviert");
-                    setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+                    System.out.println("Zähler vor set: "+getZaehlerBundladerGurte());
+                    setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
+                    System.out.println("Zähler nach set: "+getZaehlerBundladerGurte());
+                    if(Login.getIstChef().equals("keinChef")){//ACHTUNG - WENN IstCHEF, dann schreibt er nicht, sollte vielleicht aber
+                        System.out.println("Zähler in schreibe: "+getZaehlerBundladerGurte());
+                        dBA.schreibeDB(einfuegKeinChefDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
+                    }else{//istChef
+                        dBA.schreibeDB(einfuegKeinChefDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
+                        System.out.println("Hello Kitty das CHEFE");
+                    }
 
-                    String einfuegDbGurte = "INSERT INTO stoerungMubea" +
-                            "(Abteilung, Anlage, AnlageGruppe, Stoerung, "
-                            + "ZaehlerDerStoerung, VornameGemeldet, "
-                            + "NachnameGemeldet, DatumGemeldet, "
-                            + "UhrzeitGemeldet)" +
-                            "VALUES  ('Anarbeit', 'Rattunde1', 'Addafer' , 'Gurte', "
-                            + "'"+ getZaehlerBundladerGurte() +"', '" + Login.vorName+"',"
-                            + "'" + Login.nachName+"', '" + TaskLeistePane.getDatumStr()
-                            + "', '" + TaskLeistePane.getUhrzeitStr()+ "')";
 
-                    //dbk1.schreibeDB(url1,user1,password1, einfuegString1);      //Immer wenn Play, kommt natürlich wieder eine dazu
-                    dBA.schreibeDB(einfuegDbGurte);
+                }else{
+                    System.out.println("Gurte sind deselectet bei MeldungabsetztenSchlaufe");
                 }
                 //istStoerMeldungButtonGedruecktWorden =true;
                 //this.
@@ -362,6 +372,7 @@ public class Addafer {
             public void handle(ActionEvent t) {
                 //istStoerMeldungButtonGedruecktWorden =true;
                 //this.
+                System.out.println("getZähler ind Aufheben "+getZaehlerBundladerGurte());
                 //ToDo
                 //hier kommt eine ifschleife rein, damit button sofern gelb geklickt, rot wird,
                 //darf sich nicht mehr verändern, muss wie gesperrt sein
@@ -428,6 +439,48 @@ public class Addafer {
 
 
 //Sicherheit------------------------------------------------------------------------------------------------------------
+////                    String einfuegDbGurte = "INSERT INTO stoerungMubea" +
+////                            "(Abteilung, Anlage, AnlageGruppe, Stoerung, "
+////                            + "ZaehlerDerStoerung, VornameGemeldet, "
+////                            + "NachnameGemeldet, DatumGemeldet, "
+////                            + "UhrzeitGemeldet)" +
+////                            "VALUES  ('Anarbeit', 'Rattunde1', 'Addafer' , 'Gurte', "
+////                            + "'"+ getZaehlerBundladerGurte() +"', '" + Login.vorName+"',"
+////                            + "'" + Login.nachName+"', '" + TaskLeistePane.getDatumStr()
+////                            + "', '" + TaskLeistePane.getUhrzeitStr()+ "')";
+//
+////                    String einfuegDbGurte = "INSERT INTO stoerungMubea" +
+////                            "(Abteilung, Anlage, AnlageGruppe, Stoerung, "
+////                            + "ZSt, VnameG, "
+////                            + "NnameG, DatumG, "
+////                            + "UhrzeitG)" +
+////                            "VALUES  ('"+ Anarbeit.getNameAbteilungAnarbeit() +"', '"+Rattunde1.getNameAnlageRattunde1()+"', 'Adf/Bundlader' , 'Gurte', "
+////                            + "'"+ getZaehlerBundladerGurte() +"', '" + Login.vorName+"',"
+////                            + "'" + Login.nachName+"', '" + TaskLeistePane.getDatumStr()
+////                            + "', '" + TaskLeistePane.getUhrzeitStr()+ "')";
+////
+////                    //dbk1.schreibeDB(url1,user1,password1, einfuegString1);      //Immer wenn Play, kommt natürlich wieder eine dazu
+////                    dBA.schreibeDB(einfuegDbGurte);
+//
+//    String einfuegKeinChefDb = "INSERT INTO stoerungMubea" +
+//            "(Abteilung, Anlage,  "
+//            + "ZSt, VnameG, "
+//            + "NnameG, DatumG, "
+//            + "UhrzeitG ,AnlageGruppe, Stoerung)" +
+//            "VALUES  ('"+ Anarbeit.getNameAbteilungAnarbeit() +"', '"+Rattunde1.getNameAnlageRattunde1()+"', "
+//            + "'"+ getZaehlerBundladerGurte() +"', '" + Login.vorName+"',"
+//            + "'" + Login.nachName+"', '" + TaskLeistePane.getDatumStr()
+//            + "', '" + TaskLeistePane.getUhrzeitStr()+ "',";
+//
+////dbk1.schreibeDB(url1,user1,password1, einfuegString1);      //Immer wenn Play, kommt natürlich wieder eine dazu
+//                    dBA.schreibeDB(einfuegKeinChefDb+"'Adf/Bundlader' , 'Gurte')");
+////TOoDO dBA.schreibeDB(einfuegDbGurte + "'Adf/Bundlader' , 'Gurte',");Ziel
+
+
+
+
+
+//**********************************************************************************************************************
 //public class Addafer {
 //    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
 //

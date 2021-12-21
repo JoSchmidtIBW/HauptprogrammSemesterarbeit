@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 public class Abteilungen {
     Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
 
+
     public Abteilungen(Pane cardsPane) {
         this.cardsPane = cardsPane;
     }

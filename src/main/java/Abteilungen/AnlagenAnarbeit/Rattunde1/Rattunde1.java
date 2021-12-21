@@ -18,6 +18,12 @@ import javafx.scene.text.Text;
 public class Rattunde1 {
     Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
 
+    public static String getNameAnlageRattunde1() {
+        return nameAnlageRattunde1;
+    }
+
+    public static String nameAnlageRattunde1 = "Rattunde1";
+
     public Rattunde1(Pane cardsPane){
         this.cardsPane=cardsPane;
     }
