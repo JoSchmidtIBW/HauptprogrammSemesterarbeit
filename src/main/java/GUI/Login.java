@@ -98,6 +98,16 @@ public class Login {
 
     public static String istChef = "";
 
+    public static String getIstUnterhalt() {
+        return istUnterhalt;
+    }
+
+    public static void setIstUnterhalt(String istUnterhalt) {
+        Login.istUnterhalt = istUnterhalt;
+    }
+
+    public static String istUnterhalt = "";
+
 //    public String getWerIstAngemeldet() {
 //        return werIstAngemeldet;
 //    }
@@ -113,6 +123,7 @@ public class Login {
         String maNummer = "";
         String passwort_User = "";
         String istChef = "";
+        String istUnterhalt = "";
 
 
         int zaehlerFuerSchraegerBuchstabe = 0;
@@ -141,6 +152,9 @@ public class Login {
 
                 istChef = getrenntwerIstAngemeldetArr[5];
                 setIstChef(istChef);
+
+                istUnterhalt = getrenntwerIstAngemeldetArr[6];
+                setIstUnterhalt(istUnterhalt);
 
             }
             else {
