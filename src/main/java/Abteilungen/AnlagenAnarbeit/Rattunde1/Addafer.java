@@ -28,8 +28,9 @@ import javafx.scene.text.Text;
 public class Addafer {
     Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
 
-    int zaehlerBundladerGurte = 0;
-    String einfuegKeinChefDb = "INSERT INTO stoerungMubea" +
+    public int zaehlerBundladerGurte = 0;
+
+    String einfuegKeinUnterhaltDb = "INSERT INTO stoerungMubea" +
             "(Abteilung, Anlage,  "
             + "VnameG, "
             + "NnameG, DatumG, "
@@ -38,6 +39,19 @@ public class Addafer {
             + "'" + Login.vorName+"',"
             + "'" + Login.nachName+"', '" + TaskLeistePane.getDatumStr()
             + "', '" + TaskLeistePane.getUhrzeitStr()+ "',";
+
+    //Todo get anstelle von vorname
+    String einfuegIstUnterhaltDb333 = "INSERT INTO stoerungMubea" +
+            "(VnameB, NnameB, DatumB, UhrzeitB)" +
+            "VALUES  ('"+ Login.getVorName() +"', '"+ Login.getNachName() +"', "
+            + "'"  + TaskLeistePane.getDatumStr()
+            + "', '" + TaskLeistePane.getUhrzeitStr()+ "')";
+
+//        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET" +
+//            " VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+//                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+//                + TaskLeistePane.getUhrzeitStr() + "' WHERE STOG = 'open' AND AnlageGruppe = 'ADF/Bundlader' AND Stoerung = 'Gurte';";
+
 
     public int getZaehlerBundladerGurte() {
         return zaehlerBundladerGurte;
@@ -312,7 +326,6 @@ public class Addafer {
             }
         });
 //ButtonStörMeldungAbsetzen----------------------------------------------------------------------------------------------------------------------
-
 //        String einfuegDbGurte = "INSERT INTO stoerungMubea" +
 //                "(Abteilung, Anlage, AnlageGruppe, Stoerung, "
 //                + "ZaehlerDerStoerung, VornameGemeldet, "
@@ -338,13 +351,16 @@ public class Addafer {
                 if(bGurte.isSelected()){
                     lZeigeStoerMeldung.setText("Gurte sind aktiviert");
                     System.out.println("Zähler vor set: "+getZaehlerBundladerGurte());
-                    setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
+                    //setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
+
+                    setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+
                     System.out.println("Zähler nach set: "+getZaehlerBundladerGurte());
                     if(Login.getIstChef().equals("keinChef")){//ACHTUNG - WENN IstCHEF, dann schreibt er nicht, sollte vielleicht aber
                         System.out.println("Zähler in schreibe: "+getZaehlerBundladerGurte());
-                        dBA.schreibeDB(einfuegKeinChefDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
                     }else{//istChef
-                        dBA.schreibeDB(einfuegKeinChefDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
                         System.out.println("Hello Kitty das CHEFE");
                     }
 
@@ -373,6 +389,32 @@ public class Addafer {
                 //istStoerMeldungButtonGedruecktWorden =true;
                 //this.
                 System.out.println("getZähler ind Aufheben "+getZaehlerBundladerGurte());
+
+                if(bGurte.isSelected()){
+                    System.out.println("Gurte selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Bundlader' AND Stoerung = 'Gurte';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        // String strClose = "UPDATE StoerungMubea SET STOG = 'close' WHERE ";
+                        //dBA.schreibeDB(strClose);
+                        System.out.println("hat was in DB geschrieben");
+
+                        cardsPane.getChildren().clear();
+                        cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
+
+                        System.out.println("Lade Seite Addafer jetzt neu");
+                    }
+                    else{
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("Gurte deselectet in Störmeldung");
+                }
+
                 //ToDo
                 //hier kommt eine ifschleife rein, damit button sofern gelb geklickt, rot wird,
                 //darf sich nicht mehr verändern, muss wie gesperrt sein
@@ -435,6 +477,7 @@ public class Addafer {
     }
 
 }
+
 
 
 
