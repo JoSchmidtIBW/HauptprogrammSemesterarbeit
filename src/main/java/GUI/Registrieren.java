@@ -213,7 +213,7 @@ public class Registrieren {
                 layoutPasswortGegeben,layoutPasswortNeu,layoutPasswortwiderholen,layoutPasswortInternet,bRegistrierungAbschliessen,bRegistrierenZurueckLogin,lPWVergessen);
 
         //Scene sceneRegistrieren = new Scene(layoutVR);
-        Scene sceneRegistrieren = new Scene(new ScrollPane(layoutVR),400,200);//hat scrollpane drin
+        Scene sceneRegistrieren = new Scene(new ScrollPane(layoutVR),700,400);//hat scrollpane drin
         return sceneRegistrieren;
     }
 

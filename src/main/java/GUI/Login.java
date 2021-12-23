@@ -229,11 +229,11 @@ public class Login {
 
                 System.out.println("bin drin");
                 if(isFoundInDB==false){//txfMANummerL leer??
-                    System.out.println("bin noch mehr drin");
+                    //System.out.println("bin noch mehr drin");
                     lzeigePasswortL.setText("Your password is incorrect! \n FIRST WRITE MA_NUMMER!!!!!");
                     lzeigePasswortL.setTextFill(Color.rgb(210, 39, 30));
                 }else {
-                    System.out.println("bin schon hier");
+                    //System.out.println("bin schon hier");
                     lzeigePasswortL.setText("Your password is incorrect! aber noch nicht eingegeben");
 //                    String eingabeMaNummerUndPasswortDB = "SELECT * FROM userMubea WHERE MA_Nummer = '" + txfMANummerL.getText() + "' AND Passwort_User = '" + pFInternetL.getText() + "'";
 //                    String ausgabeDbMaNummerUndPasswort = dbL1.ausgebenGesamtDBRetourString(eingabeMaNummerUndPasswortDB);
@@ -320,7 +320,7 @@ public class Login {
         layoutV1.getChildren().addAll(lLoginScene1,layoutHMANummerL,layoutHPasswort,bLoginRegistrieren,button1,layoutGoToSprache);
 
         //Scene sceneLogin = new Scene(layoutV1);//scene braucht ein Layout
-        Scene sceneLogin = new Scene(new ScrollPane(layoutV1),400,200);//scene braucht ein Layout, hat scrollpane drin
+        Scene sceneLogin = new Scene(new ScrollPane(layoutV1),700,250);//scene braucht ein Layout, hat scrollpane drin
         //Scene scene = new Scene(root, 800, 400, Color.BEIGE);
         //scene1 = new Scene(layoutV1, 800, 400);
         //scene1.setFill(Color.YELLOWGREEN);

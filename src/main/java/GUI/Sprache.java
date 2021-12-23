@@ -134,7 +134,7 @@ public class Sprache {
 
         layoutV1.getChildren().addAll(lSpracheScene1,layoutHSprachAuswahl,buttonHauptGUI,TaskLeistePane.getPane());
 
-        Scene sceneSprache = new Scene(new ScrollPane(layoutV1),400,200);//scene braucht ein Layout, hat scrollpane drin
+        Scene sceneSprache = new Scene(new ScrollPane(layoutV1),650,200);//scene braucht ein Layout, hat scrollpane drin
         //Scene scene = new Scene(root, 800, 400, Color.BEIGE);
         //scene1 = new Scene(layoutV1, 800, 400);
         //scene1.setFill(Color.YELLOWGREEN);

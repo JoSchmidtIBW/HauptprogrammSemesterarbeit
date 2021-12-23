@@ -34,14 +34,16 @@ public class Main extends Application {
         dbk1.ausgebenGesamtDB(ausgabeGesamtString);
 
         String ausgabeNurEineSpalte = "Vorname";
-        dbk1.ausgabeNurEineSpalteDB(ausgabeNurEineSpalte);
+    //    dbk1.ausgabeNurEineSpalteDB(ausgabeNurEineSpalte);
 
 //        String LoginSucheVornameMitNameAusDB = "Hans";
 //       // dbk1.SucheVornameMitNameDB(LoginSucheVornameMitNameAusDB);
 //        String ausgabeSucheVornameMitNameDB = dbk1.SucheVornameMitNameDB(LoginSucheVornameMitNameAusDB);
 //        System.out.println("StringausgabeSucheVornameMitNameDB" + ausgabeSucheVornameMitNameDB);
 
-        String vornameLogin = "Hans";
+    //    String vornameLogin = "Hans";
+
+
         //String ausgabeGesamtString2 = "SELECT * FROM userMubea WHERE Vorname = 'Hans'";
         //String ausgabeGesamtString2 = "SELECT * FROM userMubea WHERE Vorname = '"+vornameLogin+"'";
        // dbk1.ausgebenGesamtDBRetourString(ausgabeGesamtString2);
@@ -52,11 +54,11 @@ public class Main extends Application {
 
         //String vornameLogin1 = "Hans";
         //String ausgabeGesamtString2 = "SELECT * FROM userMubea WHERE Vorname = 'Hans'";
-        String ausgabeGesamtString22 = "SELECT * FROM userMubea WHERE Vorname = '"+vornameLogin+"'";
+    //    String ausgabeGesamtString22 = "SELECT * FROM userMubea WHERE Vorname = '"+vornameLogin+"'";
         //dbk1.ausgebenGesamtDBRetourString(ausgabeGesamtString22);
 
-        String ausgabeSucheVornameMitNameDB = dbk1.ausgebenGesamtDBRetourString(ausgabeGesamtString22);
-        System.out.println("StringausgabeSucheVornameMitNameDB: " + ausgabeSucheVornameMitNameDB);
+    //    String ausgabeSucheVornameMitNameDB = dbk1.ausgebenGesamtDBRetourString(ausgabeGesamtString22);
+    //    System.out.println("StringausgabeSucheVornameMitNameDB: " + ausgabeSucheVornameMitNameDB);
 //**********************************************************************************************************************
         launch();
 

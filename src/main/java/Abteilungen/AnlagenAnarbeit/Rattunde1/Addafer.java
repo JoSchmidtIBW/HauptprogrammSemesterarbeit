@@ -114,7 +114,10 @@ public class Addafer {
         if(rotdb==false) {
             bGurte.setStyle("-fx-background-color: green");//blue
         }else{
-            bGurte.setStyle("-fx-background-color: pink");//pink
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bGurte.setDisable(true);
+            }
+            bGurte.setStyle("-fx-background-color: red");//pink
         }
         //bGurte.setStyle("-fx-background-color: #ff0000; ");
         bGurte.setOnAction(new EventHandler<ActionEvent>() {
@@ -122,35 +125,60 @@ public class Addafer {
                 //ToDo ev normaler button und heraus finden, ob es isSelected gibt
 
 
-                lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+
 
 
                 if(rotdb==false){//grün
                     System.out.println("bin erster");
                     if(bGurte.isSelected()){
                         System.out.println("ist selectet erste");
-                        if(rotdb==true){
-                            bGurte.setStyle("-fx-background-color: orange");
-                            arrStrButton[0] = "";
-                        }else {
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bGurte.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                            //arrStrButton[0] = "";
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
                             bGurte.setStyle("-fx-background-color: yellow");
-                            System.out.println("in Addafer getsprachenZahl" + Sprache.getSprachenZahl());
-                            arrStrButton[0] = "Gurte";
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                            //arrStrButton[0] = "Gurte";
                         }
-                    }else{
-                        System.out.println("werde wieder grün");
-                        bGurte.setStyle("-fx-background-color: green");
+                    }else {//if(bGurte.isDisabled())
+                        System.out.println("Sollte jetzt deselectet sein");
+
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bGurte.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bGurte.setStyle("-fx-background-color: green");
+                        }
                     }
-                }else{
-                    System.out.println("bin in zweite");
-                    bGurte.setStyle("-fx-background-color: red");
+                }else {//if(bGurte.isDisabled()){//true
+                    System.out.println("bin in zweite also irgendwo bin ich drin");
                     if(bGurte.isSelected()){
-                        System.out.println("ist selected zweite");
-                        bGurte.setStyle("-fx-background-color: darkred");
-                    }else{
-                        System.out.println("muss irgend was sein");
-                        bGurte.setStyle("-fx-background-color: darkorange");
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bGurte.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                            //arrStrButton[0] = "";
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bGurte.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                            //arrStrButton[0] = "Gurte";
+                        }
+                    }else {//if(bGurte.isDisabled())
+                        System.out.println("Sollte jetzt deselectet sein");
+
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bGurte.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bGurte.setStyle("-fx-background-color: green");
+                        }
                     }
+
                 }
 
 
@@ -340,11 +368,17 @@ public class Addafer {
 //        dBA.schreibeDB(einfuegDbGurte);
 
 
-
+        Button bStoerMeldungAbsetzen = new Button("Stör-Meldung absetzen");
+        if(Login.getIstUnterhalt().equals("istU")){
+            bStoerMeldungAbsetzen.setStyle("-fx-background-color: transparent");
+            bStoerMeldungAbsetzen.setStyle("-fx-text-fill: transparent");
+            bStoerMeldungAbsetzen.setDisable(true);
+            bStoerMeldungAbsetzen.setVisible(false);
+        }
 
         Label lZeigeStoerMeldung = new Label();
 
-        Button bStoerMeldungAbsetzen = new Button("Stör-Meldung absetzen");
+
         bStoerMeldungAbsetzen.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
         bStoerMeldungAbsetzen.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
@@ -359,11 +393,17 @@ public class Addafer {
                     if(Login.getIstChef().equals("keinChef")){//ACHTUNG - WENN IstCHEF, dann schreibt er nicht, sollte vielleicht aber
                         System.out.println("Zähler in schreibe: "+getZaehlerBundladerGurte());
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
+                        System.out.println("Es schreibt ein Bediener");
+                        bGurte.setStyle("-fx-background-color: red");
+                        bGurte.setDisable(true);
                     }else{//istChef
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
-                        System.out.println("Hello Kitty das CHEFE");
+                        System.out.println("es schreibt ein CHEFE");
+                        bGurte.setStyle("-fx-background-color: red");
+                        bGurte.setDisable(true);
                     }
 
+                    lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
 
                 }else{
                     System.out.println("Gurte sind deselectet bei MeldungabsetztenSchlaufe");
@@ -374,6 +414,7 @@ public class Addafer {
                 //hier kommt eine ifschleife rein, damit button sofern gelb geklickt, rot wird,
                 //darf sich nicht mehr verändern, muss wie gesperrt sein
                 setRotdb(true);//=true;
+
                 //bGurte.setStyle("-fx-background-color: red");//darkred
                 //bGurte.setDefaultButton(true);//ist es das vielleicht????????
             }
@@ -383,6 +424,12 @@ public class Addafer {
 
 
         Button bStoerMeldungAufheben = new Button("Stör-Meldung Aufheben");
+        if(Login.getIstUnterhalt().equals("keinU")){
+            bStoerMeldungAufheben.setStyle("-fx-background-color: transparent");
+            bStoerMeldungAufheben.setStyle("-fx-text-fill: transparent");
+            bStoerMeldungAufheben.setDisable(true);
+            bStoerMeldungAufheben.setVisible(false);
+        }
         bStoerMeldungAufheben.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
         bStoerMeldungAufheben.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
@@ -400,14 +447,19 @@ public class Addafer {
                         dBA.schreibeDB(einfuegIstUnterhaltDb);
                         // String strClose = "UPDATE StoerungMubea SET STOG = 'close' WHERE ";
                         //dBA.schreibeDB(strClose);
-                        System.out.println("hat was in DB geschrieben");
+                        bGurte.setStyle("-fx-background-color: green");
+                        bGurte.setDisable(false);
+                        setRotdb(false);
+                        lZeigeGurteWerUHRDatumA.setText("");
+//                        System.out.println("hat was in DB geschrieben");
+//
+//                        cardsPane.getChildren().clear();
+//                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
 
-                        cardsPane.getChildren().clear();
-                        cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
-
-                        System.out.println("Lade Seite Addafer jetzt neu");
+                        // System.out.println("Lade Seite Addafer jetzt neu");
                     }
                     else{
+                        bGurte.setStyle("-fx-background-color: red");
                         System.out.println("Ich arbeite nicht im Unterhalt!");
                     }
                 }
@@ -415,6 +467,9 @@ public class Addafer {
                     System.out.println("Gurte deselectet in Störmeldung");
                 }
 
+
+//                                    cardsPane.getChildren().clear();
+//                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
                 //ToDo
                 //hier kommt eine ifschleife rein, damit button sofern gelb geklickt, rot wird,
                 //darf sich nicht mehr verändern, muss wie gesperrt sein
@@ -424,43 +479,43 @@ public class Addafer {
 
             }
         });
-        ToggleButton bDB = new ToggleButton("Bin die DB \n Gurte setzen \nicht setzen");
-        //Button bDB = new Button("Bin die DB \n Gurte setzen \nicht setzen");
-        bDB.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
-
-
-//        if(getRotdb() == true){
-//            bDB.setStyle("-fx-background-color: red");
-//        }else{
-//            bDB.setStyle("-fx-background-color: green");
-//        }
+//        ToggleButton bDB = new ToggleButton("Bin die DB \n Gurte setzen \nicht setzen");
+//        //Button bDB = new Button("Bin die DB \n Gurte setzen \nicht setzen");
+//        bDB.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
 //
-
-        bDB.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent t) {
-                if(bDB.isSelected()){
-                    bDB.setStyle("-fx-background-color: red");
-                    setRotdb(true);
-                    System.out.println("bDB is selected");
-
-                    //Todo du kannst schon eigene seite sich selber laden, aber bei einem toggel lädt dan nur die eine seite
-                    //todo besser zum dies testen, den toggelbutton nicht in das pane stecken, sondern ev. in die taskleiste
-                    //todo, wenn toggle nicht im gleichen pane, ev probleme weil dan db nicht weiss, von welcher anlage geschriebven wird
+//
+////        if(getRotdb() == true){
+////            bDB.setStyle("-fx-background-color: red");
+////        }else{
+////            bDB.setStyle("-fx-background-color: green");
+////        }
+////
+//
+//        bDB.setOnAction(new EventHandler<ActionEvent>() {
+//            public void handle(ActionEvent t) {
+//                if(bDB.isSelected()){
+//                    bDB.setStyle("-fx-background-color: red");
+//                    setRotdb(true);
+//                    System.out.println("bDB is selected");
+//
+//                    //Todo du kannst schon eigene seite sich selber laden, aber bei einem toggel lädt dan nur die eine seite
+//                    //todo besser zum dies testen, den toggelbutton nicht in das pane stecken, sondern ev. in die taskleiste
+//                    //todo, wenn toggle nicht im gleichen pane, ev probleme weil dan db nicht weiss, von welcher anlage geschriebven wird
+////                    cardsPane.getChildren().clear();
+////                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
+//                }else{
+//                    bDB.setStyle("-fx-background-color: green");
+//                    setRotdb(false);
+//                    System.out.println("bDB is deselected");
 //                    cardsPane.getChildren().clear();
 //                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
-                }else{
-                    bDB.setStyle("-fx-background-color: green");
-                    setRotdb(false);
-                    System.out.println("bDB is deselected");
-                    cardsPane.getChildren().clear();
-                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
-                }
-                //bGurte.setStyle("-fx-background-color: red");//darkred
-                //bGurte.setDefaultButton(true);//ist es das vielleicht????????
-            }
-        });
+//                }
+//                //bGurte.setStyle("-fx-background-color: red");//darkred
+//                //bGurte.setDefaultButton(true);//ist es das vielleicht????????
+//            }
+//        });
 //LayoutZeugs----------------------------------------------------------------------------------------------------------------------
-        layoutHBundlader.getChildren().addAll(lBundlader,bGurte,lZeigeGurteWerUHRDatumA,bDB, bHalteZeitAn, lZeigeZeitHaltA,bLichtSchranke1,bAnschlag,bSchutzZaun);
+        layoutHBundlader.getChildren().addAll(lBundlader,bGurte,lZeigeGurteWerUHRDatumA, bHalteZeitAn, lZeigeZeitHaltA,bLichtSchranke1,bAnschlag,bSchutzZaun);
         layoutHVereinzelung.getChildren().addAll(lVereinzelung,bRollenSchraeg,bStopperBolzen1,bStopperBolzen123);
         layoutHRollgang1.getChildren().addAll(lRollgang1,bRollen1,bSchweissNahtErkennung,bPinchRolle12);
         layoutHMessstation.getChildren().addAll(lMessstation,bUSSensor,bLaser,bEinstellRollen,bLichtSchrankeM,bPumpeRueckFuehr,bSchutzTuereM);
@@ -477,6 +532,7 @@ public class Addafer {
     }
 
 }
+
 
 
 

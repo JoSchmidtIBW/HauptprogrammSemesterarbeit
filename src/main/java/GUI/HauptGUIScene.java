@@ -79,7 +79,7 @@ public class HauptGUIScene {
 
         layoutV.getChildren().addAll(lHauptGuin,lWerAngemeldet,lAbmelden,layoutH1, cardsPane,layoutH2);
 
-        Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),400,200);
+        Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,600);
         return hauptGuiScene;
     }
 
