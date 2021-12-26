@@ -173,16 +173,16 @@ public class Login {
         DatenBank dbL1 = new DatenBank();
         //AtomicBoolean isFoundInDB = new AtomicBoolean(false);
 
-        Label lLoginScene1= new Label("- Bin die Login-Scene -");
+        Label lLoginScene1= new Label("- Bin die Login-Scene - WellCome -");
 
 //        Label lLoginBenutzername = new Label("Benutzername");
 //        TextField txfLoginBenutzername = new TextField();
 //        Button bLoginBenutzerNameOK = new Button("LoginBenutzerNameOK");
 
-        Label lMANummerL = new Label("LMANummer");
+        Label lMANummerL = new Label("MA-Nummer");
         TextField txfMANummerL = new TextField();
         //eingabeMANummer = txfMANummer.getText();
-        Button bMANummerL = new Button("MA-Nummer");
+        Button bMANummerL = new Button("MA-Nummer OK");
         Label lzeigeMANummerL = new Label();
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+getEingabeMANummer()));
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+txfMANummer.getText()));
@@ -291,7 +291,7 @@ public class Login {
         buttonSprache.setOnAction(e -> {
             if(isFoundInDbAndPasswortCorrect== true){
                 splittWerIstAngemeldet(werIstAngemeldet);
-                System.out.println("hallllooo biitteee "+getiD_User() + " Dankeschööööönn endliiii du static biatch");
+               // System.out.println("hallllooo biitteee "+getiD_User() + " Dankeschööööönn endliiii du static biatch");
                 System.out.println("bin drin Hello Kitty");
                 stage.setScene(Sprache.createSpracheScene(stage));
             }else {//if(isFoundInDB==false)

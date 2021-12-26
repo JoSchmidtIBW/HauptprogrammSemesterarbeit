@@ -378,7 +378,7 @@ public class Addafer {
 
         Label lZeigeStoerMeldung = new Label();
 
-
+//todo boolean iststoermeldung abgesetzt, dann geht nicht mehr
         bStoerMeldungAbsetzen.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
         bStoerMeldungAbsetzen.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
