@@ -140,7 +140,7 @@ public class Sprache {
         });
 
 
-        VBox layoutV1 = new VBox(1);
+        VBox layoutV1 = new VBox(15);
         HBox layoutHSprachAuswahl = new HBox(20);
 
         layoutHSprachAuswahl.getChildren().addAll(lSprachAuswahl,comboBox1,lZeigeSprachAuswahl);//muss addAll sein
@@ -177,7 +177,7 @@ public class Sprache {
             }
         });
 
-        HBox layoutHLabelSprachenScenePasswortAendern = new HBox(180);
+        HBox layoutHLabelSprachenScenePasswortAendern = new HBox(175);
         Button bPasswortAendern = new Button("Passwort \n ändern?");
         HBox layoutHAbmeldenPW = new HBox(1);
         layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene,bZuruekLoginS,bPasswortAendern);
