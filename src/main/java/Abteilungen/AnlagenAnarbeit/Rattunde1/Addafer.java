@@ -68,6 +68,8 @@ public class Addafer {
 
     static Boolean rotdb = false;
 
+    static Boolean bgurteAbgesetzt = false;
+
     public static Boolean getRotdb() {
         return rotdb;
     }
@@ -378,6 +380,7 @@ public class Addafer {
 
         Label lZeigeStoerMeldung = new Label();
 
+       //boolean[] bgurteAbgesetzt = {false};
 //todo boolean iststoermeldung abgesetzt, dann geht nicht mehr
         bStoerMeldungAbsetzen.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
         bStoerMeldungAbsetzen.setOnAction(new EventHandler<ActionEvent>() {
@@ -387,20 +390,25 @@ public class Addafer {
                     System.out.println("Zähler vor set: "+getZaehlerBundladerGurte());
                     //setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
 
-                    setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+
 
                     System.out.println("Zähler nach set: "+getZaehlerBundladerGurte());
-                    if(Login.getIstChef().equals("keinChef")){//ACHTUNG - WENN IstCHEF, dann schreibt er nicht, sollte vielleicht aber
+                    if(Login.getIstChef().equals("keinChef")&& bgurteAbgesetzt ==false){//ACHTUNG - WENN IstCHEF, dann schreibt er nicht, sollte vielleicht aber
                         System.out.println("Zähler in schreibe: "+getZaehlerBundladerGurte());
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
                         System.out.println("Es schreibt ein Bediener");
                         bGurte.setStyle("-fx-background-color: red");
                         bGurte.setDisable(true);
-                    }else{//istChef
+                       // bgurteAbgesetzt[0] = true;
+                        bgurteAbgesetzt = true;
+                        setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+                    }else if(Login.getIstChef().equals("istChef")&& bgurteAbgesetzt ==false){//istChef
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
                         System.out.println("es schreibt ein CHEFE");
                         bGurte.setStyle("-fx-background-color: red");
                         bGurte.setDisable(true);
+                        bgurteAbgesetzt = true;
+                        setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
                     }
 
                     lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
@@ -430,6 +438,7 @@ public class Addafer {
             bStoerMeldungAufheben.setDisable(true);
             bStoerMeldungAufheben.setVisible(false);
         }
+        //ToDo setFont Font nur ein String zum einmal ändern!!!
         bStoerMeldungAufheben.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
         bStoerMeldungAufheben.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
@@ -450,6 +459,7 @@ public class Addafer {
                         bGurte.setStyle("-fx-background-color: green");
                         bGurte.setDisable(false);
                         setRotdb(false);
+                        bgurteAbgesetzt = false;
                         lZeigeGurteWerUHRDatumA.setText("");
 //                        System.out.println("hat was in DB geschrieben");
 //
