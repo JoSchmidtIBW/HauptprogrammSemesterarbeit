@@ -26,6 +26,15 @@ public class Sprache {
     //Albanisch
     //Türkisch
 
+    //Deutsch
+    //Albanisch
+    //bosnisch
+  //italienisch
+    //kroatisch
+   // mazedonisch
+    //serbisch
+    //Türkisch
+
     private static int sprachenZahl;
 
     public static int getSprachenZahl() {
@@ -53,6 +62,8 @@ public class Sprache {
         comboBox1.getItems().add("serbo-koratisch");//2 //serbo-koratisch
         comboBox1.getItems().add("albanisch mazedonisch Shkumbin");//3 //albanisch mazedonisch Shkumbin
         comboBox1.getItems().add("Türkisch");//4
+
+        //comboBox1.setItems(getSprachenZahl("Deutsch"));
 
         Label lZeigeSprachAuswahl = new Label("No language selected yet!");
 
@@ -111,7 +122,9 @@ public class Sprache {
         comboBox1.setOnAction(event);
 
 
-
+//        comboBox.addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
+//            // do stuff
+//        });
 
 
         //Label lzeigeSprache
@@ -128,11 +141,51 @@ public class Sprache {
 
 
         VBox layoutV1 = new VBox(1);
-        HBox layoutHSprachAuswahl = new HBox(1);
+        HBox layoutHSprachAuswahl = new HBox(20);
 
         layoutHSprachAuswahl.getChildren().addAll(lSprachAuswahl,comboBox1,lZeigeSprachAuswahl);//muss addAll sein
 
-        layoutV1.getChildren().addAll(lSpracheScene1,layoutHSprachAuswahl,buttonHauptGUI,TaskLeistePane.getPane());
+        Button bZuruekLoginS = new Button("Abmelden");
+        //bZuruekLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));
+        bZuruekLoginS.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                Login.setIsFoundInDbAndPasswortCorrect(false);
+                stage.setScene(Login.createLoginScene(stage));
+            }
+        });
+
+
+
+//        HBox layoutHAbmeldenTaskLeiste = new HBox(1);
+//        layoutHAbmeldenTaskLeiste.getChildren().addAll(TaskLeistePane.getPane());
+
+        Button bRegistrierenScene= new Button("Go to Registrieren- Scene");
+        //button1.setOnAction(e -> primaryStage.setScene(scene2));
+
+//        if(Login.getIstChef().equals("Admin")) {
+//            bRegistrierenScene.setOnAction(e -> stage.setScene(Registrieren.createRegistrierenScene(stage)));
+//        }
+//        else{
+//            System.out.println("Sie sind kein Admin");
+//        }
+
+        bRegistrierenScene.setOnAction(e -> {
+            if(Login.getIstChef().equals("Admin")){
+                stage.setScene(Registrieren.createRegistrierenScene(stage));
+            }else {
+                System.out.println("Sie sind kein Admin");
+            }
+        });
+
+        HBox layoutHLabelSprachenScenePasswortAendern = new HBox(180);
+        Button bPasswortAendern = new Button("Passwort \n ändern?");
+        HBox layoutHAbmeldenPW = new HBox(1);
+        layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene,bZuruekLoginS,bPasswortAendern);
+        layoutHLabelSprachenScenePasswortAendern.getChildren().addAll(lSpracheScene1,layoutHAbmeldenPW);
+
+        layoutV1.getChildren().addAll(layoutHLabelSprachenScenePasswortAendern,layoutHSprachAuswahl,buttonHauptGUI,TaskLeistePane.getPane());//layoutHAbmeldenTaskLeiste
+
+
 
         Scene sceneSprache = new Scene(new ScrollPane(layoutV1),650,200);//scene braucht ein Layout, hat scrollpane drin
         //Scene scene = new Scene(root, 800, 400, Color.BEIGE);

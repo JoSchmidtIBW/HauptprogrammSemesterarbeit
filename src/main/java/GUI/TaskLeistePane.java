@@ -95,22 +95,22 @@ public class TaskLeistePane {
 //        timeline.setCycleCount(Animation.INDEFINITE);
 //        timeline.play();
 
-        Label main_clock_lb = new Label();
-        Thread timerThread = new Thread(() -> {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
-            while (true) {
-                try {
-                    Thread.sleep(1000); //1 second
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                //final String timeStr = simpleDateFormat.format(new Date());
-                setTimeStr(simpleDateFormat.format(new Date()));
-                Platform.runLater(() -> {
-                    main_clock_lb.setText(getTimeStr());
-                });
-            }
-        });   timerThread.start();//start the thread and its ok
+//        Label main_clock_lb = new Label();
+//        Thread timerThread = new Thread(() -> {
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
+//            while (true) {
+//                try {
+//                    Thread.sleep(1000); //1 second
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                //final String timeStr = simpleDateFormat.format(new Date());
+//                setTimeStr(simpleDateFormat.format(new Date()));
+//                Platform.runLater(() -> {
+//                    main_clock_lb.setText(getTimeStr());
+//                });
+//            }
+//        });   timerThread.start();//start the thread and its ok
 //******************************************************************************
         Label lDatum = new Label();
         Label lZwischenDatumUhrzeit = new Label("  ");
@@ -137,7 +137,7 @@ public class TaskLeistePane {
 
 
 
-        HBox hbox = new HBox();
+        HBox hbox = new HBox(5);
         Label lTaskLeisteAngemeldetT = new javafx.scene.control.Label("Angemeldet: "+Login.getVorName()+" / " +
                 Login.getNachName());
 
@@ -151,7 +151,7 @@ public class TaskLeistePane {
 
 
 
-        javafx.scene.control.Label lt2 = new Label("Taskleiste- Label");
+        javafx.scene.control.Label lt2 = new Label("   Taskleiste- Label   ");
 
 //        Button buttonHauptGUIzuruekLogin = new Button("zuruekLogin");
 //        buttonHauptGUIzuruekLogin.setOnAction(e -> {
@@ -184,7 +184,9 @@ public class TaskLeistePane {
 
 //        lLogo.setGraphic(view);
 
-        hbox.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,main_clock_lb,lLogo,lDatum,lZwischenDatumUhrzeit,lUhrzeit);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
+       // hbox.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,main_clock_lb,lLogo,lDatum,lZwischenDatumUhrzeit,lUhrzeit);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
+        //Pane pane = new Pane(lt,lt2);//funktioniert
+        hbox.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,lDatum,lZwischenDatumUhrzeit,lUhrzeit,lLogo);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
         //Pane pane = new Pane(lt,lt2);//funktioniert
         Pane pane = new Pane(hbox);
         //pane.getChildren().add(lt);

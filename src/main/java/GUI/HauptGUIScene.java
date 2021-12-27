@@ -25,11 +25,11 @@ public class HauptGUIScene {
     public static Scene createGetHauptScene(Stage stage){
 
         VBox layoutV = new VBox(1);
-        HBox layoutH1 = new HBox(1);
 
-        Label lHauptGuin= new Label("Bin Label HauptGui");
-        Label lWerAngemeldet = new Label("Wer ist hier eigentlich angebeldet, das soll hier stehen");
-        Label lAbmelden = new Label("Wo kommt Benutzer ABMELDEN REIN???");
+
+        Label lHauptGui= new Label("Bin Label HauptGui");
+//        Label lWerAngemeldet = new Label("Wer ist hier eigentlich angebeldet, das soll hier stehen");
+//        Label lAbmelden = new Label("Wo kommt Benutzer ABMELDEN REIN???");
 
         final Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
         final Group card1 = new Group(new Text(25, 25, "Card 1"));
@@ -70,14 +70,31 @@ public class HauptGUIScene {
             }
         });
 
+        HBox layoutH1 = new HBox(1);
         layoutH1.getChildren().addAll(bAbteilung,bAnleitung);
-        HBox layoutH2 = new HBox(1);
-        Button buttonHauptGUIzuruekLogin = new Button("zuruekLogin");
-        buttonHauptGUIzuruekLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));
-        layoutH2.getChildren().addAll(TaskLeistePane.getPane(),buttonHauptGUIzuruekLogin);
 
 
-        layoutV.getChildren().addAll(lHauptGuin,lWerAngemeldet,lAbmelden,layoutH1, cardsPane,layoutH2);
+        Button bZuruekLogin = new Button("Abmelden");
+        //bZuruekLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));
+        bZuruekLogin.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                Login.setIsFoundInDbAndPasswortCorrect(false);
+                stage.setScene(Login.createLoginScene(stage));
+            }
+        });
+
+        Button bZuruekSprache = new Button("zuruekSprache");
+        bZuruekSprache.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
+
+        //HBox layoutH2 = new HBox(1);
+        //layoutH2.getChildren().addAll(bZuruekLogin,bZuruekSprache,TaskLeistePane.getPane());
+
+        HBox layoutHlHauptGuiScene = new HBox(500);
+        HBox layoutHZurueckSpracheAbmelden = new HBox(1);
+        layoutHZurueckSpracheAbmelden.getChildren().addAll(bZuruekSprache,bZuruekLogin);
+        layoutHlHauptGuiScene.getChildren().addAll(lHauptGui,layoutHZurueckSpracheAbmelden);
+
+        layoutV.getChildren().addAll(layoutHlHauptGuiScene,layoutH1, cardsPane,TaskLeistePane.getPane());
 
         Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,600);
         return hauptGuiScene;

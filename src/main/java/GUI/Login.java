@@ -9,9 +9,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import static javafx.scene.text.FontWeight.BOLD;
 
 /**
  * @author - John Schmidt
@@ -20,6 +23,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Login {
     //Scene scene1, scene2;//muss noch angeschaut werden
     static boolean isFoundInDB = false;
+
 
     public static boolean isIsFoundInDbAndPasswortCorrect() {
         return isFoundInDbAndPasswortCorrect;
@@ -217,7 +221,7 @@ public class Login {
 //        TextField txfLoginPasswort = new TextField();
 //        Button bLoginPasswortOK = new Button("LoginPasswortOK");
 
-        Label lPassWortInternetL = new Label("Password");
+        Label lPassWortInternetL = new Label("Passwort");
 
         final PasswordField pFInternetL = new PasswordField();
 
@@ -269,13 +273,12 @@ public class Login {
 
 
 //-------------------------------------------------------------------------------------------------------------------------
-        Label lLoginRegistrieren = new Label("Registrieren");
-        Button bLoginRegistrieren = new Button("Passwort Vergessen - Hilfe kommt");
-        Button button1= new Button("Go to Registrieren- Scene");
-        //button1.setOnAction(e -> primaryStage.setScene(scene2));
-        button1.setOnAction(e -> stage.setScene(Registrieren.createRegistrierenScene(stage)));
+
+//        Button button1= new Button("Go to Registrieren- Scene");
+//        //button1.setOnAction(e -> primaryStage.setScene(scene2));
+//        button1.setOnAction(e -> stage.setScene(Registrieren.createRegistrierenScene(stage)));
         //todo button sprache anderst machen
-        Button buttonSprache = new Button("Go to HauptGui wenn Login erfolgreich aus DB");
+        Button bAnmeldenSpracheScene = new Button("Anmelden");
         // buttonHauptGUI.setOnAction(e -> stage.setScene(HauptGUIScene.createGetHauptScene(stage)));
         // buttonHauptGUI.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
 //        buttonHauptGUI.setOnAction(event -> {
@@ -288,7 +291,7 @@ public class Login {
         //   scene.setOnMouseClicked(e -> changeScene(scene2));
         System.out.println("isFoundInDB"+isFoundInDB );
         Label lZeigeIsFoundInDBL = new Label();
-        buttonSprache.setOnAction(e -> {
+        bAnmeldenSpracheScene.setOnAction(e -> {
             if(isFoundInDbAndPasswortCorrect== true){
                 splittWerIstAngemeldet(werIstAngemeldet);
                // System.out.println("hallllooo biitteee "+getiD_User() + " Dankeschööööönn endliiii du static biatch");
@@ -302,22 +305,34 @@ public class Login {
             }
         });
 
+
+
+        Button bPasswortVergessen = new Button("Passwort Vergessen");
+        Label lPasswortVergessen = new Label();
+        bPasswortVergessen.setOnAction(e -> {
+            lPasswortVergessen.setText("--> Tel. 9272 <--");
+            lPasswortVergessen.setTextFill(Color.DARKRED);
+            lPasswortVergessen.setFont(Font.font("Verdana", BOLD, 16));
+        });
+
 //    splittWerIstAngemeldet(werIstAngemeldet);
 //        System.out.println("hallllooo bii "+getiD_User());
         //this.splittWerIstAngemeldet(werIstAngemeldet);
         //werIstAngemeldet
-        VBox layoutV1 = new VBox(1);
+        VBox layoutV1 = new VBox(5);
         HBox layoutHMANummerL = new HBox(1);
         //HBox layoutHBenutzername = new HBox(1);
         HBox layoutHPasswort = new HBox(1);
         HBox layoutGoToSprache = new HBox(1);
+        HBox layoutHPasswortVergessen = new HBox(20);
 
         layoutHMANummerL.getChildren().addAll(lMANummerL,txfMANummerL,bMANummerL,lzeigeMANummerL);
         //layoutHBenutzername.getChildren().addAll(lLoginBenutzername,txfLoginBenutzername,bLoginBenutzerNameOK);//muss addAll sein
         layoutHPasswort.getChildren().addAll(lPassWortInternetL,pFInternetL,bLoginPasswortOK,lzeigePasswortL);
-        layoutGoToSprache.getChildren().addAll(buttonSprache,lZeigeIsFoundInDBL);
+        layoutGoToSprache.getChildren().addAll(bAnmeldenSpracheScene,lZeigeIsFoundInDBL);
+        layoutHPasswortVergessen.getChildren().addAll(bPasswortVergessen,lPasswortVergessen);
 
-        layoutV1.getChildren().addAll(lLoginScene1,layoutHMANummerL,layoutHPasswort,bLoginRegistrieren,button1,layoutGoToSprache);
+        layoutV1.getChildren().addAll(lLoginScene1,layoutHMANummerL,layoutHPasswort,layoutGoToSprache, layoutHPasswortVergessen);
 
         //Scene sceneLogin = new Scene(layoutV1);//scene braucht ein Layout
         Scene sceneLogin = new Scene(new ScrollPane(layoutV1),700,250);//scene braucht ein Layout, hat scrollpane drin

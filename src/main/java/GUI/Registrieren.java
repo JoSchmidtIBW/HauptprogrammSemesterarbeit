@@ -183,10 +183,10 @@ public class Registrieren {
 
         Button bRegistrierungAbschliessen = new Button("Registrierung \n Abschliessen");
 
-        Button bRegistrierenZurueckLogin= new Button("Go to scene 1 - Zurück zum Login");
+        Button bZurueckSprache= new Button("Go to Sprache - Scene");
 
 
-        bRegistrierenZurueckLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));//primaryStage
+        bZurueckSprache.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));//primaryStage
         VBox layoutVR= new VBox(1);
 
         HBox layoutHMANummer = new HBox(1);
@@ -210,7 +210,7 @@ public class Registrieren {
         layoutPasswortInternet.getChildren().addAll(lPassWortInternet,pFInternet,lMessageInternet);
 
         layoutVR.getChildren().addAll(labelRegistrierenScene,layoutHMANummer, layoutHVorname1,layoutHNachname1,
-                layoutPasswortGegeben,layoutPasswortNeu,layoutPasswortwiderholen,layoutPasswortInternet,bRegistrierungAbschliessen,bRegistrierenZurueckLogin,lPWVergessen);
+                layoutPasswortGegeben,layoutPasswortNeu,layoutPasswortwiderholen,layoutPasswortInternet,bRegistrierungAbschliessen,bZurueckSprache,lPWVergessen);
 
         //Scene sceneRegistrieren = new Scene(layoutVR);
         Scene sceneRegistrieren = new Scene(new ScrollPane(layoutVR),700,400);//hat scrollpane drin

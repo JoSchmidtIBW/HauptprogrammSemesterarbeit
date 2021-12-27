@@ -7,7 +7,6 @@ import GUI.Sprache;
 import GUI.TaskLeistePane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
@@ -29,6 +27,9 @@ public class Addafer {
     Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
 
     public int zaehlerBundladerGurte = 0;
+
+    Font fontAbsetzen = Font.font("Verdana", FontPosture.ITALIC, 20);
+    Font fontAnlageGruppe = Font.font("Arial", 18);
 
     String einfuegKeinUnterhaltDb = "INSERT INTO stoerungMubea" +
             "(Abteilung, Anlage,  "
@@ -86,15 +87,18 @@ public class Addafer {
         final Group cardAddafer = new Group(new Text(25, 25, "Addafer blabvlabla"));
 
         VBox layoutV = new VBox(20);
+
+//Bundlader-------------------------------------------------------------------------------------------------------------
         HBox layoutHBundlader = new HBox(20);
 
 
-        String[] arrStrButton = new String[100];
+      //  String[] arrStrButton = new String[100];
 
 
 
 
-        Label lBundlader = new Label("Bundlader"+ Sprache.getSprachenZahl());
+        Label lBundlader = new Label("Bundlader");
+        lBundlader.setFont(fontAnlageGruppe);
 
         //Todo, booleanWert von DB kommt, dann button rot oder grün
         //Todo wenn grün, bei klick gelb, bei absetzen rot, und nicht mehr veränderbar
@@ -138,7 +142,7 @@ public class Addafer {
                             bGurte.setStyle("-fx-background-color: green");//pink
                             System.out.println("Bin Unterhalt pink: ");
                             //arrStrButton[0] = "";
-                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
                             bGurte.setStyle("-fx-background-color: yellow");
                             System.out.println("Bin kein Unterhalt gelb: ");
                             //arrStrButton[0] = "Gurte";
@@ -146,7 +150,7 @@ public class Addafer {
                     }else {//if(bGurte.isDisabled())
                         System.out.println("Sollte jetzt deselectet sein");
 
-                        if(Login.getIstUnterhalt().equals("istU")){
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             System.out.println("Bin Unterhalt rot: ");
                             bGurte.setStyle("-fx-background-color: green");//red
                         }
@@ -159,7 +163,7 @@ public class Addafer {
                     System.out.println("bin in zweite also irgendwo bin ich drin");
                     if(bGurte.isSelected()){
                         System.out.println("ist selectet erste");
-                        if(Login.getIstUnterhalt().equals("istU")){
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             bGurte.setStyle("-fx-background-color: pink");//pink
                             System.out.println("Bin Unterhalt pink: ");
                             //arrStrButton[0] = "";
@@ -171,7 +175,7 @@ public class Addafer {
                     }else {//if(bGurte.isDisabled())
                         System.out.println("Sollte jetzt deselectet sein");
 
-                        if(Login.getIstUnterhalt().equals("istU")){
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             System.out.println("Bin Unterhalt rot: ");
                             bGurte.setStyle("-fx-background-color: red");//red
                         }
@@ -277,6 +281,7 @@ public class Addafer {
 //Vereinzelung----------------------------------------------------------------------------------------------------------
         HBox layoutHVereinzelung = new HBox(20);
         Label lVereinzelung = new Label("Vereinzelung");
+        lVereinzelung.setFont(fontAnlageGruppe);
         Button bRollenSchraeg = new Button("Rollen schräg");
         Button bStopperBolzen1 = new Button("Stopper-Bolzen 1");
         Button bStopperBolzen123 = new Button("Stopper- Bolzen 123");
@@ -286,9 +291,10 @@ public class Addafer {
         bStopperBolzen123.setStyle("-fx-background-color: green");
 
 
-
+//Rollgang1-------------------------------------------------------------------------------------------------------------
         HBox layoutHRollgang1 = new HBox(20);
         Label lRollgang1 = new Label("Rollgang 1");
+        lRollgang1.setFont(fontAnlageGruppe);
         Button bRollen1 = new Button("Rollen 1");
         Button bSchweissNahtErkennung = new Button("Schweissnaht-\n Erkennung");
         Button bPinchRolle12 = new Button("Pinch-Rollen 1 2");
@@ -300,7 +306,7 @@ public class Addafer {
 
         HBox layoutHMessstation = new HBox(20);
         Label lMessstation = new Label("Messstation");
-        lMessstation.setFont(Font.font("Arial", 18));
+        lMessstation.setFont(fontAnlageGruppe);
         //lMessstation.setAlignment(Pos.BASELINE_CENTER);// hmmmmmm ...
         Button bUSSensor = new Button("US-Sensor");
         Button bLaser = new Button("Laserg");
@@ -319,7 +325,7 @@ public class Addafer {
 //Rollgang4----------------------------------------------------------------------------------------------------------------------
         HBox layoutHRollgang4 = new HBox(20);
         Label lRollgang4 = new Label("Rollgang 4");
-        lRollgang4.setFont(Font.font("Arial", 18));
+        lRollgang4.setFont(fontAnlageGruppe);
         //lMessstation.setAlignment(Pos.BASELINE_CENTER);// hmmmmmm ...
         Button bPinchRolle3 = new Button("Pinch-Rolle 3");
         Button bRollen4 = new Button("Rollen 4");
@@ -336,7 +342,7 @@ public class Addafer {
 //WalkingBeam----------------------------------------------------------------------------------------------------------------------
         HBox layoutHWalkingBeam = new HBox(20);
         Label lWalkingBeam = new Label("WalkingBeam");
-        lWalkingBeam.setFont(Font.font("Arial", 18));
+        lWalkingBeam.setFont(fontAnlageGruppe);
         //lMessstation.setAlignment(Pos.BASELINE_CENTER);// hmmmmmm ...
         Button bWalkingBeam = new Button("WalkingBeam");
         Button bDrehGreifer = new Button("Dreh-Greifer");
@@ -382,7 +388,7 @@ public class Addafer {
 
        //boolean[] bgurteAbgesetzt = {false};
 //todo boolean iststoermeldung abgesetzt, dann geht nicht mehr
-        bStoerMeldungAbsetzen.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        bStoerMeldungAbsetzen.setFont(fontAbsetzen);
         bStoerMeldungAbsetzen.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 if(bGurte.isSelected()){
@@ -402,13 +408,15 @@ public class Addafer {
                        // bgurteAbgesetzt[0] = true;
                         bgurteAbgesetzt = true;
                         setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
-                    }else if(Login.getIstChef().equals("istChef")&& bgurteAbgesetzt ==false){//istChef
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }else if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("Admin"))&& bgurteAbgesetzt ==false){//istChef
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
                         System.out.println("es schreibt ein CHEFE");
                         bGurte.setStyle("-fx-background-color: red");
                         bGurte.setDisable(true);
                         bgurteAbgesetzt = true;
                         setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                     }
 
                     lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
@@ -416,6 +424,14 @@ public class Addafer {
                 }else{
                     System.out.println("Gurte sind deselectet bei MeldungabsetztenSchlaufe");
                 }
+
+
+//                if(Login.getIstChef().equals("Admin")){
+//                    lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+//                                                        cardsPane.getChildren().clear();
+//                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
+//                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+//                }
                 //istStoerMeldungButtonGedruecktWorden =true;
                 //this.
                 //ToDo
@@ -439,7 +455,8 @@ public class Addafer {
             bStoerMeldungAufheben.setVisible(false);
         }
         //ToDo setFont Font nur ein String zum einmal ändern!!!
-        bStoerMeldungAufheben.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        //ToDo getZähler funktioniert nicht!!!!!
+        bStoerMeldungAufheben.setFont(fontAbsetzen);
         bStoerMeldungAufheben.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 //istStoerMeldungButtonGedruecktWorden =true;
@@ -448,7 +465,7 @@ public class Addafer {
 
                 if(bGurte.isSelected()){
                     System.out.println("Gurte selectet in Stoermeldung");
-                    if(Login.getIstUnterhalt().equals("istU")){
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                         String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
                                 "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
                                 + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
