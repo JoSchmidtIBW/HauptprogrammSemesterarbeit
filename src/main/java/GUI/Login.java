@@ -320,9 +320,9 @@ public class Login {
         //this.splittWerIstAngemeldet(werIstAngemeldet);
         //werIstAngemeldet
         VBox layoutV1 = new VBox(5);
-        HBox layoutHMANummerL = new HBox(1);
+        HBox layoutHMANummerL = new HBox(2);
         //HBox layoutHBenutzername = new HBox(1);
-        HBox layoutHPasswort = new HBox(1);
+        HBox layoutHPasswort = new HBox(2);
         HBox layoutGoToSprache = new HBox(1);
         HBox layoutHPasswortVergessen = new HBox(20);
 

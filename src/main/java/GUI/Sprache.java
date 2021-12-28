@@ -128,7 +128,7 @@ public class Sprache {
 
 
         //Label lzeigeSprache
-        Button buttonHauptGUI = new Button("Go to HauptGui wenn Sprache gewählt oder standart deutsch");
+        Button buttonHauptGUI = new Button("Weiter");
         buttonHauptGUI.setOnAction(e -> {
             if (comboBox1.getValue() == null) {
                 System.out.println("Sprache ist null");
@@ -159,16 +159,8 @@ public class Sprache {
 //        HBox layoutHAbmeldenTaskLeiste = new HBox(1);
 //        layoutHAbmeldenTaskLeiste.getChildren().addAll(TaskLeistePane.getPane());
 
-        Button bRegistrierenScene= new Button("Go to Registrieren- Scene");
+        Button bRegistrierenScene= new Button("Registrieren");
         //button1.setOnAction(e -> primaryStage.setScene(scene2));
-
-//        if(Login.getIstChef().equals("Admin")) {
-//            bRegistrierenScene.setOnAction(e -> stage.setScene(Registrieren.createRegistrierenScene(stage)));
-//        }
-//        else{
-//            System.out.println("Sie sind kein Admin");
-//        }
-
         bRegistrierenScene.setOnAction(e -> {
             if(Login.getIstChef().equals("Admin")){
                 stage.setScene(Registrieren.createRegistrierenScene(stage));
@@ -177,10 +169,21 @@ public class Sprache {
             }
         });
 
-        HBox layoutHLabelSprachenScenePasswortAendern = new HBox(175);
+        Button bMADeleteScene= new Button("Löschen");
+        //button1.setOnAction(e -> primaryStage.setScene(scene2));
+        bMADeleteScene.setOnAction(e -> {
+            if(Login.getIstChef().equals("Admin")){
+                stage.setScene(MADelete.createMADeleteScene(stage));
+            }else {
+                System.out.println("Sie sind kein Admin");
+            }
+        });
+
+        HBox layoutHLabelSprachenScenePasswortAendern = new HBox(178);
         Button bPasswortAendern = new Button("Passwort \n ändern?");
+        bPasswortAendern.setOnAction(e -> stage.setScene(PasswortChange.createPasswortChangeScene(stage)));
         HBox layoutHAbmeldenPW = new HBox(1);
-        layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene,bZuruekLoginS,bPasswortAendern);
+        layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene,bMADeleteScene,bZuruekLoginS,bPasswortAendern);
         layoutHLabelSprachenScenePasswortAendern.getChildren().addAll(lSpracheScene1,layoutHAbmeldenPW);
 
         layoutV1.getChildren().addAll(layoutHLabelSprachenScenePasswortAendern,layoutHSprachAuswahl,buttonHauptGUI,TaskLeistePane.getPane());//layoutHAbmeldenTaskLeiste

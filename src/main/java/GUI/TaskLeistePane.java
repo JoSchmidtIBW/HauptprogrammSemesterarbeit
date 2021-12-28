@@ -138,7 +138,7 @@ public class TaskLeistePane {
 
 
         HBox hbox = new HBox(5);
-        Label lTaskLeisteAngemeldetT = new javafx.scene.control.Label("Angemeldet: "+Login.getVorName()+" / " +
+        Label lTaskLeisteAngemeldetT = new javafx.scene.control.Label(" Angemeldet:   "+Login.getVorName()+" / " +
                 Login.getNachName());
 
         if(Login.getIstUnterhalt().equals("keinU")){

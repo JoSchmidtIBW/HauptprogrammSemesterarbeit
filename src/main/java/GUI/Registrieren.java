@@ -1,6 +1,5 @@
 package GUI;
 
-import GUI.Login;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -8,8 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -18,35 +15,40 @@ import javafx.stage.Stage;
  */
 public class Registrieren {
 
-    public static String getEingabeNachname() {
-        return eingabeNachname;
+    private static String eingabeMANummerNeu;
+    private static String eingabeVornameNeu;
+    private static String eingabeNachnameNeu;
+    private static String eingabePasswortNeu;
+
+    public static String getEingabeNachnameNeu() {
+        return eingabeNachnameNeu;
     }
 
-    public static void setEingabeNachname(String eingabeNachname) {
-        Registrieren.eingabeNachname = eingabeNachname;
+    public static void setEingabeNachnameNeu(String eingabeNachnameNeu) {
+        Registrieren.eingabeNachnameNeu = eingabeNachnameNeu;
     }
 
-    public static String eingabeNachname;
 
-    private static void setEingabeMANummer(String eingabeMANummer) {
-        Registrieren.eingabeMANummer = eingabeMANummer;
+
+    private static void setEingabeMANummerNeu(String eingabeMANummerNeu) {
+        Registrieren.eingabeMANummerNeu = eingabeMANummerNeu;
     }
 
-    public static String getEingabeMANummer() {
-        return eingabeMANummer;
+    public static String getEingabeMANummerNeu() {
+        return eingabeMANummerNeu;
     }
 
-    private static String eingabeMANummer;
 
-    public static String getEingabeVorname() {
-        return eingabeVorname;
+
+    public static String getEingabeVornameNeu() {
+        return eingabeVornameNeu;
     }
 
-    public static void setEingabeVorname(String eingabeVorname) {
-        Registrieren.eingabeVorname = eingabeVorname;
+    public static void setEingabeVornameNeu(String eingabeVornameNeu) {
+        Registrieren.eingabeVornameNeu = eingabeVornameNeu;
     }
 
-    private static String eingabeVorname;
+
 
     public static String getEingabePasswortGegeben() {
         return eingabePasswortGegeben;
@@ -66,7 +68,7 @@ public class Registrieren {
         Registrieren.eingabePasswortNeu = eingabePasswortNeu;
     }
 
-    private static String eingabePasswortNeu;
+    private static String eingabePasswortNeuWiederholen;
 
     public static String getEingabePasswortNeuWiederholen() {
         return eingabePasswortNeuWiederholen;
@@ -76,141 +78,140 @@ public class Registrieren {
         Registrieren.eingabePasswortNeuWiederholen = eingabePasswortNeuWiederholen;
     }
 
-    private static String eingabePasswortNeuWiederholen;
+
     public static Scene createRegistrierenScene(Stage stage){
 
-        //  HBox hbox = new HBox();
+        Label labelRegistrierenScene= new Label("- Registrieren- Scene - Ein neuer Mitarbeiter wird geboren");
+//MA-NummerNeu----------------------------------------------------------------------------------------------------------
+        Label lMANummerNeu = new Label("Neue MA.-Nummer");
+        TextField txfMANummerNeu = new TextField(eingabeMANummerNeu);
 
-
-        Label labelRegistrierenScene= new Label("- Registrieren- Scene -");
-        //labelRegistrierenScene.setForeground(Color.red);
-        //labelRegistrierenScene.setFont(Font.font("Calibri", Font.font().ITALIC, 16));
-
-        Label lMANummer = new Label("LMANummer");
-        TextField txfMANummer = new TextField(eingabeMANummer);
-        //eingabeMANummer = txfMANummer.getText();
-        Button bMANummer = new Button("MA-Nummer");
-        Label lzeigeMANummer = new Label();
+        Button bMANummerNeu = new Button("MA-NummerNeuOK");
+        Label lzeigeMANummerNeu = new Label();
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+getEingabeMANummer()));
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+txfMANummer.getText()));
-        bMANummer.setOnAction(e -> {
-            lzeigeMANummer.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummer.getText());
-            setEingabeMANummer(txfMANummer.getText());
-            System.out.println(getEingabeMANummer());
+        bMANummerNeu.setOnAction(e -> {
+            lzeigeMANummerNeu.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummerNeu.getText());
+            setEingabeMANummerNeu(txfMANummerNeu.getText());
+            System.out.println(getEingabeMANummerNeu());
         });
-        //bMANummer.setOnAction(e -> System.out.println(getEingabeMANummer()));
-
-        //bMANummer.setOnAction(e -> System.out.println(getEingabeMANummer()));
-//        System.out.println(txfMANummer.getText());
-//        System.out.println(eingabeMANummer);
-       // System.out.println(getEingabeMANummer());
-
-        Label lVorname = new Label("Vorname:");
-        TextField txfVorname = new TextField(eingabeVorname);
-        Button bVornameOK = new Button("VornameOK");
-        Label lZeigeVorname = new Label();
-        bVornameOK.setOnAction(e -> {
-            lZeigeVorname.setText("Darf keine Leertaste und Sonderzeichen!!!"+txfVorname.getText());
-            lZeigeVorname.setTextFill(Color.web("#ff0000", 0.8));
-            setEingabeVorname(txfVorname.getText());
+//VornameNeu------------------------------------------------------------------------------------------------------------
+        Label lVornameNeu = new Label("Neuer Vorname:");
+        TextField txfVornameNeu = new TextField(eingabeVornameNeu);
+        Button bVornameNeuOK = new Button("VornameNeuOK");
+        Label lZeigeVornameNeu = new Label();
+        bVornameNeuOK.setOnAction(e -> {
+            lZeigeVornameNeu.setText("Darf keine Leertaste und Sonderzeichen!!!"+txfVornameNeu.getText());
+            lZeigeVornameNeu.setTextFill(Color.web("#ff0000", 0.8));
+            setEingabeVornameNeu(txfVornameNeu.getText());
         });
+//NachnameNeu-----------------------------------------------------------------------------------------------------------
 
-
-        Label lNachname = new Label("Nachname:");
-        TextField txfNachname = new TextField(eingabeNachname);
-        Button bNachnameOK = new Button("NachnameOK");
-        Label lZeigeNachname = new Label();
-        bNachnameOK.setOnAction(e -> {
-            lZeigeNachname.setText("JUNIT Leertaste und Sonderzeichen!!!"+txfNachname.getText());
-            lZeigeNachname.setTextFill(Color.web("#FFD700", 0.8));//1.8 mal schauen//dann kommt Fehler
-            setEingabeNachname(txfNachname.getText());
+        Label lNachnameNeu = new Label("Neuer Nachname:");
+        TextField txfNachnameNeu = new TextField(eingabeNachnameNeu);
+        Button bNachnameNeuOK = new Button("NachnameNeuOK");
+        Label lZeigeNachnameNeu = new Label();
+        bNachnameNeuOK.setOnAction(e -> {
+            lZeigeNachnameNeu.setText("JUNIT Leertaste und Sonderzeichen!!!"+txfNachnameNeu.getText());
+            lZeigeNachnameNeu.setTextFill(Color.web("#FFD700", 0.8));//1.8 mal schauen//dann kommt Fehler
+            setEingabeNachnameNeu(txfNachnameNeu.getText());
         });
-
-        Label lPassWortGegeben = new Label("PassWortGegeben:");
-        TextField txfPasswortGegeben = new TextField(eingabePasswortGegeben);
-        Button bPasswortGegebenOK = new Button("Passwort \n Gegeben \n OK");
-        Label lZeigePasswortGegeben = new Label();
-        bPasswortGegebenOK.setOnAction(e -> {
-            lZeigePasswortGegeben.setText("JUNIT Leertaste und Sonderzeichen!!!"+txfPasswortGegeben.getText());
-            lZeigePasswortGegeben.setTextFill(Color.web("#7CFC00", 0.8));//1.8 mal schauen//dann kommt Fehler
-            setEingabePasswortGegeben(txfPasswortGegeben.getText());
-        });
-
+//PasswortNeuRegistrieren-----------------------------------------------------------------------------------------------
         Label lPassWortNeu = new Label("Neues Passwort:");
         TextField txfPasswortNeu = new TextField(eingabePasswortNeu);
         Button bPasswortNeuOK = new Button("PasswortNeuOK");
         Label lZeigePasswortNeu = new Label();
         bPasswortNeuOK.setOnAction(e -> {
             lZeigePasswortNeu.setText("JUNIT Leertaste und Sonderzeichen!!!"+txfPasswortNeu.getText());
-            lZeigePasswortNeu.setTextFill(Color.web("#4682B4", 0.8));//1.8 mal schauen//dann kommt Fehler
+            lZeigePasswortNeu.setTextFill(Color.web("#7CFC00", 0.8));//1.8 mal schauen//dann kommt Fehler
             setEingabePasswortNeu(txfPasswortNeu.getText());
         });
+        //lzeigePasswortNeu
+//IstChef----------------------------------------------------------------------------------------------------------------------
+        Label lIstChefNeu = new Label("Chef?:");
+        ComboBox comboBoxChef = new ComboBox();
+        comboBoxChef.getItems().add("istChef");//0
+        comboBoxChef.getItems().add("keinChef");//1
+        Label lZeigeIstChefNeu = new Label("");
+        EventHandler<ActionEvent> event =
+                new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent e) {
+                        lZeigeIstChefNeu.setTextFill(Color.rgb(21, 117, 84));
+                        lZeigeIstChefNeu.setText("You selected \"" + comboBoxChef.getValue());
+                        System.out.println("comboBoxChef?? " + comboBoxChef.getValue());
 
-        Label lPasswortNeuWiederholen = new Label("Neues Passwort wiederholen:");
-        TextField txfPasswortNeuWiederholen = new TextField(eingabePasswortNeuWiederholen);
-        Button bPasswortNeuWiederholenOK = new Button("PW Neu WiederholenOK");
-        Label lZeigePasswortNeuWiederholen = new Label();
-        bPasswortNeuWiederholenOK.setOnAction(e -> {
-            lZeigePasswortNeuWiederholen.setText("JUNIT Muss gleich PWNEU oben Sein!!!!!!"+txfPasswortNeuWiederholen.getText());
-            lZeigePasswortNeuWiederholen.setTextFill(Color.web("#DDA0DD", 0.8));//1.8 mal schauen//dann kommt Fehler
-            setEingabePasswortNeuWiederholen(txfPasswortNeuWiederholen.getText());
-        });
+                        String strComboBoxistChefGewaehlt = (String) comboBoxChef.getValue();
+                        System.out.println("strComboBoxistChefGewaehlt: " + strComboBoxistChefGewaehlt);
 
-        //Todo, PasswortTextField richtig implementieren
-        Label lPassWortInternet = new Label("Password");
-        final Label lMessageInternet = new Label("");
-        final PasswordField pFInternet = new PasswordField();
+                        switch (strComboBoxistChefGewaehlt) {
+                            case "istChef":
+//                                sprachenZahl = 0;
+//                                setSprachenZahl(0);
+                                System.out.println("istChef hier muss was geschehen");
+                                break;
+                            case "keinChef":
+                                //setSprachenZahl(1);
+                                System.out.println("keinChef hier muss was geschehen");
+                                break;
+                        }
+                    }
+                };
+        comboBoxChef.setOnAction(event);
+//IstUnterhalt----------------------------------------------------------------------------------------------------------------
+        Label lIstUnterhaltNeu = new Label("Unterhalt?:");
+        ComboBox comboBoxUnterhalt = new ComboBox();
+        comboBoxUnterhalt.getItems().add("istU");//0
+        comboBoxUnterhalt.getItems().add("keinU");//1
+        Label lZeigeIstUnterhaltNeu = new Label("");
+        EventHandler<ActionEvent> event2 =
+                new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent e) {
+                        lZeigeIstUnterhaltNeu.setTextFill(Color.rgb(21, 117, 84));
+                        lZeigeIstUnterhaltNeu.setText("You selected \"" + comboBoxUnterhalt.getValue());
+                        System.out.println("comboBoxChef?? " + comboBoxUnterhalt.getValue());
 
-        pFInternet.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                if (!pFInternet.getText().equals("T2f$Ay!")) {
-                    lMessageInternet.setText("Your password is incorrect!");
-                    lMessageInternet.setTextFill(Color.rgb(210, 39, 30));
-                } else {
-                    lMessageInternet.setText("Your password has been confirmed");
-                    lMessageInternet.setTextFill(Color.rgb(21, 117, 84));
-                }
-                pFInternet.clear();
-            }
-        });
+                        String strComboBoxistUnterhaltGewaehlt = (String) comboBoxUnterhalt.getValue();
+                        System.out.println("strComboBoxistUnterhaltGewaehlt: " + strComboBoxistUnterhaltGewaehlt);
 
-
-
-
-        //ToDo
-        //Achtung, tippt man bei registrieren alles ein, und geht zurück login, und wieder ins registrieren
-        //sind alle buchstaben noch dort!!!!!!!
-
+                        switch (strComboBoxistUnterhaltGewaehlt) {
+                            case "istU":
+//                                sprachenZahl = 0;
+//                                setSprachenZahl(0);
+                                System.out.println("istU hier muss was geschehen");
+                                break;
+                            case "keinU":
+                                //setSprachenZahl(1);
+                                System.out.println("keinU hier muss was geschehen");
+                                break;
+                        }
+                    }
+                };
+        comboBoxUnterhalt.setOnAction(event2);
+//RegistrierungAbschliessen---------------------------------------------------------------------------------------------
         Button bRegistrierungAbschliessen = new Button("Registrierung \n Abschliessen");
-
+//ZurückSprache---------------------------------------------------------------------------------------------------------
         Button bZurueckSprache= new Button("Go to Sprache - Scene");
-
-
-        bZurueckSprache.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));//primaryStage
+        bZurueckSprache.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
+//LayoutZeugs-----------------------------------------------------------------------------------------------------------
         VBox layoutVR= new VBox(1);
 
-        HBox layoutHMANummer = new HBox(1);
-        HBox layoutHVorname1 = new HBox(1);
-        HBox layoutHNachname1 = new HBox(1);
-        HBox layoutPasswortGegeben = new HBox(1);
+        HBox layoutHMANummerNeu = new HBox(1);
+        HBox layoutHVornameNeu = new HBox(1);
+        HBox layoutHNachnameNeu = new HBox(1);
         HBox layoutPasswortNeu = new HBox(1);
-        HBox layoutPasswortwiderholen = new HBox(1);
-        HBox layoutPasswortInternet = new HBox(1);
+        HBox layoutIstChef = new HBox(1);
+        HBox layoutIstUnterhalt = new HBox(1);
 
-        Label lPWVergessen = new Label("Passwort vergessen?");
 
-        layoutHMANummer.getChildren().addAll(lMANummer,txfMANummer,bMANummer,lzeigeMANummer);
-        layoutHVorname1.getChildren().addAll(lVorname,txfVorname,bVornameOK,lZeigeVorname);
-        layoutHNachname1.getChildren().addAll(lNachname,txfNachname,bNachnameOK,lZeigeNachname);
 
-        layoutPasswortGegeben.getChildren().addAll(lPassWortGegeben,txfPasswortGegeben,bPasswortGegebenOK,lZeigePasswortGegeben);
+        layoutHMANummerNeu.getChildren().addAll(lMANummerNeu,txfMANummerNeu,bMANummerNeu,lzeigeMANummerNeu);
+        layoutHVornameNeu.getChildren().addAll(lVornameNeu,txfVornameNeu,bVornameNeuOK,lZeigeVornameNeu);
+        layoutHNachnameNeu.getChildren().addAll(lNachnameNeu,txfNachnameNeu,bNachnameNeuOK,lZeigeNachnameNeu);
         layoutPasswortNeu.getChildren().addAll(lPassWortNeu,txfPasswortNeu,bPasswortNeuOK,lZeigePasswortNeu);
-        layoutPasswortwiderholen.getChildren().addAll(lPasswortNeuWiederholen,txfPasswortNeuWiederholen,bPasswortNeuWiederholenOK,lZeigePasswortNeuWiederholen);
+        layoutIstChef.getChildren().addAll(lIstChefNeu,comboBoxChef,lZeigeIstChefNeu);
+        layoutIstUnterhalt.getChildren().addAll(lIstUnterhaltNeu,comboBoxUnterhalt,lZeigeIstUnterhaltNeu);
 
-        layoutPasswortInternet.getChildren().addAll(lPassWortInternet,pFInternet,lMessageInternet);
-
-        layoutVR.getChildren().addAll(labelRegistrierenScene,layoutHMANummer, layoutHVorname1,layoutHNachname1,
-                layoutPasswortGegeben,layoutPasswortNeu,layoutPasswortwiderholen,layoutPasswortInternet,bRegistrierungAbschliessen,bZurueckSprache,lPWVergessen);
+        layoutVR.getChildren().addAll(labelRegistrierenScene,layoutHMANummerNeu, layoutHVornameNeu,layoutHNachnameNeu,layoutPasswortNeu,layoutIstChef,layoutIstUnterhalt,bRegistrierungAbschliessen,bZurueckSprache,TaskLeistePane.getPane());
 
         //Scene sceneRegistrieren = new Scene(layoutVR);
         Scene sceneRegistrieren = new Scene(new ScrollPane(layoutVR),700,400);//hat scrollpane drin
