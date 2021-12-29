@@ -280,7 +280,7 @@ public class Registrieren {
 //                || !getEingabeIstChef().equals(null)||!getEingabeIstUnterhalt().equals(null) )){
                 if((getEingabeMANummerNeu()== null||getEingabeVornameNeu()==null||getEingabeNachnameNeu()==null
                 ||getEingabePasswortNeu()==null||getEingabeIstChef()==null||getEingabeIstUnterhalt()==null)
-                || (getEingabeMANummerNeu().length()==0)){
+                || (getEingabeMANummerNeu().length()==0||getEingabeIstChef().length()==0||getEingabeIstUnterhalt().length()==0)){
                     //ToDo was wenn nicht alles ausgefüllt??
 
                     //ToDo hey prog. wenn user schon gibt, denn mach fehlermeldig bitte
@@ -300,7 +300,8 @@ public class Registrieren {
                     lZeigeRegistrierungAbschliessen.setText(einfuegRegistrierenDb);
                     lZeigeRegistrierungAbschliessen.setTextFill(Color.YELLOWGREEN);
                     setEingabeMANummerNeu("");
-
+                    setEingabeIstChef("");
+                    setEingabeIstUnterhalt("");
                 }
 
             }
