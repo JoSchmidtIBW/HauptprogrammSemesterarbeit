@@ -65,8 +65,9 @@ public class HauptGUIScene {
         bAnleitung.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
-                cardsPane.getChildren().add(card2Anleitung);
-                cardsPane.getChildren().add(new GroupStack2(cardsPane).macheGroup2());
+                //cardsPane.getChildren().add(card2Anleitung);
+                //cardsPane.getChildren().add(new GroupStack2(cardsPane).macheGroup2());
+                cardsPane.getChildren().add(new Anleitung(cardsPane).macheAnleitung());
             }
         });
 
@@ -106,16 +107,16 @@ public class HauptGUIScene {
 }
 
 
-class GroupStack2{
-    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
-
-    public GroupStack2(Pane cardsPane){
-        this.cardsPane=cardsPane;
-    }
-
-    public Group macheGroup2(){
-        final Group card2 = new Group(new Text(25, 25, "Card 2"));
-        return card2;
-    }
-
-}
+//class GroupStack2{
+//    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
+//
+//    public GroupStack2(Pane cardsPane){
+//        this.cardsPane=cardsPane;
+//    }
+//
+//    public Group macheGroup2(){
+//        final Group card2 = new Group(new Text(25, 25, "Card 2"));
+//        return card2;
+//    }
+//
+//}
