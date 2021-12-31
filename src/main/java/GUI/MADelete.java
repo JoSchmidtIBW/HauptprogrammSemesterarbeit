@@ -102,7 +102,7 @@ public class MADelete {
                 else{
                     String schreibeMADeleteInDB = "DELETE FROM userMubea WHERE MA_Nummer = '"+ getEingabeMANummerDelete()+"';";
                     dBD.schreibeDB(schreibeMADeleteInDB);
-                    lZeigeMADelete.setText("Der User wurde erfolgreich gelöscht\nID geseht ez halt komisch us, aber mir egal");
+                    lZeigeMADelete.setText("Der User wurde erfolgreich gelöscht\nID_User von userMubea(Table) geseht ez halt komisch us, aber mir egal");
                     lZeigeMADelete.setTextFill(Color.GREEN);
                 }
                 setEingabeMANummerDelete("");

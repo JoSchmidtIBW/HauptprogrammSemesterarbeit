@@ -79,6 +79,7 @@ public class HauptGUIScene {
         bZuruekLogin.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 Login.setIsFoundInDbAndPasswortCorrect(false);
+                Login.isFoundInDB=false;
                 stage.setScene(Login.createLoginScene(stage));
             }
         });

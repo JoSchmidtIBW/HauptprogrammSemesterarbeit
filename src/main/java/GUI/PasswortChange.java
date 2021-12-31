@@ -1,5 +1,6 @@
 package GUI;
 
+import DatenBank.DatenBank;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -15,10 +16,56 @@ import javafx.stage.Stage;
  */
 public class PasswortChange {
 
+    private static String ausgabeSuchePasswortAltMitPasswortFrageDB;
+
+    public static Boolean getAltesPasswortCorrect() {
+        return altesPasswortCorrect;
+    }
+
+    public static void setAltesPasswortCorrect(Boolean altesPasswortCorrect) {
+        PasswortChange.altesPasswortCorrect = altesPasswortCorrect;
+    }
+
+    private static Boolean altesPasswortCorrect = false;
+
+    public static String getEingabePasswortNeu() {
+        return eingabePasswortNeu;
+    }
+
+    public static void setEingabePasswortNeu(String eingabePasswortNeu) {
+        PasswortChange.eingabePasswortNeu = eingabePasswortNeu;
+    }
+
+    public static String getEingabePasswortNeuWiederholen() {
+        return eingabePasswortNeuWiederholen;
+    }
+
+    public static void setEingabePasswortNeuWiederholen(String eingabePasswortNeuWiederholen) {
+        PasswortChange.eingabePasswortNeuWiederholen = eingabePasswortNeuWiederholen;
+    }
+
+    private static String eingabePasswortNeu="";
+    private static String eingabePasswortNeuWiederholen ="";
+
+    public static void setAusgabeSuchePasswortAltMitPasswortFrageDB(String ausgabeSuchePasswortAltMitPasswortFrageDB) {
+        PasswortChange.ausgabeSuchePasswortAltMitPasswortFrageDB = ausgabeSuchePasswortAltMitPasswortFrageDB;
+    }
+    public static String getAusgabeSuchePasswortAltMitPasswortFrageDB() {
+        return ausgabeSuchePasswortAltMitPasswortFrageDB;
+    }
+
+
     public static Scene createPasswortChangeScene(Stage stage) {
+
+        DatenBank dBP = new DatenBank();
+
+
         Label lPasswortChangeScene = new Label("- Bin die Passwort-Change- Scene -");
 
-
+        final Label lzeigePasswortNeu = new Label();
+        final Label lzeigePasswortNeuWiederholen = new Label();
+        final PasswordField pFIPasswortNeu = new PasswordField();
+        final PasswordField pFIPasswortNeuWiederholen = new PasswordField();
 
 //AltesPasswort---------------------------------------------------------------------------------------------------------
         Label lPassWortALtI = new Label("Altes Passwort");
@@ -26,83 +73,159 @@ public class PasswortChange {
 
         Button bPasswortAltOK = new Button("PasswortAltOK");
         final Label lzeigePasswortAlt = new Label("");
-
+//das braucht es, weil sonst kann ja irgendjemand beim "eingelogten" User sein Passwort ändern!
         bPasswortAltOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                String eingabePasswortAltFrage = pFIPasswortAlt.getText();
+                String ausgabeSuchePasswortAltMitPasswort = "SELECT * FROM userMubea WHERE Passwort_User = '"+eingabePasswortAltFrage+"'";
+                setAusgabeSuchePasswortAltMitPasswortFrageDB(dBP.ausgebenGesamtDBRetourString(ausgabeSuchePasswortAltMitPasswort));
+                System.out.println("dBP getAusgabeSuchePasswortAltMitPasswortFrageDB: " + getAusgabeSuchePasswortAltMitPasswortFrageDB());
+                System.out.println("sdsv "+Login.getPasswort_User());
+                if(eingabePasswortAltFrage.length()==0){
+                    lzeigePasswortAlt.setTextFill(Color.RED);
+                    lzeigePasswortAlt.setText("Sie müssen Ihr Passwort erst eingeben!");
+                    setAltesPasswortCorrect(false);
+                    pFIPasswortNeu.clear();
+                    pFIPasswortNeuWiederholen.clear();
+                    setEingabePasswortNeu("");
+                    setEingabePasswortNeuWiederholen("");
+                    lzeigePasswortNeu.setText("");
+                    lzeigePasswortNeuWiederholen.setText("");
 
-//                System.out.println("bin drin");
-//                if(isFoundInDB==false){//txfMANummerL leer??
-//                    //System.out.println("bin noch mehr drin");
-//                    lzeigePasswortL.setText("Your password is incorrect! \n FIRST WRITE MA_NUMMER!!!!!");
-//                    lzeigePasswortL.setTextFill(Color.rgb(210, 39, 30));
-//                }else {
-//                    //System.out.println("bin schon hier");
-//                    lzeigePasswortL.setText("Your password is incorrect! aber noch nicht eingegeben");
-////                    String eingabeMaNummerUndPasswortDB = "SELECT * FROM userMubea WHERE MA_Nummer = '" + txfMANummerL.getText() + "' AND Passwort_User = '" + pFInternetL.getText() + "'";
-////                    String ausgabeDbMaNummerUndPasswort = dbL1.ausgebenGesamtDBRetourString(eingabeMaNummerUndPasswortDB);
-////                    System.out.println("jeeehaaa: " + ausgabeDbMaNummerUndPasswort);
-//                }
-//
-//                //überprüfung allenfals, ob beide Spalten doppelt sind oder falsch sind, aber braucht es nicht
-//                String eingabeMaNummerUndPasswortDB = "SELECT * FROM userMubea WHERE MA_Nummer = '" + txfMANummerL.getText() + "' AND Passwort_User = '" + pFInternetL.getText() + "'";
-//                String ausgabeDbMaNummerUndPasswort = dbL1.ausgebenGesamtDBRetourString(eingabeMaNummerUndPasswortDB);
-//                System.out.println("Überprüfung passwort und Ma-Nummer in DB: " + ausgabeDbMaNummerUndPasswort);
-//
-//                System.out.println("getPasswortUser: "+getPasswort_User());
-//
-//                //Entweder splitten nochmals und vergleichen
-//                //oder nur ausgeben eineSpalte, retour String
-//
-//                // } else
-//                if( (pFInternetL.getText().equals(getPasswort_User())) && isFoundInDB==true){//(!pFInternetL.getText().equals(null)) ) {
-//                    setIsFoundInDbAndPasswortCorrect(true);
-//                    lzeigePasswortL.setText("Your password has been confirmed");
-//                    lzeigePasswortL.setTextFill(Color.rgb(21, 117, 84));
-//                }
-//                else if (!pFInternetL.getText().equals(getPasswort_User()) || !pFInternetL.getText().equals(null)) {
-//                    setIsFoundInDbAndPasswortCorrect(false);//isFoundInDbAndPasswortCorrect
-//                    lzeigePasswortL.setText("Your password is incorrect! \n oder es ist weder Passwort noch Manummer eingegeben worden");
-//                    lzeigePasswortL.setTextFill(Color.rgb(210, 39, 30));
-//                }
-//                //}
-//                pFIPasswortAlt.clear();
+                }
+                else{
+                    if(eingabePasswortAltFrage.equals(Login.getPasswort_User())){
+                        lzeigePasswortAlt.setTextFill(Color.GREEN);
+                        lzeigePasswortAlt.setText("Passwort richtig");
+                        setAltesPasswortCorrect(true);
+                    }
+                    else{
+                        lzeigePasswortAlt.setTextFill(Color.RED);
+                        lzeigePasswortAlt.setText("Ihr eingegebenes Passwort ist falsch!");
+                        setAltesPasswortCorrect(false);
+                        pFIPasswortNeu.clear();
+                        pFIPasswortNeuWiederholen.clear();
+                        setEingabePasswortNeu("");
+                        setEingabePasswortNeuWiederholen("");
+                        lzeigePasswortNeu.setText("");
+                        lzeigePasswortNeuWiederholen.setText("");
+
+                    }
+
+                }
+                pFIPasswortAlt.clear();
             }
         });
 //NeuesPasswort---------------------------------------------------------------------------------------------------------
         Label lPassWortNeuI = new Label("Neues Passwort");
-        final PasswordField pFIPasswortNeu = new PasswordField();
+
 
         Button bPasswortNeuOK = new Button("PasswortNeuOK");
-        final Label lzeigePasswortNeu = new Label("");
+
 
         bPasswortNeuOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                setEingabePasswortNeu(pFIPasswortNeu.getText());
 
-//                pFIPasswortNeu.clear();
+                if(getAltesPasswortCorrect()==false){
+                    lzeigePasswortNeu.setTextFill(Color.RED);
+                    lzeigePasswortNeu.setText("Sie müssen erst Ihr altes Passwort eingeben!");
+                }
+                else{
+                    if(getEingabePasswortNeu().length()==0&&getAltesPasswortCorrect()==true){
+                        lzeigePasswortNeu.setTextFill(Color.RED);
+                        lzeigePasswortNeu.setText("Sie müssen ein neues Passwort eingeben!");
+                    }
+                    else{
+                        lzeigePasswortNeu.setTextFill(Color.GREEN);
+                        lzeigePasswortNeu.setText("Ihr eingegebenes Passwort lautet: "+getEingabePasswortNeu());
+                    }
+                }
+                //pFIPasswortNeu.clear();
             }
         });
 //NeuesPasswortWiederholen---------------------------------------------------------------------------------------------------------
         Label lPassWortNeuWiederholenI = new Label("Neues Passwort wiederholen");
-        final PasswordField pFIPasswortNeuWiederholen = new PasswordField();
+
 
         Button bPasswortNeuWiederholenOK = new Button("PasswortNeuWiederholenOK");
-        final Label lzeigePasswortNeuWiederholen = new Label("");
+
 
         bPasswortNeuWiederholenOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                setEingabePasswortNeuWiederholen(pFIPasswortNeuWiederholen.getText());
 
+                if(getAltesPasswortCorrect()==false){
+                    lzeigePasswortNeuWiederholen.setTextFill(Color.RED);
+                    lzeigePasswortNeuWiederholen.setText("Sie müssen erst Ihr altes Passwort eingeben!");
+                }
+                else{
+                    if(getEingabePasswortNeu().length()==0&&getAltesPasswortCorrect()==true){
+                        lzeigePasswortNeuWiederholen.setTextFill(Color.RED);
+                        lzeigePasswortNeuWiederholen.setText("Sie müssen erst ein neues Passwort eingeben!");
+                    }
+                    else {
+                        if (getEingabePasswortNeuWiederholen().length() == 0) {
+                            lzeigePasswortNeuWiederholen.setTextFill(Color.RED);
+                            lzeigePasswortNeuWiederholen.setText("Sie müssen ihr neues Passwort wiederholt eingeben.");
+                        }
+                        else{
+                            if(getEingabePasswortNeuWiederholen().equals(getEingabePasswortNeu())&&getAltesPasswortCorrect()==true){
+                                lzeigePasswortNeuWiederholen.setTextFill(Color.GREEN);
+                                lzeigePasswortNeuWiederholen.setText("Sie haben bis jetzt alles richtig gemacht: "+getEingabePasswortNeuWiederholen());
+                            }
+                            else{
+                                lzeigePasswortNeuWiederholen.setTextFill(Color.RED);
+                                lzeigePasswortNeuWiederholen.setText("Passwort stzimmt nicht mit dem neuen Passwort überrein! "+getEingabePasswortNeuWiederholen());
+                            }
+                        }
+                    }
+                }
 //                pFIPasswortNeuWiederholen.clear();
             }
         });
 //IhrPasswortWurdeGeändert---------------------------------------------------------------------------------------------------------
         Label lPassWortAendern = new Label("Passwort ändern?");
         Button bPasswortAendernOK = new Button("PasswortAendernOK");
-        final Label lzeigePasswortAendern = new Label("");
+        final Label lzeigePasswortAendern = new Label();
 
         bPasswortAendernOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                if (getAltesPasswortCorrect() == false) {
+                    lzeigePasswortAendern.setTextFill(Color.RED);
+                    lzeigePasswortAendern.setText("Erst müssen Sie Ihr altes Passwort eingeben!");
+                }
+                else{
+                    if(getEingabePasswortNeu().length()==0 || getEingabePasswortNeuWiederholen().length()==0){
+                        lzeigePasswortAendern.setTextFill(Color.RED);
+                        lzeigePasswortAendern.setText("Sie müssen Ihr neues Passwort Richtig und Vollständig eingeben!");
+                    }
+                    else{
+                        if(getEingabePasswortNeuWiederholen().equals(getEingabePasswortNeu())){
+                            lzeigePasswortAendern.setTextFill(Color.GREEN);
+                            lzeigePasswortAendern.setText("Ihr Passwort wurde geändert");
+                            String strNeuesPasswortFuerDB = getEingabePasswortNeuWiederholen();
+                            String schreibeNeuesPasswortInDB = "UPDATE userMubea SET Passwort_User = '"
+                                    + strNeuesPasswortFuerDB + "' WHERE Passwort_User = '" + Login.getPasswort_User() +"';";
 
-//                pFIPasswortNeuWiederholen.clear();
+                            dBP.schreibeDB(schreibeNeuesPasswortInDB);
+                            setAltesPasswortCorrect(false);
+                            Login.setPasswort_User(strNeuesPasswortFuerDB);
+                            pFIPasswortNeu.clear();
+                            pFIPasswortNeuWiederholen.clear();
+                            setEingabePasswortNeu("");
+                            setEingabePasswortNeuWiederholen("");
+                            lzeigePasswortNeu.setText("");
+                            lzeigePasswortNeuWiederholen.setText("");
+                            lzeigePasswortAlt.setText("");
+                        }
+                        else{
+                            lzeigePasswortAendern.setTextFill(Color.RED);
+                            lzeigePasswortAendern.setText("Sie müssen Ihr neues Passwort Richtig und Vollständig eingeben!");
+                        }
+                    }
+                }
+
             }
         });
 //Zurück----------------------------------------------------------------------------------------------------------------
