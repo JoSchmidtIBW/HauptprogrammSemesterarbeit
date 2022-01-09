@@ -189,6 +189,9 @@ public class Login {
         //eingabeMANummer = txfMANummer.getText();
         Button bMANummerL = new Button("MA-Nummer OK");
         Label lzeigeMANummerL = new Label();
+        final PasswordField pFInternetL = new PasswordField();
+        final Label lzeigePasswortL = new Label("");
+        Label lZeigeIsFoundInDBL = new Label();
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+getEingabeMANummer()));
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+txfMANummer.getText()));
         bMANummerL.setOnAction(e -> {
@@ -200,9 +203,15 @@ public class Login {
                     if (ueberpruefungEingabeMANummerLogin(eingabeMANummerL).equals("leer")) {
                         lzeigeMANummerL.setTextFill(Color.RED);
                         lzeigeMANummerL.setText("Es muss eine Mitarbeiter- Nummer eingegeben werden!");
+                        pFInternetL.clear();
+                        lzeigePasswortL.setText("");
+                        lZeigeIsFoundInDBL.setText("");
                     } else if (ueberpruefungEingabeMANummerLogin(eingabeMANummerL).equals("Enthält keine Zahl")) {
                         lzeigeMANummerL.setTextFill(Color.DARKRED);
                         lzeigeMANummerL.setText("Falsche Eingabe \nDie Mitarbeiter- Nummer besteht nur aus Zahlen!");
+                        pFInternetL.clear();
+                        lzeigePasswortL.setText("");
+                        lZeigeIsFoundInDBL.setText("");
                     } else if (ueberpruefungEingabeMANummerLogin(eingabeMANummerL).equals("ist richtig")) {
                         //lzeigeMANummerL.setTextFill(Color.GREEN);
                     //}
@@ -220,6 +229,7 @@ public class Login {
                         lzeigeMANummerL.setText("Falsche Mitarbeiter- Nummer --> " + txfMANummerL.getText() + "\nSie sind kein Mitarbeiter!");
                         lzeigeMANummerL.setTextFill(Color.web("#ff0000", 0.8));
                         isFoundInDB = false;
+                        lZeigeIsFoundInDBL.setText("");
                     } else {
                         lzeigeMANummerL.setText("Sie wurden in der Datenbank gefunden :) --> " + txfMANummerL.getText());
                         lzeigeMANummerL.setTextFill(Color.rgb(21, 117, 84));
@@ -239,10 +249,10 @@ public class Login {
 
         Label lPassWortInternetL = new Label("Passwort");
 
-        final PasswordField pFInternetL = new PasswordField();
+
 
         Button bLoginPasswortOK = new Button("LoginPasswortOK");
-        final Label lzeigePasswortL = new Label("");
+
 
         bLoginPasswortOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -255,6 +265,7 @@ public class Login {
                 }else {
                     //System.out.println("bin schon hier");
                     lzeigePasswortL.setText("Your password is incorrect! aber noch nicht eingegeben");
+                    lZeigeIsFoundInDBL.setText("");
 //                    String eingabeMaNummerUndPasswortDB = "SELECT * FROM userMubea WHERE MA_Nummer = '" + txfMANummerL.getText() + "' AND Passwort_User = '" + pFInternetL.getText() + "'";
 //                    String ausgabeDbMaNummerUndPasswort = dbL1.ausgebenGesamtDBRetourString(eingabeMaNummerUndPasswortDB);
 //                    System.out.println("jeeehaaa: " + ausgabeDbMaNummerUndPasswort);
@@ -280,6 +291,7 @@ public class Login {
                             setIsFoundInDbAndPasswortCorrect(false);//isFoundInDbAndPasswortCorrect
                             lzeigePasswortL.setText("Your password is incorrect! \n oder es ist weder Passwort noch Manummer eingegeben worden");
                             lzeigePasswortL.setTextFill(Color.rgb(210, 39, 30));
+
                     }
                 //}
                 pFInternetL.clear();
@@ -306,7 +318,7 @@ public class Login {
 //        });
         //   scene.setOnMouseClicked(e -> changeScene(scene2));
         System.out.println("isFoundInDB"+isFoundInDB );
-        Label lZeigeIsFoundInDBL = new Label();
+
         bAnmeldenSpracheScene.setOnAction(e -> {
             if(isFoundInDbAndPasswortCorrect== true){
                 splittWerIstAngemeldet(werIstAngemeldet);
@@ -318,6 +330,11 @@ public class Login {
                 lZeigeIsFoundInDBL.setText("Sie müssen sich erst Anmelden!");
                 //lzeigeMANummerL.setTextFill(Color.web("#ff0000", 0.8));
                 System.out.println("isFoundDB ist false!!!!");
+                            //Fehlermeldungen und Eingaben unsichtbar-machen
+                            txfMANummerL.clear();
+                            lzeigeMANummerL.setText("");
+                            lzeigePasswortL.setText("");
+                            pFInternetL.clear();
             }
         });
 
