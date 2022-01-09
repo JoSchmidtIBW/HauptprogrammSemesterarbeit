@@ -6,18 +6,16 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -186,8 +184,23 @@ public class TaskLeistePane {
 
        // hbox.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,main_clock_lb,lLogo,lDatum,lZwischenDatumUhrzeit,lUhrzeit);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
         //Pane pane = new Pane(lt,lt2);//funktioniert
+        //hbox.setAlignment(Pos.BOTTOM_RIGHT);
+       // hbox.setSpacing(10);
+
+        //hbox.setFillHeight(true);
+        //lLogo.setAlignment(Pos.BOTTOM_RIGHT);
+       // hbox.setAlignment(Pos.TOP_RIGHT);
+//        BorderPane bp = new BorderPane();
+//        bp.setLeft(lTaskLeisteAngemeldetT);
+//        bp.setCenter(lDatum);
+//        bp.setCenter(lUhrzeit);
+//        bp.setRight(lLogo);
+//        AnchorPane ap = new AnchorPane();
+//        AnchorPane.setLeftAnchor(lTaskLeisteAngemeldetT, 0.0);
+//        AnchorPane.setRightAnchor(lLogo,0.0);
         hbox.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,lDatum,lZwischenDatumUhrzeit,lUhrzeit,lLogo);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
         //Pane pane = new Pane(lt,lt2);//funktioniert
+       // Pane pane = new Pane(hbox);
         Pane pane = new Pane(hbox);
         //pane.getChildren().add(lt);
 

@@ -181,10 +181,42 @@ public class Sprache {
         });
 
         HBox layoutHLabelSprachenScenePasswortAendern = new HBox(178);
-        Button bPasswortAendern = new Button("Passwort \n ändern?");
+        Button bPasswortAendern = new Button("Passwort \nändern?");
         bPasswortAendern.setOnAction(e -> stage.setScene(PasswortChange.createPasswortChangeScene(stage)));
+//------------------test xml-------------------------------------------------------------------------------------------
+        Button bPasswortFinder = new Button("Passwort \nfinden");
+
+        if(!Login.getIstUnterhalt().equals("Admin")){
+            bPasswortFinder.setStyle("-fx-background-color: transparent");
+            bPasswortFinder.setStyle("-fx-text-fill: transparent");
+            bPasswortFinder.setDisable(true);
+            bPasswortFinder.setVisible(false);
+        }
+
+
+        try {
+            bPasswortFinder.setOnAction(e -> {
+                //if(Login.getIstChef().equals("Admin")){
+                    try {
+                        stage.setScene(PasswortFinderXML.createPasswortFinderScene(stage));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+//                }
+//                else {
+//                    System.out.println("Sie sind kein Admin");
+//                }
+            });
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            System.out.println("Etwas mit XML ging schief...");
+            ex.printStackTrace();
+        }
+//----------------------------------------------------------------------------------------------------------------------
+
         HBox layoutHAbmeldenPW = new HBox(1);
-        layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene,bMADeleteScene,bZuruekLoginS,bPasswortAendern);
+        layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene,bMADeleteScene,bZuruekLoginS,bPasswortFinder,bPasswortAendern);
         layoutHLabelSprachenScenePasswortAendern.getChildren().addAll(lSpracheScene1,layoutHAbmeldenPW);
 
         layoutV1.getChildren().addAll(layoutHLabelSprachenScenePasswortAendern,layoutHSprachAuswahl,buttonHauptGUI,TaskLeistePane.getPane());//layoutHAbmeldenTaskLeiste
