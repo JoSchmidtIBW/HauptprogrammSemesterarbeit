@@ -24,6 +24,7 @@ public class Login {
     //Scene scene1, scene2;//muss noch angeschaut werden
     static boolean isFoundInDB = false;
 
+    public  static  String eingabeMANummerL = "";
 
     public static boolean isIsFoundInDbAndPasswortCorrect() {
         return isFoundInDbAndPasswortCorrect;
@@ -192,27 +193,42 @@ public class Login {
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+txfMANummer.getText()));
         bMANummerL.setOnAction(e -> {
 
-            String lMANummer = txfMANummerL.getText();
-            String ausgabeGesamtString22 = "SELECT * FROM userMubea WHERE MA_Nummer = '"+lMANummer+"'";
-            setAusgabeSucheMANummerMitNameDB(dbL1.ausgebenGesamtDBRetourString(ausgabeGesamtString22));
-            System.out.println("DBL1 ausgabeSucheMANummerMitNameDB: " + getAusgabeSucheMANummerMitNameDB());
-            werIstAngemeldet = getAusgabeSucheMANummerMitNameDB();
-            setWerIstAngemeldet(werIstAngemeldet);
-            System.out.println("werIstAngemeldet "+getWerIstAngemeldet());
-          splittWerIstAngemeldet(werIstAngemeldet);
-            System.out.println("oooooooohhhh  soo geil du  Static  --> "+ getPasswort_User());
-            //setWerIstAngemeldet(getAusgabeSucheMANummerMitNameDB());
-            if(ausgabeSucheMANummerMitNameDB.equals("")){
-                lzeigeMANummerL.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummerL.getText()+"Sie sind kein Mitarbeiter!");
-                lzeigeMANummerL.setTextFill(Color.web("#ff0000", 0.8));
-                isFoundInDB=false;
-            }else{
-                lzeigeMANummerL.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummerL.getText()+"Sie wurden in der Datenbank gefunden");
-                lzeigeMANummerL.setTextFill(Color.rgb(21, 117, 84));
-                isFoundInDB=true;//??? atomic was???
-            }
+                    eingabeMANummerL = txfMANummerL.getText();
+                    //ueberpruefungEingabeMANummerLogin(eingabeMANummerL);
+                    lzeigeMANummerL.setText(ueberpruefungEingabeMANummerLogin(eingabeMANummerL));
+//**********************************-------------------------------------//////////////////*****************************
+                    if (ueberpruefungEingabeMANummerLogin(eingabeMANummerL).equals("leer")) {
+                        lzeigeMANummerL.setTextFill(Color.RED);
+                        lzeigeMANummerL.setText("Es muss eine Mitarbeiter- Nummer eingegeben werden!");
+                    } else if (ueberpruefungEingabeMANummerLogin(eingabeMANummerL).equals("Enthält keine Zahl")) {
+                        lzeigeMANummerL.setTextFill(Color.DARKRED);
+                        lzeigeMANummerL.setText("Falsche Eingabe \nDie Mitarbeiter- Nummer besteht nur aus Zahlen!");
+                    } else if (ueberpruefungEingabeMANummerLogin(eingabeMANummerL).equals("ist richtig")) {
+                        //lzeigeMANummerL.setTextFill(Color.GREEN);
+                    //}
 
-            // lzeigeMANummerL.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummerL.getText());
+                    String ausgabeGesamtString22 = "SELECT * FROM userMubea WHERE MA_Nummer = '" + eingabeMANummerL + "'";
+                    setAusgabeSucheMANummerMitNameDB(dbL1.ausgebenGesamtDBRetourString(ausgabeGesamtString22));
+                    System.out.println("DBL1 ausgabeSucheMANummerMitNameDB: " + getAusgabeSucheMANummerMitNameDB());
+                    werIstAngemeldet = getAusgabeSucheMANummerMitNameDB();
+                    setWerIstAngemeldet(werIstAngemeldet);
+                    System.out.println("werIstAngemeldet " + getWerIstAngemeldet());
+                    splittWerIstAngemeldet(werIstAngemeldet);
+                    System.out.println("oooooooohhhh  soo geil du  Static  --> " + getPasswort_User());
+                    //setWerIstAngemeldet(getAusgabeSucheMANummerMitNameDB());
+                    if (ausgabeSucheMANummerMitNameDB.equals("")) {
+                        lzeigeMANummerL.setText("Falsche Mitarbeiter- Nummer --> " + txfMANummerL.getText() + "\nSie sind kein Mitarbeiter!");
+                        lzeigeMANummerL.setTextFill(Color.web("#ff0000", 0.8));
+                        isFoundInDB = false;
+                    } else {
+                        lzeigeMANummerL.setText("Sie wurden in der Datenbank gefunden :) --> " + txfMANummerL.getText());
+                        lzeigeMANummerL.setTextFill(Color.rgb(21, 117, 84));
+                        isFoundInDB = true;//??? atomic was???
+                    }
+
+
+                    }
+//             lzeigeMANummerL.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummerL.getText());
 //            setEingabeMANummerL(txfMANummerL.getText());
 //            System.out.println(getEingabeMANummerL());
         });
@@ -349,6 +365,25 @@ public class Login {
     public static void setAusgabeSucheMANummerMitNameDB(String ausgabeSucheMANummerMitNameDB) {
         Login.ausgabeSucheMANummerMitNameDB = ausgabeSucheMANummerMitNameDB;
     }
+
+    public static String ueberpruefungEingabeMANummerLogin(String eingabeMANummerL){
+
+        if(eingabeMANummerL.length()==0){
+            return "leer";
+        }
+        else{
+//            if (text.matches("[0-9]+") && text.length() > 2) {
+            if (!eingabeMANummerL.matches("[0-9]+")){
+                return "Enthält keine Zahl";
+            }
+//            else{
+//                return "Nummer viel zu lang";
+//            }
+        }
+
+        return "ist richtig";
+    }
+
 }
 
 

@@ -37,7 +37,7 @@ public class PasswortFinderXML {
 
         //FXMLLoader fxmlLoader = new FXMLLoader(PasswortFinderXML.class.getResource("passwortFinderXML.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(PasswortFinderXML.class.getClassLoader().getResource("passwortFinderXML.fxml"));
-        Scene scenePasswortFinder = new Scene(fxmlLoader.load(), 320, 240);                      // /
+        Scene scenePasswortFinder = new Scene(new ScrollPane(fxmlLoader.load()), 320, 240);                      // /
 
 
         return scenePasswortFinder;
