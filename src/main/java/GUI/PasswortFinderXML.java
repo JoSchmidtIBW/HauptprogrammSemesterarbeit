@@ -1,5 +1,6 @@
 package GUI;
 
+import DatenBank.DatenBank;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
  */
 public class PasswortFinderXML {
    // private Stage stage;
+    DatenBank dBPF = new DatenBank();
 
     public static Scene createPasswortFinderScene(Stage stage) throws Exception {
        // FXMLLoader fxmlLoader = new FXMLLoader(PasswortFinderXML.class.getResource("passwortFinderXML.fxml"));
@@ -37,7 +39,7 @@ public class PasswortFinderXML {
 
         //FXMLLoader fxmlLoader = new FXMLLoader(PasswortFinderXML.class.getResource("passwortFinderXML.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(PasswortFinderXML.class.getClassLoader().getResource("passwortFinderXML.fxml"));
-        Scene scenePasswortFinder = new Scene(new ScrollPane(fxmlLoader.load()), 320, 240);                      // /
+        Scene scenePasswortFinder = new Scene(new ScrollPane(fxmlLoader.load()), 300, 330);                      // /
 
 
         return scenePasswortFinder;
@@ -48,26 +50,48 @@ public class PasswortFinderXML {
 
     @FXML private Text actiontargetPasswortAusgeben;
     @FXML protected void handlePWSucheButtonAction(ActionEvent event) {
-//        String lMANummer = txfMANummerL.getText();
-//        String ausgabeGesamtString22 = "SELECT * FROM userMubea WHERE MA_Nummer = '"+lMANummer+"'";
-//        setAusgabeSucheMANummerMitNameDB(dbL1.ausgebenGesamtDBRetourString(ausgabeGesamtString22));
-//        System.out.println("DBL1 ausgabeSucheMANummerMitNameDB: " + getAusgabeSucheMANummerMitNameDB());
-//        werIstAngemeldet = getAusgabeSucheMANummerMitNameDB();
-//        setWerIstAngemeldet(werIstAngemeldet);
-//        System.out.println("werIstAngemeldet "+getWerIstAngemeldet());
-//        splittWerIstAngemeldet(werIstAngemeldet);
-//        System.out.println("oooooooohhhh  soo geil du  Static  --> "+ getPasswort_User());
-//        //setWerIstAngemeldet(getAusgabeSucheMANummerMitNameDB());
-//        if(ausgabeSucheMANummerMitNameDB.equals("")){
-//            lzeigeMANummerL.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummerL.getText()+"Sie sind kein Mitarbeiter!");
-//            lzeigeMANummerL.setTextFill(Color.web("#ff0000", 0.8));
-//            isFoundInDB=false;
-//        }else{
-//            lzeigeMANummerL.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummerL.getText()+"Sie wurden in der Datenbank gefunden");
-//            lzeigeMANummerL.setTextFill(Color.rgb(21, 117, 84));
-//            isFoundInDB=true;//??? atomic was???
-//        }
-        actiontargetPasswortAusgeben.setText("MA-Nummer ist: "+passwordField.getText());
+        String eingabePasswortPF = passwordField.getText();
+
+        actiontargetPasswortAusgeben.setText(Login.ueberpruefungEingabeMANummerLogin(eingabePasswortPF));
+//**********************************-------------------------------------//////////////////*****************************
+        if (Login.ueberpruefungEingabeMANummerLogin(eingabePasswortPF).equals("leer")) {
+           // actiontargetPasswortAusgeben.setTextFill(Color.RED);
+            actiontargetPasswortAusgeben.setText("Es muss eine Mitarbeiter- Nummer \neingegeben werden!");
+        } else if (Login.ueberpruefungEingabeMANummerLogin(eingabePasswortPF).equals("Enthält keine Zahl")) {
+            //actiontargetPasswortAusgeben.setTextFill(Color.DARKRED);
+            actiontargetPasswortAusgeben.setText("Falsche Eingabe \nDie Mitarbeiter- Nummer \nbesteht nur aus Zahlen!");
+        } else if (Login.ueberpruefungEingabeMANummerLogin(eingabePasswortPF).equals("ist richtig")) {
+            actiontargetPasswortAusgeben.setText("Richtig\nPasswort könnte\ngesucht werden,\nAdmin-PW aber nicht!");
+           // actiontargetPasswortAusgeben.setLinkTextColor(Color.GREEN);
+
+
+            //actiontargetPasswortAusgeben..setText(Color.RED);//.setTextColor(Color.parseColor("#FFFFFF"));//.setTextFill(Color.GREEN);
+            //getResources().getString(R.string.hello_worldRed)
+            //}
+
+//            String ausgabeGesamtString22 = "SELECT * FROM userMubea WHERE MA_Nummer = '" + eingabeMANummerL + "'";
+//            setAusgabeSucheMANummerMitNameDB(dbL1.ausgebenGesamtDBRetourString(ausgabeGesamtString22));
+//            System.out.println("DBL1 ausgabeSucheMANummerMitNameDB: " + getAusgabeSucheMANummerMitNameDB());
+//            werIstAngemeldet = getAusgabeSucheMANummerMitNameDB();
+//            setWerIstAngemeldet(werIstAngemeldet);
+//            System.out.println("werIstAngemeldet " + getWerIstAngemeldet());
+//            splittWerIstAngemeldet(werIstAngemeldet);
+//            System.out.println("oooooooohhhh  soo geil du  Static  --> " + getPasswort_User());
+//            //setWerIstAngemeldet(getAusgabeSucheMANummerMitNameDB());
+//            if (ausgabeSucheMANummerMitNameDB.equals("")) {
+//                lzeigeMANummerL.setText("Falsche Mitarbeiter- Nummer --> " + txfMANummerL.getText() + "\nSie sind kein Mitarbeiter!");
+//                lzeigeMANummerL.setTextFill(Color.web("#ff0000", 0.8));
+//                isFoundInDB = false;
+//                lZeigeIsFoundInDBL.setText("");
+//            } else {
+//                lzeigeMANummerL.setText("Sie wurden in der Datenbank gefunden :) --> " + txfMANummerL.getText());
+//                lzeigeMANummerL.setTextFill(Color.rgb(21, 117, 84));
+//                isFoundInDB = true;//??? atomic was???
+//            }
+
+
+        }
+        //actiontargetPasswortAusgeben.setText("MA-Nummer ist: "+passwordField.getText());
     }
 
 //    @FXML protected void handleZurueckButtonAction(ActionEvent event, Stage stage) {
