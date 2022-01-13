@@ -17,7 +17,7 @@ public class INDER {
     }
 
     public Group macheInder(){
-        final Group cardInder = new Group(new Text(25, 25, "Inder"));
+        final Group cardInder = new Group(new Text(25, 25, "Inder - Wurde noch nicht implementiert"));
         return cardInder;
     }
 }

@@ -17,7 +17,7 @@ public class ASMAG {
     }
 
     public Group macheAsmag(){
-        final Group cardAsmag = new Group(new Text(25, 25, "ASMAG a"));
+        final Group cardAsmag = new Group(new Text(25, 25, "ASMAG - Wurde noch nicht implementiert"));
         return cardAsmag;
     }
 }

@@ -4,12 +4,16 @@ package GUI;
 import DatenBank.DatenBank;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.stage.Stage;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -178,13 +182,15 @@ public class Login {
         DatenBank dbL1 = new DatenBank();
         //AtomicBoolean isFoundInDB = new AtomicBoolean(false);
 
-        Label lLoginScene1= new Label("- Bin die Login-Scene - WellCome -");
+        Font fontTitle = Font.font("Verdana", FontPosture.ITALIC, 20);
+        Label lLoginScene1= new Label("- Welcome - Login -");
+        lLoginScene1.setFont(fontTitle);
 
 //        Label lLoginBenutzername = new Label("Benutzername");
 //        TextField txfLoginBenutzername = new TextField();
 //        Button bLoginBenutzerNameOK = new Button("LoginBenutzerNameOK");
 
-        Label lMANummerL = new Label("MA-Nummer");
+        Label lMANummerL = new Label("MA-Nummer:");
         TextField txfMANummerL = new TextField();
         //eingabeMANummer = txfMANummer.getText();
         Button bMANummerL = new Button("MA-Nummer OK");
@@ -192,6 +198,7 @@ public class Login {
         final PasswordField pFInternetL = new PasswordField();
         final Label lzeigePasswortL = new Label("");
         Label lZeigeIsFoundInDBL = new Label();
+        Label lZeigePasswortVergessen = new Label();
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+getEingabeMANummer()));
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+txfMANummer.getText()));
         bMANummerL.setOnAction(e -> {
@@ -202,16 +209,18 @@ public class Login {
 //**********************************-------------------------------------//////////////////*****************************
                     if (ueberpruefungEingabeMANummerLogin(eingabeMANummerL).equals("leer")) {
                         lzeigeMANummerL.setTextFill(Color.RED);
-                        lzeigeMANummerL.setText("Es muss eine Mitarbeiter- Nummer eingegeben werden!");
+                        lzeigeMANummerL.setText("Es muss eine Mitarbeiter- Nummer \neingegeben werden!");
                         pFInternetL.clear();
                         lzeigePasswortL.setText("");
                         lZeigeIsFoundInDBL.setText("");
+                        lZeigePasswortVergessen.setText("");
                     } else if (ueberpruefungEingabeMANummerLogin(eingabeMANummerL).equals("Enthält keine Zahl")) {
                         lzeigeMANummerL.setTextFill(Color.DARKRED);
-                        lzeigeMANummerL.setText("Falsche Eingabe \nDie Mitarbeiter- Nummer besteht nur aus Zahlen!");
+                        lzeigeMANummerL.setText("Falsche Eingabe \nDie Mitarbeiter- Nummer \nbesteht nur aus Zahlen!");
                         pFInternetL.clear();
                         lzeigePasswortL.setText("");
                         lZeigeIsFoundInDBL.setText("");
+                        lZeigePasswortVergessen.setText("");
                     } else if (ueberpruefungEingabeMANummerLogin(eingabeMANummerL).equals("ist richtig")) {
                         //lzeigeMANummerL.setTextFill(Color.GREEN);
                     //}
@@ -230,8 +239,9 @@ public class Login {
                         lzeigeMANummerL.setTextFill(Color.web("#ff0000", 0.8));
                         isFoundInDB = false;
                         lZeigeIsFoundInDBL.setText("");
+                        lZeigePasswortVergessen.setText("");
                     } else {
-                        lzeigeMANummerL.setText("Sie wurden in der Datenbank gefunden :) --> " + txfMANummerL.getText());
+                        lzeigeMANummerL.setText("Sie wurden in der Datenbank gefunden :)\n--> " + txfMANummerL.getText());
                         lzeigeMANummerL.setTextFill(Color.rgb(21, 117, 84));
                         isFoundInDB = true;//??? atomic was???
                     }
@@ -247,29 +257,31 @@ public class Login {
 //        TextField txfLoginPasswort = new TextField();
 //        Button bLoginPasswortOK = new Button("LoginPasswortOK");
 
-        Label lPassWortInternetL = new Label("Passwort");
+        Label lPassWortInternetL = new Label("Passwort:       ");
 
 
 
         Button bLoginPasswortOK = new Button("LoginPasswortOK");
 
-
         bLoginPasswortOK.setOnAction(new EventHandler<ActionEvent>() {
+        //pFInternetL.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
 
                 System.out.println("bin drin");
                 if(isFoundInDB==false){//txfMANummerL leer??
                     //System.out.println("bin noch mehr drin");
-                    lzeigePasswortL.setText("Your password is incorrect! \n FIRST WRITE MA_NUMMER!!!!!");
+                    lzeigePasswortL.setText("Your password is incorrect! \nFIRST WRITE MA_NUMMER!!!!!");
                     lzeigePasswortL.setTextFill(Color.rgb(210, 39, 30));
+                    lZeigePasswortVergessen.setText("");
                 }else {
                     //System.out.println("bin schon hier");
-                    lzeigePasswortL.setText("Your password is incorrect! aber noch nicht eingegeben");
-                    lZeigeIsFoundInDBL.setText("");
-//                    String eingabeMaNummerUndPasswortDB = "SELECT * FROM userMubea WHERE MA_Nummer = '" + txfMANummerL.getText() + "' AND Passwort_User = '" + pFInternetL.getText() + "'";
-//                    String ausgabeDbMaNummerUndPasswort = dbL1.ausgebenGesamtDBRetourString(eingabeMaNummerUndPasswortDB);
-//                    System.out.println("jeeehaaa: " + ausgabeDbMaNummerUndPasswort);
-                }
+//                    lzeigePasswortL.setText("Your password is incorrect! \naber noch nicht eingegeben");
+//                    lZeigeIsFoundInDBL.setText("");
+//                    lZeigePasswortVergessen.setText("");
+////                    String eingabeMaNummerUndPasswortDB = "SELECT * FROM userMubea WHERE MA_Nummer = '" + txfMANummerL.getText() + "' AND Passwort_User = '" + pFInternetL.getText() + "'";
+////                    String ausgabeDbMaNummerUndPasswort = dbL1.ausgebenGesamtDBRetourString(eingabeMaNummerUndPasswortDB);
+////                    System.out.println("jeeehaaa: " + ausgabeDbMaNummerUndPasswort);
+//                }
 
                 //überprüfung allenfals, ob beide Spalten doppelt sind oder falsch sind, aber braucht es nicht
                 String eingabeMaNummerUndPasswortDB = "SELECT * FROM userMubea WHERE MA_Nummer = '" + txfMANummerL.getText() + "' AND Passwort_User = '" + pFInternetL.getText() + "'";
@@ -286,14 +298,17 @@ public class Login {
                         setIsFoundInDbAndPasswortCorrect(true);
                         lzeigePasswortL.setText("Your password has been confirmed");
                         lzeigePasswortL.setTextFill(Color.rgb(21, 117, 84));
+                        lZeigePasswortVergessen.setText("");
+
                     }
                     else if (!pFInternetL.getText().equals(getPasswort_User()) || !pFInternetL.getText().equals(null)) {
                             setIsFoundInDbAndPasswortCorrect(false);//isFoundInDbAndPasswortCorrect
-                            lzeigePasswortL.setText("Your password is incorrect! \n oder es ist weder Passwort noch Manummer eingegeben worden");
+                            lzeigePasswortL.setText("Your password is incorrect!");
                             lzeigePasswortL.setTextFill(Color.rgb(210, 39, 30));
+                        lZeigePasswortVergessen.setText("");
 
                     }
-                //}
+                }
                 pFInternetL.clear();
             }
         });
@@ -322,8 +337,6 @@ public class Login {
         bAnmeldenSpracheScene.setOnAction(e -> {
             if(isFoundInDbAndPasswortCorrect== true){
                 splittWerIstAngemeldet(werIstAngemeldet);
-               // System.out.println("hallllooo biitteee "+getiD_User() + " Dankeschööööönn endliiii du static biatch");
-                System.out.println("bin drin Hello Kitty");
                 stage.setScene(Sprache.createSpracheScene(stage));
             }else {//if(isFoundInDB==false)
                 lZeigeIsFoundInDBL.setTextFill(Color.web("#ff0000", 0.8));
@@ -335,40 +348,57 @@ public class Login {
                             lzeigeMANummerL.setText("");
                             lzeigePasswortL.setText("");
                             pFInternetL.clear();
+                            lZeigePasswortVergessen.setText("");
             }
         });
 
 
 
         Button bPasswortVergessen = new Button("Passwort Vergessen");
-        Label lPasswortVergessen = new Label();
+
         bPasswortVergessen.setOnAction(e -> {
-            lPasswortVergessen.setText("--> Tel. 9272 <--");
-            lPasswortVergessen.setTextFill(Color.DARKRED);
-            lPasswortVergessen.setFont(Font.font("Verdana", BOLD, 16));
+            lZeigePasswortVergessen.setText("--> Tel. 9272 <--");
+            lZeigePasswortVergessen.setTextFill(Color.DARKRED);
+            lZeigePasswortVergessen.setFont(Font.font("Verdana", BOLD, 16));
         });
 
 //    splittWerIstAngemeldet(werIstAngemeldet);
+
 //        System.out.println("hallllooo bii "+getiD_User());
         //this.splittWerIstAngemeldet(werIstAngemeldet);
         //werIstAngemeldet
-        VBox layoutV1 = new VBox(5);
-        HBox layoutHMANummerL = new HBox(2);
+
+
+        GridPane gridP = new GridPane();
+        gridP.setAlignment(Pos.CENTER);
+        gridP.setHgap(10);
+        gridP.setVgap(10);
+        //gridP.setGridLinesVisible(true);
+        gridP.setPadding(new Insets(25, 25, 25, 25));
+
+        VBox layoutVTitle = new VBox(30);
+        VBox layoutV1 = new VBox(7);
+        HBox layoutHMANummerL = new HBox(3);
         //HBox layoutHBenutzername = new HBox(1);
-        HBox layoutHPasswort = new HBox(2);
+        HBox layoutHPasswort = new HBox(3);
         HBox layoutGoToSprache = new HBox(1);
         HBox layoutHPasswortVergessen = new HBox(20);
+
 
         layoutHMANummerL.getChildren().addAll(lMANummerL,txfMANummerL,bMANummerL,lzeigeMANummerL);
         //layoutHBenutzername.getChildren().addAll(lLoginBenutzername,txfLoginBenutzername,bLoginBenutzerNameOK);//muss addAll sein
         layoutHPasswort.getChildren().addAll(lPassWortInternetL,pFInternetL,bLoginPasswortOK,lzeigePasswortL);
         layoutGoToSprache.getChildren().addAll(bAnmeldenSpracheScene,lZeigeIsFoundInDBL);
-        layoutHPasswortVergessen.getChildren().addAll(bPasswortVergessen,lPasswortVergessen);
+        layoutHPasswortVergessen.getChildren().addAll(bPasswortVergessen,lZeigePasswortVergessen);
 
-        layoutV1.getChildren().addAll(lLoginScene1,layoutHMANummerL,layoutHPasswort,layoutGoToSprache, layoutHPasswortVergessen);
+        layoutVTitle.getChildren().addAll(lLoginScene1,layoutV1);
+        layoutV1.getChildren().addAll(layoutHMANummerL,layoutHPasswort,layoutGoToSprache, layoutHPasswortVergessen);
 
+        VBox layoutVHaupt = new VBox(30);
+        layoutVHaupt.getChildren().addAll(layoutVTitle);
+        gridP.add(layoutVHaupt,1,2);
         //Scene sceneLogin = new Scene(layoutV1);//scene braucht ein Layout
-        Scene sceneLogin = new Scene(new ScrollPane(layoutV1),700,250);//scene braucht ein Layout, hat scrollpane drin
+        Scene sceneLogin = new Scene(new ScrollPane(gridP),600,300);//scene braucht ein Layout, hat scrollpane drin
         //Scene scene = new Scene(root, 800, 400, Color.BEIGE);
         //scene1 = new Scene(layoutV1, 800, 400);
         //scene1.setFill(Color.YELLOWGREEN);

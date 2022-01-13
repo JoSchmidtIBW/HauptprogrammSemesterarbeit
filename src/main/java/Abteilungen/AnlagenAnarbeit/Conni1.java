@@ -17,7 +17,7 @@ public class Conni1 {
     }
 
     public Group macheConni1(){
-        final Group cardConni1 = new Group(new Text(25, 25, "Conni1 blabvlabla"));
+        final Group cardConni1 = new Group(new Text(25, 25, "Conni1 - Wurde noch nicht implementiert"));
         return cardConni1;
     }
 }

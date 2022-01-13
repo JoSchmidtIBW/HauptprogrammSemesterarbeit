@@ -17,7 +17,7 @@ public class Rattunde4 {
     }
 
     public Group macheRattunde4(){
-        final Group cardRattunde4 = new Group(new Text(25, 25, "Rattunde 4 blabvlabla"));
+        final Group cardRattunde4 = new Group(new Text(25, 25, "Rattunde 4 - Wurde noch nicht implementiert"));
         return cardRattunde4;
     }
 }

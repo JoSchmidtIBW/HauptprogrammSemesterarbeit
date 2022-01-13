@@ -27,6 +27,7 @@ public class Addafer {
     Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
 
     public int zaehlerBundladerGurte = 0;
+    public int zaehlerBundladerLichtSchranke1 = 0;
 
     Font fontAbsetzen = Font.font("Verdana", FontPosture.ITALIC, 20);
     Font fontAnlageGruppe = Font.font("Arial", 18);
@@ -62,6 +63,14 @@ public class Addafer {
         this.zaehlerBundladerGurte = zaehlerBundladerGurte;
     }
 
+    public int getZaehlerBundladerLichtSchranke1() {
+        return zaehlerBundladerLichtSchranke1;
+    }
+
+    public void setZaehlerBundladerLichtSchranke1(int zaehlerBundladerLichtSchranke1) {
+        this.zaehlerBundladerLichtSchranke1 = zaehlerBundladerLichtSchranke1;
+    }
+
 
     DatenBank dBA = new DatenBank();
 
@@ -70,6 +79,7 @@ public class Addafer {
     static Boolean rotdb = false;
 
     static Boolean bgurteAbgesetzt = false;
+    static Boolean bLichtSchranke1Abgesetzt = false;
 
     public static Boolean getRotdb() {
         return rotdb;
@@ -84,26 +94,22 @@ public class Addafer {
     }
 
     public Group macheAddafer(){
-        final Group cardAddafer = new Group(new Text(25, 25, "Addafer blabvlabla"));
+        final Group cardAddafer = new Group();//new Text(25, 25, "Addafer blabvlabla")
 
-        VBox layoutV = new VBox(20);
+        VBox layoutV = new VBox(25);
+        Label lTitleAddafer = new Label("Rat.1/Addafer");
+        lTitleAddafer.setFont(Font.font("Verdana", FontPosture.ITALIC, 30));
 
 //Bundlader-------------------------------------------------------------------------------------------------------------
         HBox layoutHBundlader = new HBox(20);
-
-
-      //  String[] arrStrButton = new String[100];
-
-
-
 
         Label lBundlader = new Label("Bundlader");
         lBundlader.setFont(fontAnlageGruppe);
 
         //Todo, booleanWert von DB kommt, dann button rot oder grün
         //Todo wenn grün, bei klick gelb, bei absetzen rot, und nicht mehr veränderbar
-
-
+        //System.out.println("in Addafer getsprachenZahl" + Sprache.getSprachenZahl());
+        //Label lZeigeGurteWerUHRDatumA = new Label();
 
 
         //   0          1            2                  3             4
@@ -111,13 +117,8 @@ public class Addafer {
         String[] sprachGurte =
                 {"Gurte", "cinghie","траке", "rripat", "kayışlar"};
 
-        System.out.println("in Addafer getsprachenZahl" + Sprache.getSprachenZahl());
-
-        Label lZeigeGurteWerUHRDatumA = new Label();
-
         ToggleButton bGurte = new ToggleButton(sprachGurte[Sprache.getSprachenZahl()]);//"Gurte"
-        //Button bGurte = new Button("Gurte");
-        if(rotdb==false) {
+        if(bgurteAbgesetzt==false) {//rotdb
             bGurte.setStyle("-fx-background-color: green");//blue
         }else{
             if(Login.getIstUnterhalt().equals("keinU")){
@@ -125,31 +126,21 @@ public class Addafer {
             }
             bGurte.setStyle("-fx-background-color: red");//pink
         }
-        //bGurte.setStyle("-fx-background-color: #ff0000; ");
+
         bGurte.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
-                //ToDo ev normaler button und heraus finden, ob es isSelected gibt
-
-
-
-
-
-                if(rotdb==false){//grün
-                    System.out.println("bin erster");
+                if(bgurteAbgesetzt==false){//grün//rotdb
                     if(bGurte.isSelected()){
                         System.out.println("ist selectet erste");
                         if(Login.getIstUnterhalt().equals("istU")){
                             bGurte.setStyle("-fx-background-color: green");//pink
                             System.out.println("Bin Unterhalt pink: ");
-                            //arrStrButton[0] = "";
                         }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
                             bGurte.setStyle("-fx-background-color: yellow");
                             System.out.println("Bin kein Unterhalt gelb: ");
-                            //arrStrButton[0] = "Gurte";
                         }
-                    }else {//if(bGurte.isDisabled())
+                    }else {
                         System.out.println("Sollte jetzt deselectet sein");
-
                         if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             System.out.println("Bin Unterhalt rot: ");
                             bGurte.setStyle("-fx-background-color: green");//red
@@ -159,22 +150,18 @@ public class Addafer {
                             bGurte.setStyle("-fx-background-color: green");
                         }
                     }
-                }else {//if(bGurte.isDisabled()){//true
-                    System.out.println("bin in zweite also irgendwo bin ich drin");
+                }else {
                     if(bGurte.isSelected()){
                         System.out.println("ist selectet erste");
                         if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             bGurte.setStyle("-fx-background-color: pink");//pink
                             System.out.println("Bin Unterhalt pink: ");
-                            //arrStrButton[0] = "";
                         }else if(Login.getIstUnterhalt().equals("keinU")){
                             bGurte.setStyle("-fx-background-color: yellow");
                             System.out.println("Bin kein Unterhalt gelb: ");
-                            //arrStrButton[0] = "Gurte";
                         }
-                    }else {//if(bGurte.isDisabled())
+                    }else {
                         System.out.println("Sollte jetzt deselectet sein");
-
                         if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             System.out.println("Bin Unterhalt rot: ");
                             bGurte.setStyle("-fx-background-color: red");//red
@@ -184,92 +171,88 @@ public class Addafer {
                             bGurte.setStyle("-fx-background-color: green");
                         }
                     }
-
                 }
+            }
+        });
 
 
-                // if(istStoerMeldungButtonGedruecktWorden=false){
-                //  bGurte.setStyle("-fx-background-color: yellow");
-                // }else{
-//                    bGurte.setStyle("-fx-background-color: red");
-//                }
-
-//                if(bGurte.isSelected() && rotdb==false) {
-//                    System.out.println("is selected");
-//                    bGurte.setStyle("-fx-background-color: yellow");
-//                }
-//                if(bGurte.isSelected() && rotdb==true) {
-//                    System.out.println("is selected");
-//                    bGurte.setStyle("-fx-background-color: white");
-//                }
-
-//                else {
-//                    System.out.println("is deselected");
-//                    bGurte.setStyle("-fx-background-color: green");
-//                }
-//                if(bGurte.isSelected() && rotdb==true) {
-//                    System.out.println("is selected");
-//                    bGurte.setStyle("-fx-background-color: white");
-//                }
 
 
-//                else  if(bGurte.isDisabled()&&rotdb==false){
-//                    System.out.println("is deselected");
-//                    bGurte.setStyle("-fx-background-color: orange");
-//                }
-                //bGurte.setStyle("-fx-background-color: orange");
-//                else{
-//                    bGurte.setStyle("-fx-background-color: orange");
-//                }
-//                else  if(bGurte.isDisabled()&&rotdb==true){
-//                    System.out.println("is deselected");
-//                    bGurte.setStyle("-fx-background-color: orange");
-//                }
-
-//                if(bGurte.isSelected() && rotdb==false) {
-//                    System.out.println("is selected");
-//                    bGurte.setStyle("-fx-background-color: yellow");
-//                }
-//                else if(bGurte.isDisabled() && rotdb==false) {
-//                    System.out.println("is deselected");
-//                    bGurte.setStyle("-fx-background-color: green");
-//                }
-
-//            }else if(bGurte.isSelected() && rotdb==true) {
-//                System.out.println("is deselected");
-//                bGurte.setStyle("-fx-background-color: red");
+//        Button bHalteZeitAn = new Button("Zeit anhalten");
+//        Label lZeigeZeitHaltA = new Label();
+//
+//        bHalteZeitAn.setOnAction(new EventHandler<ActionEvent>() {
+//            public void handle(ActionEvent t) {
+//                lZeigeZeitHaltA.setText(TaskLeistePane.getDatumStr() + "\n"+TaskLeistePane.getUhrzeitStr());
 //            }
-//                else if(bGurte.isSelected() && rotdb==true){
-//                    System.out.println("is deselected");
-//                    bGurte.setStyle("-fx-background-color: red");
-//                }else if(bGurte.isDisabled() && rotdb==false){
-//                    System.out.println("is deselected");
-//                bGurte.setStyle("-fx-background-color: darkred");
-//                }
+//        });
 
-//                if(rotdb==false) {
-//                    bGurte.setStyle("-fx-background-color: yellow");
-//                }else{
-//                    bGurte.setStyle("-fx-background-color: darkred");
-//                }
+
+        //Button bLichtSchranke1 = new Button("Lichtschranke 1");
+        //bLichtSchranke1.setStyle("-fx-background-color: green");
+        //   0          1            2                  3             4
+        //Deutsch, Italienisch,SerboKroatisch,albanischmazedonisch,Türkisch
+        String[] sprachLichtSchranke1 =
+                {"LichtSchranke 1", "cinghie","траке", "rripat", "kayışlar"};
+
+        ToggleButton bLichtSchranke1 = new ToggleButton(sprachLichtSchranke1[Sprache.getSprachenZahl()]);//"Gurte"
+        if(bLichtSchranke1Abgesetzt==false) {
+            bLichtSchranke1.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bLichtSchranke1.setDisable(true);
             }
-        });
+            bLichtSchranke1.setStyle("-fx-background-color: red");//pink
+        }
 
-
-
-
-        Button bHalteZeitAn = new Button("Zeit anhalten");
-        Label lZeigeZeitHaltA = new Label();
-
-        bHalteZeitAn.setOnAction(new EventHandler<ActionEvent>() {
+        bLichtSchranke1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
-                lZeigeZeitHaltA.setText(TaskLeistePane.getDatumStr() + "\n"+TaskLeistePane.getUhrzeitStr());
+                if(bLichtSchranke1Abgesetzt==false){//grün//rotdb
+                    if(bLichtSchranke1.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bLichtSchranke1.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bLichtSchranke1.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bLichtSchranke1.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bLichtSchranke1.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bLichtSchranke1.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bLichtSchranke1.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bLichtSchranke1.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bLichtSchranke1.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bLichtSchranke1.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
             }
         });
 
-
-        Button bLichtSchranke1 = new Button("Lichtschranke 1");
-        bLichtSchranke1.setStyle("-fx-background-color: green");
 
         Button bAnschlag = new Button("Anschlag");
         bAnschlag.setStyle("-fx-background-color: green");
@@ -384,63 +367,58 @@ public class Addafer {
             bStoerMeldungAbsetzen.setVisible(false);
         }
 
-        Label lZeigeStoerMeldung = new Label();
+        //Label lZeigeStoerMeldung = new Label();
 
        //boolean[] bgurteAbgesetzt = {false};
 //todo boolean iststoermeldung abgesetzt, dann geht nicht mehr
         bStoerMeldungAbsetzen.setFont(fontAbsetzen);
         bStoerMeldungAbsetzen.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
+
                 if(bGurte.isSelected()){
-                    lZeigeStoerMeldung.setText("Gurte sind aktiviert");
-                    System.out.println("Zähler vor set: "+getZaehlerBundladerGurte());
-                    //setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
-
-
-
-                    System.out.println("Zähler nach set: "+getZaehlerBundladerGurte());
-                    if(Login.getIstChef().equals("keinChef")&& bgurteAbgesetzt ==false){//ACHTUNG - WENN IstCHEF, dann schreibt er nicht, sollte vielleicht aber
-                        System.out.println("Zähler in schreibe: "+getZaehlerBundladerGurte());
+                    //lZeigeStoerMeldung.setText("Gurte sind aktiviert");
+                        if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bgurteAbgesetzt ==false){//istChef
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
-                        System.out.println("Es schreibt ein Bediener");
-                        bGurte.setStyle("-fx-background-color: red");
-                        bGurte.setDisable(true);
-                       // bgurteAbgesetzt[0] = true;
-                        bgurteAbgesetzt = true;
-                        setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
-                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
-                    }else if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("Admin"))&& bgurteAbgesetzt ==false){//istChef
-                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
-                        System.out.println("es schreibt ein CHEFE");
                         bGurte.setStyle("-fx-background-color: red");
                         bGurte.setDisable(true);
                         bgurteAbgesetzt = true;
                         setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+                            setRotdb(true);
                         //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                     }
-
-                    lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
-
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
                     System.out.println("Gurte sind deselectet bei MeldungabsetztenSchlaufe");
                 }
 
 
-//                if(Login.getIstChef().equals("Admin")){
-//                    lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
-//                                                        cardsPane.getChildren().clear();
-//                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
-//                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
-//                }
-                //istStoerMeldungButtonGedruecktWorden =true;
-                //this.
+
+                if(bLichtSchranke1.isSelected()){
+                    //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLichtSchranke1Abgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'LichtSchranke1')");
+                        bLichtSchranke1.setStyle("-fx-background-color: red");
+                        bLichtSchranke1.setDisable(true);
+                        bLichtSchranke1Abgesetzt = true;
+                        setZaehlerBundladerLichtSchranke1(zaehlerBundladerLichtSchranke1 +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("LichtSchranke1 deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+
+
+
+
+
+
                 //ToDo
                 //hier kommt eine ifschleife rein, damit button sofern gelb geklickt, rot wird,
                 //darf sich nicht mehr verändern, muss wie gesperrt sein
-                setRotdb(true);//=true;
-
-                //bGurte.setStyle("-fx-background-color: red");//darkred
-                //bGurte.setDefaultButton(true);//ist es das vielleicht????????
+                //=true;
             }
         });
 
@@ -459,9 +437,6 @@ public class Addafer {
         bStoerMeldungAufheben.setFont(fontAbsetzen);
         bStoerMeldungAufheben.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
-                //istStoerMeldungButtonGedruecktWorden =true;
-                //this.
-                System.out.println("getZähler ind Aufheben "+getZaehlerBundladerGurte());
 
                 if(bGurte.isSelected()){
                     System.out.println("Gurte selectet in Stoermeldung");
@@ -471,19 +446,10 @@ public class Addafer {
                                 + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
                                 + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Bundlader' AND Stoerung = 'Gurte';";
                         dBA.schreibeDB(einfuegIstUnterhaltDb);
-                        // String strClose = "UPDATE StoerungMubea SET STOG = 'close' WHERE ";
-                        //dBA.schreibeDB(strClose);
                         bGurte.setStyle("-fx-background-color: green");
                         bGurte.setDisable(false);
                         setRotdb(false);
                         bgurteAbgesetzt = false;
-                        lZeigeGurteWerUHRDatumA.setText("");
-//                        System.out.println("hat was in DB geschrieben");
-//
-//                        cardsPane.getChildren().clear();
-//                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
-
-                        // System.out.println("Lade Seite Addafer jetzt neu");
                     }
                     else{
                         bGurte.setStyle("-fx-background-color: red");
@@ -493,6 +459,32 @@ public class Addafer {
                 else{
                     System.out.println("Gurte deselectet in Störmeldung");
                 }
+
+
+
+                if(bLichtSchranke1.isSelected()){
+                    System.out.println("LichtSchranke1 selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Bundlader' AND Stoerung = 'LichtSchranke1';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bLichtSchranke1.setStyle("-fx-background-color: green");
+                        bLichtSchranke1.setDisable(false);
+                        setRotdb(false);
+                        bLichtSchranke1Abgesetzt = false;
+                    }
+                    else{
+                        bLichtSchranke1.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("LichtSchranke1 deselectet in Störmeldung");
+                }
+
+
 
 
 //                                    cardsPane.getChildren().clear();
@@ -542,13 +534,14 @@ public class Addafer {
 //            }
 //        });
 //LayoutZeugs----------------------------------------------------------------------------------------------------------------------
-        layoutHBundlader.getChildren().addAll(lBundlader,bGurte,lZeigeGurteWerUHRDatumA, bHalteZeitAn, lZeigeZeitHaltA,bLichtSchranke1,bAnschlag,bSchutzZaun);
+        //layoutHBundlader.getChildren().addAll(lBundlader,bGurte,lZeigeGurteWerUHRDatumA, bHalteZeitAn, lZeigeZeitHaltA,bLichtSchranke1,bAnschlag,bSchutzZaun);
+        layoutHBundlader.getChildren().addAll(lBundlader,bGurte,bLichtSchranke1,bAnschlag,bSchutzZaun);
         layoutHVereinzelung.getChildren().addAll(lVereinzelung,bRollenSchraeg,bStopperBolzen1,bStopperBolzen123);
         layoutHRollgang1.getChildren().addAll(lRollgang1,bRollen1,bSchweissNahtErkennung,bPinchRolle12);
         layoutHMessstation.getChildren().addAll(lMessstation,bUSSensor,bLaser,bEinstellRollen,bLichtSchrankeM,bPumpeRueckFuehr,bSchutzTuereM);
         layoutHRollgang4.getChildren().addAll(lRollgang4,bPinchRolle3,bRollen4,bRohrAuswerfer,bSchrottGurte,bLichtSchranke2);
         layoutHWalkingBeam.getChildren().addAll(lWalkingBeam,bWalkingBeam,bDrehGreifer,bRadRat1);
-        layoutV.getChildren().addAll(layoutHBundlader,layoutHVereinzelung,layoutHRollgang1,layoutHMessstation,layoutHRollgang4,layoutHWalkingBeam,bZurueckRat1,bStoerMeldungAbsetzen,bStoerMeldungAufheben);
+        layoutV.getChildren().addAll(lTitleAddafer,layoutHBundlader,layoutHVereinzelung,layoutHRollgang1,layoutHMessstation,layoutHRollgang4,layoutHWalkingBeam,bZurueckRat1,bStoerMeldungAbsetzen,bStoerMeldungAufheben);
         cardAddafer.getChildren().addAll(layoutV);
         //ToDo ev ein retour button
         return cardAddafer;

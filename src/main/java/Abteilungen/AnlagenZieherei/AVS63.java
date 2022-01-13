@@ -17,7 +17,7 @@ public class AVS63 {
     }
 
     public Group macheAVS63(){
-        final Group cardAVS63 = new Group(new Text(25, 25, "AVS63"));
+        final Group cardAVS63 = new Group(new Text(25, 25, "AVS63 - Wurde noch nicht implementiert"));
         return cardAVS63;
     }
 }

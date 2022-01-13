@@ -17,7 +17,7 @@ public class SpaltAnlage {
     }
 
     public Group macheSpaltAnlage(){
-        final Group cardSpaltAnlage = new Group(new Text(25, 25, "SpaltAnlage a"));
+        final Group cardSpaltAnlage = new Group(new Text(25, 25, "SpaltAnlage - Wurde noch nicht implementiert"));
         return cardSpaltAnlage;
     }
 }

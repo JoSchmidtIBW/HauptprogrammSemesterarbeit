@@ -17,7 +17,7 @@ public class APM100 {
     }
 
     public Group macheAPM100(){
-        final Group cardAPM100 = new Group(new Text(25, 25, "APM100"));
+        final Group cardAPM100 = new Group(new Text(25, 25, "APM100 - Wurde noch nicht implementiert"));
         return cardAPM100;
     }
 }

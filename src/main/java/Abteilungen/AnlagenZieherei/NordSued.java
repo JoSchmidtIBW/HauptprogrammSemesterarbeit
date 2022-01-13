@@ -17,7 +17,7 @@ public class NordSued {
     }
 
     public Group macheNordSued(){
-        final Group cardNordSued = new Group(new Text(25, 25, "NordSued"));
+        final Group cardNordSued = new Group(new Text(25, 25, "NordSued - Wurde noch nicht implementiert"));
         return cardNordSued;
     }
 }

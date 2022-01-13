@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -135,7 +136,7 @@ public class TaskLeistePane {
 
 
 
-        HBox hbox = new HBox(5);
+
         Label lTaskLeisteAngemeldetT = new javafx.scene.control.Label(" Angemeldet:   "+Login.getVorName()+" / " +
                 Login.getNachName());
 
@@ -147,7 +148,7 @@ public class TaskLeistePane {
             lTaskLeisteAngemeldetT.setTextFill(Color.RED);
         }
 
-
+        //lTaskLeisteAngemeldetT.setTextAlignment().createLoweredBevelBorder());
 
         javafx.scene.control.Label lt2 = new Label("   Taskleiste- Label   ");
 
@@ -195,13 +196,22 @@ public class TaskLeistePane {
 //        bp.setCenter(lDatum);
 //        bp.setCenter(lUhrzeit);
 //        bp.setRight(lLogo);
-//        AnchorPane ap = new AnchorPane();
+        AnchorPane ap = new AnchorPane();
+        GridPane gridPT = new GridPane();
+        gridPT.setAlignment(Pos.CENTER);
+        gridPT.setPadding(new Insets(10, 1, 1, 2));
 //        AnchorPane.setLeftAnchor(lTaskLeisteAngemeldetT, 0.0);
-//        AnchorPane.setRightAnchor(lLogo,0.0);
-        hbox.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,lDatum,lZwischenDatumUhrzeit,lUhrzeit,lLogo);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
+//
+        HBox hbox = new HBox(173);
+        HBox layoutHUhrDatum = new HBox(10);
+        layoutHUhrDatum.getChildren().addAll(lDatum,lUhrzeit);
+        hbox.getChildren().addAll(lTaskLeisteAngemeldetT,layoutHUhrDatum,lLogo);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
+        //ap.setRightAnchor(hbox,0.0);
         //Pane pane = new Pane(lt,lt2);//funktioniert
        // Pane pane = new Pane(hbox);
-        Pane pane = new Pane(hbox);
+        //Pane pane = new Pane(hbox);//ap
+        gridPT.add(hbox,0,0);
+        Pane pane = new Pane(gridPT);//ap
         //pane.getChildren().add(lt);
 
         return pane;

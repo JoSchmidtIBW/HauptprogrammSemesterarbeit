@@ -23,7 +23,7 @@ public class Abteilungen {
     }
 
     public Group macheAbteilung() {
-        final Group cardAbteilung = new Group(new Text(25, 25, "Abteilung blabvlabla"));
+        final Group cardAbteilung = new Group();//new Text(25, 25, "Abteilung")
 
         HBox layoutH = new HBox(1);
         Button bAnarbeit = new Button("Anarbeit");

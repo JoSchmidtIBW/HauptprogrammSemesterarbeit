@@ -17,7 +17,7 @@ public class TRT1 {
     }
 
     public Group macheTRT1(){
-        final Group cardTRT1 = new Group(new Text(25, 25, "TRT1 blabvlabla"));
+        final Group cardTRT1 = new Group(new Text(25, 25, "TRT1 - Wurde noch nicht implementiert"));
         return cardTRT1;
     }
 }

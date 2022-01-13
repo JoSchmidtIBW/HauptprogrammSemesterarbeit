@@ -27,7 +27,7 @@ public class HauptGUIScene {
         VBox layoutV = new VBox(1);
 
 
-        Label lHauptGui= new Label("Bin Label HauptGui");
+        Label lHauptGui= new Label("- HauptGui -");
 //        Label lWerAngemeldet = new Label("Wer ist hier eigentlich angebeldet, das soll hier stehen");
 //        Label lAbmelden = new Label("Wo kommt Benutzer ABMELDEN REIN???");
 
@@ -85,7 +85,7 @@ public class HauptGUIScene {
             }
         });
 
-        Button bZuruekSprache = new Button("zuruekSprache");
+        Button bZuruekSprache = new Button("Zurück-Sprache");
         bZuruekSprache.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
 
         //HBox layoutH2 = new HBox(1);
@@ -98,7 +98,7 @@ public class HauptGUIScene {
 
         layoutV.getChildren().addAll(layoutHlHauptGuiScene,layoutH1, cardsPane,TaskLeistePane.getPane());
 
-        Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,600);
+        Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,670);
         return hauptGuiScene;
     }
 

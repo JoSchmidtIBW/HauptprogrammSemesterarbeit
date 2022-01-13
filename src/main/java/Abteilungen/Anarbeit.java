@@ -30,7 +30,7 @@ public class Anarbeit {
     }
 
     public Group macheAnarbeit(){
-        final Group cardAnarbeit = new Group(new Text(25, 25, "Anarbeit blabvlabla"));
+        final Group cardAnarbeit = new Group();//new Text(25, 25, "Anarbeit blabvlabla")
 
         HBox layoutH = new HBox(1);
 

@@ -53,6 +53,8 @@ public class Anleitung {
 
         Label lAnleitung = new Label(sprachTextNichtUnterhalt[Sprache.getSprachenZahl()]);
 
+        //todo spracheAnleitungUnterhalt
+
         VBox layoutV = new VBox(1);
         layoutV.getChildren().addAll(lAnleitung);//,text1
         cardAnleitung.getChildren().addAll(layoutV);

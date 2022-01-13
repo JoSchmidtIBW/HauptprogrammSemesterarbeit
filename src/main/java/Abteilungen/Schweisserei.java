@@ -22,7 +22,7 @@ public class Schweisserei {
     }
 
     public Group macheSchweisserei(){
-        final Group cardSchweisserei = new Group(new Text(25, 25, "Schweisserei a"));
+        final Group cardSchweisserei = new Group();//new Text(25, 25, "Schweisserei a")
 
         HBox layoutH = new HBox(1);
 

@@ -17,7 +17,7 @@ public class GluehOfen2 {
     }
 
     public Group macheGluehOfen2(){
-        final Group cardGluehOfen2 = new Group(new Text(25, 25, "GluehOfen2 a"));
+        final Group cardGluehOfen2 = new Group(new Text(25, 25, "GluehOfen2 - Wurde noch nicht implementiert"));
         return cardGluehOfen2;
     }
 }

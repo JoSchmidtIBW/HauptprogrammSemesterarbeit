@@ -17,7 +17,7 @@ public class RS50 {
     }
 
     public Group macheRS50(){
-        final Group cardRS50 = new Group(new Text(25, 25, "RS50 a"));
+        final Group cardRS50 = new Group(new Text(25, 25, "RS50 - Wurde noch nicht implementiert"));
         return cardRS50;
     }
 }

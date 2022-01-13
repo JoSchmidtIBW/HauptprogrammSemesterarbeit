@@ -78,8 +78,8 @@ public class Sprache {
                 new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent e) {
                         lZeigeSprachAuswahl.setTextFill(Color.rgb(21, 117, 84));
-                        lZeigeSprachAuswahl.setText("You selected \"" + comboBox1.getValue());
-                        System.out.println("bbbnubjnnsij " + comboBox1.getValue());
+                        lZeigeSprachAuswahl.setText("Sie haben die Sprache gewählt: " + comboBox1.getValue());
+                        System.out.println("Die Sprache wurde gewählt: " + comboBox1.getValue());
 
                         String strComboBoxGewaehlt = (String) comboBox1.getValue();
                         System.out.println("strComboBoxGewaehlt: " + strComboBoxGewaehlt);
@@ -140,10 +140,7 @@ public class Sprache {
         });
 
 
-        VBox layoutV1 = new VBox(15);
-        HBox layoutHSprachAuswahl = new HBox(20);
 
-        layoutHSprachAuswahl.getChildren().addAll(lSprachAuswahl,comboBox1,lZeigeSprachAuswahl);//muss addAll sein
 
         Button bZuruekLoginS = new Button("Abmelden");
         //bZuruekLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));
@@ -180,7 +177,7 @@ public class Sprache {
             }
         });
 
-        HBox layoutHLabelSprachenScenePasswortAendern = new HBox(178);
+
         Button bPasswortAendern = new Button("Passwort \nändern?");
         bPasswortAendern.setOnAction(e -> stage.setScene(PasswortChange.createPasswortChangeScene(stage)));
 //------------------test xml-------------------------------------------------------------------------------------------
@@ -214,7 +211,13 @@ public class Sprache {
             ex.printStackTrace();
         }
 //----------------------------------------------------------------------------------------------------------------------
+        VBox layoutV1 = new VBox(30);
+        HBox layoutHSprachAuswahl = new HBox(20);
 
+        layoutHSprachAuswahl.getChildren().addAll(lSprachAuswahl,comboBox1,lZeigeSprachAuswahl);//muss addAll sein
+
+
+        HBox layoutHLabelSprachenScenePasswortAendern = new HBox(269);
         HBox layoutHAbmeldenPW = new HBox(1);
         layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene,bMADeleteScene,bZuruekLoginS,bPasswortFinder,bPasswortAendern);
         layoutHLabelSprachenScenePasswortAendern.getChildren().addAll(lSpracheScene1,layoutHAbmeldenPW);
@@ -223,7 +226,7 @@ public class Sprache {
 
 
 
-        Scene sceneSprache = new Scene(new ScrollPane(layoutV1),650,200);//scene braucht ein Layout, hat scrollpane drin
+        Scene sceneSprache = new Scene(new ScrollPane(layoutV1),800,250);//scene braucht ein Layout, hat scrollpane drin
         //Scene scene = new Scene(root, 800, 400, Color.BEIGE);
         //scene1 = new Scene(layoutV1, 800, 400);
         //scene1.setFill(Color.YELLOWGREEN);

@@ -23,7 +23,7 @@ public class Zieherei {
     }
 
     public Group macheZiherei(){
-        final Group cardZieherei = new Group(new Text(25, 25, "Zieherei"));
+        final Group cardZieherei = new Group();//new Text(25, 25, "Zieherei")
 
         HBox layoutH = new HBox(1);
 
@@ -68,7 +68,7 @@ public class Zieherei {
             }
         });
 
-        Button bSEMA2= new Button("SEMA2 :(");
+        Button bSEMA2= new Button("SEMA2");
         bSEMA2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();

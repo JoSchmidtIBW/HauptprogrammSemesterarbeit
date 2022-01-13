@@ -17,7 +17,7 @@ public class SEMA1 {
     }
 
     public Group macheSema1(){
-        final Group cardSema1 = new Group(new Text(25, 25, "Sema1 a"));
+        final Group cardSema1 = new Group(new Text(25, 25, "Sema1 - Wurde noch nicht implementiert"));
         return cardSema1;
     }
 }

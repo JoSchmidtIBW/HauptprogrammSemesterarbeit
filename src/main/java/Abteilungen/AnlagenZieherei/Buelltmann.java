@@ -17,7 +17,7 @@ public class Buelltmann {
     }
 
     public Group macheBuelltmann(){
-        final Group cardBuelltmann = new Group(new Text(25, 25, "Buelltmann"));
+        final Group cardBuelltmann = new Group(new Text(25, 25, "Buelltmann - Wurde noch nicht implementiert"));
         return cardBuelltmann;
     }
 }
