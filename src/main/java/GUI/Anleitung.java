@@ -69,6 +69,9 @@ public class Anleitung {
         else if (Login.getIstUnterhalt().equals("keinU")){
             lAnleitung.setText(sprachTextNichtUnterhalt[Sprache.getSprachenZahl()]);
         }
+        else if(Login.getIstUnterhalt().equals("Admin")){
+            lAnleitung.setText("Alter, du bisch Admin, du bruchsch kei Aleitig...");
+        }
 
 
         //todo spracheAnleitungUnterhalt
