@@ -32,11 +32,21 @@ public class HauptGUIScene {
 //        Label lAbmelden = new Label("Wo kommt Benutzer ABMELDEN REIN???");
 
         final Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
-        final Group card1 = new Group(new Text(25, 25, "Card 1"));
-        final Group card2Anleitung = new Group(new Text(25, 25, "Anleitung"));
+//        final Group card1 = new Group(new Text(25, 25, "Card 1"));
+//        final Group card2Anleitung = new Group(new Text(25, 25, "Anleitung"));
 
-        Button bAbteilung = new Button("Abteilung");
-        Button bAnleitung = new Button("Anleitung");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachAbteilung =
+                {"Abteilung", "Dipartimento","Odjel", "Departamenti", "Bölüm"};
+
+
+        Button bAbteilung = new Button(sprachAbteilung[Sprache.getSprachenZahl()]);//"Abteilung"
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachAnleitung =
+                {"Anleitung", "Manuale","priručnik", "manual", "düsturülamel"};
+        Button bAnleitung = new Button(sprachAnleitung[Sprache.getSprachenZahl()]);//"Anleitung"
 
 
 //        Button bRattunde1 = new Button("Rattunde1");
@@ -75,7 +85,11 @@ public class HauptGUIScene {
         layoutH1.getChildren().addAll(bAbteilung,bAnleitung);
 
 
-        Button bZuruekLogin = new Button("Abmelden");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachAbmelden =
+                {"Abmelden", "Disconnettersi","Odjaviti se", "Çregjistrohu", "Çıkış Yap"};
+        Button bZuruekLogin = new Button(sprachAbmelden[Sprache.getSprachenZahl()]);//"Abmelden"
         //bZuruekLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));
         bZuruekLogin.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
@@ -85,20 +99,26 @@ public class HauptGUIScene {
             }
         });
 
-        Button bZuruekSprache = new Button("Zurück-Sprache");
+
+
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachZurueckSprache =
+                {"Zurück-Sprache", "Indietro linguaggio  ","Nazad jezik", "Mbrapa gjuhe", "geri dilim"};
+        Button bZuruekSprache = new Button(sprachZurueckSprache[Sprache.getSprachenZahl()]);//"Zurück-Sprache"
         bZuruekSprache.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
 
         //HBox layoutH2 = new HBox(1);
         //layoutH2.getChildren().addAll(bZuruekLogin,bZuruekSprache,TaskLeistePane.getPane());
 
-        HBox layoutHlHauptGuiScene = new HBox(500);
+        HBox layoutHlHauptGuiScene = new HBox(557);
         HBox layoutHZurueckSpracheAbmelden = new HBox(1);
         layoutHZurueckSpracheAbmelden.getChildren().addAll(bZuruekSprache,bZuruekLogin);
         layoutHlHauptGuiScene.getChildren().addAll(lHauptGui,layoutHZurueckSpracheAbmelden);
 
         layoutV.getChildren().addAll(layoutHlHauptGuiScene,layoutH1, cardsPane,TaskLeistePane.getPane());
 
-        Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,670);
+        Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,628);
         return hauptGuiScene;
     }
 

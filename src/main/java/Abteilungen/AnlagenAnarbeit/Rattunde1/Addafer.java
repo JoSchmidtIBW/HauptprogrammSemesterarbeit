@@ -26,8 +26,7 @@ import javafx.scene.text.Text;
 public class Addafer {
     Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
 
-    public int zaehlerBundladerGurte = 0;
-    public int zaehlerBundladerLichtSchranke1 = 0;
+
 
     Font fontAbsetzen = Font.font("Verdana", FontPosture.ITALIC, 20);
     Font fontAnlageGruppe = Font.font("Arial", 18);
@@ -53,7 +52,39 @@ public class Addafer {
 //            " VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
 //                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
 //                + TaskLeistePane.getUhrzeitStr() + "' WHERE STOG = 'open' AND AnlageGruppe = 'ADF/Bundlader' AND Stoerung = 'Gurte';";
+public int zaehlerBundladerGurte = 0;
+    public int zaehlerBundladerLichtSchranke1 = 0;
+    public int zaehlerBundladerAnschlag = 0;
+    public int zaehlerBundladerSchutzZaun = 0;
 
+
+    public int zaehlerVereinzelungRollen_Schraeg = 0;
+    public int zaehlerVereinzelungStopper_Bolzen1 = 0;
+    public int zaehlerVereinzelungStopper_Bolzen123 = 0;
+
+    public int getZaehlerVereinzelungStopper_Bolzen123() {
+        return zaehlerVereinzelungStopper_Bolzen123;
+    }
+
+    public void setZaehlerVereinzelungStopper_Bolzen123(int zaehlerVereinzelungStopper_Bolzen123) {
+        this.zaehlerVereinzelungStopper_Bolzen123 = zaehlerVereinzelungStopper_Bolzen123;
+    }
+
+    public int getZaehlerVereinzelungStopper_Bolzen1() {
+        return zaehlerVereinzelungStopper_Bolzen1;
+    }
+
+    public void setZaehlerVereinzelungStopper_Bolzen1(int zaehlerVereinzelungStopper_Bolzen1) {
+        this.zaehlerVereinzelungStopper_Bolzen1 = zaehlerVereinzelungStopper_Bolzen1;
+    }
+
+    public int getZaehlerVereinzelungRollen_Schraeg() {
+        return zaehlerVereinzelungRollen_Schraeg;
+    }
+
+    public void setZaehlerVereinzelungRollen_Schraeg(int zaehlerVereinzelungRollen_Schraeg) {
+        this.zaehlerVereinzelungRollen_Schraeg = zaehlerVereinzelungRollen_Schraeg;
+    }
 
     public int getZaehlerBundladerGurte() {
         return zaehlerBundladerGurte;
@@ -71,6 +102,21 @@ public class Addafer {
         this.zaehlerBundladerLichtSchranke1 = zaehlerBundladerLichtSchranke1;
     }
 
+    public int getZaehlerBundladerAnschlag() {
+        return zaehlerBundladerAnschlag;
+    }
+
+    public void setZaehlerBundladerAnschlag(int zaehlerBundladerAnschlag) {
+        this.zaehlerBundladerAnschlag = zaehlerBundladerAnschlag;
+    }
+
+    public int getZaehlerBundladerSchutzZaun() {
+        return zaehlerBundladerSchutzZaun;
+    }
+
+    public void setZaehlerBundladerSchutzZaun(int zaehlerBundladerSchutzZaun) {
+        this.zaehlerBundladerSchutzZaun = zaehlerBundladerSchutzZaun;
+    }
 
     DatenBank dBA = new DatenBank();
 
@@ -80,6 +126,12 @@ public class Addafer {
 
     static Boolean bgurteAbgesetzt = false;
     static Boolean bLichtSchranke1Abgesetzt = false;
+    static Boolean bAnschlagBundladerAbgesetzt = false;
+    static Boolean bSchutzZaunBundladerAbgesetzt = false;
+
+    static boolean bRollen_SchraegVereinzelungAbgesetzt = false;
+    static boolean bStopper_Bolzen1VereinzelungAbgesetzt = false;
+    static boolean bStopper_Bolzen123VereinzelungAbgesetzt = false;
 
     public static Boolean getRotdb() {
         return rotdb;
@@ -95,6 +147,8 @@ public class Addafer {
 
     public Group macheAddafer(){
         final Group cardAddafer = new Group();//new Text(25, 25, "Addafer blabvlabla")
+
+
 
         VBox layoutV = new VBox(25);
         Label lTitleAddafer = new Label("Rat.1/Addafer");
@@ -112,10 +166,10 @@ public class Addafer {
         //Label lZeigeGurteWerUHRDatumA = new Label();
 
 
-        //   0          1            2                  3             4
-        //Deutsch, Italienisch,SerboKroatisch,albanischmazedonisch,Türkisch
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachGurte =
-                {"Gurte", "cinghie","траке", "rripat", "kayışlar"};
+                {"Gurte", "cinghie","trake", "rripat", "kayışlar"};
 
         ToggleButton bGurte = new ToggleButton(sprachGurte[Sprache.getSprachenZahl()]);//"Gurte"
         if(bgurteAbgesetzt==false) {//rotdb
@@ -190,10 +244,10 @@ public class Addafer {
 
         //Button bLichtSchranke1 = new Button("Lichtschranke 1");
         //bLichtSchranke1.setStyle("-fx-background-color: green");
-        //   0          1            2                  3             4
-        //Deutsch, Italienisch,SerboKroatisch,albanischmazedonisch,Türkisch
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachLichtSchranke1 =
-                {"LichtSchranke 1", "cinghie","траке", "rripat", "kayışlar"};
+                {"LichtSchranke 1", "Barriera fotoelettrica 1","Fotoelektrična barijera 1", "Barriera fotoelektrike 1", "fotoelektrik bariyer 1"};
 
         ToggleButton bLichtSchranke1 = new ToggleButton(sprachLichtSchranke1[Sprache.getSprachenZahl()]);//"Gurte"
         if(bLichtSchranke1Abgesetzt==false) {
@@ -254,30 +308,350 @@ public class Addafer {
         });
 
 
-        Button bAnschlag = new Button("Anschlag");
-        bAnschlag.setStyle("-fx-background-color: green");
+//        Button bAnschlag = new Button("Anschlag");
+//        bAnschlag.setStyle("-fx-background-color: green");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachAnschlagBundlader =
+                {"Anschlag", "la fermata","zaustavljanje", "ndalesa", "dur"};
 
-        Button bSchutzZaun = new Button("Schutz- Zaun");
-        bSchutzZaun.setStyle("-fx-background-color: green");
+        ToggleButton bAnschlagBundlader = new ToggleButton(sprachAnschlagBundlader[Sprache.getSprachenZahl()]);//"Anschlag"
+        if(bAnschlagBundladerAbgesetzt==false) {
+            bAnschlagBundlader.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bAnschlagBundlader.setDisable(true);
+            }
+            bAnschlagBundlader.setStyle("-fx-background-color: red");//pink
+        }
 
+        bAnschlagBundlader.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bAnschlagBundladerAbgesetzt==false){//grün//rotdb
+                    if(bAnschlagBundlader.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bAnschlagBundlader.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bAnschlagBundlader.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bAnschlagBundlader.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bAnschlagBundlader.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bAnschlagBundlader.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bAnschlagBundlader.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bAnschlagBundlader.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bAnschlagBundlader.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bAnschlagBundlader.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+//        Button bSchutzZaun = new Button("Schutz- Zaun");
+//        bSchutzZaun.setStyle("-fx-background-color: green");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachSchutzZaunBundlader =
+                {"SchutzZaun", "recinzione protettiva","zaštitna ograda", "gardh mbrojtës", "koruyucu çit"};
+
+        ToggleButton bSchutzZaunBundlader = new ToggleButton(sprachSchutzZaunBundlader[Sprache.getSprachenZahl()]);//"SchutzZaun"
+        if(bSchutzZaunBundladerAbgesetzt==false) {
+            bSchutzZaunBundlader.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bSchutzZaunBundlader.setDisable(true);
+            }
+            bSchutzZaunBundlader.setStyle("-fx-background-color: red");//pink
+        }
+
+        bSchutzZaunBundlader.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bSchutzZaunBundladerAbgesetzt==false){//grün//rotdb
+                    if(bSchutzZaunBundlader.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bSchutzZaunBundlader.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bSchutzZaunBundlader.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bSchutzZaunBundlader.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bSchutzZaunBundlader.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bSchutzZaunBundlader.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bSchutzZaunBundlader.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bSchutzZaunBundlader.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bSchutzZaunBundlader.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bSchutzZaunBundlader.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
 
 //Vereinzelung----------------------------------------------------------------------------------------------------------
         HBox layoutHVereinzelung = new HBox(20);
+
         Label lVereinzelung = new Label("Vereinzelung");
         lVereinzelung.setFont(fontAnlageGruppe);
-        Button bRollenSchraeg = new Button("Rollen schräg");
-        Button bStopperBolzen1 = new Button("Stopper-Bolzen 1");
-        Button bStopperBolzen123 = new Button("Stopper- Bolzen 123");
 
-        bRollenSchraeg.setStyle("-fx-background-color: green");
-        bStopperBolzen1.setStyle("-fx-background-color: green");
-        bStopperBolzen123.setStyle("-fx-background-color: green");
+
+       // Button bRollenSchraeg = new Button("Rollen schräg");
+
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachRollen_SchraegVereinzelung =
+                {"Rollen schräg", "Rotolo obliquo","roll aslant", "rrotulloj aslant", "rulo eğik"};
+
+        ToggleButton bRollen_SchraegVereinzelung = new ToggleButton(sprachRollen_SchraegVereinzelung[Sprache.getSprachenZahl()]);//"Rollen schräg"
+        if(bRollen_SchraegVereinzelungAbgesetzt==false) {
+            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bRollen_SchraegVereinzelung.setDisable(true);
+            }
+            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: red");//pink
+        }
+
+        bRollen_SchraegVereinzelung.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bRollen_SchraegVereinzelungAbgesetzt==false){//grün//rotdb
+                    if(bRollen_SchraegVereinzelung.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bRollen_SchraegVereinzelung.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bRollen_SchraegVereinzelung.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+        //Button bStopperBolzen1 = new Button("Stopper-Bolzen 1");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachStopper_Bolzen1Vereinzelung =
+                {"Stopper-Bolzen 1", "Bullone di arresto 1","Stopper Bolt 1", "Bulon i tapës 1", "Stoper Cıvatası 1"};
+
+        ToggleButton bStopper_Bolzen1Vereinzelung = new ToggleButton(sprachStopper_Bolzen1Vereinzelung[Sprache.getSprachenZahl()]);//"Stopper-Bolzen 1"
+        if(bStopper_Bolzen1VereinzelungAbgesetzt==false) {
+            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bStopper_Bolzen1Vereinzelung.setDisable(true);
+            }
+            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: red");//pink
+        }
+
+        bStopper_Bolzen1Vereinzelung.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bStopper_Bolzen1VereinzelungAbgesetzt==false){//grün//rotdb
+                    if(bStopper_Bolzen1Vereinzelung.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bStopper_Bolzen1Vereinzelung.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+        //Button bStopperBolzen123 = new Button("Stopper- Bolzen 123");
+        //Button bStopperBolzen1 = new Button("Stopper-Bolzen 1");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachStopper_Bolzen123Vereinzelung =
+                {"Stopper-Bolzen 123", "Bullone di arresto 123","Stopper Bolt 123", "Bulon i tapës 123", "Stoper Cıvatası 123"};
+
+        ToggleButton bStopper_Bolzen123Vereinzelung = new ToggleButton(sprachStopper_Bolzen123Vereinzelung[Sprache.getSprachenZahl()]);//"Stopper-Bolzen 123"
+        if(bStopper_Bolzen123VereinzelungAbgesetzt==false) {
+            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bStopper_Bolzen123Vereinzelung.setDisable(true);
+            }
+            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: red");//pink
+        }
+
+        bStopper_Bolzen123Vereinzelung.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bStopper_Bolzen123VereinzelungAbgesetzt==false){//grün//rotdb
+                    if(bStopper_Bolzen123Vereinzelung.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bStopper_Bolzen123Vereinzelung.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+       // bRollenSchraeg.setStyle("-fx-background-color: green");
+        //bStopperBolzen1.setStyle("-fx-background-color: green");
+        //bStopperBolzen123.setStyle("-fx-background-color: green");
 
 
 //Rollgang1-------------------------------------------------------------------------------------------------------------
         HBox layoutHRollgang1 = new HBox(20);
+
         Label lRollgang1 = new Label("Rollgang 1");
         lRollgang1.setFont(fontAnlageGruppe);
+
         Button bRollen1 = new Button("Rollen 1");
         Button bSchweissNahtErkennung = new Button("Schweissnaht-\n Erkennung");
         Button bPinchRolle12 = new Button("Pinch-Rollen 1 2");
@@ -288,8 +662,10 @@ public class Addafer {
 //Messstation----------------------------------------------------------------------------------------------------------------------
 
         HBox layoutHMessstation = new HBox(20);
+
         Label lMessstation = new Label("Messstation");
         lMessstation.setFont(fontAnlageGruppe);
+
         //lMessstation.setAlignment(Pos.BASELINE_CENTER);// hmmmmmm ...
         Button bUSSensor = new Button("US-Sensor");
         Button bLaser = new Button("Laserg");
@@ -307,8 +683,10 @@ public class Addafer {
 
 //Rollgang4----------------------------------------------------------------------------------------------------------------------
         HBox layoutHRollgang4 = new HBox(20);
+
         Label lRollgang4 = new Label("Rollgang 4");
         lRollgang4.setFont(fontAnlageGruppe);
+
         //lMessstation.setAlignment(Pos.BASELINE_CENTER);// hmmmmmm ...
         Button bPinchRolle3 = new Button("Pinch-Rolle 3");
         Button bRollen4 = new Button("Rollen 4");
@@ -324,8 +702,10 @@ public class Addafer {
 
 //WalkingBeam----------------------------------------------------------------------------------------------------------------------
         HBox layoutHWalkingBeam = new HBox(20);
+
         Label lWalkingBeam = new Label("WalkingBeam");
         lWalkingBeam.setFont(fontAnlageGruppe);
+
         //lMessstation.setAlignment(Pos.BASELINE_CENTER);// hmmmmmm ...
         Button bWalkingBeam = new Button("WalkingBeam");
         Button bDrehGreifer = new Button("Dreh-Greifer");
@@ -337,7 +717,11 @@ public class Addafer {
         bRadRat1.setStyle("-fx-background-color: green");
 
 //ButtonZurückRat1----------------------------------------------------------------------------------------------------------------------
-        Button bZurueckRat1 = new Button("Zurück");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachZurueck =
+                {"Zurück", "Indietro","Nazad", "Mbrapa", "Geri"};
+        Button bZurueckRat1 = new Button(sprachZurueck[Sprache.getSprachenZahl()]);//"Zurück"
         bZurueckRat1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
@@ -358,8 +742,11 @@ public class Addafer {
 //        //dbk1.schreibeDB(url1,user1,password1, einfuegString1);      //Immer wenn Play, kommt natürlich wieder eine dazu
 //        dBA.schreibeDB(einfuegDbGurte);
 
-
-        Button bStoerMeldungAbsetzen = new Button("Stör-Meldung absetzen");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachStoerMeldungAbsetzen =
+                {"Stör-Meldung absetzen", "Invia messaggio di errore","Pošalji poruku o grešci", "Dërgo mesazh gabimi", "Hata mesajı gönder"};
+        Button bStoerMeldungAbsetzen = new Button(sprachStoerMeldungAbsetzen[Sprache.getSprachenZahl()]);//"Stör-Meldung absetzen"
         if(Login.getIstUnterhalt().equals("istU")){
             bStoerMeldungAbsetzen.setStyle("-fx-background-color: transparent");
             bStoerMeldungAbsetzen.setStyle("-fx-text-fill: transparent");
@@ -396,7 +783,7 @@ public class Addafer {
                 if(bLichtSchranke1.isSelected()){
                     //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLichtSchranke1Abgesetzt ==false){//istChef
-                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'LichtSchranke1')");
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerLichtSchranke1() +"','Adf/Bundlader' , 'LichtSchranke1')");
                         bLichtSchranke1.setStyle("-fx-background-color: red");
                         bLichtSchranke1.setDisable(true);
                         bLichtSchranke1Abgesetzt = true;
@@ -410,12 +797,87 @@ public class Addafer {
                 }
 
 
+                if(bAnschlagBundlader.isSelected()){
+                    //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bAnschlagBundladerAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerAnschlag() +"','Adf/Bundlader' , 'Anschlag')");
+                        bAnschlagBundlader.setStyle("-fx-background-color: red");
+                        bAnschlagBundlader.setDisable(true);
+                        bAnschlagBundladerAbgesetzt = true;
+                        setZaehlerBundladerAnschlag(zaehlerBundladerAnschlag +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("Bundlader Anschlag deselectet bei MeldungabsetztenSchlaufe");
+                }
 
+                if(bSchutzZaunBundlader.isSelected()){
+                    //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bSchutzZaunBundladerAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerSchutzZaun() +"','Adf/Bundlader' , 'SchutzZaun')");
+                        bSchutzZaunBundlader.setStyle("-fx-background-color: red");
+                        bSchutzZaunBundlader.setDisable(true);
+                        bSchutzZaunBundladerAbgesetzt = true;
+                        setZaehlerBundladerSchutzZaun(zaehlerBundladerSchutzZaun +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("Bundlader Anschlag deselectet bei MeldungabsetztenSchlaufe");
+                }
 
+                if(bRollen_SchraegVereinzelung.isSelected()){
+                    //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bRollen_SchraegVereinzelungAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerVereinzelungRollen_Schraeg() +"','Adf/Vereinzelung' , 'Rollen Schräg')");
+                        bRollen_SchraegVereinzelung.setStyle("-fx-background-color: red");
+                        bRollen_SchraegVereinzelung.setDisable(true);
+                        bRollen_SchraegVereinzelungAbgesetzt = true;
+                        setZaehlerVereinzelungRollen_Schraeg(zaehlerVereinzelungRollen_Schraeg +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("Rollen_SchraegVereinzelung deselectet bei MeldungabsetztenSchlaufe");
+                }
 
+                if(bStopper_Bolzen1Vereinzelung.isSelected()){
+                    //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bStopper_Bolzen1VereinzelungAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerVereinzelungStopper_Bolzen1() +"','Adf/Vereinzelung' , 'Stopper-Bolzen1')");
+                        bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: red");
+                        bStopper_Bolzen1Vereinzelung.setDisable(true);
+                        bStopper_Bolzen1VereinzelungAbgesetzt = true;
+                        setZaehlerVereinzelungStopper_Bolzen1(zaehlerVereinzelungStopper_Bolzen1 +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("Stopper_Bolzen1Vereinzelung deselectet bei MeldungabsetztenSchlaufe");
+                }
 
+                if(bStopper_Bolzen123Vereinzelung.isSelected()){
+                    //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bStopper_Bolzen1VereinzelungAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerVereinzelungStopper_Bolzen123() +"','Adf/Vereinzelung' , 'Stopper-Bolzen123')");
+                        bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: red");
+                        bStopper_Bolzen123Vereinzelung.setDisable(true);
+                        bStopper_Bolzen123VereinzelungAbgesetzt = true;
+                        setZaehlerVereinzelungStopper_Bolzen123(zaehlerVereinzelungStopper_Bolzen123 +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("Stopper_Bolzen123Vereinzelung deselectet bei MeldungabsetztenSchlaufe");
+                }
 
-                //ToDo
+        //ToDo
                 //hier kommt eine ifschleife rein, damit button sofern gelb geklickt, rot wird,
                 //darf sich nicht mehr verändern, muss wie gesperrt sein
                 //=true;
@@ -425,7 +887,12 @@ public class Addafer {
 
 
 
-        Button bStoerMeldungAufheben = new Button("Stör-Meldung Aufheben");
+//Stoerung Aufheben-----------------------------------------------------------------------------------------------------------------------
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachStoerMeldungAufheben =
+                {"Stör-Meldung Aufheben", "Annulla messaggio di errore","Otkažite poruku o grešci", "Anulo mesazhin e defektit", "Arıza mesajını iptal et"};
+        Button bStoerMeldungAufheben = new Button(sprachStoerMeldungAufheben[Sprache.getSprachenZahl()]);//"Stör-Meldung Aufheben"
         if(Login.getIstUnterhalt().equals("keinU")){
             bStoerMeldungAufheben.setStyle("-fx-background-color: transparent");
             bStoerMeldungAufheben.setStyle("-fx-text-fill: transparent");
@@ -485,7 +952,118 @@ public class Addafer {
                 }
 
 
+                if(bAnschlagBundlader.isSelected()){
+                    System.out.println("AnschlagBundlader selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Bundlader' AND Stoerung = 'Anschlag';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bAnschlagBundlader.setStyle("-fx-background-color: green");
+                        bAnschlagBundlader.setDisable(false);
+                        setRotdb(false);
+                        bAnschlagBundladerAbgesetzt = false;
+                    }
+                    else{
+                        bAnschlagBundlader.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("AnschlagBundlader deselectet in Störmeldung");
+                }
 
+
+
+                if(bSchutzZaunBundlader.isSelected()){
+                    System.out.println("SchutzZaunBundlader selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Bundlader' AND Stoerung = 'SchutzZaun';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bSchutzZaunBundlader.setStyle("-fx-background-color: green");
+                        bSchutzZaunBundlader.setDisable(false);
+                        setRotdb(false);
+                        bSchutzZaunBundladerAbgesetzt = false;
+                    }
+                    else{
+                        bSchutzZaunBundlader.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("SchutzZaunBundlader deselectet in Störmeldung");
+                }
+
+
+                if(bRollen_SchraegVereinzelung.isSelected()){
+                    System.out.println("Rollen_SchraegVereinzelung selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Vereinzelung' AND Stoerung = 'Rollen Schräg';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bRollen_SchraegVereinzelung.setStyle("-fx-background-color: green");
+                        bRollen_SchraegVereinzelung.setDisable(false);
+                        setRotdb(false);
+                        bRollen_SchraegVereinzelungAbgesetzt = false;
+                    }
+                    else{
+                        bRollen_SchraegVereinzelung.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("bRollen_SchraegVereinzelung deselectet in Störmeldung");
+                }
+
+                if(bStopper_Bolzen1Vereinzelung.isSelected()){
+                    System.out.println("Stopper_Bolzen1Vereinzelung selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Vereinzelung' AND Stoerung = 'Stopper-Bolzen1';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: green");
+                        bStopper_Bolzen1Vereinzelung.setDisable(false);
+                        setRotdb(false);
+                        bStopper_Bolzen1VereinzelungAbgesetzt = false;
+                    }
+                    else{
+                        bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("Stopper_Bolzen1Vereinzelung deselectet in Störmeldung");
+                }
+
+                if(bStopper_Bolzen123Vereinzelung.isSelected()){
+                    System.out.println("Stopper_Bolzen123Vereinzelung selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Vereinzelung' AND Stoerung = 'Stopper-Bolzen123';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: green");
+                        bStopper_Bolzen123Vereinzelung.setDisable(false);
+                        setRotdb(false);
+                        bStopper_Bolzen123VereinzelungAbgesetzt = false;
+                    }
+                    else{
+                        bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("Stopper_Bolzen123Vereinzelung deselectet in Störmeldung");
+                }
 
 //                                    cardsPane.getChildren().clear();
 //                    cardsPane.getChildren().add(new Addafer(cardsPane).macheAddafer());//sich selber neu laden
@@ -535,8 +1113,8 @@ public class Addafer {
 //        });
 //LayoutZeugs----------------------------------------------------------------------------------------------------------------------
         //layoutHBundlader.getChildren().addAll(lBundlader,bGurte,lZeigeGurteWerUHRDatumA, bHalteZeitAn, lZeigeZeitHaltA,bLichtSchranke1,bAnschlag,bSchutzZaun);
-        layoutHBundlader.getChildren().addAll(lBundlader,bGurte,bLichtSchranke1,bAnschlag,bSchutzZaun);
-        layoutHVereinzelung.getChildren().addAll(lVereinzelung,bRollenSchraeg,bStopperBolzen1,bStopperBolzen123);
+        layoutHBundlader.getChildren().addAll(lBundlader,bGurte,bLichtSchranke1,bAnschlagBundlader,bSchutzZaunBundlader);
+        layoutHVereinzelung.getChildren().addAll(lVereinzelung,bRollen_SchraegVereinzelung,bStopper_Bolzen1Vereinzelung,bStopper_Bolzen123Vereinzelung);
         layoutHRollgang1.getChildren().addAll(lRollgang1,bRollen1,bSchweissNahtErkennung,bPinchRolle12);
         layoutHMessstation.getChildren().addAll(lMessstation,bUSSensor,bLaser,bEinstellRollen,bLichtSchrankeM,bPumpeRueckFuehr,bSchutzTuereM);
         layoutHRollgang4.getChildren().addAll(lRollgang4,bPinchRolle3,bRollen4,bRohrAuswerfer,bSchrottGurte,bLichtSchranke2);
@@ -544,6 +1122,8 @@ public class Addafer {
         layoutV.getChildren().addAll(lTitleAddafer,layoutHBundlader,layoutHVereinzelung,layoutHRollgang1,layoutHMessstation,layoutHRollgang4,layoutHWalkingBeam,bZurueckRat1,bStoerMeldungAbsetzen,bStoerMeldungAufheben);
         cardAddafer.getChildren().addAll(layoutV);
         //ToDo ev ein retour button
+//        cardAddafer.minHeight(500);
+//        cardAddafer.minWidth(400);
         return cardAddafer;
     }
 

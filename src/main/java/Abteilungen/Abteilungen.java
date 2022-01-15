@@ -50,6 +50,9 @@ public class Abteilungen {
         bSchweisserei.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
+
+//                cardsPane.setScaleX(100/0);
+//                cardsPane.setScaleY(100/0);
 //                Label sinnlosSchweisserei = new Label("Scheisserei");
 //                cardsPane.getChildren().addAll(sinnlosSchweisserei);
                 cardsPane.getChildren().add(new Schweisserei(cardsPane).macheSchweisserei());

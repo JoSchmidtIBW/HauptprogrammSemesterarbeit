@@ -59,8 +59,8 @@ public class Sprache {
 
         comboBox1.getItems().add("Deutsch");//0
         comboBox1.getItems().add("Italienisch");//1
-        comboBox1.getItems().add("serbo-koratisch");//2 //serbo-koratisch
-        comboBox1.getItems().add("albanisch mazedonisch Shkumbin");//3 //albanisch mazedonisch Shkumbin
+        comboBox1.getItems().add("Bosnisch");//2 //serbo-koratisch
+        comboBox1.getItems().add("Albanisch");//3 //albanisch mazedonisch Shkumbin
         comboBox1.getItems().add("Türkisch");//4
 
         //comboBox1.setItems(getSprachenZahl("Deutsch"));
@@ -103,11 +103,11 @@ public class Sprache {
                                 setSprachenZahl(1);
                                 System.out.println("Italienisch getSprachenZahl() "+getSprachenZahl());
                                 break;
-                            case "serbo-koratisch":
+                            case "Bosnisch":
                                 setSprachenZahl(2);
                                 System.out.println("serbo-koratisch getSprachenZahl() "+getSprachenZahl());
                                 break;
-                            case "albanisch mazedonisch Shkumbin":
+                            case "Albanisch":
                                 setSprachenZahl(3);
                                 System.out.println("albanisch getSprachenZahl() "+getSprachenZahl());
                                 break;
@@ -211,7 +211,7 @@ public class Sprache {
             ex.printStackTrace();
         }
 //----------------------------------------------------------------------------------------------------------------------
-        VBox layoutV1 = new VBox(30);
+        VBox layoutV1 = new VBox(39);
         HBox layoutHSprachAuswahl = new HBox(20);
 
         layoutHSprachAuswahl.getChildren().addAll(lSprachAuswahl,comboBox1,lZeigeSprachAuswahl);//muss addAll sein

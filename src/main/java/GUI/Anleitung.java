@@ -28,36 +28,57 @@ public class Anleitung {
        // Text text1 = new Text(25,99,"Heeeellllooo");
 
 
-        //   0          1            2                  3             4
-        //Deutsch, Italienisch,SerboKroatisch,albanischmazedonisch,Türkisch
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachTextNichtUnterhalt =
-                {"Wählen Sie Ihre Abteilung aus, und Ihre Anlage.\n Bei Störung, suchen Sie unter der Anlage-Unter-Gruppe " +
+                {"Wählen Sie Ihre Abteilung aus, und Ihre Anlage. \nBei Störung, suchen Sie unter der Anlage-Unter-Gruppe " +
                         "die passende Störung aus, \nwählen diese an, und setzen Sie eine Störmeldung ab.\n" +
                         "Bsp. Rattunde hat eine Störung mit der Lichtschranke des Bundladers",
-                        "Seleziona il tuo reparto e il tuo stabilimento.\n" +
+                  "Seleziona il tuo reparto e il tuo stabilimento.\n" +
                                 "In caso di malfunzionamento, guardare sotto il sottogruppo del sistema\n" +
                                 "selezionare l'errore appropriato, selezionarlo e inviare un messaggio di errore.\n" +
                                 "Esempio: Rattunde ha un problema con la barriera fotoelettrica del caricatore di pacchi ",
-                        "Изаберите своје одељење и своју биљку.\n" +
-                                "У случају квара, погледајте подгрупу система\n" +
-                                "изаберите одговарајућу грешку, изаберите је и пошаљите поруку о грешци.\n" +
-                                "Пример: Раттунде има проблем са светлосном баријером утоваривача снопова ",
-                        "Zgjidhni departamentin tuaj dhe fabrikën tuaj.\n" +
-                                "Në rast të një mosfunksionimi, shikoni nën nëngrupin e sistemit\n" +
-                                "zgjidhni defektin e duhur, zgjidhni atë dhe dërgoni një mesazh defekti.\n" +
-                                "Shembull: Rattunde ka një problem me pengesën e dritës së ngarkuesit të paketave ",
-                        "Departmanınızı ve fabrikanızı seçin.\n" +
-                                "Arıza durumunda sistem alt grubuna bakın\n" +
-                                "uygun arızayı seçin, seçin ve bir arıza mesajı gönderin.\n" +
-                                "Örnek: Rattunde, paket yükleyicinin ışık bariyeriyle ilgili bir sorun yaşıyor "};
+                  "Odaberite svoj odjel i svoj objekat. \nU slučaju kvara, potražite odgovarajuću grešku pod sistemskom podgrupom, \nodaberite je i pošaljite poruku o grešci.\n" +
+                           "Na primjer, Rattunde ima grešku sa svjetlosnom barijerom utovarivača snopova. \n" ,
+                  "Zgjidhni departamentin tuaj dhe objektin tuaj. \nNë rast të një defekti, kërkoni për defektin e duhur nën nëngrupin e sistemit, \nzgjidhni atë dhe dërgoni një mesazh defekti.\n" +
+                           "Për shembull, Rattunde ka një defekt me barrierën e dritës së ngarkuesit të paketave. " ,
+                  "Departmanınızı ve tesisinizi seçin. \nArıza durumunda sistem alt grubu altında uygun arızayı arayın, \nseçin ve arıza mesajı gönderin.\n" +
+                           "Örneğin Rattunde, demet yükleyicinin ışık bariyerinde bir arıza var.  "};
 
-        Label lAnleitung = new Label(sprachTextNichtUnterhalt[Sprache.getSprachenZahl()]);
+
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachTextIstUnterhalt =
+                {"Wählen Sie in der Abteilung die Anlage aus, \nauf welcher sich die Störmeldung befindet, welche repariert wurde.\n"+
+                        "Wählen Sie diese an, und heben Sie die Störmeldung auf.",
+"Nel reparto, seleziona il sistema su cui si trova il messaggio di errore che è stato riparato.\n" +
+        "Seleziona questo e annulla il messaggio di errore. \n",
+  "U odjeljenju izaberite sistem na kojem se nalazi poruka o grešci koja je popravljena.\n"+
+                        "Odaberite ovo i otkažite poruku o grešci.\n" ,
+  "Në departament, zgjidhni sistemin në të cilin ndodhet mesazhi i gabimit që u riparua.\n" +
+                                "Zgjidhni këtë dhe anuloni mesazhin e gabimit. \n",
+                "Bölümde, onarılan hata mesajının bulunduğu sistemi seçin.\n" +
+                        "Bunu seçin ve hata mesajını iptal edin. "};
+
+
+        Label lAnleitung = new Label();
+
+        if(Login.getIstUnterhalt().equals("istU")){
+            lAnleitung.setText(sprachTextIstUnterhalt[Sprache.getSprachenZahl()]);
+        }
+        else if (Login.getIstUnterhalt().equals("keinU")){
+            lAnleitung.setText(sprachTextNichtUnterhalt[Sprache.getSprachenZahl()]);
+        }
+
 
         //todo spracheAnleitungUnterhalt
 
         VBox layoutV = new VBox(1);
         layoutV.getChildren().addAll(lAnleitung);//,text1
+
         cardAnleitung.getChildren().addAll(layoutV);
+//        cardAnleitung.setScaleX(300d);
+//        cardAnleitung.setScaleY(200d);
         return cardAnleitung;
     }
 }

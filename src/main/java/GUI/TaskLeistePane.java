@@ -170,6 +170,9 @@ public class TaskLeistePane {
 //        lLogo.setGraphic(new Image("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
 //        try {
             ImageView myImageView = new ImageView("file:///D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG");
+        //myImageView.setFitHeight(50);
+        //myImageView.setFitWidth(100);
+        //myImageView.
             // Create a label that contains both an image and text.
             Label lLogo = new Label("", myImageView);
             //lLogo.setGraphic("", myImageView);
@@ -183,42 +186,85 @@ public class TaskLeistePane {
 
 //        lLogo.setGraphic(view);
 
-       // hbox.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,main_clock_lb,lLogo,lDatum,lZwischenDatumUhrzeit,lUhrzeit);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
+       // layoutHHauptTLP.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,main_clock_lb,lLogo,lDatum,lZwischenDatumUhrzeit,lUhrzeit);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
         //Pane pane = new Pane(lt,lt2);//funktioniert
-        //hbox.setAlignment(Pos.BOTTOM_RIGHT);
-       // hbox.setSpacing(10);
+        //layoutHHauptTLP.setAlignment(Pos.BOTTOM_RIGHT);
+       // layoutHHauptTLP.setSpacing(10);
 
-        //hbox.setFillHeight(true);
+        //layoutHHauptTLP.setFillHeight(true);
         //lLogo.setAlignment(Pos.BOTTOM_RIGHT);
-       // hbox.setAlignment(Pos.TOP_RIGHT);
+       // layoutHHauptTLP.setAlignment(Pos.TOP_RIGHT);
 //        BorderPane bp = new BorderPane();
 //        bp.setLeft(lTaskLeisteAngemeldetT);
 //        bp.setCenter(lDatum);
 //        bp.setCenter(lUhrzeit);
 //        bp.setRight(lLogo);
-        AnchorPane ap = new AnchorPane();
-        GridPane gridPT = new GridPane();
-        gridPT.setAlignment(Pos.CENTER);
-        gridPT.setPadding(new Insets(10, 1, 1, 2));
+
+//        GridPane gridPT = new GridPane();
+//        gridPT.setAlignment(Pos.CENTER);
+//        gridPT.setPadding(new Insets(10, 1, 1, 2));
 //        AnchorPane.setLeftAnchor(lTaskLeisteAngemeldetT, 0.0);
 //
-        HBox hbox = new HBox(173);
-        HBox layoutHUhrDatum = new HBox(10);
-        layoutHUhrDatum.getChildren().addAll(lDatum,lUhrzeit);
-        hbox.getChildren().addAll(lTaskLeisteAngemeldetT,layoutHUhrDatum,lLogo);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
-        //ap.setRightAnchor(hbox,0.0);
-        //Pane pane = new Pane(lt,lt2);//funktioniert
-       // Pane pane = new Pane(hbox);
-        //Pane pane = new Pane(hbox);//ap
-        gridPT.add(hbox,0,0);
-        Pane pane = new Pane(gridPT);//ap
-        //pane.getChildren().add(lt);
 
-        return pane;
+//        lLogo.setTranslateX(0);
+//        lLogo.setTranslateY(0);
+//        AnchorPane anchorPaneLeft = new AnchorPane();
+//        AnchorPane anchorPaneRight = new AnchorPane();
+//        AnchorPane anchorPaneHauptTLP = new AnchorPane();
+//
+//        HBox layoutHHauptTLP = new HBox(100);
+//        HBox layoutHUhrDatum = new HBox(10);
+//        layoutHUhrDatum.getChildren().addAll(lDatum,lUhrzeit,lLogo);
+//        layoutHHauptTLP.getChildren().addAll(lTaskLeisteAngemeldetT);////labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
+//
+//
+//        anchorPaneRight.getChildren().addAll(layoutHUhrDatum);
+//        AnchorPane.setRightAnchor(layoutHUhrDatum,0d);
+//        AnchorPane.setBottomAnchor(layoutHUhrDatum,0d);
+//
+//        anchorPaneLeft.getChildren().addAll(layoutHHauptTLP);
+//        AnchorPane.setLeftAnchor(layoutHHauptTLP,0d);
+//        AnchorPane.setBottomAnchor(layoutHHauptTLP,0d);
+//
+//        anchorPaneHauptTLP.getChildren().addAll(anchorPaneLeft,anchorPaneRight);
+
+
+        BorderPane borderPaneHauptTLP = new BorderPane();
+        HBox layoutHHauptTLP = new HBox();
+        HBox layoutHUhrDatum = new HBox(20);
+        layoutHUhrDatum.getChildren().addAll(lDatum,lUhrzeit,lLogo);
+        HBox layoutHDatumUhrLogo = new HBox(40);
+        layoutHDatumUhrLogo.getChildren().addAll(layoutHUhrDatum,lLogo);
+        borderPaneHauptTLP.setBottom(layoutHHauptTLP);
+
+
+
+        AnchorPane anchorPaneLeft = new AnchorPane();
+        HBox.setHgrow(anchorPaneLeft, Priority.ALWAYS);//Make AnchorPane anchorPaneLeft grow horizontally
+        AnchorPane anchorPaneRight = new AnchorPane();
+        layoutHHauptTLP.getChildren().add(anchorPaneLeft);
+        layoutHHauptTLP.getChildren().add(anchorPaneRight);
+
+        anchorPaneLeft.getChildren().add(lTaskLeisteAngemeldetT);
+        anchorPaneRight.getChildren().add(layoutHDatumUhrLogo);
+        ///AnchorPane.setBottomAnchor(layoutHHauptTLP,0d);
+        return borderPaneHauptTLP;
     }
 }
 
-
+//    AnchorPane anchorPane1 = new AnchorPane();
+//
+//    HBox layoutHHauptTLP = new HBox(100);
+//    HBox layoutHUhrDatum = new HBox(10);
+//        layoutHUhrDatum.getChildren().addAll(lDatum,lUhrzeit);
+//                layoutHHauptTLP.getChildren().addAll(lTaskLeisteAngemeldetT,layoutHUhrDatum,lLogo);////labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
+//
+//
+//                anchorPane1.getChildren().addAll(layoutHHauptTLP);
+//                AnchorPane.setRightAnchor(layoutHHauptTLP,0d);
+//                AnchorPane.setBottomAnchor(layoutHHauptTLP,0d);
+//
+//                return anchorPane1;
 
 //Sicherheit-----------------------------------------------------------------------------------
 //public class TaskLeistePane {
