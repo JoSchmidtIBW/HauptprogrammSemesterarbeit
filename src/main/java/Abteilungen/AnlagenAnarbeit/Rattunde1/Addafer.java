@@ -66,6 +66,61 @@ public class Addafer {
     public int zaehlerRollgang1SchweissNahtErkennung = 0;
     public int zaehlerRollgang1PinchRolle12 = 0;
 
+    public int zaehlerMessstationUSSensor = 0;
+    public int zaehlerMessstationLaser = 0;
+    public int zaehlerMessstationEinstellRollen = 0;
+    public int zaehlerMessstationLichtschrankenMS = 0;
+    public int zaehlerMessstationPumpeRueckFuehrEmulsion = 0;
+    public int zaehlerMessstationSchutzTuere = 0;
+
+    public int getZaehlerMessstationUSSensor() {
+        return zaehlerMessstationUSSensor;
+    }
+
+    public void setZaehlerMessstationUSSensor(int zaehlerMessstationUSSensor) {
+        this.zaehlerMessstationUSSensor = zaehlerMessstationUSSensor;
+    }
+
+    public int getZaehlerMessstationLaser() {
+        return zaehlerMessstationLaser;
+    }
+
+    public void setZaehlerMessstationLaser(int zaehlerMessstationLaser) {
+        this.zaehlerMessstationLaser = zaehlerMessstationLaser;
+    }
+
+    public int getZaehlerMessstationEinstellRollen() {
+        return zaehlerMessstationEinstellRollen;
+    }
+
+    public void setZaehlerMessstationEinstellRollen(int zaehlerMessstationEinstellRollen) {
+        this.zaehlerMessstationEinstellRollen = zaehlerMessstationEinstellRollen;
+    }
+
+    public int getZaehlerMessstationLichtschrankenMS() {
+        return zaehlerMessstationLichtschrankenMS;
+    }
+
+    public void setZaehlerMessstationLichtschrankenMS(int zaehlerMessstationLichtschrankenMS) {
+        this.zaehlerMessstationLichtschrankenMS = zaehlerMessstationLichtschrankenMS;
+    }
+
+    public int getZaehlerMessstationPumpeRueckFuehrEmulsion() {
+        return zaehlerMessstationPumpeRueckFuehrEmulsion;
+    }
+
+    public void setZaehlerMessstationPumpeRueckFuehrEmulsion(int zaehlerMessstationPumpeRueckFuehrEmulsion) {
+        this.zaehlerMessstationPumpeRueckFuehrEmulsion = zaehlerMessstationPumpeRueckFuehrEmulsion;
+    }
+
+    public int getZaehlerMessstationSchutzTuere() {
+        return zaehlerMessstationSchutzTuere;
+    }
+
+    public void setZaehlerMessstationSchutzTuere(int zaehlerMessstationSchutzTuere) {
+        this.zaehlerMessstationSchutzTuere = zaehlerMessstationSchutzTuere;
+    }
+
     public int getZaehlerRollgang1PinchRolle12() {
         return zaehlerRollgang1PinchRolle12;
     }
@@ -164,6 +219,13 @@ public class Addafer {
     static boolean bRollen1Rollgang1Abgesetzt = false;
     static boolean bSchweissNahtErkennungRollgang1Abgesetzt = false;
     static boolean bPinchRolle12Rollgang1Abgesetzt = false;
+
+    static boolean bUSSensorMessstationAbgesetzt = false;
+    static boolean bLaserMessstationAbgesetzt = false;
+    static boolean bEinstellRollenMessstationAbgesetzt = false;
+    static boolean bLichtschrankenMSMessstationAbgesetzt = false;
+    static boolean bPumpeRueckFuehrEmulsionAbgesetzt = false;
+    static boolean bSchutzTuereMessstationAbgesetzt = false;
 
     public static Boolean getRotdb() {
         return rotdb;
@@ -887,17 +949,266 @@ public class Addafer {
         lMessstation.setFont(fontAnlageGruppe);
 
         //lMessstation.setAlignment(Pos.BASELINE_CENTER);// hmmmmmm ...
-        Button bUSSensor = new Button("US-Sensor");
-        Button bLaser = new Button("Laserg");
-        Button bEinstellRollen = new Button("Einstell- Rollen");
-        Button bLichtSchrankeM = new Button("Lichtschranke MS");
+        //Button bUSSensor = new Button("US-Sensor");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachUSSensorMessstation =
+                {"US-Sensor", "US-sensore","US-senzor", "US-sensor", "US-sensör"};
+
+        ToggleButton bUSSensorMessstation = new ToggleButton(sprachUSSensorMessstation[Sprache.getSprachenZahl()]);//"US-Sensor"
+        if(bUSSensorMessstationAbgesetzt==false) {
+            bUSSensorMessstation.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bUSSensorMessstation.setDisable(true);
+            }
+            bUSSensorMessstation.setStyle("-fx-background-color: red");//pink
+        }
+
+        bUSSensorMessstation.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bUSSensorMessstationAbgesetzt==false){//grün//rotdb
+                    if(bUSSensorMessstation.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bUSSensorMessstation.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bUSSensorMessstation.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bUSSensorMessstation.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bUSSensorMessstation.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bUSSensorMessstation.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bUSSensorMessstation.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bUSSensorMessstation.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bUSSensorMessstation.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bUSSensorMessstation.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+        //Button bLaser = new Button("Laser");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachLaserMessstation =
+                {"Laser", "Laser","Laser", "Lazer", "Lazer"};
+
+        ToggleButton bLaserMessstation = new ToggleButton(sprachLaserMessstation[Sprache.getSprachenZahl()]);//"Laser"
+        if(bLaserMessstationAbgesetzt==false) {
+            bLaserMessstation.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bLaserMessstation.setDisable(true);
+            }
+            bLaserMessstation.setStyle("-fx-background-color: red");//pink
+        }
+
+        bLaserMessstation.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bLaserMessstationAbgesetzt==false){//grün//rotdb
+                    if(bLaserMessstation.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bLaserMessstation.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bLaserMessstation.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bLaserMessstation.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bLaserMessstation.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bLaserMessstation.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bLaserMessstation.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bLaserMessstation.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bLaserMessstation.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bLaserMessstation.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+        //Button bEinstellRollen = new Button("Einstell- Rollen");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachEinstellRollenMessstation =
+                {"Einstell- Rollen", "rulli di regolazione","valjci za postavljanje", "rrotullat e vendosjes", "ayar silindirleri"};
+
+        ToggleButton bEinstellRollenMessstation = new ToggleButton(sprachEinstellRollenMessstation[Sprache.getSprachenZahl()]);//"Einstell- Rollen"
+        if(bEinstellRollenMessstationAbgesetzt==false) {
+            bEinstellRollenMessstation.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bEinstellRollenMessstation.setDisable(true);
+            }
+            bEinstellRollenMessstation.setStyle("-fx-background-color: red");//pink
+        }
+
+        bEinstellRollenMessstation.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bEinstellRollenMessstationAbgesetzt==false){//grün//rotdb
+                    if(bEinstellRollenMessstation.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bEinstellRollenMessstation.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bEinstellRollenMessstation.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bEinstellRollenMessstation.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bEinstellRollenMessstation.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bEinstellRollenMessstation.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bEinstellRollenMessstation.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bEinstellRollenMessstation.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bEinstellRollenMessstation.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bEinstellRollenMessstation.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+        //Button bLichtSchrankeM = new Button("Lichtschranke MS");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachLichtschrankenMSMessstation =
+                {"Lichtschranke MS", "Barriera fotoelettrica MS","Fotoelektrična barijera MS", "Barriera fotoelektrike MS", "fotoelektrik bariyer MS"};
+
+        ToggleButton bLichtschrankenMSMessstation = new ToggleButton(sprachLichtschrankenMSMessstation[Sprache.getSprachenZahl()]);//"Lichtschranke MS"
+        if(bLichtschrankenMSMessstationAbgesetzt==false) {
+            bLichtschrankenMSMessstation.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bLichtschrankenMSMessstation.setDisable(true);
+            }
+            bLichtschrankenMSMessstation.setStyle("-fx-background-color: red");//pink
+        }
+
+        bLichtschrankenMSMessstation.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bLichtschrankenMSMessstationAbgesetzt==false){//grün//rotdb
+                    if(bLichtschrankenMSMessstation.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bLichtschrankenMSMessstation.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bLichtschrankenMSMessstation.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bLichtschrankenMSMessstation.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bLichtschrankenMSMessstation.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bLichtschrankenMSMessstation.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bLichtschrankenMSMessstation.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bLichtschrankenMSMessstation.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bLichtschrankenMSMessstation.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bLichtschrankenMSMessstation.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
         Button bPumpeRueckFuehr = new Button("Pumpe Emulsion");
         Button bSchutzTuereM = new Button("Schutz-Türe");
 
-        bUSSensor.setStyle("-fx-background-color: green");
-        bLaser.setStyle("-fx-background-color: green");
-        bEinstellRollen.setStyle("-fx-background-color: green");
-        bLichtSchrankeM.setStyle("-fx-background-color: green");
+        //bUSSensor.setStyle("-fx-background-color: green");
+        //bLaser.setStyle("-fx-background-color: green");
+        //bEinstellRollen.setStyle("-fx-background-color: green");
+       // bLichtSchrankeM.setStyle("-fx-background-color: green");
         bPumpeRueckFuehr.setStyle("-fx-background-color: green");
         bSchutzTuereM.setStyle("-fx-background-color: green");
 
@@ -1138,6 +1449,66 @@ public class Addafer {
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
                     System.out.println("PinchRolle12Rollgang1 deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bUSSensorMessstation.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bUSSensorMessstationAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationUSSensor() +"','Adf/Messstation' , 'US-Sensor')");
+                        bUSSensorMessstation.setStyle("-fx-background-color: red");
+                        bUSSensorMessstation.setDisable(true);
+                        bUSSensorMessstationAbgesetzt = true;
+                        setZaehlerMessstationUSSensor(zaehlerMessstationUSSensor +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("USSensorMessstation deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bLaserMessstation.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLaserMessstationAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationLaser() +"','Adf/Messstation' , 'Laser')");
+                        bLaserMessstation.setStyle("-fx-background-color: red");
+                        bLaserMessstation.setDisable(true);
+                        bLaserMessstationAbgesetzt = true;
+                        setZaehlerMessstationLaser(zaehlerMessstationLaser +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("LaserMessstation deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bEinstellRollenMessstation.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bEinstellRollenMessstationAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationEinstellRollen() +"','Adf/Messstation' , 'Einstell-Rollen')");
+                        bEinstellRollenMessstation.setStyle("-fx-background-color: red");
+                        bEinstellRollenMessstation.setDisable(true);
+                        bEinstellRollenMessstationAbgesetzt = true;
+                        setZaehlerMessstationEinstellRollen(zaehlerMessstationEinstellRollen +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("EinstellRollenMessstation deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bLichtschrankenMSMessstation.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLichtschrankenMSMessstationAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationLichtschrankenMS() +"','Adf/Messstation' , 'Lichtschranken MS')");
+                        bLichtschrankenMSMessstation.setStyle("-fx-background-color: red");
+                        bLichtschrankenMSMessstation.setDisable(true);
+                        bLichtschrankenMSMessstationAbgesetzt = true;
+                        setZaehlerMessstationLichtschrankenMS(zaehlerMessstationLichtschrankenMS +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("LichtschrankenMSMessstation deselectet bei MeldungabsetztenSchlaufe");
                 }
 
 
@@ -1392,6 +1763,94 @@ public class Addafer {
                     System.out.println("PinchRolle12Rollgang1 deselectet in Störmeldung");
                 }
 
+                if(bUSSensorMessstation.isSelected()){
+                    System.out.println("USSensorMessstation selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Messstation' AND Stoerung = 'US-Sensor';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bUSSensorMessstation.setStyle("-fx-background-color: green");
+                        bUSSensorMessstation.setDisable(false);
+                        setRotdb(false);
+                        bUSSensorMessstationAbgesetzt = false;
+                    }
+                    else{
+                        bUSSensorMessstation.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("USSensorMessstation deselectet in Störmeldung");
+                }
+
+                if(bLaserMessstation.isSelected()){
+                    System.out.println("LaserMessstation selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Messstation' AND Stoerung = 'Laser';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bLaserMessstation.setStyle("-fx-background-color: green");
+                        bLaserMessstation.setDisable(false);
+                        setRotdb(false);
+                        bLaserMessstationAbgesetzt = false;
+                    }
+                    else{
+                        bLaserMessstation.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("LaserMessstation deselectet in Störmeldung");
+                }
+
+                if(bEinstellRollenMessstation.isSelected()){
+                    System.out.println("EinstellRollenMessstation selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Messstation' AND Stoerung = 'Einstell-Rollen';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bEinstellRollenMessstation.setStyle("-fx-background-color: green");
+                        bEinstellRollenMessstation.setDisable(false);
+                        setRotdb(false);
+                        bEinstellRollenMessstationAbgesetzt = false;
+                    }
+                    else{
+                        bEinstellRollenMessstation.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("EinstellRollenMessstation deselectet in Störmeldung");
+                }
+
+                if(bLichtschrankenMSMessstation.isSelected()){
+                    System.out.println("LichtschrankenMSMessstation selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Messstation' AND Stoerung = 'Lichtschranken MS';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bLichtschrankenMSMessstation.setStyle("-fx-background-color: green");
+                        bLichtschrankenMSMessstation.setDisable(false);
+                        setRotdb(false);
+                        bLichtschrankenMSMessstationAbgesetzt = false;
+                    }
+                    else{
+                        bLichtschrankenMSMessstation.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("LichtschrankenMSMessstation deselectet in Störmeldung");
+                }
+
 
             }
         });
@@ -1401,7 +1860,7 @@ public class Addafer {
         layoutHBundlader.getChildren().addAll(lBundlader,bGurte,bLichtSchranke1,bAnschlagBundlader,bSchutzZaunBundlader);
         layoutHVereinzelung.getChildren().addAll(lVereinzelung,bRollen_SchraegVereinzelung,bStopper_Bolzen1Vereinzelung,bStopper_Bolzen123Vereinzelung);
         layoutHRollgang1.getChildren().addAll(lRollgang1,bRollen1Rollgang1,bSchweissNahtErkennungRollgang1,bPinchRolle12Rollgang1);
-        layoutHMessstation.getChildren().addAll(lMessstation,bUSSensor,bLaser,bEinstellRollen,bLichtSchrankeM,bPumpeRueckFuehr,bSchutzTuereM);
+        layoutHMessstation.getChildren().addAll(lMessstation,bUSSensorMessstation,bLaserMessstation,bEinstellRollenMessstation,bLichtschrankenMSMessstation,bPumpeRueckFuehr,bSchutzTuereM);
         layoutHRollgang4.getChildren().addAll(lRollgang4,bPinchRolle3,bRollen4,bRohrAuswerfer,bSchrottGurte,bLichtSchranke2);
         layoutHWalkingBeam.getChildren().addAll(lWalkingBeam,bWalkingBeam,bDrehGreifer,bRadRat1);
         HBox layoutHAbsetzenAufhebenZurueckR1A = new HBox(60);

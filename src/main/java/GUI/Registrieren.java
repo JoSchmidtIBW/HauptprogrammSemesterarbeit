@@ -92,6 +92,14 @@ public class Registrieren {
     public static Scene createRegistrierenScene(Stage stage) {
 
         Label labelRegistrierenScene = new Label("- Registrieren- Scene - Ein neuer Mitarbeiter wird geboren");
+        TextField txfVornameNeu = new TextField();
+        Label lZeigeVornameNeu = new Label();
+        TextField txfNachnameNeu = new TextField();
+        Label lZeigeNachnameNeu = new Label();
+        TextField txfPasswortNeu = new TextField();
+        Label lZeigePasswortNeu = new Label();
+        Label lZeigeIstChefNeu = new Label("");
+        Label lZeigeIstUnterhaltNeu = new Label("");
 //MA-NummerNeu----------------------------------------------------------------------------------------------------------
         Label lMANummerNeu = new Label("Neue MA.-Nummer");
         TextField txfMANummerNeu = new TextField();
@@ -111,21 +119,61 @@ public class Registrieren {
             if(eingabeMANummerNeu.length()==0){//wenn leer//eingabeVornameNeu.length()==0//strMANummerFrage==null
                 lzeigeMANummerNeu.setTextFill(Color.RED);
                 lzeigeMANummerNeu.setText("User muss einen Mitarbeiter- Nummer besitzen!");
+                txfMANummerNeu.setText("");
             }
             else{//else if(eingabeMANummerNeu != null){
                 if(getAusgabeSucheMANummerMitMANummerFrageDB().isEmpty()){
                     System.out.println("Mitarbeiter gibt es nicht");
                     //ToDo Darf keine Leertaste haben und nur aus Zahlen bestehen!!!
-                    lzeigeMANummerNeu.setText("JUNIT-Test: Enthält keine Zahl!!!" + txfMANummerNeu.getText());
-                    lzeigeMANummerNeu.setTextFill(Color.GREEN);
-                    setEingabeMANummerNeu(txfMANummerNeu.getText());
-                    System.out.println(getEingabeMANummerNeu());
+
+
+                    if (Login.ueberpruefungEingabeMANummerLogin(eingabeMANummerNeu).equals("leer")) {
+                        lzeigeMANummerNeu.setTextFill(Color.RED);
+                        lzeigeMANummerNeu.setText("Es muss eine neue Mitarbeiter- Nummer \neingegeben werden!");
+                        txfMANummerNeu.setText("");
+                        lZeigeVornameNeu.setText("");
+                        lZeigeNachnameNeu.setText("");
+                        lZeigePasswortNeu.setText("");
+                        lZeigeIstChefNeu.setText("");
+                        lZeigeIstUnterhaltNeu.setText("");
+                        txfVornameNeu.setText("");
+                        txfNachnameNeu.setText("");
+                        txfPasswortNeu.setText("");
+                    } else if (Login.ueberpruefungEingabeMANummerLogin(eingabeMANummerNeu).equals("Enthält keine Zahl")) {
+                        lzeigeMANummerNeu.setTextFill(Color.DARKRED);
+                        lzeigeMANummerNeu.setText("Falsche Eingabe \nDie Mitarbeiter- Nummer \nbesteht nur aus Zahlen!");
+                        txfMANummerNeu.setText("");
+                        lZeigeVornameNeu.setText("");
+                        lZeigeNachnameNeu.setText("");
+                        lZeigePasswortNeu.setText("");
+                        lZeigeIstChefNeu.setText("");
+                        lZeigeIstUnterhaltNeu.setText("");
+                        txfVornameNeu.setText("");
+                        txfNachnameNeu.setText("");
+                        txfPasswortNeu.setText("");
+                    } else if (Login.ueberpruefungEingabeMANummerLogin(eingabeMANummerNeu).equals("ist richtig")) {
+                        lzeigeMANummerNeu.setText("JUNIT-Test: Enthält keine Zahl!!!" + txfMANummerNeu.getText());
+                        lzeigeMANummerNeu.setTextFill(Color.GREEN);
+                        setEingabeMANummerNeu(txfMANummerNeu.getText());
+                        System.out.println(getEingabeMANummerNeu());
+                    }
+
                 }
                 else {
-                    System.out.println("Mitarbeiter existiert");
+                    System.out.println("Mitarbeiter existiert schon");
                     lzeigeMANummerNeu.setTextFill(Color.RED);
                     lzeigeMANummerNeu.setText("Mitarbeiter existiert schon!");
                     setEingabeMANummerNeu("");
+
+                    txfMANummerNeu.setText("");
+                    lZeigeVornameNeu.setText("");
+                    lZeigeNachnameNeu.setText("");
+                    lZeigePasswortNeu.setText("");
+                    lZeigeIstChefNeu.setText("");
+                    lZeigeIstUnterhaltNeu.setText("");
+                    txfVornameNeu.setText("");
+                    txfNachnameNeu.setText("");
+                    txfPasswortNeu.setText("");
                 }
 //                else if(!getAusgabeSucheMANummerMitMANummerFrageDB().isEmpty()&&eingabeMANummerNeu != null){
 //                lzeigeMANummerNeu.setTextFill(Color.RED);
@@ -137,9 +185,9 @@ public class Registrieren {
         });
 //VornameNeu------------------------------------------------------------------------------------------------------------
         Label lVornameNeu = new Label("Neuer Vorname:");
-        TextField txfVornameNeu = new TextField();
+
         Button bVornameNeuOK = new Button("VornameNeuOK");
-        Label lZeigeVornameNeu = new Label();
+
         bVornameNeuOK.setOnAction(e -> {
             eingabeVornameNeu = txfVornameNeu.getText();
 //            System.out.println("eingabeVornameNeu: "+eingabeVornameNeu.length());
@@ -151,7 +199,7 @@ public class Registrieren {
                 lZeigeVornameNeu.setText("User muss einen Vornamen besitzen!");
             }
                 else {//eingabeVornameNeu.length()>0//if (!eingabeVornameNeu.equals(""))
-                    lZeigeVornameNeu.setText("Darf keine Leertaste und Sonderzeichen!!!" + txfVornameNeu.getText());
+                    lZeigeVornameNeu.setText("Sonderzeichen wegen DB???" + txfVornameNeu.getText());
                     lZeigeVornameNeu.setTextFill(Color.DEEPPINK);
                     setEingabeVornameNeu(txfVornameNeu.getText());
                 }
@@ -159,9 +207,9 @@ public class Registrieren {
 //NachnameNeu-----------------------------------------------------------------------------------------------------------
 
         Label lNachnameNeu = new Label("Neuer Nachname:");
-        TextField txfNachnameNeu = new TextField();
+
         Button bNachnameNeuOK = new Button("NachnameNeuOK");
-        Label lZeigeNachnameNeu = new Label();
+
         bNachnameNeuOK.setOnAction(e -> {
             eingabeNachnameNeu=txfNachnameNeu.getText();
             if(eingabeNachnameNeu.length()==0){//wenn leer//eingabeVornameNeu.length()==0
@@ -169,16 +217,16 @@ public class Registrieren {
                 lZeigeNachnameNeu.setText("User muss einen Nachnamen besitzen!");
             }
             else{
-                lZeigeNachnameNeu.setText("JUNIT Leertaste und Sonderzeichen!!!" + txfNachnameNeu.getText());
+                lZeigeNachnameNeu.setText("Sonderzeichen wegen DB???" + txfNachnameNeu.getText());
                 lZeigeNachnameNeu.setTextFill(Color.web("#FFD700", 0.8));//1.8 mal schauen//dann kommt Fehler
                 setEingabeNachnameNeu(txfNachnameNeu.getText());
             }
         });
 //PasswortNeuRegistrieren-----------------------------------------------------------------------------------------------
         Label lPassWortNeu = new Label("Neues Passwort:");
-        TextField txfPasswortNeu = new TextField();
+
         Button bPasswortNeuOK = new Button("PasswortNeuOK");
-        Label lZeigePasswortNeu = new Label();
+
         bPasswortNeuOK.setOnAction(e -> {
             eingabePasswortNeu = txfPasswortNeu.getText();
             if(eingabePasswortNeu.length()==0){//wenn leer//eingabeVornameNeu.length()==0
@@ -186,7 +234,7 @@ public class Registrieren {
                 lZeigePasswortNeu.setText("User muss einen Passwort besitzen!");
             }
             else{
-                lZeigePasswortNeu.setText("JUNIT Leertaste und Sonderzeichen!!!" + txfPasswortNeu.getText());
+                lZeigePasswortNeu.setText("Sonderzeichen wegen DB???" + txfPasswortNeu.getText());
                 lZeigePasswortNeu.setTextFill(Color.web("#7CFC00", 0.8));//1.8 mal schauen//dann kommt Fehler
                 setEingabePasswortNeu(txfPasswortNeu.getText());
             }
@@ -197,7 +245,7 @@ public class Registrieren {
         ComboBox comboBoxChef = new ComboBox();
         comboBoxChef.getItems().add("istChef");//0
         comboBoxChef.getItems().add("keinChef");//1
-        Label lZeigeIstChefNeu = new Label("");
+
         EventHandler<ActionEvent> event =
                 new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent e) {
@@ -229,7 +277,7 @@ public class Registrieren {
         ComboBox comboBoxUnterhalt = new ComboBox();
         comboBoxUnterhalt.getItems().add("istU");//0
         comboBoxUnterhalt.getItems().add("keinU");//1
-        Label lZeigeIstUnterhaltNeu = new Label("");
+
         EventHandler<ActionEvent> event2 =
                 new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent e) {
@@ -286,6 +334,16 @@ public class Registrieren {
                     //ToDo hey prog. wenn user schon gibt, denn mach fehlermeldig bitte
                     lZeigeRegistrierungAbschliessen.setText("Es muss alles vollständig ausgefüllt sein!");
                     lZeigeRegistrierungAbschliessen.setTextFill(Color.RED);
+                    lzeigeMANummerNeu.setText("");
+                    lZeigeVornameNeu.setText("");
+                    lZeigeNachnameNeu.setText("");
+                    lZeigePasswortNeu.setText("");
+                    lZeigeIstChefNeu.setText("");
+                    lZeigeIstUnterhaltNeu.setText("");
+                    txfMANummerNeu.setText("");
+                    txfVornameNeu.setText("");
+                    txfNachnameNeu.setText("");
+                    txfPasswortNeu.setText("");
                 }
                 else{
                     //ToDo hier könnte man zB Geburtsdatum reinmachen
@@ -307,8 +365,8 @@ public class Registrieren {
             }
         });
 //ZurückSprache---------------------------------------------------------------------------------------------------------
-        Button bZurueckSprache = new Button("Go to Sprache - Scene");
-        bZurueckSprache.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
+        Button bZurueckSpracheR = new Button("Zurück");
+        bZurueckSpracheR.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
 //LayoutZeugs-----------------------------------------------------------------------------------------------------------
         VBox layoutVR = new VBox(1);
 
@@ -329,7 +387,7 @@ public class Registrieren {
         layoutIstUnterhalt.getChildren().addAll(lIstUnterhaltNeu, comboBoxUnterhalt, lZeigeIstUnterhaltNeu);
         layoutHRegistrierungAbschliessen.getChildren().addAll(bRegistrierungAbschliessen,lZeigeRegistrierungAbschliessen);
 
-        layoutVR.getChildren().addAll(labelRegistrierenScene, layoutHMANummerNeu, layoutHVornameNeu, layoutHNachnameNeu, layoutPasswortNeu, layoutIstChef, layoutIstUnterhalt, layoutHRegistrierungAbschliessen, bZurueckSprache, TaskLeistePane.getPane());
+        layoutVR.getChildren().addAll(labelRegistrierenScene, layoutHMANummerNeu, layoutHVornameNeu, layoutHNachnameNeu, layoutPasswortNeu, layoutIstChef, layoutIstUnterhalt, layoutHRegistrierungAbschliessen, bZurueckSpracheR, TaskLeistePane.getPane());
 
         //Scene sceneRegistrieren = new Scene(layoutVR);
         Scene sceneRegistrieren = new Scene(new ScrollPane(layoutVR), 700, 400);//hat scrollpane drin

@@ -232,7 +232,7 @@ public class Login {
                     setWerIstAngemeldet(werIstAngemeldet);
                     System.out.println("werIstAngemeldet " + getWerIstAngemeldet());
                     splittWerIstAngemeldet(werIstAngemeldet);
-                    System.out.println("oooooooohhhh  soo geil du  Static  --> " + getPasswort_User());
+                    //System.out.println("oooooooohhhh  soo geil du  Static  --> " + getPasswort_User());
                     //setWerIstAngemeldet(getAusgabeSucheMANummerMitNameDB());
                     if (ausgabeSucheMANummerMitNameDB.equals("")) {
                         lzeigeMANummerL.setText("Falsche Mitarbeiter- Nummer --> " + txfMANummerL.getText() + "\nSie sind kein Mitarbeiter!");

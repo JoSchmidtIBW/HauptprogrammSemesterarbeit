@@ -229,8 +229,8 @@ public class PasswortChange {
             }
         });
 //Zurück----------------------------------------------------------------------------------------------------------------
-        Button bZurueckSprache = new Button("Zurück");
-        bZurueckSprache.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
+        Button bZurueckSprachePWC = new Button("Zurück");
+        bZurueckSprachePWC.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
 
 
 
@@ -248,7 +248,7 @@ public class PasswortChange {
         layoutHPasswortAendern.getChildren().addAll(lPassWortAendern,bPasswortAendernOK,lzeigePasswortAendern);
 
 
-        layoutV1.getChildren().addAll(layoutHPasswortAlt,layoutHPasswortNeu,layoutHPasswortNeuWiederholen,layoutHPasswortAendern,bZurueckSprache,TaskLeistePane.getPane());
+        layoutV1.getChildren().addAll(layoutHPasswortAlt,layoutHPasswortNeu,layoutHPasswortNeuWiederholen,layoutHPasswortAendern,bZurueckSprachePWC,TaskLeistePane.getPane());
 
 
         Scene scenePasswortChange = new Scene(new ScrollPane(layoutV1), 650, 200);//scene braucht ein Layout, hat scrollpane drin

@@ -70,11 +70,13 @@ public class Anleitung {
             lAnleitung.setText(sprachTextNichtUnterhalt[Sprache.getSprachenZahl()]);
         }
         else if(Login.getIstUnterhalt().equals("Admin")){
-            lAnleitung.setText("Alter, du bisch Admin, du bruchsch kei Aleitig...");
+            lAnleitung.setText("Alter, du bisch Admin, du bruchsch kei Aleitig...\n" +
+                    "Jedoch, da der Admin Absetzen und Aufheben kann, \nmuss er nach Betätigung die Seite neu laden" +
+                    "\n man könnte dies jedoch implementieren");
         }
 
 
-        //todo spracheAnleitungUnterhalt
+        
 
         VBox layoutV = new VBox(1);
         layoutV.getChildren().addAll(lAnleitung);//,text1

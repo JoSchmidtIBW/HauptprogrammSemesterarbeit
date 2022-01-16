@@ -26,7 +26,7 @@ public class MADelete {
         MADelete.eingabeMANummerDelete = eingabeMANummerDelete;
     }
 
-    private static String eingabeMANummerDelete;
+    private static String eingabeMANummerDelete = "";
     private static String ausgabeGesamtMANummerDeleteFrageVonDB;
 
     public static void setAusgabeSucheMANummerDeleteMitMANummerFrageDB(String ausgabeGesamtMANummerDeleteFrageVonDB) {
@@ -46,6 +46,7 @@ public class MADelete {
 
         Button bMANummerDelete = new Button("MA-NummerDeleteOK");
         Label lzeigeMANummerDelete = new Label();
+        Label lZeigeMADelete = new Label();
         //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+getEingabeMANummer()));
         bMANummerDelete.setOnAction(e -> {
             eingabeMANummerDelete = txfMANummerDelete.getText();
@@ -57,7 +58,8 @@ public class MADelete {
 //eingabeMANummerNeu
             if(eingabeMANummerDelete.length()==0){//wenn leer//eingabeVornameNeu.length()==0//strMANummerFrage==null
                 lzeigeMANummerDelete.setTextFill(Color.RED);
-                lzeigeMANummerDelete.setText("der zu löschende User muss einen Mitarbeiter- Nummer besitzen!");
+                lzeigeMANummerDelete.setText("der zu löschende User \nmuss einen Mitarbeiter- Nummer besitzen!");
+                lZeigeMADelete.setText("");
             }
             else{//else if(eingabeMANummerNeu != null){
                 if(getAusgabeSucheMANummerDeleteMitMANummerFrageDB().isEmpty()){
@@ -69,12 +71,14 @@ public class MADelete {
 //                    System.out.println(getEingabeMANummerNeu());
                     lzeigeMANummerDelete.setTextFill(Color.RED);
                     lzeigeMANummerDelete.setText("Der User existiert nicht!");
+                    lZeigeMADelete.setText("");
                 }
                 else {
                     System.out.println("Mitarbeiter existiert");
                     lzeigeMANummerDelete.setTextFill(Color.GREEN);
                     lzeigeMANummerDelete.setText("Der User wurde gefunden");
                     setEingabeMANummerDelete(txfMANummerDelete.getText());
+                    lZeigeMADelete.setText("");
                 }
 //                else if(!getAusgabeSucheMANummerMitMANummerFrageDB().isEmpty()&&eingabeMANummerNeu != null){
 //                lzeigeMANummerNeu.setTextFill(Color.RED);
@@ -92,27 +96,39 @@ public class MADelete {
 
 //MADelete---------------------------------------------------------------------------------------------
         Button bMADelete = new Button("MA-Delete");
-        Label lZeigeMADelete = new Label();
+
         bMADelete.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 if(getEingabeMANummerDelete().length()==0){
                     lZeigeMADelete.setText("Erst muss eine MA- Nummer eingegeben werden!");
                     lZeigeMADelete.setTextFill(Color.RED);
+                    lzeigeMANummerDelete.setText("");
+                    txfMANummerDelete.setText("");
                 }
-                else{
-                    String schreibeMADeleteInDB = "DELETE FROM userMubea WHERE MA_Nummer = '"+ getEingabeMANummerDelete()+"';";
-                    dBD.schreibeDB(schreibeMADeleteInDB);
-                    lZeigeMADelete.setText("Der User wurde erfolgreich gelöscht\nID_User von userMubea(Table) geseht ez halt komisch us, aber mir egal");
-                    lZeigeMADelete.setTextFill(Color.GREEN);
+                else {
+                    if(getAusgabeSucheMANummerDeleteMitMANummerFrageDB().isEmpty()){
+                        System.out.println("Tu irgend was!!");
+                        lZeigeMADelete.setText("Erst Mitarbeiter-Nummer eingeben");
+                        lZeigeMADelete.setTextFill(Color.RED);
+                        lzeigeMANummerDelete.setText("");
+                        txfMANummerDelete.setText("");
+                    }
+                    else{
+                        System.out.println("Tu irgend wirklich was!!");
+                        String schreibeMADeleteInDB = "DELETE FROM userMubea WHERE MA_Nummer = '"+ getEingabeMANummerDelete()+"';";
+                        dBD.schreibeDB(schreibeMADeleteInDB);
+                        lZeigeMADelete.setText("Der User wurde erfolgreich gelöscht\nID_User von userMubea(Table) gseht ez halt komisch us, aber mir egal");
+                        lZeigeMADelete.setTextFill(Color.GREEN);
+                    }
                 }
                 setEingabeMANummerDelete("");
             }
         });
 //ZurückSprache---------------------------------------------------------------------------------------------------------
-        Button bZurueckSpracheMADelete= new Button("Go to Sprache - Scene");
+        Button bZurueckSpracheMADelete= new Button("Zurück");
         bZurueckSpracheMADelete.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
 //LayoutZeugs-----------------------------------------------------------------------------------------------------------
-        VBox layoutVD= new VBox(1);
+        VBox layoutVD= new VBox(20);
 
         HBox layoutH = new HBox(1);
         HBox layoutHDelete = new HBox(1);
@@ -122,7 +138,7 @@ public class MADelete {
         layoutVD.getChildren().addAll(labelMADeleteScene,layoutH,layoutHDelete,bZurueckSpracheMADelete,TaskLeistePane.getPane());
 
         //Scene sceneRegistrieren = new Scene(layoutVR);
-        Scene sceneMADelete = new Scene(new ScrollPane(layoutVD),700,400);//hat scrollpane drin
+        Scene sceneMADelete = new Scene(new ScrollPane(layoutVD),650,250);//hat scrollpane drin
         return sceneMADelete;
     }
 
