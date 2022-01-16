@@ -76,6 +76,12 @@ public class Addafer {
     static boolean bPumpeRueckFuehrEmulsionMessstationAbgesetzt = false;
     static boolean bSchutzTuereMessstationAbgesetzt = false;
 
+    static boolean bPinchRolle3Rollgang4Abgesetzt = false;
+    static boolean bRollen4Rollgang4Abgesetzt = false;
+    static boolean bRohrAuswerferRollgang4Abgesetzt = false;
+    static boolean bSchrottGurteRollgang4Abgesetzt = false;
+    static boolean bLichtSchranke2Rollgang4Abgesetzt = false;
+
     public int zaehlerBundladerGurte = 0;
     public int zaehlerBundladerLichtSchranke1 = 0;
     public int zaehlerBundladerAnschlag = 0;
@@ -95,6 +101,52 @@ public class Addafer {
     public int zaehlerMessstationLichtschrankenMS = 0;
     public int zaehlerMessstationPumpeRueckFuehrEmulsion = 0;
     public int zaehlerMessstationSchutzTuere = 0;
+
+    public int zaehlerRollgang4PinchRolle3 = 0;
+    public int zaehlerRollgang4Rollen4 = 0;
+    public int zaehlerRollgang4RohrAuswerfer = 0;
+    public int zaehlerRollgang4SchrottGurte = 0;
+    public int zaehlerRollgang4LichtSchranke2 = 0;
+
+    public int getZaehlerRollgang4LichtSchranke2() {
+        return zaehlerRollgang4LichtSchranke2;
+    }
+
+    public void setZaehlerRollgang4LichtSchranke2(int zaehlerRollgang4LichtSchranke2) {
+        this.zaehlerRollgang4LichtSchranke2 = zaehlerRollgang4LichtSchranke2;
+    }
+
+    public int getZaehlerRollgang4SchrottGurte() {
+        return zaehlerRollgang4SchrottGurte;
+    }
+
+    public void setZaehlerRollgang4SchrottGurte(int zaehlerRollgang4SchrottGurte) {
+        this.zaehlerRollgang4SchrottGurte = zaehlerRollgang4SchrottGurte;
+    }
+
+    public int getZaehlerRollgang4RohrAuswerfer() {
+        return zaehlerRollgang4RohrAuswerfer;
+    }
+
+    public void setZaehlerRollgang4RohrAuswerfer(int zaehlerRollgang4RohrAuswerfer) {
+        this.zaehlerRollgang4RohrAuswerfer = zaehlerRollgang4RohrAuswerfer;
+    }
+
+    public int getZaehlerRollgang4Rollen4() {
+        return zaehlerRollgang4Rollen4;
+    }
+
+    public void setZaehlerRollgang4Rollen4(int zaehlerRollgang4Rollen4) {
+        this.zaehlerRollgang4Rollen4 = zaehlerRollgang4Rollen4;
+    }
+
+    public int getZaehlerRollgang4PinchRolle3() {
+        return zaehlerRollgang4PinchRolle3;
+    }
+
+    public void setZaehlerRollgang4PinchRolle3(int zaehlerRollgang4PinchRolle3) {
+        this.zaehlerRollgang4PinchRolle3 = zaehlerRollgang4PinchRolle3;
+    }
 
     public int getZaehlerMessstationUSSensor() {
         return zaehlerMessstationUSSensor;
@@ -262,61 +314,61 @@ public class Addafer {
 
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
-        String[] sprachGurte =
+        String[] sprachGurteBundlader =
                 {"Gurte", "cinghie","trake", "rripat", "kayışlar"};
 
-        ToggleButton bGurte = new ToggleButton(sprachGurte[Sprache.getSprachenZahl()]);//"Gurte"
+        ToggleButton bGurteBundlader = new ToggleButton(sprachGurteBundlader[Sprache.getSprachenZahl()]);//"Gurte"
         if(bGurteBundladerAbgesetzt ==false) {//rotdb
-            bGurte.setStyle("-fx-background-color: green");//blue
+            bGurteBundlader.setStyle("-fx-background-color: green");//blue
         }else{
             if(Login.getIstUnterhalt().equals("keinU")){
-                bGurte.setDisable(true);
+                bGurteBundlader.setDisable(true);
             }
-            bGurte.setStyle("-fx-background-color: red");//pink
+            bGurteBundlader.setStyle("-fx-background-color: red");//pink
         }
 
-        bGurte.setOnAction(new EventHandler<ActionEvent>() {
+        bGurteBundlader.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 if(bGurteBundladerAbgesetzt ==false){//grün//rotdb
-                    if(bGurte.isSelected()){
+                    if(bGurteBundlader.isSelected()){
                         System.out.println("ist selectet erste");
                         if(Login.getIstUnterhalt().equals("istU")){
-                            bGurte.setStyle("-fx-background-color: green");//pink
+                            bGurteBundlader.setStyle("-fx-background-color: green");//pink
                             System.out.println("Bin Unterhalt pink: ");
                         }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
-                            bGurte.setStyle("-fx-background-color: yellow");
+                            bGurteBundlader.setStyle("-fx-background-color: yellow");
                             System.out.println("Bin kein Unterhalt gelb: ");
                         }
                     }else {
                         System.out.println("Sollte jetzt deselectet sein");
                         if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             System.out.println("Bin Unterhalt rot: ");
-                            bGurte.setStyle("-fx-background-color: green");//red
+                            bGurteBundlader.setStyle("-fx-background-color: green");//red
                         }
                         else if(Login.getIstUnterhalt().equals("keinU")){
                             System.out.println("Bin kein Unterhalt grün");
-                            bGurte.setStyle("-fx-background-color: green");
+                            bGurteBundlader.setStyle("-fx-background-color: green");
                         }
                     }
                 }else {
-                    if(bGurte.isSelected()){
+                    if(bGurteBundlader.isSelected()){
                         System.out.println("ist selectet erste");
                         if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
-                            bGurte.setStyle("-fx-background-color: pink");//pink
+                            bGurteBundlader.setStyle("-fx-background-color: pink");//pink
                             System.out.println("Bin Unterhalt pink: ");
                         }else if(Login.getIstUnterhalt().equals("keinU")){
-                            bGurte.setStyle("-fx-background-color: yellow");
+                            bGurteBundlader.setStyle("-fx-background-color: yellow");
                             System.out.println("Bin kein Unterhalt gelb: ");
                         }
                     }else {
                         System.out.println("Sollte jetzt deselectet sein");
                         if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             System.out.println("Bin Unterhalt rot: ");
-                            bGurte.setStyle("-fx-background-color: red");//red
+                            bGurteBundlader.setStyle("-fx-background-color: red");//red
                         }
                         else if(Login.getIstUnterhalt().equals("keinU")){
                             System.out.println("Bin kein Unterhalt grün");
-                            bGurte.setStyle("-fx-background-color: green");
+                            bGurteBundlader.setStyle("-fx-background-color: green");
                         }
                     }
                 }
@@ -327,61 +379,61 @@ public class Addafer {
 
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
-        String[] sprachLichtSchranke1 =
+        String[] sprachLichtSchranke1Bundlader =
                 {"LichtSchranke 1", "Barriera fotoelettrica 1","Fotoelektrična barijera 1", "Barriera fotoelektrike 1", "fotoelektrik bariyer 1"};
 
-        ToggleButton bLichtSchranke1 = new ToggleButton(sprachLichtSchranke1[Sprache.getSprachenZahl()]);//"Gurte"
+        ToggleButton bLichtSchranke1Bundlader = new ToggleButton(sprachLichtSchranke1Bundlader[Sprache.getSprachenZahl()]);//"Gurte"
         if(bLichtSchranke1BundladerAbgesetzt ==false) {
-            bLichtSchranke1.setStyle("-fx-background-color: green");//blue
+            bLichtSchranke1Bundlader.setStyle("-fx-background-color: green");//blue
         }else{
             if(Login.getIstUnterhalt().equals("keinU")){
-                bLichtSchranke1.setDisable(true);
+                bLichtSchranke1Bundlader.setDisable(true);
             }
-            bLichtSchranke1.setStyle("-fx-background-color: red");//pink
+            bLichtSchranke1Bundlader.setStyle("-fx-background-color: red");//pink
         }
 
-        bLichtSchranke1.setOnAction(new EventHandler<ActionEvent>() {
+        bLichtSchranke1Bundlader.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 if(bLichtSchranke1BundladerAbgesetzt ==false){//grün//rotdb
-                    if(bLichtSchranke1.isSelected()){
+                    if(bLichtSchranke1Bundlader.isSelected()){
                         System.out.println("ist selectet erste");
                         if(Login.getIstUnterhalt().equals("istU")){
-                            bLichtSchranke1.setStyle("-fx-background-color: green");//pink
+                            bLichtSchranke1Bundlader.setStyle("-fx-background-color: green");//pink
                             System.out.println("Bin Unterhalt pink: ");
                         }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
-                            bLichtSchranke1.setStyle("-fx-background-color: yellow");
+                            bLichtSchranke1Bundlader.setStyle("-fx-background-color: yellow");
                             System.out.println("Bin kein Unterhalt gelb: ");
                         }
                     }else {
                         System.out.println("Sollte jetzt deselectet sein");
                         if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             System.out.println("Bin Unterhalt rot: ");
-                            bLichtSchranke1.setStyle("-fx-background-color: green");//red
+                            bLichtSchranke1Bundlader.setStyle("-fx-background-color: green");//red
                         }
                         else if(Login.getIstUnterhalt().equals("keinU")){
                             System.out.println("Bin kein Unterhalt grün");
-                            bLichtSchranke1.setStyle("-fx-background-color: green");
+                            bLichtSchranke1Bundlader.setStyle("-fx-background-color: green");
                         }
                     }
                 }else {
-                    if(bLichtSchranke1.isSelected()){
+                    if(bLichtSchranke1Bundlader.isSelected()){
                         System.out.println("ist selectet erste");
                         if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
-                            bLichtSchranke1.setStyle("-fx-background-color: pink");//pink
+                            bLichtSchranke1Bundlader.setStyle("-fx-background-color: pink");//pink
                             System.out.println("Bin Unterhalt pink: ");
                         }else if(Login.getIstUnterhalt().equals("keinU")){
-                            bLichtSchranke1.setStyle("-fx-background-color: yellow");
+                            bLichtSchranke1Bundlader.setStyle("-fx-background-color: yellow");
                             System.out.println("Bin kein Unterhalt gelb: ");
                         }
                     }else {
                         System.out.println("Sollte jetzt deselectet sein");
                         if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                             System.out.println("Bin Unterhalt rot: ");
-                            bLichtSchranke1.setStyle("-fx-background-color: red");//red
+                            bLichtSchranke1Bundlader.setStyle("-fx-background-color: red");//red
                         }
                         else if(Login.getIstUnterhalt().equals("keinU")){
                             System.out.println("Bin kein Unterhalt grün");
-                            bLichtSchranke1.setStyle("-fx-background-color: green");
+                            bLichtSchranke1Bundlader.setStyle("-fx-background-color: green");
                         }
                     }
                 }
@@ -1313,17 +1365,327 @@ public class Addafer {
         lRollgang4.setFont(fontAnlageGruppe);
 
 
-        Button bPinchRolle3 = new Button("Pinch-Rolle 3");
-        Button bRollen4 = new Button("Rollen 4");
-        Button bRohrAuswerfer = new Button("Rohr- Auswerfer");
-        Button bSchrottGurte = new Button("Gurte Schrott");
-        Button bLichtSchranke2 = new Button("Lichtschranke 2");
+        //Button bPinchRolle3 = new Button("Pinch-Rolle 3");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachPinchRolle3Rollgang4 =
+                {"Pinch-Rolle 3", "Pizzicare il rotolo 3","Pinch roll 3", "Roll me majë 3", "Sıkıştırma rulosu 3"};
 
-        bPinchRolle3.setStyle("-fx-background-color: green");
-        bRollen4.setStyle("-fx-background-color: green");
-        bRohrAuswerfer.setStyle("-fx-background-color: green");
-        bSchrottGurte.setStyle("-fx-background-color: green");
-        bLichtSchranke2.setStyle("-fx-background-color: green");
+        ToggleButton bPinchRolle3Rollgang4 = new ToggleButton(sprachPinchRolle3Rollgang4[Sprache.getSprachenZahl()]);//"Pumpe Emulsion"
+        if(bPinchRolle3Rollgang4Abgesetzt==false) {
+            bPinchRolle3Rollgang4.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bPinchRolle3Rollgang4.setDisable(true);
+            }
+            bPinchRolle3Rollgang4.setStyle("-fx-background-color: red");//pink
+        }
+
+        bPinchRolle3Rollgang4.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bPinchRolle3Rollgang4Abgesetzt==false){//grün//rotdb
+                    if(bPinchRolle3Rollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bPinchRolle3Rollgang4.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bPinchRolle3Rollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bPinchRolle3Rollgang4.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bPinchRolle3Rollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bPinchRolle3Rollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bPinchRolle3Rollgang4.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bPinchRolle3Rollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bPinchRolle3Rollgang4.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bPinchRolle3Rollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+
+       // Button bRollen4 = new Button("Rollen 4");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachRollen4Rollgang4 =
+                {"Rollen 4", "ruoli 4","uloge 4", "rolet 4", "roller 4"};
+
+        ToggleButton bRollen4Rollgang4 = new ToggleButton(sprachRollen4Rollgang4[Sprache.getSprachenZahl()]);//"Pumpe Emulsion"
+        if(bRollen4Rollgang4Abgesetzt==false) {
+            bRollen4Rollgang4.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bRollen4Rollgang4.setDisable(true);
+            }
+            bRollen4Rollgang4.setStyle("-fx-background-color: red");//pink
+        }
+
+        bRollen4Rollgang4.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bRollen4Rollgang4Abgesetzt==false){//grün//rotdb
+                    if(bRollen4Rollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bRollen4Rollgang4.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bRollen4Rollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bRollen4Rollgang4.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bRollen4Rollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bRollen4Rollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bRollen4Rollgang4.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bRollen4Rollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bRollen4Rollgang4.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bRollen4Rollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachRohrAuswerferRollgang4 =
+                {"Rohr- Auswerfer", "tubo eiettore","cevni ejektor", "ejektor tub", "tüp ejektörü"};
+
+        ToggleButton bRohrAuswerferRollgang4 = new ToggleButton(sprachRohrAuswerferRollgang4[Sprache.getSprachenZahl()]);//"Rohr- Auswerfer"
+        if(bRohrAuswerferRollgang4Abgesetzt==false) {
+            bRohrAuswerferRollgang4.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bRohrAuswerferRollgang4.setDisable(true);
+            }
+            bRohrAuswerferRollgang4.setStyle("-fx-background-color: red");//pink
+        }
+
+        bRohrAuswerferRollgang4.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bRohrAuswerferRollgang4Abgesetzt==false){//grün//rotdb
+                    if(bRohrAuswerferRollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bRohrAuswerferRollgang4.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bRohrAuswerferRollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bRohrAuswerferRollgang4.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bRohrAuswerferRollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bRohrAuswerferRollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bRohrAuswerferRollgang4.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bRohrAuswerferRollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bRohrAuswerferRollgang4.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bRohrAuswerferRollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachSchrottGurteRollgang4 =
+                {"Gurte Schrott", "rottami di cinghie","straps scrap", "rripa skrap", "kayışlar hurda"};
+
+        ToggleButton bSchrottGurteRollgang4 = new ToggleButton(sprachSchrottGurteRollgang4[Sprache.getSprachenZahl()]);//"Gurte Schrott"
+        if(bSchrottGurteRollgang4Abgesetzt==false) {
+            bSchrottGurteRollgang4.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bSchrottGurteRollgang4.setDisable(true);
+            }
+            bSchrottGurteRollgang4.setStyle("-fx-background-color: red");//pink
+        }
+
+        bSchrottGurteRollgang4.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bSchrottGurteRollgang4Abgesetzt==false){//grün//rotdb
+                    if(bSchrottGurteRollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bSchrottGurteRollgang4.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bSchrottGurteRollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bSchrottGurteRollgang4.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bSchrottGurteRollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bSchrottGurteRollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bSchrottGurteRollgang4.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bSchrottGurteRollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bSchrottGurteRollgang4.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bSchrottGurteRollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachLichtSchranke2Rollgang4 =
+                {"Lichtschranke 2", "Barriera fotoelettrica 2","Fotoelektrična barijera 2", "Barriera fotoelektrike 2", "fotoelektrik bariyer 2"};
+
+        ToggleButton bLichtSchranke2Rollgang4 = new ToggleButton(sprachLichtSchranke2Rollgang4[Sprache.getSprachenZahl()]);//"Lichtschranke 2"
+        if(bLichtSchranke2Rollgang4Abgesetzt==false) {
+            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bLichtSchranke2Rollgang4.setDisable(true);
+            }
+            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: red");//pink
+        }
+
+        bLichtSchranke2Rollgang4.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bLichtSchranke2Rollgang4Abgesetzt==false){//grün//rotdb
+                    if(bLichtSchranke2Rollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bLichtSchranke2Rollgang4.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bLichtSchranke2Rollgang4.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
 
 //WalkingBeam----------------------------------------------------------------------------------------------------------------------
         HBox layoutHWalkingBeam = new HBox(20);
@@ -1383,12 +1745,12 @@ public class Addafer {
         bStoerMeldungAbsetzen.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
 
-                if(bGurte.isSelected()){
+                if(bGurteBundlader.isSelected()){
                     //lZeigeStoerMeldung.setText("Gurte sind aktiviert");
                         if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bGurteBundladerAbgesetzt ==false){//istChef
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
-                        bGurte.setStyle("-fx-background-color: red");
-                        bGurte.setDisable(true);
+                        bGurteBundlader.setStyle("-fx-background-color: red");
+                        bGurteBundlader.setDisable(true);
                         bGurteBundladerAbgesetzt = true;
                         setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
                             setRotdb(true);
@@ -1401,12 +1763,12 @@ public class Addafer {
 
 
 
-                if(bLichtSchranke1.isSelected()){
+                if(bLichtSchranke1Bundlader.isSelected()){
                     //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLichtSchranke1BundladerAbgesetzt ==false){//istChef
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerLichtSchranke1() +"','Adf/Bundlader' , 'LichtSchranke1')");
-                        bLichtSchranke1.setStyle("-fx-background-color: red");
-                        bLichtSchranke1.setDisable(true);
+                        bLichtSchranke1Bundlader.setStyle("-fx-background-color: red");
+                        bLichtSchranke1Bundlader.setDisable(true);
                         bLichtSchranke1BundladerAbgesetzt = true;
                         setZaehlerBundladerLichtSchranke1(zaehlerBundladerLichtSchranke1 +1);
                         setRotdb(true);
@@ -1634,6 +1996,84 @@ public class Addafer {
                 }else{
                     System.out.println("SchutzTuereMessstation deselectet bei MeldungabsetztenSchlaufe");
                 }
+
+                if(bPinchRolle3Rollgang4.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bPinchRolle3Rollgang4Abgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4PinchRolle3() +"','Adf/Rollgang4' , 'PinchRolle3')");
+                        bPinchRolle3Rollgang4.setStyle("-fx-background-color: red");
+                        bPinchRolle3Rollgang4.setDisable(true);
+                        bPinchRolle3Rollgang4Abgesetzt = true;
+                        setZaehlerRollgang4PinchRolle3(zaehlerRollgang4PinchRolle3 +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("PinchRolle3Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bRollen4Rollgang4.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bRollen4Rollgang4Abgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4Rollen4() +"','Adf/Rollgang4' , 'Rollen4')");
+                        bRollen4Rollgang4.setStyle("-fx-background-color: red");
+                        bRollen4Rollgang4.setDisable(true);
+                        bRollen4Rollgang4Abgesetzt = true;
+                        setZaehlerRollgang4Rollen4(zaehlerRollgang4Rollen4 +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("Rollen4Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bRohrAuswerferRollgang4.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bRohrAuswerferRollgang4Abgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4RohrAuswerfer() +"','Adf/Rollgang4' , 'Rohr-Auswerfer')");
+                        bRohrAuswerferRollgang4.setStyle("-fx-background-color: red");
+                        bRohrAuswerferRollgang4.setDisable(true);
+                        bRohrAuswerferRollgang4Abgesetzt = true;
+                        setZaehlerRollgang4RohrAuswerfer(zaehlerRollgang4RohrAuswerfer +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("RohrAuswerferRollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+
+                if(bSchrottGurteRollgang4.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bSchrottGurteRollgang4Abgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4SchrottGurte() +"','Adf/Rollgang4' , 'Gurte-Schrott')");
+                        bSchrottGurteRollgang4.setStyle("-fx-background-color: red");
+                        bSchrottGurteRollgang4.setDisable(true);
+                        bSchrottGurteRollgang4Abgesetzt = true;
+                        setZaehlerRollgang4SchrottGurte(zaehlerRollgang4SchrottGurte +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("SchrottGurteRollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bLichtSchranke2Rollgang4.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLichtSchranke2Rollgang4Abgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4LichtSchranke2() +"','Adf/Rollgang4' , 'LichtSchranke2')");
+                        bLichtSchranke2Rollgang4.setStyle("-fx-background-color: red");
+                        bLichtSchranke2Rollgang4.setDisable(true);
+                        bLichtSchranke2Rollgang4Abgesetzt = true;
+                        setZaehlerRollgang4LichtSchranke2(zaehlerRollgang4LichtSchranke2 +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("LichtSchranke2Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+
             }
         });
 
@@ -1657,7 +2097,7 @@ public class Addafer {
         bStoerMeldungAufheben.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
 
-                if(bGurte.isSelected()){
+                if(bGurteBundlader.isSelected()){
                     System.out.println("Gurte selectet in Stoermeldung");
                     if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                         String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
@@ -1665,13 +2105,13 @@ public class Addafer {
                                 + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
                                 + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Bundlader' AND Stoerung = 'Gurte';";
                         dBA.schreibeDB(einfuegIstUnterhaltDb);
-                        bGurte.setStyle("-fx-background-color: green");
-                        bGurte.setDisable(false);
+                        bGurteBundlader.setStyle("-fx-background-color: green");
+                        bGurteBundlader.setDisable(false);
                         setRotdb(false);
                         bGurteBundladerAbgesetzt = false;
                     }
                     else{
-                        bGurte.setStyle("-fx-background-color: red");
+                        bGurteBundlader.setStyle("-fx-background-color: red");
                         System.out.println("Ich arbeite nicht im Unterhalt!");
                     }
                 }
@@ -1681,7 +2121,7 @@ public class Addafer {
 
 
 
-                if(bLichtSchranke1.isSelected()){
+                if(bLichtSchranke1Bundlader.isSelected()){
                     System.out.println("LichtSchranke1 selectet in Stoermeldung");
                     if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
                         String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
@@ -1689,13 +2129,13 @@ public class Addafer {
                                 + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
                                 + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Bundlader' AND Stoerung = 'LichtSchranke1';";
                         dBA.schreibeDB(einfuegIstUnterhaltDb);
-                        bLichtSchranke1.setStyle("-fx-background-color: green");
-                        bLichtSchranke1.setDisable(false);
+                        bLichtSchranke1Bundlader.setStyle("-fx-background-color: green");
+                        bLichtSchranke1Bundlader.setDisable(false);
                         setRotdb(false);
                         bLichtSchranke1BundladerAbgesetzt = false;
                     }
                     else{
-                        bLichtSchranke1.setStyle("-fx-background-color: red");
+                        bLichtSchranke1Bundlader.setStyle("-fx-background-color: red");
                         System.out.println("Ich arbeite nicht im Unterhalt!");
                     }
                 }
@@ -2016,16 +2456,129 @@ public class Addafer {
                     System.out.println("SchutzTuereMessstation deselectet in Störmeldung");
                 }
 
+
+                if(bPinchRolle3Rollgang4.isSelected()){
+                    System.out.println("PinchRolle3Rollgang4 selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Rollgang4' AND Stoerung = 'PinchRolle3';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bPinchRolle3Rollgang4.setStyle("-fx-background-color: green");
+                        bPinchRolle3Rollgang4.setDisable(false);
+                        setRotdb(false);
+                        bPinchRolle3Rollgang4Abgesetzt = false;
+                    }
+                    else{
+                        bPinchRolle3Rollgang4.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("PinchRolle3Rollgang4 deselectet in Störmeldung");
+                }
+
+                if(bRollen4Rollgang4.isSelected()){
+                    System.out.println("Rollen4Rollgang4 selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Rollgang4' AND Stoerung = 'Rollen4';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bRollen4Rollgang4.setStyle("-fx-background-color: green");
+                        bRollen4Rollgang4.setDisable(false);
+                        setRotdb(false);
+                        bRollen4Rollgang4Abgesetzt = false;
+                    }
+                    else{
+                        bRollen4Rollgang4.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("Rollen4Rollgang4 deselectet in Störmeldung");
+                }
+
+                if(bRohrAuswerferRollgang4.isSelected()){
+                    System.out.println("RohrAuswerferRollgang4 selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Rollgang4' AND Stoerung = 'Rohr-Auswerfer';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bRohrAuswerferRollgang4.setStyle("-fx-background-color: green");
+                        bRohrAuswerferRollgang4.setDisable(false);
+                        setRotdb(false);
+                        bRohrAuswerferRollgang4Abgesetzt = false;
+                    }
+                    else{
+                        bRohrAuswerferRollgang4.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("RohrAuswerferRollgang4 deselectet in Störmeldung");
+                }
+
+                if(bSchrottGurteRollgang4.isSelected()){
+                    System.out.println("SchrottGurteRollgang4 selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Rollgang4' AND Stoerung = 'Gurte-Schrott';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bSchrottGurteRollgang4.setStyle("-fx-background-color: green");
+                        bSchrottGurteRollgang4.setDisable(false);
+                        setRotdb(false);
+                        bSchrottGurteRollgang4Abgesetzt = false;
+                    }
+                    else{
+                        bSchrottGurteRollgang4.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("SchrottGurteRollgang4 deselectet in Störmeldung");
+                }
+
+
+                if(bLichtSchranke2Rollgang4.isSelected()){
+                    System.out.println("LichtSchranke2Rollgang4 selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/Rollgang4' AND Stoerung = 'LichtSchranke2';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bLichtSchranke2Rollgang4.setStyle("-fx-background-color: green");
+                        bLichtSchranke2Rollgang4.setDisable(false);
+                        setRotdb(false);
+                        bLichtSchranke2Rollgang4Abgesetzt = false;
+                    }
+                    else{
+                        bLichtSchranke2Rollgang4.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("LichtSchranke2Rollgang4 deselectet in Störmeldung");
+                }
+
+
             }
         });
 
 //LayoutZeugs----------------------------------------------------------------------------------------------------------------------
 
-        layoutHBundlader.getChildren().addAll(lBundlader,bGurte,bLichtSchranke1,bAnschlagBundlader,bSchutzZaunBundlader);
+        layoutHBundlader.getChildren().addAll(lBundlader,bGurteBundlader,bLichtSchranke1Bundlader,bAnschlagBundlader,bSchutzZaunBundlader);
         layoutHVereinzelung.getChildren().addAll(lVereinzelung,bRollen_SchraegVereinzelung,bStopper_Bolzen1Vereinzelung,bStopper_Bolzen123Vereinzelung);
         layoutHRollgang1.getChildren().addAll(lRollgang1,bRollen1Rollgang1,bSchweissNahtErkennungRollgang1,bPinchRolle12Rollgang1);
         layoutHMessstation.getChildren().addAll(lMessstation,bUSSensorMessstation,bLaserMessstation,bEinstellRollenMessstation,bLichtschrankenMSMessstation,bPumpeRueckFuehrEmulsionMessstation,bSchutzTuereMessstation);
-        layoutHRollgang4.getChildren().addAll(lRollgang4,bPinchRolle3,bRollen4,bRohrAuswerfer,bSchrottGurte,bLichtSchranke2);
+        layoutHRollgang4.getChildren().addAll(lRollgang4,bPinchRolle3Rollgang4,bRollen4Rollgang4,bRohrAuswerferRollgang4,bSchrottGurteRollgang4,bLichtSchranke2Rollgang4);
         layoutHWalkingBeam.getChildren().addAll(lWalkingBeam,bWalkingBeam,bDrehGreifer,bRadRat1);
         HBox layoutHAbsetzenAufhebenZurueckR1A = new HBox(60);
         layoutHAbsetzenAufhebenZurueckR1A.getChildren().addAll(bStoerMeldungAbsetzen,bStoerMeldungAufheben,bZurueckRat1);
