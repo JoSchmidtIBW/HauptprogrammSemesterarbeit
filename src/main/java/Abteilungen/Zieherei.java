@@ -13,10 +13,10 @@ import javafx.scene.text.Text;
 
 /**
  * @author - John Schmidt
- * 12.12.2021, 17:55
+ * 30.12.2021, 17:55
  */
 public class Zieherei {
-    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
+    Pane cardsPane = new StackPane();
 
     public Zieherei(Pane cardsPane){
         this.cardsPane=cardsPane;
@@ -73,7 +73,6 @@ public class Zieherei {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
                 cardsPane.getChildren().add(new SEMA2(cardsPane).macheSema2());
-                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
             }
         });
 
@@ -82,7 +81,6 @@ public class Zieherei {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
                 cardsPane.getChildren().add(new GluehOfen2(cardsPane).macheGluehOfen2());
-                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
             }
         });
 
@@ -91,7 +89,6 @@ public class Zieherei {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
                 cardsPane.getChildren().add(new GluehOfen3(cardsPane).macheGluehOfen3());
-                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
             }
         });
 
@@ -100,7 +97,6 @@ public class Zieherei {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
                 cardsPane.getChildren().add(new AVS63(cardsPane).macheAVS63());
-                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
             }
         });
 
@@ -109,7 +105,6 @@ public class Zieherei {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
                 cardsPane.getChildren().add(new AVS100(cardsPane).macheAVS100());
-                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
             }
         });
 
@@ -118,7 +113,6 @@ public class Zieherei {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
                 cardsPane.getChildren().add(new APM100(cardsPane).macheAPM100());
-                //cardsPane.getChildren().add(new SEMA1(cardsPane).macheSEMA1());
             }
         });
 

@@ -7,10 +7,10 @@ import javafx.scene.text.Text;
 
 /**
  * @author - John Schmidt
- * 12.12.2021, 21:11
+ * 30.12.2021, 21:11
  */
 public class SpaltAnlage {
-    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
+    Pane cardsPane = new StackPane();
 
     public SpaltAnlage(Pane cardsPane){
         this.cardsPane=cardsPane;

@@ -1,13 +1,10 @@
 package GUI;
 
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 /**
  * @author - John Schmidt
@@ -16,16 +13,14 @@ import javafx.scene.text.Text;
 public class Anleitung {
     Pane cardsPane = new StackPane();
 
-    public Anleitung(Pane cardsPane){
-        this.cardsPane=cardsPane;
+    public Anleitung(Pane cardsPane) {
+        this.cardsPane = cardsPane;
     }
 
-    public Group macheAnleitung(){
+    public Group macheAnleitung() {
 
         //final Group cardAnleitung = new Group(new Text(25, 25, "Anleitung blablabla..."));
         final Group cardAnleitung = new Group();
-
-       // Text text1 = new Text(25,99,"Heeeellllooo");
 
 
         //   0          1         2         3       4
@@ -34,49 +29,45 @@ public class Anleitung {
                 {"Wählen Sie Ihre Abteilung aus, und Ihre Anlage. \nBei Störung, suchen Sie unter der Anlage-Unter-Gruppe " +
                         "die passende Störung aus, \nwählen diese an, und setzen Sie eine Störmeldung ab.\n" +
                         "Bsp. Rattunde hat eine Störung mit der Lichtschranke des Bundladers",
-                  "Seleziona il tuo reparto e il tuo stabilimento.\n" +
+                        "Seleziona il tuo reparto e il tuo stabilimento.\n" +
                                 "In caso di malfunzionamento, guardare sotto il sottogruppo del sistema\n" +
                                 "selezionare l'errore appropriato, selezionarlo e inviare un messaggio di errore.\n" +
                                 "Esempio: Rattunde ha un problema con la barriera fotoelettrica del caricatore di pacchi ",
-                  "Odaberite svoj odjel i svoj objekat. \nU slučaju kvara, potražite odgovarajuću grešku pod sistemskom podgrupom, \nodaberite je i pošaljite poruku o grešci.\n" +
-                           "Na primjer, Rattunde ima grešku sa svjetlosnom barijerom utovarivača snopova. \n" ,
-                  "Zgjidhni departamentin tuaj dhe objektin tuaj. \nNë rast të një defekti, kërkoni për defektin e duhur nën nëngrupin e sistemit, \nzgjidhni atë dhe dërgoni një mesazh defekti.\n" +
-                           "Për shembull, Rattunde ka një defekt me barrierën e dritës së ngarkuesit të paketave. " ,
-                  "Departmanınızı ve tesisinizi seçin. \nArıza durumunda sistem alt grubu altında uygun arızayı arayın, \nseçin ve arıza mesajı gönderin.\n" +
-                           "Örneğin Rattunde, demet yükleyicinin ışık bariyerinde bir arıza var.  "};
+                        "Odaberite svoj odjel i svoj objekat. \nU slučaju kvara, potražite odgovarajuću grešku pod sistemskom podgrupom, \nodaberite je i pošaljite poruku o grešci.\n" +
+                                "Na primjer, Rattunde ima grešku sa svjetlosnom barijerom utovarivača snopova. \n",
+                        "Zgjidhni departamentin tuaj dhe objektin tuaj. \nNë rast të një defekti, kërkoni për defektin e duhur nën nëngrupin e sistemit, \nzgjidhni atë dhe dërgoni një mesazh defekti.\n" +
+                                "Për shembull, Rattunde ka një defekt me barrierën e dritës së ngarkuesit të paketave. ",
+                        "Departmanınızı ve tesisinizi seçin. \nArıza durumunda sistem alt grubu altında uygun arızayı arayın, \nseçin ve arıza mesajı gönderin.\n" +
+                                "Örneğin Rattunde, demet yükleyicinin ışık bariyerinde bir arıza var.  "};
 
 
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachTextIstUnterhalt =
-                {"Wählen Sie in der Abteilung die Anlage aus, \nauf welcher sich die Störmeldung befindet, welche repariert wurde.\n"+
+                {"Wählen Sie in der Abteilung die Anlage aus, \nauf welcher sich die Störmeldung befindet, welche repariert wurde.\n" +
                         "Wählen Sie diese an, und heben Sie die Störmeldung auf.",
-"Nel reparto, seleziona il sistema su cui si trova il messaggio di errore che è stato riparato.\n" +
-        "Seleziona questo e annulla il messaggio di errore. \n",
-  "U odjeljenju izaberite sistem na kojem se nalazi poruka o grešci koja je popravljena.\n"+
-                        "Odaberite ovo i otkažite poruku o grešci.\n" ,
-  "Në departament, zgjidhni sistemin në të cilin ndodhet mesazhi i gabimit që u riparua.\n" +
+                        "Nel reparto, seleziona il sistema su cui si trova il messaggio di errore che è stato riparato.\n" +
+                                "Seleziona questo e annulla il messaggio di errore. \n",
+                        "U odjeljenju izaberite sistem na kojem se nalazi poruka o grešci koja je popravljena.\n" +
+                                "Odaberite ovo i otkažite poruku o grešci.\n",
+                        "Në departament, zgjidhni sistemin në të cilin ndodhet mesazhi i gabimit që u riparua.\n" +
                                 "Zgjidhni këtë dhe anuloni mesazhin e gabimit. \n",
-                "Bölümde, onarılan hata mesajının bulunduğu sistemi seçin.\n" +
-                        "Bunu seçin ve hata mesajını iptal edin. "};
+                        "Bölümde, onarılan hata mesajının bulunduğu sistemi seçin.\n" +
+                                "Bunu seçin ve hata mesajını iptal edin. "};
 
 
         Label lAnleitung = new Label();
 
-        if(Login.getIstUnterhalt().equals("istU")){
+        if (Login.getIstUnterhalt().equals("istU")) {
             lAnleitung.setText(sprachTextIstUnterhalt[Sprache.getSprachenZahl()]);
-        }
-        else if (Login.getIstUnterhalt().equals("keinU")){
+        } else if (Login.getIstUnterhalt().equals("keinU")) {
             lAnleitung.setText(sprachTextNichtUnterhalt[Sprache.getSprachenZahl()]);
-        }
-        else if(Login.getIstUnterhalt().equals("Admin")){
+        } else if (Login.getIstUnterhalt().equals("Admin")) {
             lAnleitung.setText("Alter, du bisch Admin, du bruchsch kei Aleitig...\n" +
                     "Jedoch, da der Admin Absetzen und Aufheben kann, \nmuss er nach Betätigung die Seite neu laden" +
                     "\n man könnte dies jedoch implementieren");
         }
 
-
-        
 
         VBox layoutV = new VBox(1);
         layoutV.getChildren().addAll(lAnleitung);//,text1

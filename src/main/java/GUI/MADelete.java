@@ -18,16 +18,17 @@ public class MADelete {
 
     static  DatenBank dBD = new DatenBank();
 
-    public static String getEingabeMANummerDelete() {
-        return eingabeMANummerDelete;
-    }
+    private static String eingabeMANummerDelete = "";
+    private static String ausgabeGesamtMANummerDeleteFrageVonDB;
+
 
     public static void setEingabeMANummerDelete(String eingabeMANummerDelete) {
         MADelete.eingabeMANummerDelete = eingabeMANummerDelete;
     }
 
-    private static String eingabeMANummerDelete = "";
-    private static String ausgabeGesamtMANummerDeleteFrageVonDB;
+    public static String getEingabeMANummerDelete() {
+        return eingabeMANummerDelete;
+    }
 
     public static void setAusgabeSucheMANummerDeleteMitMANummerFrageDB(String ausgabeGesamtMANummerDeleteFrageVonDB) {
         MADelete.ausgabeGesamtMANummerDeleteFrageVonDB = ausgabeGesamtMANummerDeleteFrageVonDB;
@@ -40,14 +41,14 @@ public class MADelete {
     public static Scene createMADeleteScene(Stage stage){
 
         Label labelMADeleteScene= new Label("- MADelete- Scene - Mitarbeiter löschen");
-//MA-NummerNeu----------------------------------------------------------------------------------------------------------
+//MA-NummerEingabe----------------------------------------------------------------------------------------------------------
         Label lMANummerDelete = new Label("Delete MA.-Nummer");
         TextField txfMANummerDelete = new TextField();
 
         Button bMANummerDelete = new Button("MA-NummerDeleteOK");
         Label lzeigeMANummerDelete = new Label();
         Label lZeigeMADelete = new Label();
-        //bMANummer.setOnAction(e -> lzeigeMANummer.setText("Enthält keine Zahl!!!"+getEingabeMANummer()));
+
         bMANummerDelete.setOnAction(e -> {
             eingabeMANummerDelete = txfMANummerDelete.getText();
 
@@ -55,7 +56,7 @@ public class MADelete {
             String ausgabeGesamtMANummerDeleteFrageVonDB = "SELECT * FROM userMubea WHERE MA_Nummer = '"+strMANummerDeleteFrage+"';";
             setAusgabeSucheMANummerDeleteMitMANummerFrageDB(dBD.ausgebenGesamtDBRetourString(ausgabeGesamtMANummerDeleteFrageVonDB));
             System.out.println("DBD AusgabeSucheMANummerDeleteMitMANummerFrageDB: " + getAusgabeSucheMANummerDeleteMitMANummerFrageDB());
-//eingabeMANummerNeu
+
             if(eingabeMANummerDelete.length()==0){//wenn leer//eingabeVornameNeu.length()==0//strMANummerFrage==null
                 lzeigeMANummerDelete.setTextFill(Color.RED);
                 lzeigeMANummerDelete.setText("der zu löschende User \nmuss einen Mitarbeiter- Nummer besitzen!");
@@ -64,11 +65,6 @@ public class MADelete {
             else{//else if(eingabeMANummerNeu != null){
                 if(getAusgabeSucheMANummerDeleteMitMANummerFrageDB().isEmpty()){
                     System.out.println("Mitarbeiter gibt es nicht");
-                    //ToDo Darf keine Leertaste haben und nur aus Zahlen bestehen!!!
-                    //lzeigeMANummerDelete.setText("JUNIT-Test: Enthält keine Zahl!!!" + txfMANummerDelete.getText());
-//                    lzeigeMANummerNeu.setTextFill(Color.GREEN);
-//                    setEingabeMANummerNeu(txfMANummerNeu.getText());
-//                    System.out.println(getEingabeMANummerNeu());
                     lzeigeMANummerDelete.setTextFill(Color.RED);
                     lzeigeMANummerDelete.setText("Der User existiert nicht!");
                     lZeigeMADelete.setText("");
@@ -80,18 +76,9 @@ public class MADelete {
                     setEingabeMANummerDelete(txfMANummerDelete.getText());
                     lZeigeMADelete.setText("");
                 }
-//                else if(!getAusgabeSucheMANummerMitMANummerFrageDB().isEmpty()&&eingabeMANummerNeu != null){
-//                lzeigeMANummerNeu.setTextFill(Color.RED);
-//                lzeigeMANummerNeu.setText("User muss einen Mitarbeiter- Nummer besitzen!");
-//                }
+
             }
 
-
-
-
-//            lzeigeMANummerDelete.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummerDelete.getText());
-//            setEingabeMANummerDelete(txfMANummerDelete.getText());
-//            System.out.println(getEingabeMANummerDelete());
         });
 
 //MADelete---------------------------------------------------------------------------------------------

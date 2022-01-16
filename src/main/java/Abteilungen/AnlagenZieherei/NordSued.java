@@ -7,10 +7,10 @@ import javafx.scene.text.Text;
 
 /**
  * @author - John Schmidt
- * 12.12.2021, 20:54
+ * 30.12.2021, 20:54
  */
 public class NordSued {
-    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
+    Pane cardsPane = new StackPane();
 
     public NordSued(Pane cardsPane){
         this.cardsPane=cardsPane;

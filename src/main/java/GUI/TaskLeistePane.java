@@ -1,38 +1,24 @@
 package GUI;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
-import java.util.TimerTask;
+
 
 /**
  * @author - John Schmidt
- * 10.12.2021, 01:09
+ * 28.12.2021, 01:09
  */
 public class TaskLeistePane {
 
     private static String uhrzeitStr;
+    private static String datumStr;
+
 
     public static String getUhrzeitStr() {
         return uhrzeitStr;
@@ -49,70 +35,16 @@ public class TaskLeistePane {
     public static void setDatumStr(String datumStr) {
         TaskLeistePane.datumStr = datumStr;
     }
-    //String uhrzeitText = "";
-    private static String datumStr;
 
-    public static String getTimeStr() {
-        return timeStr;
-    }
 
-    public static void setTimeStr(String timeStr) {
-        TaskLeistePane.timeStr = timeStr;
-    }
+    public static Pane getPane(){
 
-    public static String timeStr;
+//**********************************************************************************************************************
+        ImageView myImageView = new ImageView("file:///D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG");
+//**********************************************************************************************************************
 
-    //public static Node getPane;
-    public static Pane getPane(){//es mue fucking statig siii
-//        final java.util.Timer clockTimer = new java.util.Timer(true);
-//        final java.text.SimpleDateFormat zeitFormat = new java.text.SimpleDateFormat("HH:mm:ss");
-//        final java.text.SimpleDateFormat datumFormat = new java.text.SimpleDateFormat("dd.MM.yyyy");
-//        final Label labelUhrzeit = new Label();
-//        final Label labelDatum = new Label();
-//        clockTimer.scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                String uhrzeitText = zeitFormat.format(new Date());
-//                String datumText = datumFormat.format(new Date());
-//                System.out.println(uhrzeitText);
-////                uhrzeitText = zeitFormat.format(new Date());
-////                datumText = datumFormat.format(new Date());
-//                labelUhrzeit.setText(uhrzeitText);
-//                labelDatum.setText(datumText);
-//            }
-//        }, 0, 1000);
-
-//        final javafx.scene.control.Label clock = new javafx.scene.control.Label();
-//        final DateFormat format = DateFormat.getInstance();
-//        final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                final Calendar cal = Calendar.getInstance();
-//                clock.setText(format.format(cal.getTime()));
-//            }
-//        }));
-//        timeline.setCycleCount(Animation.INDEFINITE);
-//        timeline.play();
-
-//        Label main_clock_lb = new Label();
-//        Thread timerThread = new Thread(() -> {
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
-//            while (true) {
-//                try {
-//                    Thread.sleep(1000); //1 second
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                //final String timeStr = simpleDateFormat.format(new Date());
-//                setTimeStr(simpleDateFormat.format(new Date()));
-//                Platform.runLater(() -> {
-//                    main_clock_lb.setText(getTimeStr());
-//                });
-//            }
-//        });   timerThread.start();//start the thread and its ok
-//******************************************************************************
         Label lDatum = new Label();
-        Label lZwischenDatumUhrzeit = new Label("  ");
+        //Label lZwischenDatumUhrzeit = new Label("  ");
         Label lUhrzeit = new Label();
         Thread timerThread1 = new Thread(() -> {
             SimpleDateFormat simpleDateFormatDatum = new SimpleDateFormat("dd.MM.yyyy");//   HH:mm:ss
@@ -131,11 +63,8 @@ public class TaskLeistePane {
                     lUhrzeit.setText(getUhrzeitStr());
                 });
             }
-        });   timerThread1.start();//start the thread and its ok
-//******************************************************************************
-
-
-
+        });   timerThread1.start();
+//----------------------------------------------------------------------------------------------------------------------
 
         Label lTaskLeisteAngemeldetT = new javafx.scene.control.Label(" Angemeldet:   "+Login.getVorName()+" / " +
                 Login.getNachName());
@@ -148,28 +77,9 @@ public class TaskLeistePane {
             lTaskLeisteAngemeldetT.setTextFill(Color.RED);
         }
 
-        //lTaskLeisteAngemeldetT.setTextAlignment().createLoweredBevelBorder());
 
-        javafx.scene.control.Label lt2 = new Label("   Taskleiste- Label   ");
 
-//        Button buttonHauptGUIzuruekLogin = new Button("zuruekLogin");
-//        buttonHauptGUIzuruekLogin.setOnAction(e -> {
-//
-//            stage.setScene(Login.createLoginScene(stage));
-//        });
-
-//labelLogo = new JLabel(new ImageIcon("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
-        //Image img = new Image("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG");
-//
-        //ImageView view = new ImageView(img);
-//        view.setFitHeight(80);
-//        view.setPreserveRatio(true);
-//        Image img = new Image(TaskLeistePane.class.getResourceAsStream("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
-//        ImageView view = new ImageView(img);
-        //Label lLogo = new Label();
-//        lLogo.setGraphic(new Image("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
 //        try {
-            ImageView myImageView = new ImageView("file:///D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG");
         //myImageView.setFitHeight(50);
         //myImageView.setFitWidth(100);
         //myImageView.
@@ -180,53 +90,7 @@ public class TaskLeistePane {
 //catch (Exception ex){
 //    System.out.println("äääähmm Bild");
 //}
-        //Label lLogo = new Label("", myImageView);
-        //lLogo.setGraphic(view);
-        //lLogo.setGraphic(new ImageView(new Image(TaskLeistePane.class.getResourceAsStream("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"))));
 
-//        lLogo.setGraphic(view);
-
-       // layoutHHauptTLP.getChildren().addAll(lTaskLeisteAngemeldetT,lt2,main_clock_lb,lLogo,lDatum,lZwischenDatumUhrzeit,lUhrzeit);//labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
-        //Pane pane = new Pane(lt,lt2);//funktioniert
-        //layoutHHauptTLP.setAlignment(Pos.BOTTOM_RIGHT);
-       // layoutHHauptTLP.setSpacing(10);
-
-        //layoutHHauptTLP.setFillHeight(true);
-        //lLogo.setAlignment(Pos.BOTTOM_RIGHT);
-       // layoutHHauptTLP.setAlignment(Pos.TOP_RIGHT);
-//        BorderPane bp = new BorderPane();
-//        bp.setLeft(lTaskLeisteAngemeldetT);
-//        bp.setCenter(lDatum);
-//        bp.setCenter(lUhrzeit);
-//        bp.setRight(lLogo);
-
-//        GridPane gridPT = new GridPane();
-//        gridPT.setAlignment(Pos.CENTER);
-//        gridPT.setPadding(new Insets(10, 1, 1, 2));
-//        AnchorPane.setLeftAnchor(lTaskLeisteAngemeldetT, 0.0);
-//
-
-//        lLogo.setTranslateX(0);
-//        lLogo.setTranslateY(0);
-//        AnchorPane anchorPaneLeft = new AnchorPane();
-//        AnchorPane anchorPaneRight = new AnchorPane();
-//        AnchorPane anchorPaneHauptTLP = new AnchorPane();
-//
-//        HBox layoutHHauptTLP = new HBox(100);
-//        HBox layoutHUhrDatum = new HBox(10);
-//        layoutHUhrDatum.getChildren().addAll(lDatum,lUhrzeit,lLogo);
-//        layoutHHauptTLP.getChildren().addAll(lTaskLeisteAngemeldetT);////labelDatum,labelUhrzeit);//);//buttonHauptGUIzuruekLogin,lLogo
-//
-//
-//        anchorPaneRight.getChildren().addAll(layoutHUhrDatum);
-//        AnchorPane.setRightAnchor(layoutHUhrDatum,0d);
-//        AnchorPane.setBottomAnchor(layoutHUhrDatum,0d);
-//
-//        anchorPaneLeft.getChildren().addAll(layoutHHauptTLP);
-//        AnchorPane.setLeftAnchor(layoutHHauptTLP,0d);
-//        AnchorPane.setBottomAnchor(layoutHHauptTLP,0d);
-//
-//        anchorPaneHauptTLP.getChildren().addAll(anchorPaneLeft,anchorPaneRight);
 
 
         BorderPane borderPaneHauptTLP = new BorderPane();
@@ -366,3 +230,71 @@ public class TaskLeistePane {
 //        return pane;
 //    }
 //}
+
+
+
+
+//        Button buttonHauptGUIzuruekLogin = new Button("zuruekLogin");
+//        buttonHauptGUIzuruekLogin.setOnAction(e -> {
+//
+//            stage.setScene(Login.createLoginScene(stage));
+//        });
+
+//labelLogo = new JLabel(new ImageIcon("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
+//Image img = new Image("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG");
+//
+//ImageView view = new ImageView(img);
+//        view.setFitHeight(80);
+//        view.setPreserveRatio(true);
+//        Image img = new Image(TaskLeistePane.class.getResourceAsStream("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
+//        ImageView view = new ImageView(img);
+//Label lLogo = new Label();
+//        lLogo.setGraphic(new Image("D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG"));
+
+//        final java.util.Timer clockTimer = new java.util.Timer(true);
+//        final java.text.SimpleDateFormat zeitFormat = new java.text.SimpleDateFormat("HH:mm:ss");
+//        final java.text.SimpleDateFormat datumFormat = new java.text.SimpleDateFormat("dd.MM.yyyy");
+//        final Label labelUhrzeit = new Label();
+//        final Label labelDatum = new Label();
+//        clockTimer.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                String uhrzeitText = zeitFormat.format(new Date());
+//                String datumText = datumFormat.format(new Date());
+//                System.out.println(uhrzeitText);
+////                uhrzeitText = zeitFormat.format(new Date());
+////                datumText = datumFormat.format(new Date());
+//                labelUhrzeit.setText(uhrzeitText);
+//                labelDatum.setText(datumText);
+//            }
+//        }, 0, 1000);
+
+//        final javafx.scene.control.Label clock = new javafx.scene.control.Label();
+//        final DateFormat format = DateFormat.getInstance();
+//        final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                final Calendar cal = Calendar.getInstance();
+//                clock.setText(format.format(cal.getTime()));
+//            }
+//        }));
+//        timeline.setCycleCount(Animation.INDEFINITE);
+//        timeline.play();
+
+//        Label main_clock_lb = new Label();
+//        Thread timerThread = new Thread(() -> {
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy   HH:mm:ss");
+//            while (true) {
+//                try {
+//                    Thread.sleep(1000); //1 second
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                //final String timeStr = simpleDateFormat.format(new Date());
+//                setTimeStr(simpleDateFormat.format(new Date()));
+//                Platform.runLater(() -> {
+//                    main_clock_lb.setText(getTimeStr());
+//                });
+//            }
+//        });   timerThread.start();//start the thread and its ok
+//******************************************************************************

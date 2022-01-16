@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 /**
  * @author - John Schmidt
- * 12.12.2021, 00:34
+ * 28.12.2021, 00:34
  */
 public class Registrieren {
 

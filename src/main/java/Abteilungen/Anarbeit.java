@@ -14,10 +14,10 @@ import javafx.scene.text.Text;
 
 /**
  * @author - John Schmidt
- * 12.12.2021, 15:58
+ * 30.12.2021, 15:58
  */
 public class Anarbeit {
-    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
+    Pane cardsPane = new StackPane();
 
     public static String getNameAbteilungAnarbeit() {
         return nameAbteilungAnarbeit;

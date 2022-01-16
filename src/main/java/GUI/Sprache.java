@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 
 /**
  * @author - John Schmidt
- * 15.12.2021, 22:41
+ * 28.12.2021, 22:41
  */
 public class Sprache {
 
@@ -65,7 +65,7 @@ public class Sprache {
 
         //comboBox1.setItems(getSprachenZahl("Deutsch"));
 
-        Label lZeigeSprachAuswahl = new Label("No language selected yet!");
+        Label lZeigeSprachAuswahl = new Label("No language selected yet!");//No language selected yet!
 
         System.out.println("blablbla  "+comboBox1.getValue());
 

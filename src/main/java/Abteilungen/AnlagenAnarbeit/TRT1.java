@@ -7,10 +7,10 @@ import javafx.scene.text.Text;
 
 /**
  * @author - John Schmidt
- * 12.12.2021, 20:45
+ * 30.12.2021, 20:45
  */
 public class TRT1 {
-    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
+    Pane cardsPane = new StackPane();
 
     public TRT1(Pane cardsPane){
         this.cardsPane=cardsPane;

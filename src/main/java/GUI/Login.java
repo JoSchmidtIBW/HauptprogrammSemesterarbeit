@@ -22,7 +22,7 @@ import static javafx.scene.text.FontWeight.BOLD;
 
 /**
  * @author - John Schmidt
- * 12.12.2021, 13:52
+ * 28.12.2021, 13:52
  */
 public class Login {
     //Scene scene1, scene2;//muss noch angeschaut werden
@@ -320,7 +320,7 @@ public class Login {
 //        Button button1= new Button("Go to Registrieren- Scene");
 //        //button1.setOnAction(e -> primaryStage.setScene(scene2));
 //        button1.setOnAction(e -> stage.setScene(Registrieren.createRegistrierenScene(stage)));
-        //todo button sprache anderst machen
+        //to//do button sprache anderst machen
         Button bAnmeldenSpracheScene = new Button("Anmelden");
         // buttonHauptGUI.setOnAction(e -> stage.setScene(HauptGUIScene.createGetHauptScene(stage)));
         // buttonHauptGUI.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
@@ -475,7 +475,7 @@ public class Login {
 //            String lMANummer = txfMANummerL.getText();
 //            String ausgabeGesamtString22 = "SELECT * FROM userMubea WHERE MA_Nummer = '"+lMANummer+"'";
 //            String ausgabeSucheMANummerMitNameDB = dbL1.ausgebenGesamtDBRetourString(ausgabeGesamtString22);
-//            //Todo manummer und paswort gleich, dann zeige in taskleiste an,
+//            //T//odo manummer und paswort gleich, dann zeige in taskleiste an,
 //            System.out.println("DBL1 ausgabeSucheMANummerMitNameDB: " + ausgabeSucheMANummerMitNameDB);
 //            if(ausgabeSucheMANummerMitNameDB.equals("")){
 //                lzeigeMANummerL.setText("JUNIT-Test: Enthält keine Zahl!!!"+txfMANummerL.getText()+"Sie sind kein Mitarbeiter!");
@@ -491,7 +491,7 @@ public class Login {
 ////            setEingabeMANummerL(txfMANummerL.getText());
 ////            System.out.println(getEingabeMANummerL());
 //        });
-////todo passwort internetpasswort verwenden und L am schluss für login zeugs
+////t//odo passwort internetpasswort verwenden und L am schluss für login zeugs
 //        Label lLoginPasswort = new Label("Passwort:");
 //        TextField txfLoginPasswort = new TextField();
 //        Button bLoginPasswortOK = new Button("LoginPasswortOK");
@@ -501,7 +501,7 @@ public class Login {
 //        Button button1= new Button("Go to Registrieren- Scene");
 //        //button1.setOnAction(e -> primaryStage.setScene(scene2));
 //        button1.setOnAction(e -> stage.setScene(Registrieren.createRegistrierenScene(stage)));
-//        //todo button sprache anderst machen
+//        ///t//odo button sprache anderst machen
 //        Button buttonSprache = new Button("Go to HauptGui wenn Login erfolgreich aus DB");
 //        // buttonHauptGUI.setOnAction(e -> stage.setScene(HauptGUIScene.createGetHauptScene(stage)));
 //        // buttonHauptGUI.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));

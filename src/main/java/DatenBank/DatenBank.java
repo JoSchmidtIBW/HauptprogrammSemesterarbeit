@@ -5,38 +5,16 @@ import java.sql.*;
 
 /**
  * @author - John Schmidt
- * 25.11.2021, 22:21
+ * 25.12.2021, 22:21
  */
 public class DatenBank {
 
-    public String getUrl1() {
-        return url1;
-    }
-
-    public String getUser1() {
-        return user1;
-    }
-
-    public String getPassword1() {
-        return password1;
-    }
-
+//**********************************************************************************************************************
     private String url1 = "jdbc:mariadb://localhost:3306/mubeaDataBase";//name von "database liste"         //MubeaListeDatabase
     private String user1 = "root";
     private String password1 = "Mubea2020!";
+//**********************************************************************************************************************
 
-
-//----------------------------------------------------------------------------------------------------------------------
-//    String LoginSucheVornameMitNameAusDB;
-//
-//    public String getLoginSucheVornameMitNameAusDB() {
-//        return LoginSucheVornameMitNameAusDB;
-//    }
-//
-//    public void setLoginSucheVornameMitNameAusDB(String loginSucheVornameMitNameAusDB) {
-//        LoginSucheVornameMitNameAusDB = loginSucheVornameMitNameAusDB;
-//    }
-//----------------------------------------------------------------------------------------------------------------------
 
     public void schreibeDB(String einfuegString) {//String url, String user, String password,
         try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
@@ -112,29 +90,6 @@ public class DatenBank {
     }
 
 
-    //    public String SucheVornameMitNameDB(String LoginSucheVornameMitNameAusDB){
-//        String ausgabeGefundenerNameInDB = "";
-//        try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
-//            System.out.println("Erfolgreich mit Datenbank verbunden :) ");
-//            Statement statement = connection.createStatement();
-//            ResultSet resultSet = statement.executeQuery("SELECT * FROM userMubea WHERE Vorname = '"+LoginSucheVornameMitNameAusDB+"'");
-//
-//            while (resultSet.next()) {
-//                System.out.printf("Name?? %d: %s%n", resultSet.getInt(1),
-//                        resultSet.getString(LoginSucheVornameMitNameAusDB));
-//                ausgabeGefundenerNameInDB = resultSet.getString(LoginSucheVornameMitNameAusDB);
-//            }
-//            resultSet.close();
-//            statement.close();
-//
-//        } catch (SQLException ex) {
-//            System.out.println("Exception ist gekommen");
-//            System.out.println(ex.getMessage());
-//        }
-//
-//
-//        return ausgabeGefundenerNameInDB;
-//    }
     public String ausgebenGesamtDBRetourString(String ausgabeGesamtString2) {
         String gefundenUserInDB = "";
         try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
@@ -171,6 +126,18 @@ public class DatenBank {
         }
 
         return gefundenUserInDB;
+    }
+
+    public String getUrl1() {
+        return url1;
+    }
+
+    public String getUser1() {
+        return user1;
+    }
+
+    public String getPassword1() {
+        return password1;
     }
 }
 //    public void zugriffDB(String url,String user,String password, String einfügString){
@@ -238,5 +205,38 @@ public class DatenBank {
 
 
 
+//    public String SucheVornameMitNameDB(String LoginSucheVornameMitNameAusDB){
+//        String ausgabeGefundenerNameInDB = "";
+//        try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
+//            System.out.println("Erfolgreich mit Datenbank verbunden :) ");
+//            Statement statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery("SELECT * FROM userMubea WHERE Vorname = '"+LoginSucheVornameMitNameAusDB+"'");
+//
+//            while (resultSet.next()) {
+//                System.out.printf("Name?? %d: %s%n", resultSet.getInt(1),
+//                        resultSet.getString(LoginSucheVornameMitNameAusDB));
+//                ausgabeGefundenerNameInDB = resultSet.getString(LoginSucheVornameMitNameAusDB);
+//            }
+//            resultSet.close();
+//            statement.close();
+//
+//        } catch (SQLException ex) {
+//            System.out.println("Exception ist gekommen");
+//            System.out.println(ex.getMessage());
+//        }
+//
+//
+//        return ausgabeGefundenerNameInDB;
+//    }
 
-
+//----------------------------------------------------------------------------------------------------------------------
+//    String LoginSucheVornameMitNameAusDB;
+//
+//    public String getLoginSucheVornameMitNameAusDB() {
+//        return LoginSucheVornameMitNameAusDB;
+//    }
+//
+//    public void setLoginSucheVornameMitNameAusDB(String loginSucheVornameMitNameAusDB) {
+//        LoginSucheVornameMitNameAusDB = loginSucheVornameMitNameAusDB;
+//    }
+//----------------------------------------------------------------------------------------------------------------------

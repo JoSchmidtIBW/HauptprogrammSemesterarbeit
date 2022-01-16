@@ -18,30 +18,25 @@ import javafx.stage.Stage;
 
 /**
  * @author - John Schmidt
- * 12.12.2021, 14:51
+ * 28.12.2021, 14:51
  */
 public class HauptGUIScene {
 
     public static Scene createGetHauptScene(Stage stage){
 
         VBox layoutV = new VBox(1);
-
-
         Label lHauptGui= new Label("- HauptGui -");
-//        Label lWerAngemeldet = new Label("Wer ist hier eigentlich angebeldet, das soll hier stehen");
-//        Label lAbmelden = new Label("Wo kommt Benutzer ABMELDEN REIN???");
 
-        final Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
-//        final Group card1 = new Group(new Text(25, 25, "Card 1"));
-//        final Group card2Anleitung = new Group(new Text(25, 25, "Anleitung"));
+        final Pane cardsPane = new StackPane();
+
 
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachAbteilung =
                 {"Abteilung", "Dipartimento","Odjel", "Departamenti", "Bölüm"};
-
-
         Button bAbteilung = new Button(sprachAbteilung[Sprache.getSprachenZahl()]);//"Abteilung"
+
+
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachAnleitung =
@@ -49,20 +44,10 @@ public class HauptGUIScene {
         Button bAnleitung = new Button(sprachAnleitung[Sprache.getSprachenZahl()]);//"Anleitung"
 
 
-//        Button bRattunde1 = new Button("Rattunde1");
-//        bRattunde1.setOnAction(new EventHandler<ActionEvent>() {
-//            public void handle(ActionEvent t) {
-//                cardsPane.getChildren().clear();
-//                cardsPane.getChildren().add(new Rattunde1(cardsPane).macheRattunde1());
-//            }
-//        });
-
-
         bAbteilung.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 cardsPane.getChildren().clear();
                 cardsPane.getChildren().add(new Abteilungen(cardsPane).macheAbteilung());
-                //cardsPane.getChildren().add(new Abteilungen(cardsPane).macheAbteilung())
             }
         });
 //        bAbteilung.setOnAction(new EventHandler<ActionEvent>() {

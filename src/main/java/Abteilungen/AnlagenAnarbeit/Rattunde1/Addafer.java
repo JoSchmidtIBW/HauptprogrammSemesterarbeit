@@ -21,10 +21,10 @@ import javafx.scene.text.Text;
 
 /**
  * @author - John Schmidt
- * 13.12.2021, 21:11
+ * 30.12.2021, 21:11
  */
 public class Addafer {
-    Pane cardsPane = new StackPane();//wie machen mit eigener Klasse, muss Konstructor haben
+    Pane cardsPane = new StackPane();
 
 
 
