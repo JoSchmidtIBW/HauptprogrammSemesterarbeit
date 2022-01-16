@@ -240,6 +240,8 @@ public class Login {
                         isFoundInDB = false;
                         lZeigeIsFoundInDBL.setText("");
                         lZeigePasswortVergessen.setText("");
+                        lzeigePasswortL.setText("");
+                        pFInternetL.clear();
                     } else {
                         lzeigeMANummerL.setText("Sie wurden in der Datenbank gefunden :)\n--> " + txfMANummerL.getText());
                         lzeigeMANummerL.setTextFill(Color.rgb(21, 117, 84));
@@ -261,7 +263,7 @@ public class Login {
 
 
 
-        Button bLoginPasswortOK = new Button("LoginPasswortOK");
+        Button bLoginPasswortOK = new Button("Passwort OK");
 
         bLoginPasswortOK.setOnAction(new EventHandler<ActionEvent>() {
         //pFInternetL.setOnAction(new EventHandler<ActionEvent>() {
@@ -270,9 +272,12 @@ public class Login {
                 System.out.println("bin drin");
                 if(isFoundInDB==false){//txfMANummerL leer??
                     //System.out.println("bin noch mehr drin");
-                    lzeigePasswortL.setText("Your password is incorrect! \nFIRST WRITE MA_NUMMER!!!!!");
+                    lzeigePasswortL.setText("Erst die Mitarbeiter-Nummer eingeben");
                     lzeigePasswortL.setTextFill(Color.rgb(210, 39, 30));
                     lZeigePasswortVergessen.setText("");
+                    lzeigeMANummerL.setText("");
+                    lZeigeIsFoundInDBL.setText("");
+                    txfMANummerL.setText("");
                 }else {
                     //System.out.println("bin schon hier");
 //                    lzeigePasswortL.setText("Your password is incorrect! \naber noch nicht eingegeben");
@@ -360,6 +365,11 @@ public class Login {
             lZeigePasswortVergessen.setText("--> Tel. 9272 <--");
             lZeigePasswortVergessen.setTextFill(Color.DARKRED);
             lZeigePasswortVergessen.setFont(Font.font("Verdana", BOLD, 16));
+            lZeigeIsFoundInDBL.setText("");
+            lzeigePasswortL.setText("");
+            lzeigeMANummerL.setText("");
+            txfMANummerL.setText("");
+            pFInternetL.clear();
         });
 
 //    splittWerIstAngemeldet(werIstAngemeldet);

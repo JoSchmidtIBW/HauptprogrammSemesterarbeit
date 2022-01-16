@@ -158,6 +158,12 @@ public class Sprache {
 //        layoutHAbmeldenTaskLeiste.getChildren().addAll(TaskLeistePane.getPane());
 
         Button bRegistrierenScene= new Button("Registrieren");
+        if(!Login.getIstUnterhalt().equals("Admin")){
+            bRegistrierenScene.setStyle("-fx-background-color: transparent");
+            bRegistrierenScene.setStyle("-fx-text-fill: transparent");
+            bRegistrierenScene.setDisable(true);
+            bRegistrierenScene.setVisible(false);
+        }
         //button1.setOnAction(e -> primaryStage.setScene(scene2));
         bRegistrierenScene.setOnAction(e -> {
             if(Login.getIstChef().equals("Admin")){
@@ -168,6 +174,12 @@ public class Sprache {
         });
 
         Button bMADeleteScene= new Button("Löschen");
+        if(!Login.getIstUnterhalt().equals("Admin")){
+            bMADeleteScene.setStyle("-fx-background-color: transparent");
+            bMADeleteScene.setStyle("-fx-text-fill: transparent");
+            bMADeleteScene.setDisable(true);
+            bMADeleteScene.setVisible(false);
+        }
         //button1.setOnAction(e -> primaryStage.setScene(scene2));
         bMADeleteScene.setOnAction(e -> {
             if(Login.getIstChef().equals("Admin")){
