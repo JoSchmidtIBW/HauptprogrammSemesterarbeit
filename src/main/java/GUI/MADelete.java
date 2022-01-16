@@ -101,11 +101,19 @@ public class MADelete {
                         txfMANummerDelete.setText("");
                     }
                     else{
-                        System.out.println("Tu irgend wirklich was!!");
-                        String schreibeMADeleteInDB = "DELETE FROM userMubea WHERE MA_Nummer = '"+ getEingabeMANummerDelete()+"';";
-                        dBD.schreibeDB(schreibeMADeleteInDB);
-                        lZeigeMADelete.setText("Der User wurde erfolgreich gelöscht\nID_User von userMubea(Table) gseht ez halt komisch us, aber mir egal");
-                        lZeigeMADelete.setTextFill(Color.GREEN);
+                        if(getEingabeMANummerDelete().equals("0001")){
+                            System.out.println("Der Admin sollte nicht gelöscht werden!");
+                            lZeigeMADelete.setText("Das geht nicht!");
+                            lZeigeMADelete.setTextFill(Color.RED);
+                            txfMANummerDelete.setText("");
+                        }else{
+                            System.out.println("Tu irgend wirklich was!!");
+                            String schreibeMADeleteInDB = "DELETE FROM userMubea WHERE MA_Nummer = '"+ getEingabeMANummerDelete()+"';";
+                            dBD.schreibeDB(schreibeMADeleteInDB);
+                            lZeigeMADelete.setText("Der User wurde erfolgreich gelöscht\nID_User von userMubea(Table) gseht ez halt komisch us, aber mir egal");
+                            lZeigeMADelete.setTextFill(Color.GREEN);
+                        }
+
                     }
                 }
                 setEingabeMANummerDelete("");
