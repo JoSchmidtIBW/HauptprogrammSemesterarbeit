@@ -82,6 +82,10 @@ public class Addafer {
     static boolean bSchrottGurteRollgang4Abgesetzt = false;
     static boolean bLichtSchranke2Rollgang4Abgesetzt = false;
 
+    static boolean bWalkingBeamWalkingBeamAbgesetzt = false;
+    static boolean bDrehGreiferWalkingBeamAbgesetzt = false;
+    static boolean bRadRat1WalkingBeamAbgesetzt = false;
+
     public int zaehlerBundladerGurte = 0;
     public int zaehlerBundladerLichtSchranke1 = 0;
     public int zaehlerBundladerAnschlag = 0;
@@ -107,6 +111,34 @@ public class Addafer {
     public int zaehlerRollgang4RohrAuswerfer = 0;
     public int zaehlerRollgang4SchrottGurte = 0;
     public int zaehlerRollgang4LichtSchranke2 = 0;
+
+    public int zaehlerWalkingBeamWalkingBeam = 0;
+    public int zaehlerWalkingBeamDrehGreifer = 0;
+    public int zaehlerWalkingBeamRadRat1 = 0;
+
+    public int getZaehlerWalkingBeamRadRat1() {
+        return zaehlerWalkingBeamRadRat1;
+    }
+
+    public void setZaehlerWalkingBeamRadRat1(int zaehlerWalkingBeamRadRat1) {
+        this.zaehlerWalkingBeamRadRat1 = zaehlerWalkingBeamRadRat1;
+    }
+
+    public int getZaehlerWalkingBeamDrehGreifer() {
+        return zaehlerWalkingBeamDrehGreifer;
+    }
+
+    public void setZaehlerWalkingBeamDrehGreifer(int zaehlerWalkingBeamDrehGreifer) {
+        this.zaehlerWalkingBeamDrehGreifer = zaehlerWalkingBeamDrehGreifer;
+    }
+
+    public int getZaehlerWalkingBeamWalkingBeam() {
+        return zaehlerWalkingBeamWalkingBeam;
+    }
+
+    public void setZaehlerWalkingBeamWalkingBeam(int zaehlerWalkingBeamWalkingBeam) {
+        this.zaehlerWalkingBeamWalkingBeam = zaehlerWalkingBeamWalkingBeam;
+    }
 
     public int getZaehlerRollgang4LichtSchranke2() {
         return zaehlerRollgang4LichtSchranke2;
@@ -1693,14 +1725,196 @@ public class Addafer {
         Label lWalkingBeam = new Label("WalkingBeam");
         lWalkingBeam.setFont(fontAnlageGruppe);
 
-        Button bWalkingBeam = new Button("WalkingBeam");
-        Button bDrehGreifer = new Button("Dreh-Greifer");
-        Button bRadRat1 = new Button("Rad-Rat1");
+
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachWalkingBeamWalkingBeam =
+                {"WalkingBeam", "WalkingBeam","WalkingBeam", "WalkingBeam", "WalkingBeam"};
+
+        ToggleButton bWalkingBeamWalkingBeam = new ToggleButton(sprachWalkingBeamWalkingBeam[Sprache.getSprachenZahl()]);//"WalkingBeam"
+        if(bWalkingBeamWalkingBeamAbgesetzt==false) {
+            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bWalkingBeamWalkingBeam.setDisable(true);
+            }
+            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: red");//pink
+        }
+
+        bWalkingBeamWalkingBeam.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bWalkingBeamWalkingBeamAbgesetzt==false){//grün//rotdb
+                    if(bWalkingBeamWalkingBeam.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bWalkingBeamWalkingBeam.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bWalkingBeamWalkingBeam.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
 
 
-        bWalkingBeam.setStyle("-fx-background-color: green");
-        bDrehGreifer.setStyle("-fx-background-color: green");
-        bRadRat1.setStyle("-fx-background-color: green");
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachDrehGreiferWalkingBeam =
+                {"Dreh-Greifer", "pinza rotante","rotaciona hvataljka", "kapëse rrotulluese", "döner :) tutucu"};
+
+        ToggleButton bDrehGreiferWalkingBeam = new ToggleButton(sprachDrehGreiferWalkingBeam[Sprache.getSprachenZahl()]);//"Dreh-Greifer"
+        if(bDrehGreiferWalkingBeamAbgesetzt==false) {
+            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bDrehGreiferWalkingBeam.setDisable(true);
+            }
+            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: red");//pink
+        }
+
+        bDrehGreiferWalkingBeam.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bDrehGreiferWalkingBeamAbgesetzt==false){//grün//rotdb
+                    if(bDrehGreiferWalkingBeam.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bDrehGreiferWalkingBeam.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bDrehGreiferWalkingBeam.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
+
+        //   0          1         2         3       4
+        //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
+        String[] sprachRadRat1WalkingBeam =
+                {"Rad-Rat1", "ruota-Rat1","volan-Rat1", "rrota-Rat1", "teker-Rat1"};
+
+        ToggleButton bRadRat1WalkingBeam = new ToggleButton(sprachRadRat1WalkingBeam[Sprache.getSprachenZahl()]);//"Rad-Rat1"
+        if(bRadRat1WalkingBeamAbgesetzt==false) {
+            bRadRat1WalkingBeam.setStyle("-fx-background-color: green");//blue
+        }else{
+            if(Login.getIstUnterhalt().equals("keinU")){
+                bRadRat1WalkingBeam.setDisable(true);
+            }
+            bRadRat1WalkingBeam.setStyle("-fx-background-color: red");//pink
+        }
+
+        bRadRat1WalkingBeam.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent t) {
+                if(bRadRat1WalkingBeamAbgesetzt==false){//grün//rotdb
+                    if(bRadRat1WalkingBeam.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")){
+                            bRadRat1WalkingBeam.setStyle("-fx-background-color: green");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")||Login.getIstUnterhalt().equals("Admin")){
+                            bRadRat1WalkingBeam.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bRadRat1WalkingBeam.setStyle("-fx-background-color: green");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bRadRat1WalkingBeam.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }else {
+                    if(bRadRat1WalkingBeam.isSelected()){
+                        System.out.println("ist selectet erste");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            bRadRat1WalkingBeam.setStyle("-fx-background-color: pink");//pink
+                            System.out.println("Bin Unterhalt pink: ");
+                        }else if(Login.getIstUnterhalt().equals("keinU")){
+                            bRadRat1WalkingBeam.setStyle("-fx-background-color: yellow");
+                            System.out.println("Bin kein Unterhalt gelb: ");
+                        }
+                    }else {
+                        System.out.println("Sollte jetzt deselectet sein");
+                        if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                            System.out.println("Bin Unterhalt rot: ");
+                            bRadRat1WalkingBeam.setStyle("-fx-background-color: red");//red
+                        }
+                        else if(Login.getIstUnterhalt().equals("keinU")){
+                            System.out.println("Bin kein Unterhalt grün");
+                            bRadRat1WalkingBeam.setStyle("-fx-background-color: green");
+                        }
+                    }
+                }
+            }
+        });
 
 //ButtonZurückRat1----------------------------------------------------------------------------------------------------------------------
         //   0          1         2         3       4
@@ -2071,6 +2285,51 @@ public class Addafer {
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
                     System.out.println("LichtSchranke2Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bWalkingBeamWalkingBeam.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bWalkingBeamWalkingBeamAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerWalkingBeamWalkingBeam() +"','Adf/WalkingBeam' , 'WalkingBeam')");
+                        bWalkingBeamWalkingBeam.setStyle("-fx-background-color: red");
+                        bWalkingBeamWalkingBeam.setDisable(true);
+                        bWalkingBeamWalkingBeamAbgesetzt = true;
+                        setZaehlerWalkingBeamWalkingBeam(zaehlerWalkingBeamWalkingBeam +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("WalkingBeamWalkingBeam deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bDrehGreiferWalkingBeam.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bDrehGreiferWalkingBeamAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerWalkingBeamDrehGreifer() +"','Adf/WalkingBeam' , 'Dreh-Greifer')");
+                        bDrehGreiferWalkingBeam.setStyle("-fx-background-color: red");
+                        bDrehGreiferWalkingBeam.setDisable(true);
+                        bDrehGreiferWalkingBeamAbgesetzt = true;
+                        setZaehlerWalkingBeamDrehGreifer(zaehlerWalkingBeamDrehGreifer +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("DrehGreiferWalkingBeam deselectet bei MeldungabsetztenSchlaufe");
+                }
+
+                if(bRadRat1WalkingBeam.isSelected()){
+                    if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bRadRat1WalkingBeamAbgesetzt ==false){//istChef
+                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerWalkingBeamRadRat1() +"','Adf/WalkingBeam' , 'Rad-Rat.1')");
+                        bRadRat1WalkingBeam.setStyle("-fx-background-color: red");
+                        bRadRat1WalkingBeam.setDisable(true);
+                        bRadRat1WalkingBeamAbgesetzt = true;
+                        setZaehlerWalkingBeamRadRat1(zaehlerWalkingBeamRadRat1 +1);
+                        setRotdb(true);
+                        //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                    }
+                    //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
+                }else{
+                    System.out.println("RadRat1WalkingBeam deselectet bei MeldungabsetztenSchlaufe");
                 }
 
 
@@ -2569,6 +2828,73 @@ public class Addafer {
                 }
 
 
+                if(bWalkingBeamWalkingBeam.isSelected()){
+                    System.out.println("WalkingBeamWalkingBeam selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/WalkingBeam' AND Stoerung = 'WalkingBeam';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bWalkingBeamWalkingBeam.setStyle("-fx-background-color: green");
+                        bWalkingBeamWalkingBeam.setDisable(false);
+                        setRotdb(false);
+                        bWalkingBeamWalkingBeamAbgesetzt = false;
+                    }
+                    else{
+                        bWalkingBeamWalkingBeam.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("WalkingBeamWalkingBeam deselectet in Störmeldung");
+                }
+
+                if(bDrehGreiferWalkingBeam.isSelected()){
+                    System.out.println("DrehGreiferWalkingBeam selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/WalkingBeam' AND Stoerung = 'Dreh-Greifer';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bDrehGreiferWalkingBeam.setStyle("-fx-background-color: green");
+                        bDrehGreiferWalkingBeam.setDisable(false);
+                        setRotdb(false);
+                        bDrehGreiferWalkingBeamAbgesetzt = false;
+                    }
+                    else{
+                        bDrehGreiferWalkingBeam.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("DrehGreiferWalkingBeam deselectet in Störmeldung");
+                }
+
+                if(bRadRat1WalkingBeam.isSelected()){
+                    System.out.println("RadRat1WalkingBeam selectet in Stoermeldung");
+                    if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                        String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
+                                "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
+                                + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"
+                                + TaskLeistePane.getUhrzeitStr() + "', StOG = 'close' WHERE StOG = 'open' AND Anlage = '"+ Rattunde1.getNameAnlageRattunde1() +"' AND AnlageGruppe = 'ADF/WalkingBeam' AND Stoerung = 'Rad-Rat.1';";
+                        dBA.schreibeDB(einfuegIstUnterhaltDb);
+                        bRadRat1WalkingBeam.setStyle("-fx-background-color: green");
+                        bRadRat1WalkingBeam.setDisable(false);
+                        setRotdb(false);
+                        bRadRat1WalkingBeamAbgesetzt = false;
+                    }
+                    else{
+                        bRadRat1WalkingBeam.setStyle("-fx-background-color: red");
+                        System.out.println("Ich arbeite nicht im Unterhalt!");
+                    }
+                }
+                else{
+                    System.out.println("RadRat1WalkingBeam deselectet in Störmeldung");
+                }
+
+
             }
         });
 
@@ -2579,7 +2905,7 @@ public class Addafer {
         layoutHRollgang1.getChildren().addAll(lRollgang1,bRollen1Rollgang1,bSchweissNahtErkennungRollgang1,bPinchRolle12Rollgang1);
         layoutHMessstation.getChildren().addAll(lMessstation,bUSSensorMessstation,bLaserMessstation,bEinstellRollenMessstation,bLichtschrankenMSMessstation,bPumpeRueckFuehrEmulsionMessstation,bSchutzTuereMessstation);
         layoutHRollgang4.getChildren().addAll(lRollgang4,bPinchRolle3Rollgang4,bRollen4Rollgang4,bRohrAuswerferRollgang4,bSchrottGurteRollgang4,bLichtSchranke2Rollgang4);
-        layoutHWalkingBeam.getChildren().addAll(lWalkingBeam,bWalkingBeam,bDrehGreifer,bRadRat1);
+        layoutHWalkingBeam.getChildren().addAll(lWalkingBeam,bWalkingBeamWalkingBeam,bDrehGreiferWalkingBeam,bRadRat1WalkingBeam);
         HBox layoutHAbsetzenAufhebenZurueckR1A = new HBox(60);
         layoutHAbsetzenAufhebenZurueckR1A.getChildren().addAll(bStoerMeldungAbsetzen,bStoerMeldungAufheben,bZurueckRat1);
         layoutV.getChildren().addAll(lTitleAddafer,layoutHBundlader,layoutHVereinzelung,layoutHRollgang1,layoutHMessstation,layoutHRollgang4,layoutHWalkingBeam,layoutHAbsetzenAufhebenZurueckR1A);
