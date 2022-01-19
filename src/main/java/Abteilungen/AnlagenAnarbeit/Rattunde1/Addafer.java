@@ -11,10 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 
@@ -2900,6 +2897,9 @@ public class Addafer {
 
 //LayoutZeugs----------------------------------------------------------------------------------------------------------------------
 
+        BorderPane bpane = new BorderPane();
+
+
         layoutHBundlader.getChildren().addAll(lBundlader,bGurteBundlader,bLichtSchranke1Bundlader,bAnschlagBundlader,bSchutzZaunBundlader);
         layoutHVereinzelung.getChildren().addAll(lVereinzelung,bRollen_SchraegVereinzelung,bStopper_Bolzen1Vereinzelung,bStopper_Bolzen123Vereinzelung);
         layoutHRollgang1.getChildren().addAll(lRollgang1,bRollen1Rollgang1,bSchweissNahtErkennungRollgang1,bPinchRolle12Rollgang1);
@@ -2909,7 +2909,12 @@ public class Addafer {
         HBox layoutHAbsetzenAufhebenZurueckR1A = new HBox(60);
         layoutHAbsetzenAufhebenZurueckR1A.getChildren().addAll(bStoerMeldungAbsetzen,bStoerMeldungAufheben,bZurueckRat1);
         layoutV.getChildren().addAll(lTitleAddafer,layoutHBundlader,layoutHVereinzelung,layoutHRollgang1,layoutHMessstation,layoutHRollgang4,layoutHWalkingBeam,layoutHAbsetzenAufhebenZurueckR1A);
-        cardAddafer.getChildren().addAll(layoutV);
+
+        bpane.setCenter(layoutV);
+
+
+        cardAddafer.getChildren().addAll(bpane);
+        //cardAddafer.getChildren().addAll(layoutV);
 
 //        cardAddafer.minHeight(500);
 //        cardAddafer.minWidth(400);

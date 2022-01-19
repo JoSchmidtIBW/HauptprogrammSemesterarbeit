@@ -9,10 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -24,7 +21,7 @@ public class HauptGUIScene {
 
     public static Scene createGetHauptScene(Stage stage){
 
-        VBox layoutV = new VBox(1);
+        VBox layoutV = new VBox(22);
         Label lHauptGui= new Label("- HauptGui -");
 
         final Pane cardsPane = new StackPane();
@@ -96,14 +93,18 @@ public class HauptGUIScene {
         //HBox layoutH2 = new HBox(1);
         //layoutH2.getChildren().addAll(bZuruekLogin,bZuruekSprache,TaskLeistePane.getPane());
 
-        HBox layoutHlHauptGuiScene = new HBox(557);
+        HBox layoutHlHauptGuiScene = new HBox(564);//557
         HBox layoutHZurueckSpracheAbmelden = new HBox(1);
         layoutHZurueckSpracheAbmelden.getChildren().addAll(bZuruekSprache,bZuruekLogin);
         layoutHlHauptGuiScene.getChildren().addAll(lHauptGui,layoutHZurueckSpracheAbmelden);
 
+        BorderPane borderPaneTP = new BorderPane();
+        borderPaneTP.setCenter(layoutV);
+
         layoutV.getChildren().addAll(layoutHlHauptGuiScene,layoutH1, cardsPane,TaskLeistePane.getPane());
 
-        Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,628);
+        Scene hauptGuiScene = new Scene(new ScrollPane(borderPaneTP),850,628);
+        //Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,628);
         return hauptGuiScene;
     }
 
