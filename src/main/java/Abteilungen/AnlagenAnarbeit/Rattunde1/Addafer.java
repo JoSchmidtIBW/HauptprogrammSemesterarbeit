@@ -1963,10 +1963,21 @@ public class Addafer {
 
                             //setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
                             dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
+                            //dBA.schreibeDB("UPDATE stoerungMubea SET ZSt = ZSt+1 WHERE Stoerung = 'Gurte' AND StOG = 'open';");//funktioniert in realität, wiso????
                         bGurteBundlader.setStyle("-fx-background-color: red");
                         bGurteBundlader.setDisable(true);
                         bGurteBundladerAbgesetzt = true;
-                            setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+
+                            //System.out.println("zaehlerBundladerGurte "+zaehlerBundladerGurte);
+                            //System.out.println("getzaehlerBundladerGurte "+getZaehlerBundladerGurte());
+                            //setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+                           //zaehlerBundladerGurte++;
+                            //setZaehlerBundladerGurte(getZaehlerBundladerGurte()+1);
+                            setZaehlerBundladerGurte(zaehlerBundladerGurte+1);
+                            //setZaehlerBundladerGurte(1+getZaehlerBundladerGurte());
+                            //setZaehlerBundladerGurte(getZaehlerBundladerGurte()+1);
+//                            System.out.println("zaehlerBundladerGurte "+zaehlerBundladerGurte);
+//                            System.out.println("getzaehlerBundladerGurte "+getZaehlerBundladerGurte());
                             //setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
                             setRotdb(true);
                         //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
@@ -2360,6 +2371,8 @@ public class Addafer {
                 if(bGurteBundlader.isSelected()){
                     System.out.println("Gurte selectet in Stoermeldung");
                     if(Login.getIstUnterhalt().equals("istU")||Login.getIstUnterhalt().equals("Admin")){
+                       // dBA.schreibeDB("UPDATE stoerungMubea SET ZSt = ZSt+1 WHERE Stoerung = 'Gurte' AND StOG = 'open';");
+
                         String einfuegIstUnterhaltDb = "UPDATE stoerungMubea SET " +
                                 "VnameB = '"+ Login.getVorName() +"', NnameB ='"+ Login.getNachName() +"', "
                                 + "DatumB = '" + TaskLeistePane.getDatumStr() + "', UhrzeitB = '"

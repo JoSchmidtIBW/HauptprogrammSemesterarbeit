@@ -152,7 +152,7 @@ public class Registrieren {
                         txfNachnameNeu.setText("");
                         txfPasswortNeu.setText("");
                     } else if (Login.ueberpruefungEingabeMANummerLogin(eingabeMANummerNeu).equals("ist richtig")) {
-                        lzeigeMANummerNeu.setText("JUNIT-Test: Enthält keine Zahl!!!" + txfMANummerNeu.getText());
+                        lzeigeMANummerNeu.setText("JUNIT-Test vielleicht Zahlgrösse?" + txfMANummerNeu.getText());
                         lzeigeMANummerNeu.setTextFill(Color.GREEN);
                         setEingabeMANummerNeu(txfMANummerNeu.getText());
                         System.out.println(getEingabeMANummerNeu());
