@@ -1959,17 +1959,21 @@ public class Addafer {
                 if(bGurteBundlader.isSelected()){
                     //lZeigeStoerMeldung.setText("Gurte sind aktiviert");
                         if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bGurteBundladerAbgesetzt ==false){//istChef
-                        dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
+                            //zaehlerBundladerGurte +1;
+
+                            //setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
+                            dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
                         bGurteBundlader.setStyle("-fx-background-color: red");
                         bGurteBundlader.setDisable(true);
                         bGurteBundladerAbgesetzt = true;
-                        setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+                            setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
+                            //setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
                             setRotdb(true);
                         //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("Gurte sind deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("Gurte sind deselectet bei MeldungabsetztenSchlaufe");//
                 }
 
 
@@ -1987,7 +1991,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("LichtSchranke1 deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("LichtSchranke1 deselectet bei MeldungabsetztenSchlaufe");
                 }
 
 
@@ -2004,7 +2008,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("Bundlader Anschlag deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("Bundlader Anschlag deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bSchutzZaunBundlader.isSelected()){
@@ -2020,7 +2024,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("Bundlader Anschlag deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("Bundlader Anschlag deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bRollen_SchraegVereinzelung.isSelected()){
@@ -2036,7 +2040,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("Rollen_SchraegVereinzelung deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("Rollen_SchraegVereinzelung deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bStopper_Bolzen1Vereinzelung.isSelected()){
@@ -2052,7 +2056,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("Stopper_Bolzen1Vereinzelung deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("Stopper_Bolzen1Vereinzelung deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bStopper_Bolzen123Vereinzelung.isSelected()){
@@ -2068,7 +2072,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("Stopper_Bolzen123Vereinzelung deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("Stopper_Bolzen123Vereinzelung deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bRollen1Rollgang1.isSelected()){
@@ -2083,7 +2087,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("Rollen1Rollgang1 deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("Rollen1Rollgang1 deselectet bei MeldungabsetztenSchlaufe");
                 }
 
 
@@ -2099,7 +2103,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("SchweissNahtErkennungRollgang1 deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("SchweissNahtErkennungRollgang1 deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bPinchRolle12Rollgang1.isSelected()){
@@ -2114,7 +2118,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("PinchRolle12Rollgang1 deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("PinchRolle12Rollgang1 deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bUSSensorMessstation.isSelected()){
@@ -2129,7 +2133,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("USSensorMessstation deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("USSensorMessstation deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bLaserMessstation.isSelected()){
@@ -2144,7 +2148,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("LaserMessstation deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("LaserMessstation deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bEinstellRollenMessstation.isSelected()){
@@ -2159,7 +2163,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("EinstellRollenMessstation deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("EinstellRollenMessstation deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bLichtschrankenMSMessstation.isSelected()){
@@ -2174,7 +2178,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("LichtschrankenMSMessstation deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("LichtschrankenMSMessstation deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bPumpeRueckFuehrEmulsionMessstation.isSelected()){
@@ -2189,7 +2193,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("PumpeRueckFuehrEmulsionMessstation deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("PumpeRueckFuehrEmulsionMessstation deselectet bei MeldungabsetztenSchlaufe");
                 }
 
 
@@ -2205,7 +2209,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("SchutzTuereMessstation deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("SchutzTuereMessstation deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bPinchRolle3Rollgang4.isSelected()){
@@ -2220,7 +2224,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("PinchRolle3Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("PinchRolle3Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bRollen4Rollgang4.isSelected()){
@@ -2235,7 +2239,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("Rollen4Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("Rollen4Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bRohrAuswerferRollgang4.isSelected()){
@@ -2250,7 +2254,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("RohrAuswerferRollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("RohrAuswerferRollgang4 deselectet bei MeldungabsetztenSchlaufe");
                 }
 
 
@@ -2266,7 +2270,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("SchrottGurteRollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("SchrottGurteRollgang4 deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bLichtSchranke2Rollgang4.isSelected()){
@@ -2281,7 +2285,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("LichtSchranke2Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("LichtSchranke2Rollgang4 deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bWalkingBeamWalkingBeam.isSelected()){
@@ -2296,7 +2300,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("WalkingBeamWalkingBeam deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("WalkingBeamWalkingBeam deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bDrehGreiferWalkingBeam.isSelected()){
@@ -2311,7 +2315,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("DrehGreiferWalkingBeam deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("DrehGreiferWalkingBeam deselectet bei MeldungabsetztenSchlaufe");
                 }
 
                 if(bRadRat1WalkingBeam.isSelected()){
@@ -2326,7 +2330,7 @@ public class Addafer {
                     }
                     //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                 }else{
-                    System.out.println("RadRat1WalkingBeam deselectet bei MeldungabsetztenSchlaufe");
+                    //System.out.println("RadRat1WalkingBeam deselectet bei MeldungabsetztenSchlaufe");
                 }
 
 
@@ -2372,7 +2376,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("Gurte deselectet in Störmeldung");
+                    //System.out.println("");//Gurte deselectet in Störmeldung
                 }
 
 
@@ -2396,7 +2400,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("LichtSchranke1 deselectet in Störmeldung");
+                    //System.out.println("");//LichtSchranke1 deselectet in Störmeldung
                 }
 
 
@@ -2419,7 +2423,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("AnschlagBundlader deselectet in Störmeldung");
+                    //System.out.println("");//AnschlagBundlader deselectet in Störmeldung
                 }
 
 
@@ -2443,7 +2447,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("SchutzZaunBundlader deselectet in Störmeldung");
+                    //System.out.println("");//SchutzZaunBundlader deselectet in Störmeldung
                 }
 
 
@@ -2466,7 +2470,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("bRollen_SchraegVereinzelung deselectet in Störmeldung");
+                    //System.out.println("");//bRollen_SchraegVereinzelung deselectet in Störmeldung
                 }
 
                 if(bStopper_Bolzen1Vereinzelung.isSelected()){
@@ -2488,7 +2492,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("Stopper_Bolzen1Vereinzelung deselectet in Störmeldung");
+                    //System.out.println("");//Stopper_Bolzen1Vereinzelung deselectet in Störmeldung
                 }
 
                 if(bStopper_Bolzen123Vereinzelung.isSelected()){
@@ -2510,7 +2514,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("Stopper_Bolzen123Vereinzelung deselectet in Störmeldung");
+                    //System.out.println("");//Stopper_Bolzen123Vereinzelung deselectet in Störmeldung
                 }
 
                 if(bRollen1Rollgang1.isSelected()){
@@ -2532,7 +2536,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("Rollen1Rollgang1 deselectet in Störmeldung");
+                    //System.out.println("");//Rollen1Rollgang1 deselectet in Störmeldung
                 }
 
 
@@ -2555,7 +2559,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("SchweissNahtErkennungRollgang1 deselectet in Störmeldung");
+                    //System.out.println("");//SchweissNahtErkennungRollgang1 deselectet in Störmeldung
                 }
 
                 if(bPinchRolle12Rollgang1.isSelected()){
@@ -2577,7 +2581,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("PinchRolle12Rollgang1 deselectet in Störmeldung");
+                    //System.out.println("");//PinchRolle12Rollgang1 deselectet in Störmeldung
                 }
 
                 if(bUSSensorMessstation.isSelected()){
@@ -2599,7 +2603,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("USSensorMessstation deselectet in Störmeldung");
+                    //System.out.println("");//USSensorMessstation deselectet in Störmeldung
                 }
 
                 if(bLaserMessstation.isSelected()){
@@ -2621,7 +2625,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("LaserMessstation deselectet in Störmeldung");
+                    //System.out.println("");//LaserMessstation deselectet in Störmeldung
                 }
 
                 if(bEinstellRollenMessstation.isSelected()){
@@ -2643,7 +2647,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("EinstellRollenMessstation deselectet in Störmeldung");
+                    //System.out.println("");//EinstellRollenMessstation deselectet in Störmeldung
                 }
 
                 if(bLichtschrankenMSMessstation.isSelected()){
@@ -2665,7 +2669,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("LichtschrankenMSMessstation deselectet in Störmeldung");
+                    //System.out.println("");//LichtschrankenMSMessstation deselectet in Störmeldung
                 }
 
                 if(bPumpeRueckFuehrEmulsionMessstation.isSelected()){
@@ -2687,7 +2691,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("PumpeRueckFuehrEmulsionMessstation deselectet in Störmeldung");
+                    //System.out.println("");//PumpeRueckFuehrEmulsionMessstation deselectet in Störmeldung
                 }
 
                 if(bSchutzTuereMessstation.isSelected()){
@@ -2709,7 +2713,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("SchutzTuereMessstation deselectet in Störmeldung");
+                    //System.out.println("");//SchutzTuereMessstation deselectet in Störmeldung
                 }
 
 
@@ -2732,7 +2736,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("PinchRolle3Rollgang4 deselectet in Störmeldung");
+                    //System.out.println("");//PinchRolle3Rollgang4 deselectet in Störmeldung
                 }
 
                 if(bRollen4Rollgang4.isSelected()){
@@ -2754,7 +2758,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("Rollen4Rollgang4 deselectet in Störmeldung");
+                    //System.out.println("");//Rollen4Rollgang4 deselectet in Störmeldung
                 }
 
                 if(bRohrAuswerferRollgang4.isSelected()){
@@ -2776,7 +2780,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("RohrAuswerferRollgang4 deselectet in Störmeldung");
+                    //System.out.println("");//RohrAuswerferRollgang4 deselectet in Störmeldung
                 }
 
                 if(bSchrottGurteRollgang4.isSelected()){
@@ -2798,7 +2802,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("SchrottGurteRollgang4 deselectet in Störmeldung");
+                    //System.out.println("");//SchrottGurteRollgang4 deselectet in Störmeldung
                 }
 
 
@@ -2821,7 +2825,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("LichtSchranke2Rollgang4 deselectet in Störmeldung");
+                    //System.out.println("");//LichtSchranke2Rollgang4 deselectet in Störmeldung
                 }
 
 
@@ -2844,7 +2848,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("WalkingBeamWalkingBeam deselectet in Störmeldung");
+                    //System.out.println("");//WalkingBeamWalkingBeam deselectet in Störmeldung
                 }
 
                 if(bDrehGreiferWalkingBeam.isSelected()){
@@ -2866,7 +2870,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("DrehGreiferWalkingBeam deselectet in Störmeldung");
+                    //System.out.println("");//DrehGreiferWalkingBeam deselectet in Störmeldung
                 }
 
                 if(bRadRat1WalkingBeam.isSelected()){
@@ -2888,7 +2892,7 @@ public class Addafer {
                     }
                 }
                 else{
-                    System.out.println("RadRat1WalkingBeam deselectet in Störmeldung");
+                    //System.out.println("");//RadRat1WalkingBeam deselectet in Störmeldung
                 }
 
 

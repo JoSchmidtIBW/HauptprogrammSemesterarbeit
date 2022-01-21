@@ -18,7 +18,7 @@ public class DatenBank {
 
     public void schreibeDB(String einfuegString) {//String url, String user, String password,
         try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
-            System.out.println("Erfolgreich mit Datenbank verbunden :) ");
+            System.out.println("Datenbank - Erfolgreich verbunden :) schreibe...");
             Statement statement = connection.createStatement();
             statement.executeQuery(einfuegString);//query
             statement.close();
@@ -31,7 +31,7 @@ public class DatenBank {
 
     public void ausgabeNurEineSpalteDB(String ausgebeNurEineSpalteString) {
         try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
-            System.out.println("Erfolgreich mit Datenbank verbunden :) ");
+            System.out.println("Datenbank - Erfolgreich verbunden :) ausgebeEINEspalte");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM userMubea");
 
@@ -52,7 +52,7 @@ public class DatenBank {
 
     public void ausgebenGesamtDB(String ausgebeGesamtString) {
         try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
-            System.out.println("Erfolgreich mit Datenbank verbunden :) ");
+            System.out.println("Datenbank - Erfolgreich verbunden :) -ausgebenGesamt-");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(ausgebeGesamtString);
 
@@ -93,7 +93,7 @@ public class DatenBank {
     public String ausgebenGesamtDBRetourString(String ausgabeGesamtString2) {
         String gefundenUserInDB = "";
         try (Connection connection = DriverManager.getConnection(getUrl1(), getUser1(), getPassword1())) {
-            System.out.println("Erfolgreich mit Datenbank verbunden :) ");
+            System.out.println("Datenbank - Erfolgreich verbunden :) ausgebenGesamtMitString");
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(ausgabeGesamtString2);
 

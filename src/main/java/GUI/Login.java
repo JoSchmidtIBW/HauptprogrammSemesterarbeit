@@ -139,7 +139,7 @@ public class Login {
         while(zaehlerFuerSchraegerBuchstabe<werIstAngemeldet.length()){
             if (werIstAngemeldet.charAt(zaehlerFuerSchraegerBuchstabe) == '/'){
 
-                System.out.print("hat leertaste");
+                //System.out.print("hat leertaste");
 
                 String[] getrenntwerIstAngemeldetArr = werIstAngemeldet.split("/");
 
@@ -167,14 +167,14 @@ public class Login {
 
             }
             else {
-                System.out.print("String ist leeeeeer");
+                System.out.print("");//String ist leer
             }
             zaehlerFuerSchraegerBuchstabe++;
         }
-        System.out.println();
-        System.out.println("nachnameStringalleine "+nachName);
-        System.out.println("getiD_User "+getiD_User());
-        System.out.println("werIstAngemeldet: "+werIstAngemeldet);
+//        System.out.println();
+//        System.out.println("nachnameStringalleine "+nachName);
+//        System.out.println("getiD_User "+getiD_User());
+//        System.out.println("werIstAngemeldet: "+werIstAngemeldet);
     }
     static String ausgabeSucheMANummerMitNameDB;
 
@@ -227,10 +227,10 @@ public class Login {
 
                     String ausgabeGesamtString22 = "SELECT * FROM userMubea WHERE MA_Nummer = '" + eingabeMANummerL + "'";
                     setAusgabeSucheMANummerMitNameDB(dbL1.ausgebenGesamtDBRetourString(ausgabeGesamtString22));
-                    System.out.println("DBL1 ausgabeSucheMANummerMitNameDB: " + getAusgabeSucheMANummerMitNameDB());
+                    System.out.println("DatenBank - ausgabeSucheMANummerMitNameDB: " + getAusgabeSucheMANummerMitNameDB());
                     werIstAngemeldet = getAusgabeSucheMANummerMitNameDB();
                     setWerIstAngemeldet(werIstAngemeldet);
-                    System.out.println("werIstAngemeldet " + getWerIstAngemeldet());
+                    //System.out.println("werIstAngemeldet: " + getWerIstAngemeldet());
                     splittWerIstAngemeldet(werIstAngemeldet);
                     //System.out.println("oooooooohhhh  soo geil du  Static  --> " + getPasswort_User());
                     //setWerIstAngemeldet(getAusgabeSucheMANummerMitNameDB());
@@ -246,6 +246,7 @@ public class Login {
                         lzeigeMANummerL.setText("Sie wurden in der Datenbank gefunden :)\n--> " + txfMANummerL.getText());
                         lzeigeMANummerL.setTextFill(Color.rgb(21, 117, 84));
                         isFoundInDB = true;//??? atomic was???
+                        System.out.println("Ma-Nummer wurde in der Datenbank gefunden");
                     }
 
 
@@ -269,7 +270,7 @@ public class Login {
         //pFInternetL.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
 
-                System.out.println("bin drin");
+                //System.out.println("bin drin");
                 if(isFoundInDB==false){//txfMANummerL leer??
                     //System.out.println("bin noch mehr drin");
                     lzeigePasswortL.setText("Erst die Mitarbeiter-Nummer eingeben");
@@ -289,11 +290,13 @@ public class Login {
 //                }
 
                 //überprüfung allenfals, ob beide Spalten doppelt sind oder falsch sind, aber braucht es nicht
+
+
                 String eingabeMaNummerUndPasswortDB = "SELECT * FROM userMubea WHERE MA_Nummer = '" + txfMANummerL.getText() + "' AND Passwort_User = '" + pFInternetL.getText() + "'";
                 String ausgabeDbMaNummerUndPasswort = dbL1.ausgebenGesamtDBRetourString(eingabeMaNummerUndPasswortDB);
-                System.out.println("Überprüfung passwort und Ma-Nummer in DB: " + ausgabeDbMaNummerUndPasswort);
-
-                System.out.println("getPasswortUser: "+getPasswort_User());
+//                System.out.println("Überprüfung passwort und Ma-Nummer in DB: " + ausgabeDbMaNummerUndPasswort);
+//
+//                System.out.println("getPasswortUser: "+getPasswort_User());
 
                 //Entweder splitten nochmals und vergleichen
                 //oder nur ausgeben eineSpalte, retour String
@@ -304,7 +307,7 @@ public class Login {
                         lzeigePasswortL.setText("Your password has been confirmed");
                         lzeigePasswortL.setTextFill(Color.rgb(21, 117, 84));
                         lZeigePasswortVergessen.setText("");
-
+                        System.out.println("Passwort Correct --> Jetzt kann man sich anmelden");
                     }
                     else if (!pFInternetL.getText().equals(getPasswort_User()) || !pFInternetL.getText().equals(null)) {
                             setIsFoundInDbAndPasswortCorrect(false);//isFoundInDbAndPasswortCorrect
@@ -347,7 +350,7 @@ public class Login {
                 lZeigeIsFoundInDBL.setTextFill(Color.web("#ff0000", 0.8));
                 lZeigeIsFoundInDBL.setText("Sie müssen sich erst Anmelden!");
                 //lzeigeMANummerL.setTextFill(Color.web("#ff0000", 0.8));
-                System.out.println("isFoundDB ist false!!!!");
+                System.out.println("isFoundDB = false! weil nicht MANummer angemeldet");
                             //Fehlermeldungen und Eingaben unsichtbar-machen
                             txfMANummerL.clear();
                             lzeigeMANummerL.setText("");

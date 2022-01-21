@@ -45,7 +45,7 @@ public class Anleitung {
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachTextIstUnterhalt =
                 {"Wählen Sie in der Abteilung die Anlage aus, \nauf welcher sich die Störmeldung befindet, welche repariert wurde.\n" +
-                        "Wählen Sie diese an, und heben Sie die Störmeldung auf.",
+                        "Wählen Sie diese an, und heben Sie die Störmeldung auf. \n",
                         "Nel reparto, seleziona il sistema su cui si trova il messaggio di errore che è stato riparato.\n" +
                                 "Seleziona questo e annulla il messaggio di errore. \n",
                         "U odjeljenju izaberite sistem na kojem se nalazi poruka o grešci koja je popravljena.\n" +
@@ -53,7 +53,7 @@ public class Anleitung {
                         "Në departament, zgjidhni sistemin në të cilin ndodhet mesazhi i gabimit që u riparua.\n" +
                                 "Zgjidhni këtë dhe anuloni mesazhin e gabimit. \n",
                         "Bölümde, onarılan hata mesajının bulunduğu sistemi seçin.\n" +
-                                "Bunu seçin ve hata mesajını iptal edin. "};
+                                "Bunu seçin ve hata mesajını iptal edin. \n"};
 
 
         Label lAnleitung = new Label();
@@ -63,9 +63,9 @@ public class Anleitung {
         } else if (Login.getIstUnterhalt().equals("keinU")) {
             lAnleitung.setText(sprachTextNichtUnterhalt[Sprache.getSprachenZahl()]);
         } else if (Login.getIstUnterhalt().equals("Admin")) {
-            lAnleitung.setText("Alter, du bisch Admin, du bruchsch kei Aleitig...\n" +
-                    "Jedoch, da der Admin Absetzen und Aufheben kann, \nmuss er nach Betätigung die Seite neu laden" +
-                    "\n man könnte dies jedoch implementieren");
+            lAnleitung.setText("Alter, du bisch Admin, du bruchsch kei Aleitig...(chasch nur Dütsch)\n" +
+                    "Jedoch, da der Admin Absetzen und Aufheben beides gleichzeitig kann, \nmuss er nach Betätigung die Seite neu laden" +
+                    "\nman könnte dies jedoch implementieren. \n");
         }
 
 

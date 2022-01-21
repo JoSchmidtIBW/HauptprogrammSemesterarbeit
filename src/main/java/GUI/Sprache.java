@@ -65,9 +65,9 @@ public class Sprache {
 
         //comboBox1.setItems(getSprachenZahl("Deutsch"));
 
-        Label lZeigeSprachAuswahl = new Label("No language selected yet!");//No language selected yet!
+        Label lZeigeSprachAuswahl = new Label("Noch keine Sprache ausgewählt!");//No language selected yet!
 
-        System.out.println("blablbla  "+comboBox1.getValue());
+        //System.out.println("blablbla  "+comboBox1.getValue());
 
         /*Event handler for getting selected country*/
 
@@ -131,7 +131,8 @@ public class Sprache {
         Button buttonHauptGUI = new Button("Weiter");
         buttonHauptGUI.setOnAction(e -> {
             if (comboBox1.getValue() == null) {
-                System.out.println("Sprache ist null");
+                System.out.println("\nSprache ist null, muss erst ausgewählt werden!");
+                lZeigeSprachAuswahl.setText("Erst muss eine Sprache ausgewählt werden!");
                 lZeigeSprachAuswahl.setTextFill(Color.rgb(210, 39, 30));
             } else {
                 System.out.println("Sprache ist gewählt");
