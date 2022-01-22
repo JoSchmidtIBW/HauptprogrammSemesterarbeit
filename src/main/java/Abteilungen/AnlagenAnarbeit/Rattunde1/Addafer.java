@@ -83,35 +83,35 @@ public class Addafer {
     static boolean bDrehGreiferWalkingBeamAbgesetzt = false;
     static boolean bRadRat1WalkingBeamAbgesetzt = false;
 
-    public int zaehlerBundladerGurte = 0;
-    public int zaehlerBundladerLichtSchranke1 = 0;
-    public int zaehlerBundladerAnschlag = 0;
-    public int zaehlerBundladerSchutzZaun = 0;
+    public int zaehlerBundladerGurte = 1;
+    public int zaehlerBundladerLichtSchranke1 = 1;
+    public int zaehlerBundladerAnschlag = 1;
+    public int zaehlerBundladerSchutzZaun = 1;
 
-    public int zaehlerVereinzelungRollen_Schraeg = 0;
-    public int zaehlerVereinzelungStopper_Bolzen1 = 0;
-    public int zaehlerVereinzelungStopper_Bolzen123 = 0;
+    public int zaehlerVereinzelungRollen_Schraeg = 1;
+    public int zaehlerVereinzelungStopper_Bolzen1 = 1;
+    public int zaehlerVereinzelungStopper_Bolzen123 = 1;
 
-    public int zaehlerRollgang1Rollen1 = 0;
-    public int zaehlerRollgang1SchweissNahtErkennung = 0;
-    public int zaehlerRollgang1PinchRolle12 = 0;
+    public int zaehlerRollgang1Rollen1 = 1;
+    public int zaehlerRollgang1SchweissNahtErkennung = 1;
+    public int zaehlerRollgang1PinchRolle12 = 1;
 
-    public int zaehlerMessstationUSSensor = 0;
-    public int zaehlerMessstationLaser = 0;
-    public int zaehlerMessstationEinstellRollen = 0;
-    public int zaehlerMessstationLichtschrankenMS = 0;
-    public int zaehlerMessstationPumpeRueckFuehrEmulsion = 0;
-    public int zaehlerMessstationSchutzTuere = 0;
+    public int zaehlerMessstationUSSensor = 1;
+    public int zaehlerMessstationLaser = 1;
+    public int zaehlerMessstationEinstellRollen = 1;
+    public int zaehlerMessstationLichtschrankenMS = 1;
+    public int zaehlerMessstationPumpeRueckFuehrEmulsion = 1;
+    public int zaehlerMessstationSchutzTuere = 1;
 
-    public int zaehlerRollgang4PinchRolle3 = 0;
-    public int zaehlerRollgang4Rollen4 = 0;
-    public int zaehlerRollgang4RohrAuswerfer = 0;
-    public int zaehlerRollgang4SchrottGurte = 0;
-    public int zaehlerRollgang4LichtSchranke2 = 0;
+    public int zaehlerRollgang4PinchRolle3 = 1;
+    public int zaehlerRollgang4Rollen4 = 1;
+    public int zaehlerRollgang4RohrAuswerfer = 1;
+    public int zaehlerRollgang4SchrottGurte = 1;
+    public int zaehlerRollgang4LichtSchranke2 = 1;
 
-    public int zaehlerWalkingBeamWalkingBeam = 0;
-    public int zaehlerWalkingBeamDrehGreifer = 0;
-    public int zaehlerWalkingBeamRadRat1 = 0;
+    public int zaehlerWalkingBeamWalkingBeam = 1;
+    public int zaehlerWalkingBeamDrehGreifer = 1;
+    public int zaehlerWalkingBeamRadRat1 = 1;
 
     public int getZaehlerWalkingBeamRadRat1() {
         return zaehlerWalkingBeamRadRat1;
@@ -1959,26 +1959,19 @@ public class Addafer {
                 if(bGurteBundlader.isSelected()){
                     //lZeigeStoerMeldung.setText("Gurte sind aktiviert");
                         if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bGurteBundladerAbgesetzt ==false){//istChef
-                            //zaehlerBundladerGurte +1;
 
-                            //setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
+                            String anzahlStoerungGurteBundladerNichtSplit = "";
+                            anzahlStoerungGurteBundladerNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Bundlader' AND stoerung = 'Gurte';") ;
+                            String[] gesplitStoerungGurteBundlader = anzahlStoerungGurteBundladerNichtSplit.split("/");
+                            String anzahlStoerungGurteBundlader = gesplitStoerungGurteBundlader[0];
+                            zaehlerBundladerGurte = Integer.parseInt(anzahlStoerungGurteBundlader);
+
                             dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerGurte() +"','Adf/Bundlader' , 'Gurte')");
-                            //dBA.schreibeDB("UPDATE stoerungMubea SET ZSt = ZSt+1 WHERE Stoerung = 'Gurte' AND StOG = 'open';");//funktioniert in realität, wiso????
-                        bGurteBundlader.setStyle("-fx-background-color: red");
+
+                            bGurteBundlader.setStyle("-fx-background-color: red");
                         bGurteBundlader.setDisable(true);
                         bGurteBundladerAbgesetzt = true;
-
-                            //System.out.println("zaehlerBundladerGurte "+zaehlerBundladerGurte);
-                            //System.out.println("getzaehlerBundladerGurte "+getZaehlerBundladerGurte());
-                            //setZaehlerBundladerGurte(zaehlerBundladerGurte +1);
-                           //zaehlerBundladerGurte++;
-                            //setZaehlerBundladerGurte(getZaehlerBundladerGurte()+1);
                             setZaehlerBundladerGurte(zaehlerBundladerGurte+1);
-                            //setZaehlerBundladerGurte(1+getZaehlerBundladerGurte());
-                            //setZaehlerBundladerGurte(getZaehlerBundladerGurte()+1);
-//                            System.out.println("zaehlerBundladerGurte "+zaehlerBundladerGurte);
-//                            System.out.println("getzaehlerBundladerGurte "+getZaehlerBundladerGurte());
-                            //setZaehlerBundladerGurte(getZaehlerBundladerGurte() +1);
                             setRotdb(true);
                         //lZeigeGurteWerUHRDatumA.setText(Login.vorName + " / "+Login.nachName + "\n" + TaskLeistePane.getDatumStr()+" / "+TaskLeistePane.getUhrzeitStr());
                     }
@@ -1992,6 +1985,12 @@ public class Addafer {
                 if(bLichtSchranke1Bundlader.isSelected()){
                     //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLichtSchranke1BundladerAbgesetzt ==false){//istChef
+                        String anzahlStoerungLichtSchranke1BundladerNichtSplit = "";
+                        anzahlStoerungLichtSchranke1BundladerNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Bundlader' AND stoerung = 'LichtSchranke1';") ;
+                        String[] gesplitStoerungLichtSchranke1Bundlader = anzahlStoerungLichtSchranke1BundladerNichtSplit.split("/");
+                        String anzahlStoerungLichtSchranke1Bundlader = gesplitStoerungLichtSchranke1Bundlader[0];
+                        zaehlerBundladerLichtSchranke1 = Integer.parseInt(anzahlStoerungLichtSchranke1Bundlader);
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerLichtSchranke1() +"','Adf/Bundlader' , 'LichtSchranke1')");
                         bLichtSchranke1Bundlader.setStyle("-fx-background-color: red");
                         bLichtSchranke1Bundlader.setDisable(true);
@@ -2009,6 +2008,12 @@ public class Addafer {
                 if(bAnschlagBundlader.isSelected()){
                     //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bAnschlagBundladerAbgesetzt ==false){//istChef
+                        String anzahlStoerungAnschlagBundladerNichtSplit = "";
+                        anzahlStoerungAnschlagBundladerNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Bundlader' AND stoerung = 'Anschlag';") ;
+                        String[] gesplitStoerungAnschlagBundlader = anzahlStoerungAnschlagBundladerNichtSplit.split("/");
+                        String anzahlStoerungAnschlagBundlader = gesplitStoerungAnschlagBundlader[0];
+                        zaehlerBundladerAnschlag = Integer.parseInt(anzahlStoerungAnschlagBundlader);
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerAnschlag() +"','Adf/Bundlader' , 'Anschlag')");
                         bAnschlagBundlader.setStyle("-fx-background-color: red");
                         bAnschlagBundlader.setDisable(true);
@@ -2025,6 +2030,12 @@ public class Addafer {
                 if(bSchutzZaunBundlader.isSelected()){
                     //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bSchutzZaunBundladerAbgesetzt ==false){//istChef
+                        String anzahlStoerungSchutzZaunBundladerNichtSplit = "";
+                        anzahlStoerungSchutzZaunBundladerNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Bundlader' AND stoerung = 'SchutzZaun';") ;
+                        String[] gesplitStoerungSchutzZaunBundlader = anzahlStoerungSchutzZaunBundladerNichtSplit.split("/");
+                        String anzahlStoerungSchutzZaunBundlader = gesplitStoerungSchutzZaunBundlader[0];
+                        zaehlerBundladerSchutzZaun = Integer.parseInt(anzahlStoerungSchutzZaunBundlader)+1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerBundladerSchutzZaun() +"','Adf/Bundlader' , 'SchutzZaun')");
                         bSchutzZaunBundlader.setStyle("-fx-background-color: red");
                         bSchutzZaunBundlader.setDisable(true);
@@ -2041,6 +2052,12 @@ public class Addafer {
                 if(bRollen_SchraegVereinzelung.isSelected()){
                     //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bRollen_SchraegVereinzelungAbgesetzt ==false){//istChef
+                        String anzahlStoerungRollen_SchraegVereinzelungNichtSplit = "";
+                        anzahlStoerungRollen_SchraegVereinzelungNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Vereinzelung' AND stoerung = 'Rollen Schräg';") ;
+                        String[] gesplitStoerungRollen_SchraegVereinzelung = anzahlStoerungRollen_SchraegVereinzelungNichtSplit.split("/");
+                        String anzahlStoerungRollen_SchraegVereinzelung = gesplitStoerungRollen_SchraegVereinzelung[0];
+                        zaehlerVereinzelungRollen_Schraeg = Integer.parseInt(anzahlStoerungRollen_SchraegVereinzelung)+1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerVereinzelungRollen_Schraeg() +"','Adf/Vereinzelung' , 'Rollen Schräg')");
                         bRollen_SchraegVereinzelung.setStyle("-fx-background-color: red");
                         bRollen_SchraegVereinzelung.setDisable(true);
@@ -2057,6 +2074,12 @@ public class Addafer {
                 if(bStopper_Bolzen1Vereinzelung.isSelected()){
                     //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bStopper_Bolzen1VereinzelungAbgesetzt ==false){//istChef
+                        String anzahlStoerungStopper_Bolzen1VereinzelungNichtSplit = "";
+                        anzahlStoerungStopper_Bolzen1VereinzelungNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Vereinzelung' AND stoerung = 'Stopper-Bolzen1';") ;
+                        String[] gesplitStoerungStopper_Bolzen1Vereinzelung = anzahlStoerungStopper_Bolzen1VereinzelungNichtSplit.split("/");
+                        String anzahlStoerungStopper_Bolzen1Vereinzelung = gesplitStoerungStopper_Bolzen1Vereinzelung[0];
+                        zaehlerVereinzelungStopper_Bolzen1 = Integer.parseInt(anzahlStoerungStopper_Bolzen1Vereinzelung)+1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerVereinzelungStopper_Bolzen1() +"','Adf/Vereinzelung' , 'Stopper-Bolzen1')");
                         bStopper_Bolzen1Vereinzelung.setStyle("-fx-background-color: red");
                         bStopper_Bolzen1Vereinzelung.setDisable(true);
@@ -2073,6 +2096,12 @@ public class Addafer {
                 if(bStopper_Bolzen123Vereinzelung.isSelected()){
                     //lZeigeStoerMeldung.setText("LichtSchranke1 ist aktiviert");
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bStopper_Bolzen1VereinzelungAbgesetzt ==false){//istChef
+                        String anzahlStoerungStopper_Bolzen123VereinzelungNichtSplit = "";
+                        anzahlStoerungStopper_Bolzen123VereinzelungNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Vereinzelung' AND stoerung = 'Stopper-Bolzen123';") ;
+                        String[] gesplitStoerungStopper_Bolzen123Vereinzelung = anzahlStoerungStopper_Bolzen123VereinzelungNichtSplit.split("/");
+                        String anzahlStoerungStopper_Bolzen123Vereinzelung = gesplitStoerungStopper_Bolzen123Vereinzelung[0];
+                        zaehlerVereinzelungStopper_Bolzen123 = Integer.parseInt(anzahlStoerungStopper_Bolzen123Vereinzelung) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerVereinzelungStopper_Bolzen123() +"','Adf/Vereinzelung' , 'Stopper-Bolzen123')");
                         bStopper_Bolzen123Vereinzelung.setStyle("-fx-background-color: red");
                         bStopper_Bolzen123Vereinzelung.setDisable(true);
@@ -2088,6 +2117,12 @@ public class Addafer {
 
                 if(bRollen1Rollgang1.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bRollen1Rollgang1Abgesetzt ==false){//istChef
+                        String anzahlStoerungRollen1Rollgang1NichtSplit = "";
+                        anzahlStoerungRollen1Rollgang1NichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Rollgang1' AND stoerung = 'Rollen1';") ;
+                        String[] gesplitStoerungRollen1Rollgang1 = anzahlStoerungRollen1Rollgang1NichtSplit.split("/");
+                        String anzahlStoerungRollen1Rollgang1 = gesplitStoerungRollen1Rollgang1[0];
+                        zaehlerRollgang1Rollen1 = Integer.parseInt(anzahlStoerungRollen1Rollgang1) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang1Rollen1() +"','Adf/Rollgang1' , 'Rollen1')");
                         bRollen1Rollgang1.setStyle("-fx-background-color: red");
                         bRollen1Rollgang1.setDisable(true);
@@ -2104,6 +2139,12 @@ public class Addafer {
 
                 if(bSchweissNahtErkennungRollgang1.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bSchweissNahtErkennungRollgang1Abgesetzt ==false){//istChef
+                        String anzahlStoerungSchweissNahtErkennungRollgang1NichtSplit = "";
+                        anzahlStoerungSchweissNahtErkennungRollgang1NichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Rollgang1' AND stoerung = 'SchweissNaht-Erkennung';") ;
+                        String[] gesplitStoerungSchweissNahtErkennungRollgang1 = anzahlStoerungSchweissNahtErkennungRollgang1NichtSplit.split("/");
+                        String anzahlStoerungSchweissNahtErkennungRollgang1 = gesplitStoerungSchweissNahtErkennungRollgang1[0];
+                        zaehlerRollgang1SchweissNahtErkennung = Integer.parseInt(anzahlStoerungSchweissNahtErkennungRollgang1) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang1SchweissNahtErkennung() +"','Adf/Rollgang1' , 'SchweissNaht-Erkennung')");
                         bSchweissNahtErkennungRollgang1.setStyle("-fx-background-color: red");
                         bSchweissNahtErkennungRollgang1.setDisable(true);
@@ -2119,6 +2160,12 @@ public class Addafer {
 
                 if(bPinchRolle12Rollgang1.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bPinchRolle12Rollgang1Abgesetzt ==false){//istChef
+                        String anzahlStoerungPinchRolle12Rollgang1NichtSplit = "";
+                        anzahlStoerungPinchRolle12Rollgang1NichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Rollgang1' AND stoerung = 'PinchRolle 1 2';") ;
+                        String[] gesplitStoerungPinchRolle12Rollgang1 = anzahlStoerungPinchRolle12Rollgang1NichtSplit.split("/");
+                        String anzahlStoerungPinchRolle12Rollgang1 = gesplitStoerungPinchRolle12Rollgang1[0];
+                        zaehlerRollgang1PinchRolle12 = Integer.parseInt(anzahlStoerungPinchRolle12Rollgang1) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang1PinchRolle12() +"','Adf/Rollgang1' , 'PinchRolle 1 2')");
                         bPinchRolle12Rollgang1.setStyle("-fx-background-color: red");
                         bPinchRolle12Rollgang1.setDisable(true);
@@ -2134,6 +2181,12 @@ public class Addafer {
 
                 if(bUSSensorMessstation.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bUSSensorMessstationAbgesetzt ==false){//istChef
+                        String anzahlStoerungUSSensorMessstationNichtSplit = "";
+                        anzahlStoerungUSSensorMessstationNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Messstation' AND stoerung = 'US-Sensor';") ;
+                        String[] gesplitStoerungUSSensorMessstation = anzahlStoerungUSSensorMessstationNichtSplit.split("/");
+                        String anzahlStoerungUSSensorMessstation = gesplitStoerungUSSensorMessstation[0];
+                        zaehlerMessstationUSSensor = Integer.parseInt(anzahlStoerungUSSensorMessstation) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationUSSensor() +"','Adf/Messstation' , 'US-Sensor')");
                         bUSSensorMessstation.setStyle("-fx-background-color: red");
                         bUSSensorMessstation.setDisable(true);
@@ -2149,6 +2202,12 @@ public class Addafer {
 
                 if(bLaserMessstation.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLaserMessstationAbgesetzt ==false){//istChef
+                        String anzahlStoerungLaserMessstationNichtSplit = "";
+                        anzahlStoerungLaserMessstationNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Messstation' AND stoerung = 'Laser';") ;
+                        String[] gesplitStoerungLaserMessstation = anzahlStoerungLaserMessstationNichtSplit.split("/");
+                        String anzahlStoerungLaserMessstation = gesplitStoerungLaserMessstation[0];
+                        zaehlerMessstationLaser = Integer.parseInt(anzahlStoerungLaserMessstation) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationLaser() +"','Adf/Messstation' , 'Laser')");
                         bLaserMessstation.setStyle("-fx-background-color: red");
                         bLaserMessstation.setDisable(true);
@@ -2164,6 +2223,12 @@ public class Addafer {
 
                 if(bEinstellRollenMessstation.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bEinstellRollenMessstationAbgesetzt ==false){//istChef
+                        String anzahlStoerungEinstellRollenMessstationNichtSplit = "";
+                        anzahlStoerungEinstellRollenMessstationNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Messstation' AND stoerung = 'Einstell-Rollen';") ;
+                        String[] gesplitStoerungEinstellRollenMessstation = anzahlStoerungEinstellRollenMessstationNichtSplit.split("/");
+                        String anzahlStoerungEinstellRollenMessstation = gesplitStoerungEinstellRollenMessstation[0];
+                        zaehlerMessstationEinstellRollen = Integer.parseInt(anzahlStoerungEinstellRollenMessstation) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationEinstellRollen() +"','Adf/Messstation' , 'Einstell-Rollen')");
                         bEinstellRollenMessstation.setStyle("-fx-background-color: red");
                         bEinstellRollenMessstation.setDisable(true);
@@ -2179,6 +2244,12 @@ public class Addafer {
 
                 if(bLichtschrankenMSMessstation.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLichtschrankenMSMessstationAbgesetzt ==false){//istChef
+                        String anzahlStoerungLichtschrankenMSMessstationNichtSplit = "";
+                        anzahlStoerungLichtschrankenMSMessstationNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Messstation' AND stoerung = 'Lichtschranken MS';") ;
+                        String[] gesplitStoerungLichtschrankenMSMessstation = anzahlStoerungLichtschrankenMSMessstationNichtSplit.split("/");
+                        String anzahlStoerungLichtschrankenMSMessstation = gesplitStoerungLichtschrankenMSMessstation[0];
+                        zaehlerMessstationLichtschrankenMS = Integer.parseInt(anzahlStoerungLichtschrankenMSMessstation) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationLichtschrankenMS() +"','Adf/Messstation' , 'Lichtschranken MS')");
                         bLichtschrankenMSMessstation.setStyle("-fx-background-color: red");
                         bLichtschrankenMSMessstation.setDisable(true);
@@ -2194,6 +2265,12 @@ public class Addafer {
 
                 if(bPumpeRueckFuehrEmulsionMessstation.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bPumpeRueckFuehrEmulsionMessstationAbgesetzt ==false){//istChef
+                        String anzahlStoerungPumpeRueckFuehrEmulsionMessstationNichtSplit = "";
+                        anzahlStoerungPumpeRueckFuehrEmulsionMessstationNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Messstation' AND stoerung = 'Pumpe Emulsion';") ;
+                        String[] gesplitStoerungPumpeRueckFuehrEmulsionMessstation = anzahlStoerungPumpeRueckFuehrEmulsionMessstationNichtSplit.split("/");
+                        String anzahlStoerungPumpeRueckFuehrEmulsionMessstation = gesplitStoerungPumpeRueckFuehrEmulsionMessstation[0];
+                        zaehlerMessstationPumpeRueckFuehrEmulsion = Integer.parseInt(anzahlStoerungPumpeRueckFuehrEmulsionMessstation) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationPumpeRueckFuehrEmulsion() +"','Adf/Messstation' , 'Pumpe Emulsion')");
                         bPumpeRueckFuehrEmulsionMessstation.setStyle("-fx-background-color: red");
                         bPumpeRueckFuehrEmulsionMessstation.setDisable(true);
@@ -2210,6 +2287,13 @@ public class Addafer {
 
                 if(bSchutzTuereMessstation.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bSchutzTuereMessstationAbgesetzt ==false){//istChef
+                        String anzahlStoerungSchutzTuereMessstationNichtSplit = "";
+                        anzahlStoerungSchutzTuereMessstationNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Messstation' AND stoerung = 'Schutz-Türe';") ;
+                        String[] gesplitStoerungSchutzTuereMessstation = anzahlStoerungSchutzTuereMessstationNichtSplit.split("/");
+                        String anzahlStoerungSchutzTuereMessstation = gesplitStoerungSchutzTuereMessstation[0];
+                        zaehlerMessstationSchutzTuere = Integer.parseInt(anzahlStoerungSchutzTuereMessstation) +1;
+
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerMessstationSchutzTuere() +"','Adf/Messstation' , 'Schutz-Türe')");
                         bSchutzTuereMessstation.setStyle("-fx-background-color: red");
                         bSchutzTuereMessstation.setDisable(true);
@@ -2225,6 +2309,12 @@ public class Addafer {
 
                 if(bPinchRolle3Rollgang4.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bPinchRolle3Rollgang4Abgesetzt ==false){//istChef
+                        String anzahlStoerungPinchRolle3Rollgang4NichtSplit = "";
+                        anzahlStoerungPinchRolle3Rollgang4NichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Rollgang4' AND stoerung = 'PinchRolle3';") ;
+                        String[] gesplitStoerungPinchRolle3Rollgang4 = anzahlStoerungPinchRolle3Rollgang4NichtSplit.split("/");
+                        String anzahlStoerungPinchRolle3Rollgang4 = gesplitStoerungPinchRolle3Rollgang4[0];
+                        zaehlerRollgang4PinchRolle3 = Integer.parseInt(anzahlStoerungPinchRolle3Rollgang4) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4PinchRolle3() +"','Adf/Rollgang4' , 'PinchRolle3')");
                         bPinchRolle3Rollgang4.setStyle("-fx-background-color: red");
                         bPinchRolle3Rollgang4.setDisable(true);
@@ -2240,6 +2330,12 @@ public class Addafer {
 
                 if(bRollen4Rollgang4.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bRollen4Rollgang4Abgesetzt ==false){//istChef
+                        String anzahlStoerungRollen4Rollgang4NichtSplit = "";
+                        anzahlStoerungRollen4Rollgang4NichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Rollgang4' AND stoerung = 'Rollen4';") ;
+                        String[] gesplitStoerungRollen4Rollgang4 = anzahlStoerungRollen4Rollgang4NichtSplit.split("/");
+                        String anzahlStoerungRollen4Rollgang4 = gesplitStoerungRollen4Rollgang4[0];
+                        zaehlerRollgang4Rollen4 = Integer.parseInt(anzahlStoerungRollen4Rollgang4) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4Rollen4() +"','Adf/Rollgang4' , 'Rollen4')");
                         bRollen4Rollgang4.setStyle("-fx-background-color: red");
                         bRollen4Rollgang4.setDisable(true);
@@ -2255,6 +2351,12 @@ public class Addafer {
 
                 if(bRohrAuswerferRollgang4.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bRohrAuswerferRollgang4Abgesetzt ==false){//istChef
+                        String anzahlStoerungRohrAuswerferRollgang4NichtSplit = "";
+                        anzahlStoerungRohrAuswerferRollgang4NichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Rollgang4' AND stoerung = 'Rohr-Auswerfer';") ;
+                        String[] gesplitStoerungRohrAuswerferRollgang4 = anzahlStoerungRohrAuswerferRollgang4NichtSplit.split("/");
+                        String anzahlStoerungRohrAuswerferRollgang4 = gesplitStoerungRohrAuswerferRollgang4[0];
+                        zaehlerRollgang4RohrAuswerfer = Integer.parseInt(anzahlStoerungRohrAuswerferRollgang4) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4RohrAuswerfer() +"','Adf/Rollgang4' , 'Rohr-Auswerfer')");
                         bRohrAuswerferRollgang4.setStyle("-fx-background-color: red");
                         bRohrAuswerferRollgang4.setDisable(true);
@@ -2271,6 +2373,12 @@ public class Addafer {
 
                 if(bSchrottGurteRollgang4.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bSchrottGurteRollgang4Abgesetzt ==false){//istChef
+                        String anzahlStoerungSchrottGurteRollgang4NichtSplit = "";
+                        anzahlStoerungSchrottGurteRollgang4NichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Rollgang4' AND stoerung = 'Gurte-Schrott';") ;
+                        String[] gesplitStoerungSchrottGurteRollgang4 = anzahlStoerungSchrottGurteRollgang4NichtSplit.split("/");
+                        String anzahlStoerungSchrottGurteRollgang4 = gesplitStoerungSchrottGurteRollgang4[0];
+                        zaehlerRollgang4SchrottGurte = Integer.parseInt(anzahlStoerungSchrottGurteRollgang4) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4SchrottGurte() +"','Adf/Rollgang4' , 'Gurte-Schrott')");
                         bSchrottGurteRollgang4.setStyle("-fx-background-color: red");
                         bSchrottGurteRollgang4.setDisable(true);
@@ -2286,6 +2394,12 @@ public class Addafer {
 
                 if(bLichtSchranke2Rollgang4.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bLichtSchranke2Rollgang4Abgesetzt ==false){//istChef
+                        String anzahlStoerungLichtSchranke2Rollgang4NichtSplit = "";
+                        anzahlStoerungLichtSchranke2Rollgang4NichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/Rollgang4' AND stoerung = 'LichtSchranke2';") ;
+                        String[] gesplitStoerungLichtSchranke2Rollgang4 = anzahlStoerungLichtSchranke2Rollgang4NichtSplit.split("/");
+                        String anzahlStoerungLichtSchranke2Rollgang4 = gesplitStoerungLichtSchranke2Rollgang4[0];
+                        zaehlerRollgang4LichtSchranke2 = Integer.parseInt(anzahlStoerungLichtSchranke2Rollgang4) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerRollgang4LichtSchranke2() +"','Adf/Rollgang4' , 'LichtSchranke2')");
                         bLichtSchranke2Rollgang4.setStyle("-fx-background-color: red");
                         bLichtSchranke2Rollgang4.setDisable(true);
@@ -2301,6 +2415,12 @@ public class Addafer {
 
                 if(bWalkingBeamWalkingBeam.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bWalkingBeamWalkingBeamAbgesetzt ==false){//istChef
+                        String anzahlStoerungWalkingBeamWalkingBeamNichtSplit = "";
+                        anzahlStoerungWalkingBeamWalkingBeamNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/WalkingBeam' AND stoerung = 'WalkingBeam';") ;
+                        String[] gesplitStoerungWalkingBeamWalkingBeam = anzahlStoerungWalkingBeamWalkingBeamNichtSplit.split("/");
+                        String anzahlStoerungWalkingBeamWalkingBeam = gesplitStoerungWalkingBeamWalkingBeam[0];
+                        zaehlerWalkingBeamWalkingBeam = Integer.parseInt(anzahlStoerungWalkingBeamWalkingBeam) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerWalkingBeamWalkingBeam() +"','Adf/WalkingBeam' , 'WalkingBeam')");
                         bWalkingBeamWalkingBeam.setStyle("-fx-background-color: red");
                         bWalkingBeamWalkingBeam.setDisable(true);
@@ -2316,6 +2436,12 @@ public class Addafer {
 
                 if(bDrehGreiferWalkingBeam.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bDrehGreiferWalkingBeamAbgesetzt ==false){//istChef
+                        String anzahlStoerungDrehGreiferWalkingBeamNichtSplit = "";
+                        anzahlStoerungDrehGreiferWalkingBeamNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/WalkingBeam' AND stoerung = 'Dreh-Greifer';") ;
+                        String[] gesplitStoerungDrehGreiferWalkingBeam = anzahlStoerungDrehGreiferWalkingBeamNichtSplit.split("/");
+                        String anzahlStoerungDrehGreiferWalkingBeam = gesplitStoerungDrehGreiferWalkingBeam[0];
+                        zaehlerWalkingBeamDrehGreifer = Integer.parseInt(anzahlStoerungDrehGreiferWalkingBeam) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerWalkingBeamDrehGreifer() +"','Adf/WalkingBeam' , 'Dreh-Greifer')");
                         bDrehGreiferWalkingBeam.setStyle("-fx-background-color: red");
                         bDrehGreiferWalkingBeam.setDisable(true);
@@ -2331,6 +2457,12 @@ public class Addafer {
 
                 if(bRadRat1WalkingBeam.isSelected()){
                     if((Login.getIstChef().equals("istChef")||Login.getIstChef().equals("keinChef")||Login.getIstChef().equals("Admin"))&& bRadRat1WalkingBeamAbgesetzt ==false){//istChef
+                        String anzahlStoerungRadRat1WalkingBeamNichtSplit = "";
+                        anzahlStoerungRadRat1WalkingBeamNichtSplit = dBA.ausgebenGesamtDBRetourString("SELECT COUNT(stoerung) FROM stoerungMubea WHERE anlagegruppe = 'Adf/WalkingBeam' AND stoerung = 'Rad-Rat.1';") ;
+                        String[] gesplitStoerungRadRat1WalkingBeam = anzahlStoerungRadRat1WalkingBeamNichtSplit.split("/");
+                        String anzahlStoerungRadRat1WalkingBeam = gesplitStoerungRadRat1WalkingBeam[0];
+                        zaehlerWalkingBeamRadRat1 = Integer.parseInt(anzahlStoerungRadRat1WalkingBeam) +1;
+
                         dBA.schreibeDB(einfuegKeinUnterhaltDb+"'"+ getZaehlerWalkingBeamRadRat1() +"','Adf/WalkingBeam' , 'Rad-Rat.1')");
                         bRadRat1WalkingBeam.setStyle("-fx-background-color: red");
                         bRadRat1WalkingBeam.setDisable(true);
