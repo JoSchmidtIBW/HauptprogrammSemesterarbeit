@@ -1,7 +1,6 @@
 package GUI;
 
 import DatenBank.DatenBank;
-import com.example.login.DBMethodenKlasse;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
