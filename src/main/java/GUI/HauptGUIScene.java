@@ -19,10 +19,10 @@ import javafx.stage.Stage;
  */
 public class HauptGUIScene {
 
-    public static Scene createGetHauptScene(Stage stage){
+    public static Scene createGetHauptScene(Stage stage) {
 
         VBox layoutV = new VBox(22);
-        Label lHauptGui= new Label("- HauptGui -");
+        Label lHauptGui = new Label("- HauptGui -");
 
         final Pane cardsPane = new StackPane();
 
@@ -30,14 +30,14 @@ public class HauptGUIScene {
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachAbteilung =
-                {"Abteilung", "Dipartimento","Odjel", "Departamenti", "Bölüm"};
+                {"Abteilung", "Dipartimento", "Odjel", "Departamenti", "Bölüm"};
         Button bAbteilung = new Button(sprachAbteilung[Sprache.getSprachenZahl()]);//"Abteilung"
 
 
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachAnleitung =
-                {"Anleitung", "Manuale","priručnik", "manual", "düsturülamel"};
+                {"Anleitung", "Manuale", "priručnik", "manual", "düsturülamel"};
         Button bAnleitung = new Button(sprachAnleitung[Sprache.getSprachenZahl()]);//"Anleitung"
 
 
@@ -64,29 +64,28 @@ public class HauptGUIScene {
         });
 
         HBox layoutH1 = new HBox(1);
-        layoutH1.getChildren().addAll(bAbteilung,bAnleitung);
+        layoutH1.getChildren().addAll(bAbteilung, bAnleitung);
 
 
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachAbmelden =
-                {"Abmelden", "Disconnettersi","Odjaviti se", "Çregjistrohu", "Çıkış Yap"};
+                {"Abmelden", "Disconnettersi", "Odjaviti se", "Çregjistrohu", "Çıkış Yap"};
         Button bZuruekLogin = new Button(sprachAbmelden[Sprache.getSprachenZahl()]);//"Abmelden"
         //bZuruekLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));
         bZuruekLogin.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 Login.setIsFoundInDbAndPasswortCorrect(false);
-                Login.isFoundInDB=false;
+                Login.isFoundInDB = false;
                 stage.setScene(Login.createLoginScene(stage));
             }
         });
 
 
-
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachZurueckSprache =
-                {"Zurück-Sprache", "Indietro linguaggio  ","Nazad jezik", "Mbrapa gjuhe", "geri dilim"};
+                {"Zurück-Sprache", "Indietro linguaggio  ", "Nazad jezik", "Mbrapa gjuhe", "geri dilim"};
         Button bZuruekSprache = new Button(sprachZurueckSprache[Sprache.getSprachenZahl()]);//"Zurück-Sprache"
         bZuruekSprache.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
 
@@ -95,19 +94,18 @@ public class HauptGUIScene {
 
         HBox layoutHlHauptGuiScene = new HBox(564);//557
         HBox layoutHZurueckSpracheAbmelden = new HBox(1);
-        layoutHZurueckSpracheAbmelden.getChildren().addAll(bZuruekSprache,bZuruekLogin);
-        layoutHlHauptGuiScene.getChildren().addAll(lHauptGui,layoutHZurueckSpracheAbmelden);
+        layoutHZurueckSpracheAbmelden.getChildren().addAll(bZuruekSprache, bZuruekLogin);
+        layoutHlHauptGuiScene.getChildren().addAll(lHauptGui, layoutHZurueckSpracheAbmelden);
 
         BorderPane borderPaneTP = new BorderPane();
         borderPaneTP.setCenter(layoutV);
 
-        layoutV.getChildren().addAll(layoutHlHauptGuiScene,layoutH1, cardsPane,TaskLeistePane.getPane());
+        layoutV.getChildren().addAll(layoutHlHauptGuiScene, layoutH1, cardsPane, TaskLeistePane.getPane());
 
-        Scene hauptGuiScene = new Scene(new ScrollPane(borderPaneTP),850,628);
+        Scene hauptGuiScene = new Scene(new ScrollPane(borderPaneTP), 850, 628);
         //Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,628);
         return hauptGuiScene;
     }
-
 
 
 }

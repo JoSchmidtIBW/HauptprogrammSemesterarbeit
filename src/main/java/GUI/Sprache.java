@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
 public class Sprache {
 
     //private static String[] sprachen = {"Deutsch", "English", "France","Turky","Chinesisch"};
-   //String[] sprachen = {"Deutsch", "English", "France","Turky","Chinesisch"};
+    //String[] sprachen = {"Deutsch", "English", "France","Turky","Chinesisch"};
     //Deutsch
     //serbisch
     //bosnisch
@@ -29,10 +29,11 @@ public class Sprache {
     //Deutsch
     //Albanisch
     //bosnisch
-  //italienisch
+    //italienisch
     //kroatisch
-   // mazedonisch
+    // mazedonisch
     //serbisch
+    //tschechisch
     //Türkisch
 
     private static int sprachenZahl;
@@ -44,15 +45,16 @@ public class Sprache {
     private static void setSprachenZahl(int sprachenZahl) {
         Sprache.sprachenZahl = sprachenZahl;
     }
+
     //ComboBox
-    public static Scene createSpracheScene(Stage stage){
-        Label lSpracheScene1= new Label("- Bin die Sprach- Auswahl- Scene -");
+    public static Scene createSpracheScene(Stage stage) {
+        Label lSpracheScene1 = new Label("- Bin die Sprach- Auswahl- Scene -");
 
         Label lSprachAuswahl = new Label("Sprache auswählen:");
         //TextField txfLoginBenutzername = new TextField();
         //Button bLoginBenutzerNameOK = new Button("LoginBenutzerNameOK");
 
-       // String[] sprachen = {"Deutsch", "English", "France","Turky","Chinesisch"};
+        // String[] sprachen = {"Deutsch", "English", "France","Turky","Chinesisch"};
 
         //ComboBox comboBox1 = new ComboBox(sprachen);
         ComboBox comboBox1 = new ComboBox();
@@ -68,8 +70,6 @@ public class Sprache {
         Label lZeigeSprachAuswahl = new Label("Noch keine Sprache ausgewählt!");//No language selected yet!
 
         //System.out.println("blablbla  "+comboBox1.getValue());
-
-        /*Event handler for getting selected country*/
 
 
 
@@ -95,25 +95,25 @@ public class Sprache {
 //                                l5.setText(sprachGurte[0]);
 //                                //lX.getS.getS
 //                                String bla = "";
-                                System.out.println("Deutsch getSprachenZahl() "+getSprachenZahl());
+                                System.out.println("Deutsch getSprachenZahl() " + getSprachenZahl());
 //                        //EnumY
 //                        System.out.println(str);
                                 break;
                             case "Italienisch":
                                 setSprachenZahl(1);
-                                System.out.println("Italienisch getSprachenZahl() "+getSprachenZahl());
+                                System.out.println("Italienisch getSprachenZahl() " + getSprachenZahl());
                                 break;
                             case "Bosnisch":
                                 setSprachenZahl(2);
-                                System.out.println("serbo-koratisch getSprachenZahl() "+getSprachenZahl());
+                                System.out.println("serbo-koratisch getSprachenZahl() " + getSprachenZahl());
                                 break;
                             case "Albanisch":
                                 setSprachenZahl(3);
-                                System.out.println("albanisch getSprachenZahl() "+getSprachenZahl());
+                                System.out.println("albanisch getSprachenZahl() " + getSprachenZahl());
                                 break;
                             case "Türkisch":
                                 setSprachenZahl(4);
-                                System.out.println("Türkisch getSprachenZahl() "+getSprachenZahl());
+                                System.out.println("Türkisch getSprachenZahl() " + getSprachenZahl());
                                 break;
                         }
 
@@ -141,25 +141,22 @@ public class Sprache {
         });
 
 
-
-
         Button bZuruekLoginS = new Button("Abmelden");
         //bZuruekLogin.setOnAction(e -> stage.setScene(Login.createLoginScene(stage)));
         bZuruekLoginS.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 Login.setIsFoundInDbAndPasswortCorrect(false);
-                Login.isFoundInDB=false;
+                Login.isFoundInDB = false;
                 stage.setScene(Login.createLoginScene(stage));
             }
         });
 
 
-
 //        HBox layoutHAbmeldenTaskLeiste = new HBox(1);
 //        layoutHAbmeldenTaskLeiste.getChildren().addAll(TaskLeistePane.getPane());
 
-        Button bRegistrierenScene= new Button("Registrieren");
-        if(!Login.getIstUnterhalt().equals("Admin")){
+        Button bRegistrierenScene = new Button("Registrieren");
+        if (!Login.getIstUnterhalt().equals("Admin")) {
             bRegistrierenScene.setStyle("-fx-background-color: transparent");
             bRegistrierenScene.setStyle("-fx-text-fill: transparent");
             bRegistrierenScene.setDisable(true);
@@ -167,15 +164,15 @@ public class Sprache {
         }
         //button1.setOnAction(e -> primaryStage.setScene(scene2));
         bRegistrierenScene.setOnAction(e -> {
-            if(Login.getIstChef().equals("Admin")){
+            if (Login.getIstChef().equals("Admin")) {
                 stage.setScene(Registrieren.createRegistrierenScene(stage));
-            }else {
+            } else {
                 System.out.println("Sie sind kein Admin");
             }
         });
 
-        Button bMADeleteScene= new Button("Löschen");
-        if(!Login.getIstUnterhalt().equals("Admin")){
+        Button bMADeleteScene = new Button("Löschen");
+        if (!Login.getIstUnterhalt().equals("Admin")) {
             bMADeleteScene.setStyle("-fx-background-color: transparent");
             bMADeleteScene.setStyle("-fx-text-fill: transparent");
             bMADeleteScene.setDisable(true);
@@ -183,9 +180,9 @@ public class Sprache {
         }
         //button1.setOnAction(e -> primaryStage.setScene(scene2));
         bMADeleteScene.setOnAction(e -> {
-            if(Login.getIstChef().equals("Admin")){
+            if (Login.getIstChef().equals("Admin")) {
                 stage.setScene(MADelete.createMADeleteScene(stage));
-            }else {
+            } else {
                 System.out.println("Sie sind kein Admin");
             }
         });
@@ -196,7 +193,7 @@ public class Sprache {
 //------------------test xml-------------------------------------------------------------------------------------------
         Button bPasswortFinder = new Button("Passwort \nfinden");
 
-        if(!Login.getIstUnterhalt().equals("Admin")){
+        if (!Login.getIstUnterhalt().equals("Admin")) {
             bPasswortFinder.setStyle("-fx-background-color: transparent");
             bPasswortFinder.setStyle("-fx-text-fill: transparent");
             bPasswortFinder.setDisable(true);
@@ -207,18 +204,17 @@ public class Sprache {
         try {
             bPasswortFinder.setOnAction(e -> {
                 //if(Login.getIstChef().equals("Admin")){
-                    try {
-                        stage.setScene(PasswortFinderXML.createPasswortFinderScene(stage));
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
+                try {
+                    stage.setScene(PasswortFinderXML.createPasswortFinderScene(stage));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
 //                }
 //                else {
 //                    System.out.println("Sie sind kein Admin");
 //                }
             });
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             System.out.println("Etwas mit XML ging schief...");
             ex.printStackTrace();
@@ -227,19 +223,18 @@ public class Sprache {
         VBox layoutV1 = new VBox(39);
         HBox layoutHSprachAuswahl = new HBox(20);
 
-        layoutHSprachAuswahl.getChildren().addAll(lSprachAuswahl,comboBox1,lZeigeSprachAuswahl);//muss addAll sein
+        layoutHSprachAuswahl.getChildren().addAll(lSprachAuswahl, comboBox1, lZeigeSprachAuswahl);//muss addAll sein
 
 
         HBox layoutHLabelSprachenScenePasswortAendern = new HBox(269);
         HBox layoutHAbmeldenPW = new HBox(1);
-        layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene,bMADeleteScene,bZuruekLoginS,bPasswortFinder,bPasswortAendern);
-        layoutHLabelSprachenScenePasswortAendern.getChildren().addAll(lSpracheScene1,layoutHAbmeldenPW);
+        layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene, bMADeleteScene, bZuruekLoginS, bPasswortFinder, bPasswortAendern);
+        layoutHLabelSprachenScenePasswortAendern.getChildren().addAll(lSpracheScene1, layoutHAbmeldenPW);
 
-        layoutV1.getChildren().addAll(layoutHLabelSprachenScenePasswortAendern,layoutHSprachAuswahl,buttonHauptGUI,TaskLeistePane.getPane());//layoutHAbmeldenTaskLeiste
+        layoutV1.getChildren().addAll(layoutHLabelSprachenScenePasswortAendern, layoutHSprachAuswahl, buttonHauptGUI, TaskLeistePane.getPane());//layoutHAbmeldenTaskLeiste
 
 
-
-        Scene sceneSprache = new Scene(new ScrollPane(layoutV1),800,250);//scene braucht ein Layout, hat scrollpane drin
+        Scene sceneSprache = new Scene(new ScrollPane(layoutV1), 800, 250);//scene braucht ein Layout, hat scrollpane drin
         //Scene scene = new Scene(root, 800, 400, Color.BEIGE);
         //scene1 = new Scene(layoutV1, 800, 400);
         //scene1.setFill(Color.YELLOWGREEN);
