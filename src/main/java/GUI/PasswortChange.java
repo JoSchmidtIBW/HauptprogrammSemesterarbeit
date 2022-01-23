@@ -60,19 +60,21 @@ public class PasswortChange {
         DatenBank dBP = new DatenBank();
 
 
-        Label lPasswortChangeScene = new Label("- Bin die Passwort-Change- Scene -");
+        Label lPasswortChangeScene = new Label("- Hier können Sie ihr persöhnliches Passwort ändern -");
 
+        final Label lzeigePasswortAlt = new Label("");
         final Label lzeigePasswortNeu = new Label();
         final Label lzeigePasswortNeuWiederholen = new Label();
+        final Label lzeigePasswortAendern = new Label();
         final PasswordField pFIPasswortNeu = new PasswordField();
         final PasswordField pFIPasswortNeuWiederholen = new PasswordField();
 
 //AltesPasswort---------------------------------------------------------------------------------------------------------
-        Label lPassWortALtI = new Label("Altes Passwort");
+        Label lPassWortALtI = new Label("Altes Passwort:    ");
         final PasswordField pFIPasswortAlt = new PasswordField();
 
-        Button bPasswortAltOK = new Button("PasswortAltOK");
-        final Label lzeigePasswortAlt = new Label("");
+        Button bPasswortAltOK = new Button("Passwort-Alt OK");
+
 //das braucht es, weil sonst kann ja irgendjemand beim "eingelogten" User sein Passwort ändern!
         bPasswortAltOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -91,6 +93,11 @@ public class PasswortChange {
                     setEingabePasswortNeuWiederholen("");
                     lzeigePasswortNeu.setText("");
                     lzeigePasswortNeuWiederholen.setText("");
+                    lzeigePasswortNeu.setText("");
+                    pFIPasswortNeu.clear();
+                    lzeigePasswortNeuWiederholen.setText("");
+                    pFIPasswortNeuWiederholen.clear();
+                    lzeigePasswortAendern.setText("");
 
                 }
                 else{
@@ -98,6 +105,11 @@ public class PasswortChange {
                         lzeigePasswortAlt.setTextFill(Color.GREEN);
                         lzeigePasswortAlt.setText("Passwort richtig");
                         setAltesPasswortCorrect(true);
+                        pFIPasswortNeu.clear();
+                        pFIPasswortNeuWiederholen.clear();
+                        lzeigePasswortNeu.setText("");
+                        lzeigePasswortNeuWiederholen.setText("");
+                        lzeigePasswortAendern.setText("");
                     }
                     else{
                         lzeigePasswortAlt.setTextFill(Color.RED);
@@ -110,6 +122,8 @@ public class PasswortChange {
                         lzeigePasswortNeu.setText("");
                         lzeigePasswortNeuWiederholen.setText("");
 
+                        lzeigePasswortAendern.setText("");
+
                     }
 
                 }
@@ -117,10 +131,10 @@ public class PasswortChange {
             }
         });
 //NeuesPasswort---------------------------------------------------------------------------------------------------------
-        Label lPassWortNeuI = new Label("Neues Passwort");
+        Label lPassWortNeuI = new Label("Neues Passwort:  ");
 
 
-        Button bPasswortNeuOK = new Button("PasswortNeuOK");
+        Button bPasswortNeuOK = new Button("Passwort-Neu OK");
 
 
         bPasswortNeuOK.setOnAction(new EventHandler<ActionEvent>() {
@@ -130,25 +144,43 @@ public class PasswortChange {
                 if(getAltesPasswortCorrect()==false){
                     lzeigePasswortNeu.setTextFill(Color.RED);
                     lzeigePasswortNeu.setText("Sie müssen erst Ihr altes Passwort eingeben!");
+                    pFIPasswortAlt.clear();
+                    lzeigePasswortAlt.setText("");
+                    pFIPasswortAlt.clear();
+                    lzeigePasswortNeuWiederholen.setText("");
+
+                    pFIPasswortNeu.clear();
+                    lzeigePasswortNeuWiederholen.setText("");
+                    pFIPasswortNeuWiederholen.clear();
+                    lzeigePasswortAendern.setText("");
                 }
                 else{
                     if(getEingabePasswortNeu().length()==0&&getAltesPasswortCorrect()==true){
                         lzeigePasswortNeu.setTextFill(Color.RED);
                         lzeigePasswortNeu.setText("Sie müssen ein neues Passwort eingeben!");
+
+
+                        lzeigePasswortNeuWiederholen.setText("");
+
+                        pFIPasswortNeu.clear();
+                        lzeigePasswortNeuWiederholen.setText("");
+                        pFIPasswortNeuWiederholen.clear();
+                        lzeigePasswortAendern.setText("");
                     }
                     else{
                         lzeigePasswortNeu.setTextFill(Color.GREEN);
-                        lzeigePasswortNeu.setText("Ihr eingegebenes Passwort lautet: "+getEingabePasswortNeu());
+                        lzeigePasswortNeu.setText("Erster Schritt erledigt");
+                        lzeigePasswortAendern.setText("");
                     }
                 }
                 //pFIPasswortNeu.clear();
             }
         });
 //NeuesPasswortWiederholen---------------------------------------------------------------------------------------------------------
-        Label lPassWortNeuWiederholenI = new Label("Neues Passwort wiederholen");
+        Label lPassWortNeuWiederholenI = new Label("Neues Passwort   \nwiederholen:");
 
 
-        Button bPasswortNeuWiederholenOK = new Button("PasswortNeuWiederholenOK");
+        Button bPasswortNeuWiederholenOK = new Button("PW-NeuWiederholen OK");
 
 
         bPasswortNeuWiederholenOK.setOnAction(new EventHandler<ActionEvent>() {
@@ -158,25 +190,37 @@ public class PasswortChange {
                 if(getAltesPasswortCorrect()==false){
                     lzeigePasswortNeuWiederholen.setTextFill(Color.RED);
                     lzeigePasswortNeuWiederholen.setText("Sie müssen erst Ihr altes Passwort eingeben!");
+                    lzeigePasswortAendern.setText("");
+                    lzeigePasswortAlt.setText("");
+                    lzeigePasswortNeu.setText("");
+                    pFIPasswortAlt.clear();
+                    pFIPasswortNeu.clear();
+
                 }
                 else{
                     if(getEingabePasswortNeu().length()==0&&getAltesPasswortCorrect()==true){
                         lzeigePasswortNeuWiederholen.setTextFill(Color.RED);
                         lzeigePasswortNeuWiederholen.setText("Sie müssen erst ein neues Passwort eingeben!");
+                        pFIPasswortNeu.clear();
+                        lzeigePasswortNeu.setText("");
                     }
                     else {
                         if (getEingabePasswortNeuWiederholen().length() == 0) {
                             lzeigePasswortNeuWiederholen.setTextFill(Color.RED);
                             lzeigePasswortNeuWiederholen.setText("Sie müssen ihr neues Passwort wiederholt eingeben.");
+                            lzeigePasswortAendern.setText("");
                         }
                         else{
                             if(getEingabePasswortNeuWiederholen().equals(getEingabePasswortNeu())&&getAltesPasswortCorrect()==true){
                                 lzeigePasswortNeuWiederholen.setTextFill(Color.GREEN);
-                                lzeigePasswortNeuWiederholen.setText("Sie haben bis jetzt alles richtig gemacht: "+getEingabePasswortNeuWiederholen());
+                                lzeigePasswortNeuWiederholen.setText("Sie haben bis jetzt alles richtig gemacht");
+                                lzeigePasswortAendern.setText("");
                             }
                             else{
                                 lzeigePasswortNeuWiederholen.setTextFill(Color.RED);
-                                lzeigePasswortNeuWiederholen.setText("Passwort stzimmt nicht mit dem neuen Passwort überrein! "+getEingabePasswortNeuWiederholen());
+                                lzeigePasswortNeuWiederholen.setText("Passwort stimmt nicht mit dem neuen Passwort überrein!");
+                                lzeigePasswortAendern.setText("");
+                                pFIPasswortNeuWiederholen.clear();
                             }
                         }
                     }
@@ -187,18 +231,30 @@ public class PasswortChange {
 //IhrPasswortWurdeGeändert---------------------------------------------------------------------------------------------------------
         Label lPassWortAendern = new Label("Passwort ändern?");
         Button bPasswortAendernOK = new Button("PasswortAendernOK");
-        final Label lzeigePasswortAendern = new Label();
+
 
         bPasswortAendernOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 if (getAltesPasswortCorrect() == false) {
                     lzeigePasswortAendern.setTextFill(Color.RED);
                     lzeigePasswortAendern.setText("Erst müssen Sie Ihr altes Passwort eingeben!");
+                    pFIPasswortAlt.clear();
+                    pFIPasswortNeu.clear();
+                    pFIPasswortNeuWiederholen.clear();
+                    lzeigePasswortAlt.setText("");
+                    lzeigePasswortNeu.setText("");
+                    lzeigePasswortNeuWiederholen.setText("");
                 }
                 else{
                     if(getEingabePasswortNeu().length()==0 || getEingabePasswortNeuWiederholen().length()==0){
                         lzeigePasswortAendern.setTextFill(Color.RED);
-                        lzeigePasswortAendern.setText("Sie müssen Ihr neues Passwort Richtig und Vollständig eingeben!");
+                        lzeigePasswortAendern.setText("Sie müssen Ihr neues Passwort \nRichtig und Vollständig eingeben!");
+                        pFIPasswortAlt.clear();
+                        pFIPasswortNeu.clear();
+                        pFIPasswortNeuWiederholen.clear();
+                        //lzeigePasswortAlt.setText("");
+                        lzeigePasswortNeu.setText("");
+                        lzeigePasswortNeuWiederholen.setText("");
                     }
                     else{
                         if(getEingabePasswortNeuWiederholen().equals(getEingabePasswortNeu())){
@@ -221,7 +277,13 @@ public class PasswortChange {
                         }
                         else{
                             lzeigePasswortAendern.setTextFill(Color.RED);
-                            lzeigePasswortAendern.setText("Sie müssen Ihr neues Passwort Richtig und Vollständig eingeben!");
+                            lzeigePasswortAendern.setText("Sie müssen Ihr neues Passwort \nRichtig und Vollständig eingeben!");
+                            pFIPasswortAlt.clear();
+                            pFIPasswortNeu.clear();
+                            pFIPasswortNeuWiederholen.clear();
+                            //lzeigePasswortAlt.setText("");
+                            lzeigePasswortNeu.setText("");
+                            lzeigePasswortNeuWiederholen.setText("");
                         }
                     }
                 }
@@ -236,11 +298,11 @@ public class PasswortChange {
 
 
 
-        VBox layoutV1 = new VBox(1);
-        HBox layoutHPasswortAlt = new HBox(1);
-        HBox layoutHPasswortNeu = new HBox(1);
-        HBox layoutHPasswortNeuWiederholen = new HBox(1);
-        HBox layoutHPasswortAendern = new HBox(1);
+        VBox layoutV1 = new VBox(11);
+        HBox layoutHPasswortAlt = new HBox(4);
+        HBox layoutHPasswortNeu = new HBox(4);
+        HBox layoutHPasswortNeuWiederholen = new HBox(4);
+        HBox layoutHPasswortAendern = new HBox(4);
 
         layoutHPasswortAlt.getChildren().addAll(lPassWortALtI,pFIPasswortAlt,bPasswortAltOK,lzeigePasswortAlt);
         layoutHPasswortNeu.getChildren().addAll(lPassWortNeuI,pFIPasswortNeu,bPasswortNeuOK,lzeigePasswortNeu);
@@ -248,10 +310,10 @@ public class PasswortChange {
         layoutHPasswortAendern.getChildren().addAll(lPassWortAendern,bPasswortAendernOK,lzeigePasswortAendern);
 
 
-        layoutV1.getChildren().addAll(layoutHPasswortAlt,layoutHPasswortNeu,layoutHPasswortNeuWiederholen,layoutHPasswortAendern,bZurueckSprachePWC,TaskLeistePane.getPane());
+        layoutV1.getChildren().addAll(lPasswortChangeScene,layoutHPasswortAlt,layoutHPasswortNeu,layoutHPasswortNeuWiederholen,layoutHPasswortAendern,bZurueckSprachePWC,TaskLeistePane.getPane());
 
 
-        Scene scenePasswortChange = new Scene(new ScrollPane(layoutV1), 650, 200);//scene braucht ein Layout, hat scrollpane drin
+        Scene scenePasswortChange = new Scene(new ScrollPane(layoutV1), 650, 270);//scene braucht ein Layout, hat scrollpane drin
 
         return scenePasswortChange;
     }

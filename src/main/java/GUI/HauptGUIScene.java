@@ -22,9 +22,14 @@ public class HauptGUIScene {
     public static Scene createGetHauptScene(Stage stage) {
 
         VBox layoutV = new VBox(22);
+        //layoutV.setPrefSize(500, 100);
+
         Label lHauptGui = new Label("- HauptGui -");
 
         final Pane cardsPane = new StackPane();
+        //damit leeres cardPane, damit Taskleiste nicht oben, nur schönheit für Präsentation
+        Label lSinnlos = new Label("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        cardsPane.getChildren().addAll(lSinnlos);
 
 
         //   0          1         2         3       4
@@ -100,7 +105,10 @@ public class HauptGUIScene {
         BorderPane borderPaneTP = new BorderPane();
         borderPaneTP.setCenter(layoutV);
 
+        //VBox layoutVCardsPane = new VBox(300);//dann geht gar nicht
+
         layoutV.getChildren().addAll(layoutHlHauptGuiScene, layoutH1, cardsPane, TaskLeistePane.getPane());
+        //layoutV.getChildren().addAll(layoutHlHauptGuiScene, layoutH1, layoutVCardsPane, TaskLeistePane.getPane());//geht gar nicht
 
         Scene hauptGuiScene = new Scene(new ScrollPane(borderPaneTP), 850, 628);
         //Scene hauptGuiScene = new Scene(new ScrollPane(layoutV),800,628);

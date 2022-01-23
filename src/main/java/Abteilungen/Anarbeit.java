@@ -7,9 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -90,8 +92,14 @@ public class Anarbeit {
             }
         });
 
+        VBox layoutVAnarbeit = new VBox(1);
+        Label lsinnlosPlatzhalterAnarbeit = new Label("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
         layoutH.getChildren().addAll(bRattunde1,bRattunde2,bRattunde3,bRattunde4,bConni1,bTRT2,bTRT1);
-        cardAnarbeit.getChildren().addAll(layoutH);
+        //cardAnarbeit.getChildren().addAll(layoutH);
+        layoutVAnarbeit.getChildren().addAll(layoutH,lsinnlosPlatzhalterAnarbeit);
+        cardAnarbeit.getChildren().addAll(layoutVAnarbeit);
+
         return cardAnarbeit;
     }
 

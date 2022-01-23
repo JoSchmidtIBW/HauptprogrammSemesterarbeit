@@ -28,32 +28,32 @@ public class Anleitung {
         String[] sprachTextNichtUnterhalt =
                 {"Wählen Sie Ihre Abteilung aus, und Ihre Anlage. \nBei Störung, suchen Sie unter der Anlage-Unter-Gruppe " +
                         "die passende Störung aus, \nwählen diese an, und setzen Sie eine Störmeldung ab.\n" +
-                        "Bsp. Rattunde hat eine Störung mit der Lichtschranke des Bundladers",
+                        "Bsp. Rattunde hat eine Störung mit der Lichtschranke des Bundladers. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                         "Seleziona il tuo reparto e il tuo stabilimento.\n" +
                                 "In caso di malfunzionamento, guardare sotto il sottogruppo del sistema\n" +
                                 "selezionare l'errore appropriato, selezionarlo e inviare un messaggio di errore.\n" +
-                                "Esempio: Rattunde ha un problema con la barriera fotoelettrica del caricatore di pacchi ",
+                                "Esempio: Rattunde ha un problema con la barriera fotoelettrica del caricatore di pacchi. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                         "Odaberite svoj odjel i svoj objekat. \nU slučaju kvara, potražite odgovarajuću grešku pod sistemskom podgrupom, \nodaberite je i pošaljite poruku o grešci.\n" +
-                                "Na primjer, Rattunde ima grešku sa svjetlosnom barijerom utovarivača snopova. \n",
+                                "Na primjer, Rattunde ima grešku sa svjetlosnom barijerom utovarivača snopova. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                         "Zgjidhni departamentin tuaj dhe objektin tuaj. \nNë rast të një defekti, kërkoni për defektin e duhur nën nëngrupin e sistemit, \nzgjidhni atë dhe dërgoni një mesazh defekti.\n" +
-                                "Për shembull, Rattunde ka një defekt me barrierën e dritës së ngarkuesit të paketave. ",
+                                "Për shembull, Rattunde ka një defekt me barrierën e dritës së ngarkuesit të paketave. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                         "Departmanınızı ve tesisinizi seçin. \nArıza durumunda sistem alt grubu altında uygun arızayı arayın, \nseçin ve arıza mesajı gönderin.\n" +
-                                "Örneğin Rattunde, demet yükleyicinin ışık bariyerinde bir arıza var.  "};
+                                "Örneğin Rattunde, demet yükleyicinin ışık bariyerinde bir arıza var.  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"};
 
 
         //   0          1         2         3       4
         //Deutsch, Italienisch,Bosnisch,Albanisch,Türkisch
         String[] sprachTextIstUnterhalt =
                 {"Wählen Sie in der Abteilung die Anlage aus, \nauf welcher sich die Störmeldung befindet, welche repariert wurde.\n" +
-                        "Wählen Sie diese an, und heben Sie die Störmeldung auf. \n",
+                        "Wählen Sie diese an, und heben Sie die Störmeldung auf. \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                         "Nel reparto, seleziona il sistema su cui si trova il messaggio di errore che è stato riparato.\n" +
-                                "Seleziona questo e annulla il messaggio di errore. \n",
+                                "Seleziona questo e annulla il messaggio di errore. \n \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                         "U odjeljenju izaberite sistem na kojem se nalazi poruka o grešci koja je popravljena.\n" +
-                                "Odaberite ovo i otkažite poruku o grešci.\n",
+                                "Odaberite ovo i otkažite poruku o grešci.\n \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                         "Në departament, zgjidhni sistemin në të cilin ndodhet mesazhi i gabimit që u riparua.\n" +
-                                "Zgjidhni këtë dhe anuloni mesazhin e gabimit. \n",
+                                "Zgjidhni këtë dhe anuloni mesazhin e gabimit. \n \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
                         "Bölümde, onarılan hata mesajının bulunduğu sistemi seçin.\n" +
-                                "Bunu seçin ve hata mesajını iptal edin. \n"};
+                                "Bunu seçin ve hata mesajını iptal edin. \n \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"};
 
 
         Label lAnleitung = new Label();
@@ -64,8 +64,8 @@ public class Anleitung {
             lAnleitung.setText(sprachTextNichtUnterhalt[Sprache.getSprachenZahl()]);
         } else if (Login.getIstUnterhalt().equals("Admin")) {
             lAnleitung.setText("Alter, du bisch Admin, du bruchsch kei Aleitig...(chasch nur Dütsch)\n" +
-                    "Jedoch, da der Admin Absetzen und Aufheben beides gleichzeitig kann, \nmuss er nach Betätigung die Seite neu laden" +
-                    "\nman könnte dies jedoch implementieren. \n");
+                    "Jedoch, da der Admin Absetzen und Aufheben beides gleichzeitig kann, \nmuss er nach jeglicher Betätigung die Seite neu laden" +
+                    "\nman könnte dies jedoch implementieren. \n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }
 
 

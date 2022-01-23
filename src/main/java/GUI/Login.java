@@ -246,6 +246,9 @@ public class Login {
                     lzeigeMANummerL.setTextFill(Color.rgb(21, 117, 84));
                     isFoundInDB = true;//??? atomic was???
                     System.out.println("Ma-Nummer wurde in der Datenbank gefunden");
+                    lzeigePasswortL.setText("");
+                    pFInternetL.clear();
+                    lZeigeIsFoundInDBL.setText("");
                 }
 
 
