@@ -23,7 +23,7 @@ public class DatenBank {
             statement.executeQuery(einfuegString);//query
             statement.close();
         } catch (SQLException ex) {
-            System.out.println("ex ist gekommen");
+            System.out.println("SQL-ex ist gekommen, bei DatenBank.schreibeDB");
             System.out.println(ex.getMessage());
         }
     }
@@ -43,7 +43,7 @@ public class DatenBank {
             statement.close();
 
         } catch (SQLException ex) {
-            System.out.println("Exception ist gekommen");
+            System.out.println("SQL Exception ist gekommen, bei DatenBank.ausgabeNurEineSpalteDB");
             System.out.println(ex.getMessage());
         }
 
@@ -83,7 +83,7 @@ public class DatenBank {
             statement.close();
 
         } catch (SQLException ex) {
-            System.out.println("Exception ist gekommen");
+            System.out.println("SQL-Exception ist gekommen, bei DatenBank.ausgebenGesamtDB");
             System.out.println(ex.getMessage());
         }
 
@@ -121,7 +121,7 @@ public class DatenBank {
             statement.close();
 
         } catch (SQLException ex) {
-            System.out.println("Exception ist gekommen");
+            System.out.println("SQL- Exception ist gekommen, bei DatenBank.ausgebenGesamtDBRetourString");
             System.out.println(ex.getMessage());
         }
 
