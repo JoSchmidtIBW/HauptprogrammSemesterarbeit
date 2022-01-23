@@ -262,7 +262,7 @@ public class PasswortChange {
                             lzeigePasswortAendern.setText("Ihr Passwort wurde geändert");
                             String strNeuesPasswortFuerDB = getEingabePasswortNeuWiederholen();
                             String schreibeNeuesPasswortInDB = "UPDATE userMubea SET Passwort_User = '"
-                                    + strNeuesPasswortFuerDB + "' WHERE Passwort_User = '" + Login.getPasswort_User() +"';";
+                                    + strNeuesPasswortFuerDB + "' WHERE Passwort_User = '" + Login.getPasswort_User() +"'AND MA_Nummer = '"+Login.getMaNummer()+"';";
 
                             dBP.schreibeDB(schreibeNeuesPasswortInDB);
                             setAltesPasswortCorrect(false);
