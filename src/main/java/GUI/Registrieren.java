@@ -101,7 +101,7 @@ public class Registrieren {
         Label lZeigeIstChefNeu = new Label("");
         Label lZeigeIstUnterhaltNeu = new Label("");
 //MA-NummerNeu----------------------------------------------------------------------------------------------------------
-        Label lMANummerNeu = new Label("Neue MA.-Nummer");
+        Label lMANummerNeu = new Label("Neue MA.-Nummer:");
         TextField txfMANummerNeu = new TextField();
 
         Button bMANummerNeu = new Button("MA-NummerNeuOK");
@@ -152,7 +152,7 @@ public class Registrieren {
                         txfNachnameNeu.setText("");
                         txfPasswortNeu.setText("");
                     } else if (Login.ueberpruefungEingabeMANummerLogin(eingabeMANummerNeu).equals("ist richtig")) {
-                        lzeigeMANummerNeu.setText("JUNIT-Test vielleicht Zahlgrösse?" + txfMANummerNeu.getText());
+                        lzeigeMANummerNeu.setText("JUNIT-Test vielleicht Zahlgrösse??? " + txfMANummerNeu.getText());
                         lzeigeMANummerNeu.setTextFill(Color.GREEN);
                         setEingabeMANummerNeu(txfMANummerNeu.getText());
                         System.out.println(getEingabeMANummerNeu());
@@ -181,7 +181,7 @@ public class Registrieren {
            // txfMANummerNeu.clear();
         });
 //VornameNeu------------------------------------------------------------------------------------------------------------
-        Label lVornameNeu = new Label("Neuer Vorname:");
+        Label lVornameNeu = new Label("      Neuer Vorname:");
 
         Button bVornameNeuOK = new Button("VornameNeuOK");
 
@@ -196,14 +196,14 @@ public class Registrieren {
                 lZeigeVornameNeu.setText("User muss einen Vornamen besitzen!");
             }
                 else {//eingabeVornameNeu.length()>0//if (!eingabeVornameNeu.equals(""))
-                    lZeigeVornameNeu.setText("Sonderzeichen wegen DB???" + txfVornameNeu.getText());
+                    lZeigeVornameNeu.setText("Sonderzeichen wegen DB??? " + txfVornameNeu.getText());
                     lZeigeVornameNeu.setTextFill(Color.DEEPPINK);
                     setEingabeVornameNeu(txfVornameNeu.getText());
                 }
         });
 //NachnameNeu-----------------------------------------------------------------------------------------------------------
 
-        Label lNachnameNeu = new Label("Neuer Nachname:");
+        Label lNachnameNeu = new Label("   Neuer Nachname:");
 
         Button bNachnameNeuOK = new Button("NachnameNeuOK");
 
@@ -214,13 +214,13 @@ public class Registrieren {
                 lZeigeNachnameNeu.setText("User muss einen Nachnamen besitzen!");
             }
             else{
-                lZeigeNachnameNeu.setText("Sonderzeichen wegen DB???" + txfNachnameNeu.getText());
+                lZeigeNachnameNeu.setText("Sonderzeichen wegen DB??? " + txfNachnameNeu.getText());
                 lZeigeNachnameNeu.setTextFill(Color.web("#FFD700", 0.8));//1.8 mal schauen//dann kommt Fehler
                 setEingabeNachnameNeu(txfNachnameNeu.getText());
             }
         });
 //PasswortNeuRegistrieren-----------------------------------------------------------------------------------------------
-        Label lPassWortNeu = new Label("Neues Passwort:");
+        Label lPassWortNeu = new Label("      Neues Passwort:");
 
         Button bPasswortNeuOK = new Button("PasswortNeuOK");
 
@@ -231,14 +231,14 @@ public class Registrieren {
                 lZeigePasswortNeu.setText("User muss einen Passwort besitzen!");
             }
             else{
-                lZeigePasswortNeu.setText("Sonderzeichen wegen DB???" + txfPasswortNeu.getText());
+                lZeigePasswortNeu.setText("Sonderzeichen wegen DB??? " + txfPasswortNeu.getText());
                 lZeigePasswortNeu.setTextFill(Color.web("#7CFC00", 0.8));//1.8 mal schauen//dann kommt Fehler
                 setEingabePasswortNeu(txfPasswortNeu.getText());
             }
         });
         //lzeigePasswortNeu
 //IstChef----------------------------------------------------------------------------------------------------------------------
-        Label lIstChefNeu = new Label("Chef?:");
+        Label lIstChefNeu = new Label("                       Chef?:");
         ComboBox comboBoxChef = new ComboBox();
         comboBoxChef.getItems().add("istChef");//0
         comboBoxChef.getItems().add("keinChef");//1
@@ -270,7 +270,7 @@ public class Registrieren {
                 };
         comboBoxChef.setOnAction(event);
 //IstUnterhalt----------------------------------------------------------------------------------------------------------------
-        Label lIstUnterhaltNeu = new Label("Unterhalt?:");
+        Label lIstUnterhaltNeu = new Label("               Unterhalt?:");
         ComboBox comboBoxUnterhalt = new ComboBox();
         comboBoxUnterhalt.getItems().add("istU");//0
         comboBoxUnterhalt.getItems().add("keinU");//1
@@ -290,12 +290,12 @@ public class Registrieren {
                                 setEingabeIstUnterhalt("istU");
 //                                sprachenZahl = 0;
 //                                setSprachenZahl(0);
-                                System.out.println("istU hier muss was geschehen");
+                                //System.out.println("istU hier muss was geschehen");
                                 break;
                             case "keinU":
                                 setEingabeIstUnterhalt("keinU");
                                 //setSprachenZahl(1);
-                                System.out.println("keinU hier muss was geschehen");
+                                //System.out.println("keinU hier muss was geschehen");
                                 break;
                         }
                     }
@@ -350,7 +350,8 @@ public class Registrieren {
 
 
                     dBR.schreibeDB(einfuegRegistrierenDb);
-                    lZeigeRegistrierungAbschliessen.setText(einfuegRegistrierenDb);
+                    //lZeigeRegistrierungAbschliessen.setText(einfuegRegistrierenDb);
+                    lZeigeRegistrierungAbschliessen.setText("Der Mitarbeiter wurde erfolgreich\nder Datenbank hinzugefügt");
                     lZeigeRegistrierungAbschliessen.setTextFill(Color.YELLOWGREEN);
                     setEingabeMANummerNeu("");
                     setEingabeIstChef("");
@@ -363,15 +364,15 @@ public class Registrieren {
         Button bZurueckSpracheR = new Button("Zurück");
         bZurueckSpracheR.setOnAction(e -> stage.setScene(Sprache.createSpracheScene(stage)));
 //LayoutZeugs-----------------------------------------------------------------------------------------------------------
-        VBox layoutVR = new VBox(1);
+        VBox layoutVR = new VBox(6);
 
-        HBox layoutHMANummerNeu = new HBox(1);
-        HBox layoutHVornameNeu = new HBox(1);
-        HBox layoutHNachnameNeu = new HBox(1);
-        HBox layoutPasswortNeu = new HBox(1);
-        HBox layoutIstChef = new HBox(1);
-        HBox layoutIstUnterhalt = new HBox(1);
-        HBox layoutHRegistrierungAbschliessen = new HBox(1);
+        HBox layoutHMANummerNeu = new HBox(2);
+        HBox layoutHVornameNeu = new HBox(2);
+        HBox layoutHNachnameNeu = new HBox(2);
+        HBox layoutPasswortNeu = new HBox(2);
+        HBox layoutIstChef = new HBox(2);
+        HBox layoutIstUnterhalt = new HBox(2);
+        HBox layoutHRegistrierungAbschliessen = new HBox(2);
 
 
         layoutHMANummerNeu.getChildren().addAll(lMANummerNeu, txfMANummerNeu, bMANummerNeu, lzeigeMANummerNeu);

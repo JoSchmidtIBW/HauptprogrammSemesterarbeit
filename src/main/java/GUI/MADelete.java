@@ -42,7 +42,7 @@ public class MADelete {
 
         Label labelMADeleteScene= new Label("- MADelete- Scene - Mitarbeiter löschen");
 //MA-NummerEingabe----------------------------------------------------------------------------------------------------------
-        Label lMANummerDelete = new Label("Delete MA.-Nummer");
+        Label lMANummerDelete = new Label("Delete MA.-Nummer:");
         TextField txfMANummerDelete = new TextField();
 
         Button bMANummerDelete = new Button("MA-NummerDeleteOK");
@@ -59,7 +59,7 @@ public class MADelete {
 
             if(eingabeMANummerDelete.length()==0){//wenn leer//eingabeVornameNeu.length()==0//strMANummerFrage==null
                 lzeigeMANummerDelete.setTextFill(Color.RED);
-                lzeigeMANummerDelete.setText("der zu löschende User \nmuss einen Mitarbeiter- Nummer besitzen!");
+                lzeigeMANummerDelete.setText("Der zu löschende User \nmuss eine Mitarbeiter- Nummer besitzen!");
                 lZeigeMADelete.setText("");
             }
             else{//else if(eingabeMANummerNeu != null){
@@ -125,8 +125,8 @@ public class MADelete {
 //LayoutZeugs-----------------------------------------------------------------------------------------------------------
         VBox layoutVD= new VBox(20);
 
-        HBox layoutH = new HBox(1);
-        HBox layoutHDelete = new HBox(1);
+        HBox layoutH = new HBox(2);
+        HBox layoutHDelete = new HBox(2);
 
         layoutH.getChildren().addAll(lMANummerDelete,txfMANummerDelete,bMANummerDelete,lzeigeMANummerDelete);
         layoutHDelete.getChildren().addAll(bMADelete,lZeigeMADelete);
