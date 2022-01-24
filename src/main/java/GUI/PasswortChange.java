@@ -82,7 +82,7 @@ public class PasswortChange {
                 String ausgabeSuchePasswortAltMitPasswort = "SELECT * FROM userMubea WHERE Passwort_User = '"+eingabePasswortAltFrage+"'";
                 setAusgabeSuchePasswortAltMitPasswortFrageDB(dBP.ausgebenGesamtDBRetourString(ausgabeSuchePasswortAltMitPasswort));
                 System.out.println("dBP getAusgabeSuchePasswortAltMitPasswortFrageDB: " + getAusgabeSuchePasswortAltMitPasswortFrageDB());
-                System.out.println("sdsv "+Login.getPasswort_User());
+                System.out.println("Passwort alt: "+Login.getPasswort_User());
                 if(eingabePasswortAltFrage.length()==0){
                     lzeigePasswortAlt.setTextFill(Color.RED);
                     lzeigePasswortAlt.setText("Sie müssen Ihr Passwort erst eingeben!");

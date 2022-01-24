@@ -48,16 +48,16 @@ public class Sprache {
 
     //ComboBox
     public static Scene createSpracheScene(Stage stage) {
-        Label lSpracheScene1 = new Label("- Bin die Sprach- Auswahl- Scene -");
+        Label lSpracheScene1 = new Label("- Sprach- und weitere Einstellungen -");
 
         Label lSprachAuswahl = new Label("Sprache auswählen:");
         //TextField txfLoginBenutzername = new TextField();
         //Button bLoginBenutzerNameOK = new Button("LoginBenutzerNameOK");
 
         // String[] sprachen = {"Deutsch", "English", "France","Turky","Chinesisch"};
-
-        //ComboBox comboBox1 = new ComboBox(sprachen);
-        ComboBox comboBox1 = new ComboBox();
+        //ToDo das man alles mit Tastatur bedienen kann, aber irgendwie geht nicht
+        //ComboBox comboBox1 = new ComboBox(sprachen);// wiso geht das nicht ... deutsch
+        ComboBox comboBox1 = new ComboBox();//"Deutsch"
 
         comboBox1.getItems().add("Deutsch");//0
         comboBox1.getItems().add("Italienisch");//1
@@ -226,7 +226,7 @@ public class Sprache {
         layoutHSprachAuswahl.getChildren().addAll(lSprachAuswahl, comboBox1, lZeigeSprachAuswahl);//muss addAll sein
 
 
-        HBox layoutHLabelSprachenScenePasswortAendern = new HBox(269);
+        HBox layoutHLabelSprachenScenePasswortAendern = new HBox(249);
         HBox layoutHAbmeldenPW = new HBox(1);
         layoutHAbmeldenPW.getChildren().addAll(bRegistrierenScene, bMADeleteScene, bZuruekLoginS, bPasswortFinder, bPasswortAendern);
         layoutHLabelSprachenScenePasswortAendern.getChildren().addAll(lSpracheScene1, layoutHAbmeldenPW);

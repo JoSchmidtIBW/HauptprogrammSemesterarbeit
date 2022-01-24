@@ -38,7 +38,7 @@ public class TaskLeistePane {
 
 
     public static Pane getPane(){
-
+//Hier eigener Pfad eingeben (ev. in der Klasse Main, wegen Windowevent, ev. wegen Mac, ev. anderes Zeugs machen)
 //**********************************************************************************************************************
         ImageView myImageView = new ImageView("file:///D:/GitDownloadSemesterArbeit/MubeaLogoBild.PNG");
 //**********************************************************************************************************************

@@ -175,10 +175,7 @@ public class Registrieren {
                     txfNachnameNeu.setText("");
                     txfPasswortNeu.setText("");
                 }
-//                else if(!getAusgabeSucheMANummerMitMANummerFrageDB().isEmpty()&&eingabeMANummerNeu != null){
-//                lzeigeMANummerNeu.setTextFill(Color.RED);
-//                lzeigeMANummerNeu.setText("User muss einen Mitarbeiter- Nummer besitzen!");
-//                }
+
             }
 
            // txfMANummerNeu.clear();
@@ -329,9 +326,7 @@ public class Registrieren {
                 if((getEingabeMANummerNeu()== null||getEingabeVornameNeu()==null||getEingabeNachnameNeu()==null
                 ||getEingabePasswortNeu()==null||getEingabeIstChef()==null||getEingabeIstUnterhalt()==null)
                 || (getEingabeMANummerNeu().length()==0||getEingabeIstChef().length()==0||getEingabeIstUnterhalt().length()==0)){
-                    //ToDo was wenn nicht alles ausgefüllt??
 
-                    //ToDo hey prog. wenn user schon gibt, denn mach fehlermeldig bitte
                     lZeigeRegistrierungAbschliessen.setText("Es muss alles vollständig ausgefüllt sein!");
                     lZeigeRegistrierungAbschliessen.setTextFill(Color.RED);
                     lzeigeMANummerNeu.setText("");
@@ -346,7 +341,7 @@ public class Registrieren {
                     txfPasswortNeu.setText("");
                 }
                 else{
-                    //ToDo hier könnte man zB Geburtsdatum reinmachen
+                    //ToDo hier könnte man zB Geburtsdatum reinmachen, oder weitere Anlagen wie Freischalten usw
                     String einfuegRegistrierenDb = "INSERT INTO userMubea"
                             + "(MA_Nummer, Vorname, Nachname, Passwort_User, IstChef, IstUnterhalt)"
                             + "VALUES  ('" + getEingabeMANummerNeu() + "', '" + getEingabeVornameNeu() + "', "
